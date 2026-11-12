@@ -1,0 +1,7 @@
+ÚLTIMA FRECUENCIA: GUALEY — PAQUETE DE PRUEBA VISUAL
+
+Contiene 112 PNG RGBA de 128x128 derivados de una hoja conceptual. NO son 112 poses originales independientes.
+Algunas poses se repiten y algunos bordes pueden tener artefactos. Requiere revisión y limpieza antes de considerarlo arte definitivo.
+No reemplace automáticamente sprites que ya funcionan: probar con una copia o rama de trabajo.
+Orden por carpeta: 00, 01, etc. Direcciones: down, left, right, up.
+No se ha modificado ningún archivo del repositorio local.

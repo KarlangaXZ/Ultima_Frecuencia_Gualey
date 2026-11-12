@@ -1,5 +1,9 @@
 # Última Frecuencia: Gualey — Fase 4.1
 
+Auditoría de recursos del protagonista: [informe técnico](docs/player_animation_audit.md).
+4 fotogramas finales aprovechables de 112 objetivo; 108 pendientes.
+Las referencias de `draft/` no se integraron. El juego conserva idle_down activo.
+
 Prototipo 2D top-down para Godot **4.7.2 Stable**, GDScript y Windows.
 
 Nombre oficial visible: **Última Frecuencia: Gualey**. El historial de fases
