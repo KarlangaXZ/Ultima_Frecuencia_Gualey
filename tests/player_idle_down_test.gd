@@ -49,10 +49,10 @@ func run() -> void:
 		DirAccess.make_dir_recursive_absolute("res://test-results/idle-down")
 		check(root.get_texture().get_image().save_png("res://test-results/idle-down/in-game.png") == OK,
 			"Captura del protagonista real en Main")
-	player.velocity = Vector2(0, 240)
+	player.velocity = Vector2(240, 0)
 	await frames(2)
-	check(sprite.animation == &"walk_down" and sprite.sprite_frames.get_frame_texture("walk_down", 0) is AtlasTexture,
-		"Caminar conserva los fotogramas provisionales")
+	check(sprite.animation == &"walk_right" and sprite.sprite_frames.get_frame_texture("walk_right", 0) is AtlasTexture,
+		"Caminar a la derecha conserva los fotogramas provisionales")
 	check(sprite.scale == Vector2(0.85, 0.85) and sprite.offset == Vector2.ZERO,
 		"Salir de idle real restaura escala y pivote provisionales")
 	player.velocity = Vector2.ZERO

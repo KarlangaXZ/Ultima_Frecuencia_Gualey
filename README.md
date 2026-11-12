@@ -1,5 +1,9 @@
 # Última Frecuencia: Gualey — Fase 4.1
 
+Auditoría de recursos del protagonista: [informe técnico](docs/player_animation_audit.md).
+4 fotogramas finales aprovechables de 112 objetivo; 108 pendientes.
+Las referencias de `draft/` no se integraron. El juego conserva idle_down activo.
+
 Prototipo 2D top-down para Godot **4.7.2 Stable**, GDScript y Windows.
 
 Nombre oficial visible: **Última Frecuencia: Gualey**. El historial de fases
@@ -397,3 +401,42 @@ godot --path . --fixed-fps 60 --script res://tests/player_idle_down_test.gd -- -
 
 Pendiente: valoración manual del ciclo en tiempo real y transiciones de estilo,
 recorrido con mouse/teclado e inspección del panel gráfico del depurador.
+
+## Fase 4.2: integración de walk_down
+
+Integrados los ocho PNG existentes de `assets/characters/player/walk/`, orden
+00–07, en la biblioteca `idle/PlayerIdleDown.tres`, conservando esa ruta para no
+romper referencias. walk_down reproduce a **8 FPS en bucle**, idle_down conserva
+sus cuatro frames y 4 FPS. No se sobrescribieron ni retocaron imágenes.
+
+Verificación: ocho RGBA 128 × 128 con alfa 0–255 y hashes distintos. La silueta
+ocupa x=36–91 aproximadamente, y=7–122 a 16–122 según pose: centro próximo a
+x=64 y la misma base y=122 de idle. La escala visual 0.4 y offset (0,-56) actuales
+permiten alternar sin cambiar tamaño del nodo físico. El ancho de walk es menor
+por la pose de brazos. Se observa un halo claro en algunos bordes de segmentación;
+su limpieza artística queda pendiente, sin editar los originales en esta fase.
+La hoja fuente y el spritesheet se conservan como referencias y no se reproducen.
+
+El controlador visual ahora usa la velocidad al caminar, de modo que S activa
+walk_down aunque el mouse apunte a otro lado. Al detenerse conserva la dirección
+de marcha y vuelve a idle_down; mover el mouse en reposo vuelve a orientar el
+cuerpo según el apuntado. El apuntado real del arma permanece independiente.
+Izquierda, derecha y arriba conservan el atlas provisional. No se modificaron
+movimiento, velocidad, colisiones, cámara, salud, armas, IA ni HUD.
+
+Modificados: PlayerIdleDown.tres, character_visual.gd y documentación. La prueba
+existente de idle conserva su cobertura de fallback comprobando walk_right en
+lugar de walk_down, que ya tiene arte real. Creada player_walk_down_test.gd y sus
+metadatos; metadatos de importación de los PNG. Player.tscn no requirió cambios.
+
+Validación: **178 comprobaciones aprobadas, 0 fallos**: fases 1–4 (146), idle (13)
+y walk (19). Ejecución real con OpenGL: 22 comprobaciones, incluyendo tres capturas
+en `test-results/walk-down/`, inspeccionadas para comparar reposo, caminata y
+retorno a reposo. Sin errores de Godot en las pruebas. Sigue pendiente revisar
+manualmente fluidez, último→primer frame, halo de bordes y panel del depurador.
+No se generaron placeholders ni commits.
+
+```text
+godot --headless --path . --fixed-fps 60 --script res://tests/player_walk_down_test.gd
+godot --path . --fixed-fps 60 --script res://tests/player_walk_down_test.gd -- --capture
+```

@@ -6,7 +6,8 @@ Desde la fase 4.1, las rutas del siguiente inventario son relativas a
 **`assets/placeholders/`**, salvo `assets/ui/SurvivalTheme.tres`, que sigue activo
 en su ubicación original. Las carpetas modulares fuera de placeholders están
 reservadas para arte final. Desde fase 4.2, characters/player/idle contiene los
-cuatro PNG reales suministrados para idle_down; los demás módulos siguen provisionales.
+cuatro PNG reales suministrados para idle_down y player/walk los ocho PNG de
+walk_down (8 FPS). Los demás módulos siguen provisionales.
 
 - `characters/player/temp_survivor_sheet.svg`: superviviente con chaqueta verde,
   chaleco y gafas. Atlas horizontal de **12 celdas de 64 × 64**, transparente.

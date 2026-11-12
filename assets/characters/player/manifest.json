@@ -1,0 +1,616 @@
+{
+  "project": "Última Frecuencia: Gualey",
+  "status": "draft generated from concept image; NOT production-ready sprites",
+  "cell_px": [
+    128,
+    128
+  ],
+  "frames": {
+    "idle_down": [
+      {
+        "filename": "idle/down/player_idle_down_00.png",
+        "derived_from_source_pose": 0,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "idle/down/player_idle_down_01.png",
+        "derived_from_source_pose": 1,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "idle/down/player_idle_down_02.png",
+        "derived_from_source_pose": 2,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "idle/down/player_idle_down_03.png",
+        "derived_from_source_pose": 3,
+        "unique_source_pose": false
+      }
+    ],
+    "idle_left": [
+      {
+        "filename": "idle/left/player_idle_left_00.png",
+        "derived_from_source_pose": 0,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "idle/left/player_idle_left_01.png",
+        "derived_from_source_pose": 1,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "idle/left/player_idle_left_02.png",
+        "derived_from_source_pose": 2,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "idle/left/player_idle_left_03.png",
+        "derived_from_source_pose": 3,
+        "unique_source_pose": false
+      }
+    ],
+    "idle_right": [
+      {
+        "filename": "idle/right/player_idle_right_00.png",
+        "derived_from_source_pose": 0,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "idle/right/player_idle_right_01.png",
+        "derived_from_source_pose": 1,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "idle/right/player_idle_right_02.png",
+        "derived_from_source_pose": 2,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "idle/right/player_idle_right_03.png",
+        "derived_from_source_pose": 3,
+        "unique_source_pose": false
+      }
+    ],
+    "idle_up": [
+      {
+        "filename": "idle/up/player_idle_up_00.png",
+        "derived_from_source_pose": 0,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "idle/up/player_idle_up_01.png",
+        "derived_from_source_pose": 1,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "idle/up/player_idle_up_02.png",
+        "derived_from_source_pose": 2,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "idle/up/player_idle_up_03.png",
+        "derived_from_source_pose": 3,
+        "unique_source_pose": false
+      }
+    ],
+    "walk_down": [
+      {
+        "filename": "walk/down/player_walk_down_00.png",
+        "derived_from_source_pose": 0,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "walk/down/player_walk_down_01.png",
+        "derived_from_source_pose": 1,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "walk/down/player_walk_down_02.png",
+        "derived_from_source_pose": 1,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "walk/down/player_walk_down_03.png",
+        "derived_from_source_pose": 2,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "walk/down/player_walk_down_04.png",
+        "derived_from_source_pose": 3,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "walk/down/player_walk_down_05.png",
+        "derived_from_source_pose": 4,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "walk/down/player_walk_down_06.png",
+        "derived_from_source_pose": 4,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "walk/down/player_walk_down_07.png",
+        "derived_from_source_pose": 5,
+        "unique_source_pose": false
+      }
+    ],
+    "walk_left": [
+      {
+        "filename": "walk/left/player_walk_left_00.png",
+        "derived_from_source_pose": 0,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "walk/left/player_walk_left_01.png",
+        "derived_from_source_pose": 1,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "walk/left/player_walk_left_02.png",
+        "derived_from_source_pose": 1,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "walk/left/player_walk_left_03.png",
+        "derived_from_source_pose": 2,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "walk/left/player_walk_left_04.png",
+        "derived_from_source_pose": 3,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "walk/left/player_walk_left_05.png",
+        "derived_from_source_pose": 4,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "walk/left/player_walk_left_06.png",
+        "derived_from_source_pose": 4,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "walk/left/player_walk_left_07.png",
+        "derived_from_source_pose": 5,
+        "unique_source_pose": false
+      }
+    ],
+    "walk_right": [
+      {
+        "filename": "walk/right/player_walk_right_00.png",
+        "derived_from_source_pose": 0,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "walk/right/player_walk_right_01.png",
+        "derived_from_source_pose": 1,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "walk/right/player_walk_right_02.png",
+        "derived_from_source_pose": 1,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "walk/right/player_walk_right_03.png",
+        "derived_from_source_pose": 2,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "walk/right/player_walk_right_04.png",
+        "derived_from_source_pose": 3,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "walk/right/player_walk_right_05.png",
+        "derived_from_source_pose": 4,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "walk/right/player_walk_right_06.png",
+        "derived_from_source_pose": 4,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "walk/right/player_walk_right_07.png",
+        "derived_from_source_pose": 5,
+        "unique_source_pose": false
+      }
+    ],
+    "walk_up": [
+      {
+        "filename": "walk/up/player_walk_up_00.png",
+        "derived_from_source_pose": 0,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "walk/up/player_walk_up_01.png",
+        "derived_from_source_pose": 1,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "walk/up/player_walk_up_02.png",
+        "derived_from_source_pose": 1,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "walk/up/player_walk_up_03.png",
+        "derived_from_source_pose": 2,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "walk/up/player_walk_up_04.png",
+        "derived_from_source_pose": 3,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "walk/up/player_walk_up_05.png",
+        "derived_from_source_pose": 4,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "walk/up/player_walk_up_06.png",
+        "derived_from_source_pose": 4,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "walk/up/player_walk_up_07.png",
+        "derived_from_source_pose": 5,
+        "unique_source_pose": false
+      }
+    ],
+    "shoot_down": [
+      {
+        "filename": "shoot/down/player_shoot_down_00.png",
+        "derived_from_source_pose": 0,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "shoot/down/player_shoot_down_01.png",
+        "derived_from_source_pose": 1,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "shoot/down/player_shoot_down_02.png",
+        "derived_from_source_pose": 2,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "shoot/down/player_shoot_down_03.png",
+        "derived_from_source_pose": 3,
+        "unique_source_pose": false
+      }
+    ],
+    "shoot_left": [
+      {
+        "filename": "shoot/left/player_shoot_left_00.png",
+        "derived_from_source_pose": 0,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "shoot/left/player_shoot_left_01.png",
+        "derived_from_source_pose": 1,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "shoot/left/player_shoot_left_02.png",
+        "derived_from_source_pose": 2,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "shoot/left/player_shoot_left_03.png",
+        "derived_from_source_pose": 3,
+        "unique_source_pose": false
+      }
+    ],
+    "shoot_right": [
+      {
+        "filename": "shoot/right/player_shoot_right_00.png",
+        "derived_from_source_pose": 0,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "shoot/right/player_shoot_right_01.png",
+        "derived_from_source_pose": 1,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "shoot/right/player_shoot_right_02.png",
+        "derived_from_source_pose": 2,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "shoot/right/player_shoot_right_03.png",
+        "derived_from_source_pose": 3,
+        "unique_source_pose": false
+      }
+    ],
+    "shoot_up": [
+      {
+        "filename": "shoot/up/player_shoot_up_00.png",
+        "derived_from_source_pose": 0,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "shoot/up/player_shoot_up_01.png",
+        "derived_from_source_pose": 1,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "shoot/up/player_shoot_up_02.png",
+        "derived_from_source_pose": 2,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "shoot/up/player_shoot_up_03.png",
+        "derived_from_source_pose": 3,
+        "unique_source_pose": false
+      }
+    ],
+    "reload_down": [
+      {
+        "filename": "reload/down/player_reload_down_00.png",
+        "derived_from_source_pose": 0,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "reload/down/player_reload_down_01.png",
+        "derived_from_source_pose": 1,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "reload/down/player_reload_down_02.png",
+        "derived_from_source_pose": 2,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "reload/down/player_reload_down_03.png",
+        "derived_from_source_pose": 2,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "reload/down/player_reload_down_04.png",
+        "derived_from_source_pose": 3,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "reload/down/player_reload_down_05.png",
+        "derived_from_source_pose": 4,
+        "unique_source_pose": false
+      }
+    ],
+    "reload_left": [
+      {
+        "filename": "reload/left/player_reload_left_00.png",
+        "derived_from_source_pose": 0,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "reload/left/player_reload_left_01.png",
+        "derived_from_source_pose": 1,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "reload/left/player_reload_left_02.png",
+        "derived_from_source_pose": 2,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "reload/left/player_reload_left_03.png",
+        "derived_from_source_pose": 2,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "reload/left/player_reload_left_04.png",
+        "derived_from_source_pose": 3,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "reload/left/player_reload_left_05.png",
+        "derived_from_source_pose": 4,
+        "unique_source_pose": false
+      }
+    ],
+    "reload_right": [
+      {
+        "filename": "reload/right/player_reload_right_00.png",
+        "derived_from_source_pose": 0,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "reload/right/player_reload_right_01.png",
+        "derived_from_source_pose": 1,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "reload/right/player_reload_right_02.png",
+        "derived_from_source_pose": 2,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "reload/right/player_reload_right_03.png",
+        "derived_from_source_pose": 2,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "reload/right/player_reload_right_04.png",
+        "derived_from_source_pose": 3,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "reload/right/player_reload_right_05.png",
+        "derived_from_source_pose": 4,
+        "unique_source_pose": false
+      }
+    ],
+    "reload_up": [
+      {
+        "filename": "reload/up/player_reload_up_00.png",
+        "derived_from_source_pose": 0,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "reload/up/player_reload_up_01.png",
+        "derived_from_source_pose": 1,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "reload/up/player_reload_up_02.png",
+        "derived_from_source_pose": 2,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "reload/up/player_reload_up_03.png",
+        "derived_from_source_pose": 2,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "reload/up/player_reload_up_04.png",
+        "derived_from_source_pose": 3,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "reload/up/player_reload_up_05.png",
+        "derived_from_source_pose": 4,
+        "unique_source_pose": false
+      }
+    ],
+    "death_down": [
+      {
+        "filename": "death/down/player_death_down_00.png",
+        "derived_from_source_pose": 0,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "death/down/player_death_down_01.png",
+        "derived_from_source_pose": 1,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "death/down/player_death_down_02.png",
+        "derived_from_source_pose": 2,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "death/down/player_death_down_03.png",
+        "derived_from_source_pose": 2,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "death/down/player_death_down_04.png",
+        "derived_from_source_pose": 3,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "death/down/player_death_down_05.png",
+        "derived_from_source_pose": 4,
+        "unique_source_pose": false
+      }
+    ],
+    "death_left": [
+      {
+        "filename": "death/left/player_death_left_00.png",
+        "derived_from_source_pose": 0,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "death/left/player_death_left_01.png",
+        "derived_from_source_pose": 1,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "death/left/player_death_left_02.png",
+        "derived_from_source_pose": 2,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "death/left/player_death_left_03.png",
+        "derived_from_source_pose": 2,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "death/left/player_death_left_04.png",
+        "derived_from_source_pose": 3,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "death/left/player_death_left_05.png",
+        "derived_from_source_pose": 4,
+        "unique_source_pose": false
+      }
+    ],
+    "death_right": [
+      {
+        "filename": "death/right/player_death_right_00.png",
+        "derived_from_source_pose": 0,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "death/right/player_death_right_01.png",
+        "derived_from_source_pose": 1,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "death/right/player_death_right_02.png",
+        "derived_from_source_pose": 2,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "death/right/player_death_right_03.png",
+        "derived_from_source_pose": 2,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "death/right/player_death_right_04.png",
+        "derived_from_source_pose": 3,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "death/right/player_death_right_05.png",
+        "derived_from_source_pose": 4,
+        "unique_source_pose": false
+      }
+    ],
+    "death_up": [
+      {
+        "filename": "death/up/player_death_up_00.png",
+        "derived_from_source_pose": 0,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "death/up/player_death_up_01.png",
+        "derived_from_source_pose": 1,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "death/up/player_death_up_02.png",
+        "derived_from_source_pose": 2,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "death/up/player_death_up_03.png",
+        "derived_from_source_pose": 2,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "death/up/player_death_up_04.png",
+        "derived_from_source_pose": 3,
+        "unique_source_pose": false
+      },
+      {
+        "filename": "death/up/player_death_up_05.png",
+        "derived_from_source_pose": 4,
+        "unique_source_pose": false
+      }
+    ]
+  },
+  "issues": [
+    "AI concept artwork is not a precisely aligned sprite atlas",
+    "Some source pose counts are lower than requested. Intermediate frames are derived and require manual art review",
+    "Background extraction can show artifacts, especially weapons and death poses",
+    "Run in-game visual QA before replacing placeholders"
+  ]
+}
