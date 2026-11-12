@@ -46,6 +46,10 @@
   La misma biblioteca conserva su ruta y añade walk_down con ocho PNG a 8 FPS.
   Al caminar, la dirección visual usa la velocidad; al parar conserva esa dirección
   hasta mover el mouse. Aim/disparos mantienen su comportamiento independiente.
+  Actualización: el reposo conserva ahora la última dirección de marcha aunque
+  se mueva el mouse. Idle real en cuatro direcciones; walk real down/up/right.
+  walk_left pendiente. Mapa de nombres intercambiados autorizado por el usuario:
+  docs/player_directions_integration.md. No integrar los PNG con fondo gris.
   Visual combina bibliotecas parciales con el atlas provisional; solo animaciones
   presentes adoptan library_scale/offset y orientación fija salvo configuración.
   No aplicar el pivote frontal a walk/death provisionales ni modificar la física.

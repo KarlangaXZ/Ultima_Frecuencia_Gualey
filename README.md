@@ -1,5 +1,10 @@
 # Última Frecuencia: Gualey — Fase 4.1
 
+Estado actual de direcciones: [informe de integración](docs/player_directions_integration.md).
+Idle real en cuatro direcciones y walk real en down/up/right; walk_left sigue
+provisional hasta recibir PNG sin restos de fondo. Asignaciones corregidas con
+autorización del usuario; gameplay conservado.
+
 Auditoría de recursos del protagonista: [informe técnico](docs/player_animation_audit.md).
 4 fotogramas finales aprovechables de 112 objetivo; 108 pendientes.
 Las referencias de `draft/` no se integraron. El juego conserva idle_down activo.

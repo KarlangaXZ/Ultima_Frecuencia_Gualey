@@ -51,15 +51,15 @@ func run() -> void:
 			"Captura del protagonista real en Main")
 	player.velocity = Vector2(240, 0)
 	await frames(2)
-	check(sprite.animation == &"walk_right" and sprite.sprite_frames.get_frame_texture("walk_right", 0) is AtlasTexture,
-		"Caminar a la derecha conserva los fotogramas provisionales")
-	check(sprite.scale == Vector2(0.85, 0.85) and sprite.offset == Vector2.ZERO,
-		"Salir de idle real restaura escala y pivote provisionales")
+	check(sprite.animation == &"walk_right" and sprite.sprite_frames.get_frame_count("walk_right") == 8,
+		"Caminar a la derecha utiliza los ocho fotogramas integrados")
+	check(sprite.scale == Vector2(0.4, 0.4) and sprite.offset == Vector2(0, -56),
+		"Idle y walk reales comparten escala y pivote")
 	player.velocity = Vector2.ZERO
 	player.get_node("Aim").rotation = 0.0
 	await frames(2)
-	check(sprite.animation == &"idle_right" and library.get_frame_count("idle_right") == 2,
-		"Las otras direcciones de reposo siguen provisionales")
+	check(sprite.animation == &"idle_right" and library.get_frame_count("idle_right") == 4,
+		"Reposo derecho tiene cuatro fotogramas reales")
 	player.health.take_damage(100)
 	await frames(2)
 	check(sprite.animation == &"death_right" and sprite.scale == Vector2(0.85, 0.85),

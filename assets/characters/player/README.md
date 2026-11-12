@@ -2,7 +2,9 @@
 
 `idle/PlayerIdleDown.tres` integra cuatro PNG reales, 128 × 128, a 4 FPS, en bucle.
 La misma biblioteca también integra walk_down: ocho PNG 128 × 128 a 8 FPS, en bucle.
-Las demás direcciones y estados continúan provisionales.
+Estado actualizado: idle real en cuatro direcciones y walk real en down/up/right.
+walk_left sigue provisional por restos de fondo en sus PNG. Ver el
+[mapa de asignaciones corregidas](../../../docs/player_directions_integration.md).
 Para ampliar el arte, reemplazar `Player/Visual.sheet` o
 asignar `Player/Visual.animation_library` (SpriteFrames) desde el inspector.
 Conservar `Player`, `HealthComponent`, `Aim` y el cuerpo físico.

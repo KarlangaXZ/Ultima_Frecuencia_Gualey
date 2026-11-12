@@ -19,7 +19,6 @@ var fallback_scale: Vector2
 var fallback_offset: Vector2
 var barrel: Sprite2D
 var fallback_barrel_position: Vector2
-var last_mouse_position: Vector2
 var movement_facing: Vector2 = Vector2.DOWN
 var has_moved: bool = false
 
@@ -105,17 +104,15 @@ func _process(delta: float) -> void:
 	var direction := actor.velocity
 	if not is_zombie:
 		var aim_angle: float = actor.get_node("Aim").rotation
-		var mouse_position := get_viewport().get_mouse_position()
 		if actor.velocity.length_squared() > 1.0:
 			direction = actor.velocity
 			movement_facing = direction
 			has_moved = true
-		elif not has_moved or not mouse_position.is_equal_approx(last_mouse_position):
+		elif not has_moved:
 			direction = Vector2.RIGHT.rotated(aim_angle)
 			movement_facing = direction
 		else:
 			direction = movement_facing
-		last_mouse_position = mouse_position
 	elif is_instance_valid(actor.get("target")) and actor.get("state") == 2:
 		direction = actor.global_position.direction_to(actor.get("target").global_position)
 	if not direction.is_zero_approx():
