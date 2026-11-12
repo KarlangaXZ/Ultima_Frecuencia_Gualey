@@ -43,6 +43,9 @@
   partículas opcionales con duración limitada. Combat sigue resolviendo el único rayo.
 - `assets/ui/SurvivalTheme.tres`: tema del HUD y Game Over existentes.
 - Fase 4.2: Player usa idle/PlayerIdleDown.tres con cuatro PNG reales a 4 FPS.
+  La misma biblioteca conserva su ruta y añade walk_down con ocho PNG a 8 FPS.
+  Al caminar, la dirección visual usa la velocidad; al parar conserva esa dirección
+  hasta mover el mouse. Aim/disparos mantienen su comportamiento independiente.
   Visual combina bibliotecas parciales con el atlas provisional; solo animaciones
   presentes adoptan library_scale/offset y orientación fija salvo configuración.
   No aplicar el pivote frontal a walk/death provisionales ni modificar la física.
@@ -90,4 +93,5 @@
    Guarda PNG en `test-results/phase-four/` (ignorado); inspeccionarlos visualmente.
 3. `godot --path .` para comprobar imagen y WASD en ventana.
    `godot --headless --path . --fixed-fps 60 --script res://tests/player_idle_down_test.gd`.
+   `godot --headless --path . --fixed-fps 60 --script res://tests/player_walk_down_test.gd`.
 4. Revisar salida y depurador; documentar cualquier prueba que no se pueda ejecutar.
