@@ -1,0 +1,126 @@
+[gd_scene load_steps=4 format=3]
+[ext_resource type="Script" path="res://scripts/ui/hud.gd" id="1"]
+[ext_resource type="Theme" path="res://assets/ui/SurvivalTheme.tres" id="2"]
+[ext_resource type="Texture2D" path="res://assets/placeholders/ui/temp_zone_mark.svg" id="3"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1")
+[node name="Panel" type="PanelContainer" parent="."]
+theme = ExtResource("2")
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 354.0
+offset_bottom = 108.0
+mouse_filter = 2
+[node name="Margin" type="MarginContainer" parent="Panel"]
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 12
+mouse_filter = 2
+[node name="Content" type="VBoxContainer" parent="Panel/Margin"]
+theme_override_constants/separation = 8
+mouse_filter = 2
+[node name="Text" type="Label" parent="Panel/Margin/Content"]
+theme_override_colors/font_color = Color(0.84, 0.73, 0.49, 1)
+theme_override_font_sizes/font_size = 24
+text = "Última Frecuencia:
+Gualey"
+mouse_filter = 2
+[node name="Sector" type="Label" parent="Panel/Margin/Content"]
+theme_override_colors/font_color = Color(0.5, 0.63, 0.62, 1)
+theme_override_font_sizes/font_size = 12
+text = "SECTOR 04  /  DEPÓSITO EVACUADO"
+mouse_filter = 2
+[node name="HealthBar" type="ProgressBar" parent="Panel/Margin/Content"]
+custom_minimum_size = Vector2(292, 12)
+mouse_filter = 2
+value = 100.0
+show_percentage = false
+[node name="HealthValue" type="Label" parent="Panel/Margin/Content"]
+theme_override_colors/font_color = Color(0.53, 0.82, 0.68, 1)
+text = "100 / 100"
+mouse_filter = 2
+[node name="Ammo" type="Label" parent="Panel/Margin/Content"]
+theme_override_font_sizes/font_size = 25
+text = "Munición: 12 / 48"
+mouse_filter = 2
+[node name="Reload" type="Label" parent="Panel/Margin/Content"]
+custom_minimum_size = Vector2(0, 22)
+theme_override_colors/font_color = Color(1, 0.77, 0.37, 1)
+mouse_filter = 2
+[node name="Stats" type="Label" parent="Panel/Margin/Content"]
+theme_override_colors/font_color = Color(0.63, 0.72, 0.7, 1)
+theme_override_font_sizes/font_size = 15
+text = "Eliminados: 0 · Tiempo: 00:00"
+mouse_filter = 2
+[node name="Controls" type="Label" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -42.0
+offset_right = -24.0
+offset_bottom = -16.0
+theme = ExtResource("2")
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 2
+text = "WASD  MOVER     /     MOUSE  APUNTAR     /     CLIC  DISPARAR     /     R  RECARGAR"
+mouse_filter = 2
+[node name="DamageFlash" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.7, 0.12, 0.06, 0)
+mouse_filter = 2
+[node name="GameOver" type="Control" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+[node name="Shade" type="ColorRect" parent="GameOver"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.015, 0.025, 0.035, 0.88)
+mouse_filter = 2
+[node name="Center" type="CenterContainer" parent="GameOver"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+[node name="Panel" type="PanelContainer" parent="GameOver/Center"]
+theme = ExtResource("2")
+theme_type_variation = &"GameOverPanel"
+[node name="Margin" type="MarginContainer" parent="GameOver/Center/Panel"]
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_bottom = 32
+[node name="Content" type="VBoxContainer" parent="GameOver/Center/Panel/Margin"]
+theme_override_constants/separation = 24
+[node name="Mark" type="TextureRect" parent="GameOver/Center/Panel/Margin/Content"]
+custom_minimum_size = Vector2(48, 48)
+texture = ExtResource("3")
+expand_mode = 1
+stretch_mode = 5
+[node name="Eyebrow" type="Label" parent="GameOver/Center/Panel/Margin/Content"]
+theme_override_colors/font_color = Color(0.65, 0.45, 0.35, 1)
+theme_override_font_sizes/font_size = 13
+text = "SEÑAL PERDIDA / SECTOR 04"
+horizontal_alignment = 1
+[node name="Title" type="Label" parent="GameOver/Center/Panel/Margin/Content"]
+theme_override_font_sizes/font_size = 48
+text = "HAS MUERTO"
+horizontal_alignment = 1
+[node name="Summary" type="Label" parent="GameOver/Center/Panel/Margin/Content"]
+theme_override_colors/font_color = Color(0.58, 0.68, 0.66, 1)
+text = "El perímetro ha sido comprometido."
+horizontal_alignment = 1
+[node name="Retry" type="Button" parent="GameOver/Center/Panel/Margin/Content"]
+custom_minimum_size = Vector2(260, 48)
+text = "REINTENTAR"

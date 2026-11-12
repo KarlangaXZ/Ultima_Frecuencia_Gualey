@@ -1,0 +1,78 @@
+[gd_resource type="Theme" load_steps=9 format=3]
+[sub_resource type="StyleBoxFlat" id="Panel"]
+bg_color = Color(0.045, 0.073, 0.086, 0.94)
+border_width_left = 2
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.3, 0.4, 0.39, 0.85)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_left = 4
+corner_radius_bottom_right = 4
+shadow_color = Color(0, 0, 0, 0.3)
+shadow_size = 8
+[sub_resource type="StyleBoxFlat" id="HealthBg"]
+bg_color = Color(0.18, 0.24, 0.25, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_left = 3
+corner_radius_bottom_right = 3
+[sub_resource type="StyleBoxFlat" id="HealthFill"]
+bg_color = Color(0.4, 0.76, 0.59, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_left = 3
+corner_radius_bottom_right = 3
+[sub_resource type="StyleBoxFlat" id="Button"]
+bg_color = Color(0.79, 0.65, 0.39, 1)
+content_margin_left = 24.0
+content_margin_right = 24.0
+content_margin_top = 16.0
+content_margin_bottom = 16.0
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_left = 3
+corner_radius_bottom_right = 3
+[sub_resource type="StyleBoxFlat" id="Hover"]
+bg_color = Color(0.94, 0.8, 0.52, 1)
+content_margin_top = 16.0
+content_margin_bottom = 16.0
+[sub_resource type="StyleBoxFlat" id="Pressed"]
+bg_color = Color(0.63, 0.5, 0.29, 1)
+content_margin_top = 16.0
+content_margin_bottom = 16.0
+[sub_resource type="StyleBoxFlat" id="Focus"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.9, 0.64, 1)
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+[sub_resource type="StyleBoxFlat" id="GameOver"]
+bg_color = Color(0.045, 0.065, 0.075, 0.98)
+border_width_top = 4
+border_width_bottom = 1
+border_color = Color(0.72, 0.36, 0.28, 1)
+shadow_size = 24
+shadow_color = Color(0, 0, 0, 0.5)
+[resource]
+default_font_size = 17
+PanelContainer/styles/panel = SubResource("Panel")
+ProgressBar/styles/background = SubResource("HealthBg")
+ProgressBar/styles/fill = SubResource("HealthFill")
+Button/styles/normal = SubResource("Button")
+Button/styles/hover = SubResource("Hover")
+Button/styles/pressed = SubResource("Pressed")
+Button/styles/focus = SubResource("Focus")
+Button/colors/font_color = Color(0.06, 0.09, 0.1, 1)
+Button/colors/font_hover_color = Color(0.03, 0.06, 0.07, 1)
+Button/colors/font_pressed_color = Color(0.03, 0.06, 0.07, 1)
+Button/font_sizes/font_size = 20
+Label/colors/font_color = Color(0.85, 0.89, 0.84, 1)
+GameOverPanel/base_type = &"PanelContainer"
+GameOverPanel/styles/panel = SubResource("GameOver")

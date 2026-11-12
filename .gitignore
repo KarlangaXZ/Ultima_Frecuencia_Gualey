@@ -1,0 +1,16 @@
+# Godot: datos importados y caché local
+.godot/
+.godot-tools/
+*.translation
+export.cfg
+export_credentials.cfg
+builds/
+dist/
+# Herramientas y resultados locales
+.tools/
+test-results/
+*.log
+*.exe
+*.zip
+.DS_Store
+Thumbs.db

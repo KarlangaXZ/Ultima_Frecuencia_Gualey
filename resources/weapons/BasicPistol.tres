@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="WeaponConfig" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/weapons/weapon_config.gd" id="1"]
+[resource]
+script = ExtResource("1")
+weapon_name = "Pistola básica"
+capacity = 12
+initial_reserve = 48
+damage = 25.0
+fire_interval = 0.3
+reload_duration = 1.5
+shot_range = 600.0
