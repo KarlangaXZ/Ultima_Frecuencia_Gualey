@@ -42,6 +42,10 @@
 - `scripts/visuals/combat_effects.gd`: escucha visual_shot del Combat; destello y
   partículas opcionales con duración limitada. Combat sigue resolviendo el único rayo.
 - `assets/ui/SurvivalTheme.tres`: tema del HUD y Game Over existentes.
+- Fase 4.2: Player usa idle/PlayerIdleDown.tres con cuatro PNG reales a 4 FPS.
+  Visual combina bibliotecas parciales con el atlas provisional; solo animaciones
+  presentes adoptan library_scale/offset y orientación fija salvo configuración.
+  No aplicar el pivote frontal a walk/death provisionales ni modificar la física.
 
 ## Convenciones y reglas
 - Escenas PascalCase, scripts snake_case, indentación GDScript con tabuladores.
@@ -85,4 +89,5 @@
    Para capturas reales: `godot --path . --fixed-fps 60 --script res://tests/phase_four_test.gd -- --capture`.
    Guarda PNG en `test-results/phase-four/` (ignorado); inspeccionarlos visualmente.
 3. `godot --path .` para comprobar imagen y WASD en ventana.
+   `godot --headless --path . --fixed-fps 60 --script res://tests/player_idle_down_test.gd`.
 4. Revisar salida y depurador; documentar cualquier prueba que no se pueda ejecutar.

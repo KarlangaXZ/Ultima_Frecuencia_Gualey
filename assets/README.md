@@ -5,7 +5,8 @@ Arte SVG original del proyecto, sin descargas ni dependencias. Todos los archivo
 Desde la fase 4.1, las rutas del siguiente inventario son relativas a
 **`assets/placeholders/`**, salvo `assets/ui/SurvivalTheme.tres`, que sigue activo
 en su ubicación original. Las carpetas modulares fuera de placeholders están
-reservadas para arte final y contienen instrucciones; todavía no contienen arte final.
+reservadas para arte final. Desde fase 4.2, characters/player/idle contiene los
+cuatro PNG reales suministrados para idle_down; los demás módulos siguen provisionales.
 
 - `characters/player/temp_survivor_sheet.svg`: superviviente con chaqueta verde,
   chaleco y gafas. Atlas horizontal de **12 celdas de 64 × 64**, transparente.
@@ -38,8 +39,12 @@ También se puede asignar **`Visual.animation_library`** desde el inspector:
 es un SpriteFrames final con las animaciones `<estado>_<dirección>` y permite
 fotogramas de cualquier tamaño sin usar el atlas fijo. Se requieren idle, walk,
 death y attack (para zombis), para down/up/left/right. Death debe tener loop=false.
-Si animation_library está vacío se sigue utilizando el sheet temporal actual.
-Mantener el arte cenital orientado hacia abajo: el controlador conserva su rotación.
+La biblioteca puede ser parcial: solo sustituye las animaciones que contiene y
+conserva el sheet temporal para las restantes. Si está vacía, todo sigue provisional.
+`library_scale` y `library_offset` se aplican solo a los fotogramas reales;
+al cambiar de estado se restaura el transform provisional. El arte frontal de
+idle_down usa escala (0.4,0.4), offset (0,-56) y rotate_library_with_actor=false.
+Para bibliotecas cenitales rotables se puede activar esa última opción.
 
 ## Puntos de reemplazo desde el inspector
 

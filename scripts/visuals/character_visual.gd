@@ -3,6 +3,9 @@ extends Node2D
 @export var sheet: Texture2D
 ## Biblioteca opcional de arte final; respeta nombres estado_dirección.
 @export var animation_library: SpriteFrames
+@export var library_scale: Vector2 = Vector2(0.4, 0.4)
+@export var library_offset: Vector2 = Vector2(0, -56)
+@export var rotate_library_with_actor: bool = false
 @export var is_zombie: bool = false
 @export var effects_enabled: bool = true
 @onready var actor: CharacterBody2D = get_parent()
@@ -12,16 +15,21 @@ var last_health: float
 var flash_remaining: float = 0.0
 var direction_name: String = "down"
 var dead: bool = false
+var fallback_scale: Vector2
+var fallback_offset: Vector2
+var barrel: Sprite2D
+var fallback_barrel_position: Vector2
 
 func _ready() -> void:
+	fallback_scale = sprite.scale
+	fallback_offset = sprite.offset
+	barrel = actor.get_node_or_null("Aim/Barrel") as Sprite2D
+	if barrel != null:
+		fallback_barrel_position = barrel.position
 	health = actor.get_node("HealthComponent") as HealthComponent
 	last_health = health.max_health
 	health.health_changed.connect(_on_health_changed)
 	health.died.connect(_on_death)
-	if animation_library != null:
-		sprite.sprite_frames = animation_library
-		sprite.play("idle_down")
-		return
 	var frames := SpriteFrames.new()
 	frames.remove_animation("default")
 	for state_name in ["idle", "walk", "attack", "death"]:
@@ -41,8 +49,34 @@ func _ready() -> void:
 				texture.atlas = sheet
 				texture.region = Rect2(index * 64, 0, 64, 64)
 				frames.add_frame(animation_name, texture)
+	# Sobrescribir solo animaciones disponibles, conservando el atlas existente.
+	if animation_library != null:
+		for animation_name in animation_library.get_animation_names():
+			if animation_library.get_frame_count(animation_name) == 0:
+				continue
+			if frames.has_animation(animation_name):
+				frames.remove_animation(animation_name)
+			frames.add_animation(animation_name)
+			frames.set_animation_loop(animation_name, animation_library.get_animation_loop(animation_name))
+			frames.set_animation_speed(animation_name, animation_library.get_animation_speed(animation_name))
+			for index in range(animation_library.get_frame_count(animation_name)):
+				frames.add_frame(animation_name, animation_library.get_frame_texture(animation_name, index),
+					animation_library.get_frame_duration(animation_name, index))
 	sprite.sprite_frames = frames
 	sprite.play("idle_down")
+	_update_sprite_transform()
+
+func _update_sprite_transform() -> void:
+	var uses_library := animation_library != null and animation_library.has_animation(sprite.animation) \
+		and animation_library.get_frame_count(sprite.animation) > 0
+	sprite.scale = library_scale if uses_library else fallback_scale
+	sprite.offset = library_offset if uses_library else fallback_offset
+	if uses_library and not rotate_library_with_actor:
+		rotation = 0.0
+	if barrel != null:
+		# Solo desplaza el dibujo a la mano; Aim y el origen físico no cambian.
+		barrel.position = Vector2(9, -18).rotated(-actor.get_node("Aim").rotation) \
+			if uses_library and not rotate_library_with_actor else fallback_barrel_position
 
 func _on_health_changed(current: float, _maximum: float) -> void:
 	if current < last_health and effects_enabled:
@@ -52,6 +86,10 @@ func _on_health_changed(current: float, _maximum: float) -> void:
 func _on_death() -> void:
 	dead = true
 	sprite.play("death_" + direction_name)
+	# Restablecer la orientación del atlas provisional al salir de un idle fijo.
+	if not is_zombie:
+		rotation = actor.get_node("Aim").rotation - PI / 2.0
+	_update_sprite_transform()
 	var aim := actor.get_node_or_null("Aim") as Node2D
 	if aim != null:
 		aim.hide()
@@ -78,3 +116,4 @@ func _process(delta: float) -> void:
 	var animation_name := state_name + "_" + direction_name
 	if sprite.animation != animation_name:
 		sprite.play(animation_name)
+	_update_sprite_transform()

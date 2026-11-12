@@ -357,3 +357,43 @@ título cabe sin recortes y los controles conservan su presentación. No se
 observaron errores de Godot. El recorrido manual y la revisión del panel gráfico
 del depurador siguen pendientes. La biblioteca opcional para arte final queda
 preparada, sin arte final incorporado ni validación artística de ese material.
+
+## Fase 4.2: primera animación real del protagonista
+
+Se integraron los PNG suministrados `player_idle_down_00.png` a `_03.png` en
+`assets/characters/player/idle/`. Cada imagen es RGBA de 128 × 128 con alfa 0–255.
+La silueta conserva la base en y=122; límites por frame (x0,y0,x1,y1):
+(31,6,97,122), (32,7,96,122), (32,9,95,122), (32,6,96,122).
+El pequeño cambio superior corresponde al reposo; no se recortaron ni editaron
+las imágenes originales. El spritesheet suministrado se conserva como referencia.
+
+`PlayerIdleDown.tres` utiliza los cuatro PNG en orden, bucle a **4 FPS**.
+Player/Visual combina esta biblioteca parcial con sus animaciones anteriores:
+solo sustituye idle_down, sin eliminar ni generar recursos gráficos provisionales.
+La animación real se activa en reposo cuando Aim apunta hacia el sector inferior;
+otras direcciones, marcha y muerte mantienen el atlas anterior.
+
+El arte frontal permanece sin rotación, con escala visual 0.4 y offset (0,-56),
+alineando los pies con el cuerpo físico. Durante ese idle se aproxima el dibujo
+de la pistola a la mano; al salir se restauran escala, pivote y arma provisionales.
+Aim, raycast, colisión, cámara, input, salud, IA y valores de combate no cambiaron.
+La diferencia de estilo entre idle real y las animaciones pendientes es temporal.
+
+Creado: recurso SpriteFrames, prueba `tests/player_idle_down_test.gd` y metadatos
+de importación de los PNG. Modificados: Player.tscn, character_visual.gd y guías
+README/AGENTS/recursos. No se generó arte nuevo ni se realizaron commits.
+
+Validación: importación correcta en Godot 4.7.2; **146 comprobaciones anteriores
+y 13 nuevas aprobadas** (159 distintas). La nueva prueba también se ejecutó con
+renderizado OpenGL real y guardó captura en `test-results/idle-down/in-game.png`:
+14 comprobaciones incluyendo guardado de imagen. Se inspeccionó la captura en
+Main y la hoja suministrada. Las pruebas verifican avance de frames, orden de PNG,
+4 FPS, pivote y retorno a los estados provisionales. No se detectaron errores.
+
+```text
+godot --headless --path . --fixed-fps 60 --script res://tests/player_idle_down_test.gd
+godot --path . --fixed-fps 60 --script res://tests/player_idle_down_test.gd -- --capture
+```
+
+Pendiente: valoración manual del ciclo en tiempo real y transiciones de estilo,
+recorrido con mouse/teclado e inspección del panel gráfico del depurador.
