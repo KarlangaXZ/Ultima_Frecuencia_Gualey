@@ -33,7 +33,7 @@ func run() -> void:
 	var player := current_scene.get_node("Player") as CharacterBody2D
 	var sprite := player.get_node("Visual/Sprite") as AnimatedSprite2D
 	var library := sprite.sprite_frames
-	var sources := {"idle_left": "idle_left", "walk_up": "walk_up", "idle_up": "idle_right", "idle_right": "idle_up", "walk_right": "walk_left"}
+	var sources := {"idle_left": "idle_left", "walk_up": "walk_up", "idle_up": "idle_right", "idle_right": "idle_up", "walk_right": "walk_left", "walk_left": "walk_left"}
 	for name: String in sources:
 		var count := 4 if name.begins_with("idle") else 8
 		check(library.get_frame_count(name) == count and library.get_animation_speed(name) == float(count)
@@ -50,8 +50,9 @@ func run() -> void:
 		await frames(3)
 		check(sprite.animation == StringName("idle_" + direction), "Detenerse " + direction)
 		await capture("idle-" + direction)
-	check(library.get_frame_texture("walk_left", 0) is AtlasTexture,
-		"Recursos incorrectos conservan alternativa provisional")
-	check(library.get_frame_texture("death_down", 0) is AtlasTexture, "Muerte provisional intacta")
+	check(library.get_frame_texture("walk_left", 0).resource_path == "res://assets/characters/player/walk/player_walk_left_00.png"
+		and library.get_frame_texture("walk_right", 0).resource_path == "res://assets/characters/player/walk/legacy_right/player_walk_left_00.png",
+		"Walk izquierdo usa V2 y derecho conserva originales separados")
+	check(library.get_frame_count("death_down") == 6, "Muerte técnica integrada")
 	print("Resultado direcciones: ", checks, " comprobaciones, ", failures, " fallos")
 	quit(0 if failures == 0 else 1)

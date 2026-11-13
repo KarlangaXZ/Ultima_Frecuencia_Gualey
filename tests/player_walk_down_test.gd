@@ -65,7 +65,7 @@ func run() -> void:
 		player.velocity = direction * 240.0
 		await frames(2)
 		var texture := library.get_frame_texture(sprite.animation, 0)
-		var valid: bool = texture is AtlasTexture
+		var valid: bool = texture.resource_path == "res://assets/characters/player/walk/player_walk_left_00.png"
 		if direction == Vector2.UP:
 			valid = texture.resource_path.ends_with("player_walk_up_00.png")
 		elif direction == Vector2.RIGHT:

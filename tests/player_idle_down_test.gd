@@ -30,7 +30,7 @@ func run() -> void:
 	player.get_node("Aim").rotation = PI / 2.0 + 0.2
 	await frames(2)
 	var library := sprite.sprite_frames
-	check(library.get_animation_names().size() == 16, "Sustitución conserva las 16 animaciones")
+	check(library.get_animation_names().size() == 20, "Biblioteca conserva estados anteriores y añade recarga")
 	check(library.get_frame_count("idle_down") == 4 and library.get_animation_speed("idle_down") == 4.0
 		and library.get_animation_loop("idle_down"), "Idle real: cuatro fotogramas, 4 FPS, bucle")
 	for index in range(4):
@@ -62,7 +62,7 @@ func run() -> void:
 		"Reposo derecho tiene cuatro fotogramas reales")
 	player.health.take_damage(100)
 	await frames(2)
-	check(sprite.animation == &"death_right" and sprite.scale == Vector2(0.85, 0.85),
-		"Muerte conserva animación y transformaciones anteriores")
+	check(sprite.animation == &"death_right" and sprite.scale == Vector2(0.4, 0.4),
+		"Muerte usa la nueva biblioteca visual")
 	print("Resultado idle_down: ", checks, " comprobaciones, ", failures, " fallos")
 	quit(0 if failures == 0 else 1)

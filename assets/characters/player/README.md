@@ -1,9 +1,14 @@
 # Arte final del jugador
 
+Acciones de fase 4.3: PlayerActionAnimations.tres integra Reload/Death técnicos
+provisionales en cuatro direcciones. Shoot descartado por calidad y destello
+incrustado. [Informe](../../../docs/phase_4_3_actions.md). No es arte definitivo.
+
 `idle/PlayerIdleDown.tres` integra cuatro PNG reales, 128 × 128, a 4 FPS, en bucle.
 La misma biblioteca también integra walk_down: ocho PNG 128 × 128 a 8 FPS, en bucle.
-Estado actualizado: idle real en cuatro direcciones y walk real en down/up/right.
-walk_left sigue provisional por restos de fondo en sus PNG. Ver el
+Estado actualizado V2: idle y walk reales en las cuatro direcciones.
+walk_left usa player_walk_left_00–07.png a 8 FPS; walk_right conserva sus PNG
+anteriores en walk/legacy_right/. Ver [validación V2](../../../docs/walk_left_v2_validation.md) y el
 [mapa de asignaciones corregidas](../../../docs/player_directions_integration.md).
 Para ampliar el arte, reemplazar `Player/Visual.sheet` o
 asignar `Player/Visual.animation_library` (SpriteFrames) desde el inspector.

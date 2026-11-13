@@ -32,14 +32,23 @@
 [ext_resource type="Texture2D" uid="uid://bcbi6t8gyci40" path="res://assets/characters/player/idle/player_idle_up_01.png" id="30"]
 [ext_resource type="Texture2D" uid="uid://cwx18f6xypdmo" path="res://assets/characters/player/idle/player_idle_up_02.png" id="31"]
 [ext_resource type="Texture2D" uid="uid://cc2tdv05qxt7e" path="res://assets/characters/player/idle/player_idle_up_03.png" id="32"]
-[ext_resource type="Texture2D" uid="uid://bfjwwl80bq4le" path="res://assets/characters/player/walk/player_walk_left_00.png" id="33"]
-[ext_resource type="Texture2D" uid="uid://dl7jx7wf1248i" path="res://assets/characters/player/walk/player_walk_left_01.png" id="34"]
-[ext_resource type="Texture2D" uid="uid://dhhk6qefdfv1a" path="res://assets/characters/player/walk/player_walk_left_02.png" id="35"]
-[ext_resource type="Texture2D" uid="uid://psioblqf0s25" path="res://assets/characters/player/walk/player_walk_left_03.png" id="36"]
-[ext_resource type="Texture2D" uid="uid://c1fvhg7ekndnv" path="res://assets/characters/player/walk/player_walk_left_04.png" id="37"]
-[ext_resource type="Texture2D" uid="uid://sb2lhoidl8jl" path="res://assets/characters/player/walk/player_walk_left_05.png" id="38"]
-[ext_resource type="Texture2D" uid="uid://g3ybmwndexmp" path="res://assets/characters/player/walk/player_walk_left_06.png" id="39"]
-[ext_resource type="Texture2D" uid="uid://dbormr3w7w8la" path="res://assets/characters/player/walk/player_walk_left_07.png" id="40"]
+[ext_resource type="Texture2D" path="res://assets/characters/player/walk/legacy_right/player_walk_left_00.png" id="33"]
+[ext_resource type="Texture2D" path="res://assets/characters/player/walk/legacy_right/player_walk_left_01.png" id="34"]
+[ext_resource type="Texture2D" path="res://assets/characters/player/walk/legacy_right/player_walk_left_02.png" id="35"]
+[ext_resource type="Texture2D" path="res://assets/characters/player/walk/legacy_right/player_walk_left_03.png" id="36"]
+[ext_resource type="Texture2D" path="res://assets/characters/player/walk/legacy_right/player_walk_left_04.png" id="37"]
+[ext_resource type="Texture2D" path="res://assets/characters/player/walk/legacy_right/player_walk_left_05.png" id="38"]
+[ext_resource type="Texture2D" path="res://assets/characters/player/walk/legacy_right/player_walk_left_06.png" id="39"]
+[ext_resource type="Texture2D" path="res://assets/characters/player/walk/legacy_right/player_walk_left_07.png" id="40"]
+
+[ext_resource type="Texture2D" path="res://assets/characters/player/walk/player_walk_left_00.png" id="41"]
+[ext_resource type="Texture2D" path="res://assets/characters/player/walk/player_walk_left_01.png" id="42"]
+[ext_resource type="Texture2D" path="res://assets/characters/player/walk/player_walk_left_02.png" id="43"]
+[ext_resource type="Texture2D" path="res://assets/characters/player/walk/player_walk_left_03.png" id="44"]
+[ext_resource type="Texture2D" path="res://assets/characters/player/walk/player_walk_left_04.png" id="45"]
+[ext_resource type="Texture2D" path="res://assets/characters/player/walk/player_walk_left_05.png" id="46"]
+[ext_resource type="Texture2D" path="res://assets/characters/player/walk/player_walk_left_06.png" id="47"]
+[ext_resource type="Texture2D" path="res://assets/characters/player/walk/player_walk_left_07.png" id="48"]
 
 [resource]
 animations = [{
@@ -196,5 +205,10 @@ animations = [{
 }],
 "loop": 1,
 "name": &"walk_up",
+"speed": 8.0
+}, {
+"frames": [{"duration": 1.0, "texture": ExtResource("41")}, {"duration": 1.0, "texture": ExtResource("42")}, {"duration": 1.0, "texture": ExtResource("43")}, {"duration": 1.0, "texture": ExtResource("44")}, {"duration": 1.0, "texture": ExtResource("45")}, {"duration": 1.0, "texture": ExtResource("46")}, {"duration": 1.0, "texture": ExtResource("47")}, {"duration": 1.0, "texture": ExtResource("48")}],
+"loop": true,
+"name": &"walk_left",
 "speed": 8.0
 }]

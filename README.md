@@ -1,5 +1,18 @@
 # Última Frecuencia: Gualey — Fase 4.1
 
+Fase 4.3: [Reload y Death integrados en cuatro direcciones](docs/phase_4_3_actions.md).
+64 hashes verificados; 48 PNG técnicos provisionales aceptados. Shoot permanece
+pendiente por destello incrustado y orientación/poses incorrectas; se conserva
+el disparo anterior. 278 comprobaciones aprobadas, sin cambios de gameplay.
+
+Actualización walk_left V2: [integración completada y validación](docs/walk_left_v2_validation.md).
+Idle y walk tienen arte en las cuatro direcciones; V2 pasó 230 comprobaciones.
+Los avisos anteriores sobre walk_left pendiente son históricos y quedan superados
+por esta revisión. Walk_right conserva sus imágenes originales en legacy_right/.
+
+Revisión final de walk_left (12/11/2026): [defectos pendientes por fotograma](docs/walk_left_final_validation.md).
+Los PNG presentes aún conservan fondo gris/halos; no se activó la secuencia final.
+
 Estado actual de direcciones: [informe de integración](docs/player_directions_integration.md).
 Idle real en cuatro direcciones y walk real en down/up/right; walk_left sigue
 provisional hasta recibir PNG sin restos de fondo. Asignaciones corregidas con

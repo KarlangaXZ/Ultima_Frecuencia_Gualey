@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3]
+[gd_scene load_steps=14 format=3]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/components/health_component.gd" id="2"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" path="res://assets/placeholders/weapons/temp_pistol.svg" id="8"]
 [ext_resource type="Script" path="res://scripts/visuals/combat_effects.gd" id="9"]
 [ext_resource type="SpriteFrames" path="res://assets/characters/player/idle/PlayerIdleDown.tres" id="10"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/player/PlayerActionAnimations.tres" id="11"]
 [sub_resource type="SpriteFrames" id="EmptyFrames"]
 [sub_resource type="CircleShape2D" id="PlayerShape"]
 radius = 16.0
@@ -41,6 +42,7 @@ z_index = 1
 script = ExtResource("6")
 sheet = ExtResource("7")
 animation_library = ExtResource("10")
+action_library = ExtResource("11")
 [node name="Sprite" type="AnimatedSprite2D" parent="Visual"]
 sprite_frames = SubResource("EmptyFrames")
 scale = Vector2(0.85, 0.85)

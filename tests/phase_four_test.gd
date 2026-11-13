@@ -45,7 +45,7 @@ func run() -> void:
 	var zombie := main.get_node("Zombies/ZombieA")
 	var zombie_visual := zombie.get_node("Visual")
 	var zombie_sprite := zombie_visual.get_node("Sprite") as AnimatedSprite2D
-	check(sprite.sprite_frames.get_animation_names().size() == 16, "Jugador tiene cuatro estados y cuatro direcciones")
+	check(sprite.sprite_frames.get_animation_names().size() == 20, "Jugador conserva estados y añade recarga")
 	for direction in ["down", "up", "left", "right"]:
 		check(sprite.sprite_frames.has_animation("idle_" + direction)
 			and sprite.sprite_frames.has_animation("walk_" + direction), "Reposo y marcha disponibles: " + direction)
@@ -114,8 +114,8 @@ func run() -> void:
 	player.health.take_damage(1000)
 	check(visual.dead and String(sprite.animation).begins_with("death"), "Jugador muerto reproduce death")
 	check(not player.get_node("Aim").visible, "Arma visual se oculta al morir")
-	await frames(30)
-	check(sprite.frame == 3 and hud.game_over.visible, "Death termina y Game Over sigue operativo")
+	await frames(65)
+	check(sprite.frame == 5 and hud.game_over.visible, "Death termina y Game Over sigue operativo")
 	check(hud.get_node("GameOver/Center/Panel/Margin/Content/Retry").get_global_rect().size.y >= 48,
 		"Reintentar conserva objetivo visible grande")
 	await capture("05-game-over")

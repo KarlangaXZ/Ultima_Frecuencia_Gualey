@@ -1,5 +1,8 @@
 # Integración de direcciones del protagonista — fase 4.2
 
+Estado histórico anterior a V2. La caminata izquierda ya está integrada;
+consultar [validación V2 y mapa actualizado](walk_left_v2_validation.md).
+
 ## Resultado y limitación
 
 Integración parcial segura: idle real en cuatro direcciones (4 frames a 4 FPS)
