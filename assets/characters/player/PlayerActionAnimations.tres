@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=49 format=3]
+[gd_resource type="SpriteFrames" load_steps=65 format=3]
 
 [ext_resource type="Texture2D" path="res://assets/characters/player/reload/player_reload_down_00.png" id="1"]
 [ext_resource type="Texture2D" path="res://assets/characters/player/reload/player_reload_down_01.png" id="2"]
@@ -49,6 +49,23 @@
 [ext_resource type="Texture2D" path="res://assets/characters/player/death/player_death_right_04.png" id="47"]
 [ext_resource type="Texture2D" path="res://assets/characters/player/death/player_death_right_05.png" id="48"]
 
+[ext_resource type="Texture2D" path="res://assets/characters/player/shoot/player_shoot_down_00.png" id="49"]
+[ext_resource type="Texture2D" path="res://assets/characters/player/shoot/player_shoot_down_01.png" id="50"]
+[ext_resource type="Texture2D" path="res://assets/characters/player/shoot/player_shoot_down_02.png" id="51"]
+[ext_resource type="Texture2D" path="res://assets/characters/player/shoot/player_shoot_down_03.png" id="52"]
+[ext_resource type="Texture2D" path="res://assets/characters/player/shoot/player_shoot_up_00.png" id="53"]
+[ext_resource type="Texture2D" path="res://assets/characters/player/shoot/player_shoot_up_01.png" id="54"]
+[ext_resource type="Texture2D" path="res://assets/characters/player/shoot/player_shoot_up_02.png" id="55"]
+[ext_resource type="Texture2D" path="res://assets/characters/player/shoot/player_shoot_up_03.png" id="56"]
+[ext_resource type="Texture2D" path="res://assets/characters/player/shoot/player_shoot_right_00.png" id="57"]
+[ext_resource type="Texture2D" path="res://assets/characters/player/shoot/player_shoot_right_01.png" id="58"]
+[ext_resource type="Texture2D" path="res://assets/characters/player/shoot/player_shoot_right_02.png" id="59"]
+[ext_resource type="Texture2D" path="res://assets/characters/player/shoot/player_shoot_right_03.png" id="60"]
+[ext_resource type="Texture2D" path="res://assets/characters/player/shoot/player_shoot_left_00.png" id="61"]
+[ext_resource type="Texture2D" path="res://assets/characters/player/shoot/player_shoot_left_01.png" id="62"]
+[ext_resource type="Texture2D" path="res://assets/characters/player/shoot/player_shoot_left_02.png" id="63"]
+[ext_resource type="Texture2D" path="res://assets/characters/player/shoot/player_shoot_left_03.png" id="64"]
+
 [resource]
 animations = [{"name": &"reload_down", "loop": false, "speed": 4.0, "frames": [{"duration": 1.0, "texture": ExtResource("1")}, {"duration": 1.0, "texture": ExtResource("2")}, {"duration": 1.0, "texture": ExtResource("3")}, {"duration": 1.0, "texture": ExtResource("4")}, {"duration": 1.0, "texture": ExtResource("5")}, {"duration": 1.0, "texture": ExtResource("6")}]},
 {"name": &"reload_left", "loop": false, "speed": 4.0, "frames": [{"duration": 1.0, "texture": ExtResource("7")}, {"duration": 1.0, "texture": ExtResource("8")}, {"duration": 1.0, "texture": ExtResource("9")}, {"duration": 1.0, "texture": ExtResource("10")}, {"duration": 1.0, "texture": ExtResource("11")}, {"duration": 1.0, "texture": ExtResource("12")}]},
@@ -57,4 +74,8 @@ animations = [{"name": &"reload_down", "loop": false, "speed": 4.0, "frames": [{
 {"name": &"death_down", "loop": false, "speed": 7.0, "frames": [{"duration": 1.0, "texture": ExtResource("25")}, {"duration": 1.0, "texture": ExtResource("26")}, {"duration": 1.0, "texture": ExtResource("27")}, {"duration": 1.0, "texture": ExtResource("28")}, {"duration": 1.0, "texture": ExtResource("29")}, {"duration": 1.0, "texture": ExtResource("30")}]},
 {"name": &"death_left", "loop": false, "speed": 7.0, "frames": [{"duration": 1.0, "texture": ExtResource("31")}, {"duration": 1.0, "texture": ExtResource("32")}, {"duration": 1.0, "texture": ExtResource("33")}, {"duration": 1.0, "texture": ExtResource("34")}, {"duration": 1.0, "texture": ExtResource("35")}, {"duration": 1.0, "texture": ExtResource("36")}]},
 {"name": &"death_right", "loop": false, "speed": 7.0, "frames": [{"duration": 1.0, "texture": ExtResource("37")}, {"duration": 1.0, "texture": ExtResource("38")}, {"duration": 1.0, "texture": ExtResource("39")}, {"duration": 1.0, "texture": ExtResource("40")}, {"duration": 1.0, "texture": ExtResource("41")}, {"duration": 1.0, "texture": ExtResource("42")}]},
-{"name": &"death_up", "loop": false, "speed": 7.0, "frames": [{"duration": 1.0, "texture": ExtResource("43")}, {"duration": 1.0, "texture": ExtResource("44")}, {"duration": 1.0, "texture": ExtResource("45")}, {"duration": 1.0, "texture": ExtResource("46")}, {"duration": 1.0, "texture": ExtResource("47")}, {"duration": 1.0, "texture": ExtResource("48")}]}]
+{"name": &"death_up", "loop": false, "speed": 7.0, "frames": [{"duration": 1.0, "texture": ExtResource("43")}, {"duration": 1.0, "texture": ExtResource("44")}, {"duration": 1.0, "texture": ExtResource("45")}, {"duration": 1.0, "texture": ExtResource("46")}, {"duration": 1.0, "texture": ExtResource("47")}, {"duration": 1.0, "texture": ExtResource("48")}]},
+{"name": &"shoot_down", "loop": false, "speed": 13.333333, "frames": [{"duration": 1.0, "texture": ExtResource("49")}, {"duration": 1.0, "texture": ExtResource("50")}, {"duration": 1.0, "texture": ExtResource("51")}, {"duration": 1.0, "texture": ExtResource("52")}]},
+{"name": &"shoot_up", "loop": false, "speed": 13.333333, "frames": [{"duration": 1.0, "texture": ExtResource("53")}, {"duration": 1.0, "texture": ExtResource("54")}, {"duration": 1.0, "texture": ExtResource("55")}, {"duration": 1.0, "texture": ExtResource("56")}]},
+{"name": &"shoot_left", "loop": false, "speed": 13.333333, "frames": [{"duration": 1.0, "texture": ExtResource("57")}, {"duration": 1.0, "texture": ExtResource("58")}, {"duration": 1.0, "texture": ExtResource("59")}, {"duration": 1.0, "texture": ExtResource("60")}]},
+{"name": &"shoot_right", "loop": false, "speed": 13.333333, "frames": [{"duration": 1.0, "texture": ExtResource("61")}, {"duration": 1.0, "texture": ExtResource("62")}, {"duration": 1.0, "texture": ExtResource("63")}, {"duration": 1.0, "texture": ExtResource("64")}]}]

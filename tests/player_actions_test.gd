@@ -36,7 +36,7 @@ func run() -> void:
 		Input.action_release("move_" + direction)
 		await frames(2)
 		check(sprite.animation == StringName("idle_" + direction), "Idle conservado " + direction)
-		check(not sprite.sprite_frames.has_animation("shoot_" + direction), "Shoot rechazado sin doble destello")
+		check(sprite.sprite_frames.get_frame_count("shoot_" + direction) == 4, "Shoot corregido disponible")
 		weapon.try_fire(player.position, Vector2.DOWN)
 		check(weapon.loaded == 11, "Disparo real intacto")
 		check(weapon.start_reload(), "Recarga real inicia")

@@ -1,5 +1,9 @@
 # Arte final del jugador
 
+Shoot corregido ya integrado en cuatro direcciones, provisional. Se dispara por
+shot_fired y dura la cadencia real, sin duplicar efectos. [Validación](../../../docs/shoot_final_integration.md).
+El rechazo histórico del paquete anterior ya no aplica a estos PNG corregidos.
+
 Acciones de fase 4.3: PlayerActionAnimations.tres integra Reload/Death técnicos
 provisionales en cuatro direcciones. Shoot descartado por calidad y destello
 incrustado. [Informe](../../../docs/phase_4_3_actions.md). No es arte definitivo.
