@@ -94,7 +94,7 @@ func run() -> void:
 		"Muerte activa animación no repetida")
 	check(not zombie_sprite.sprite_frames.get_animation_loop(zombie_sprite.animation), "Death no está en bucle")
 	await frames(30)
-	check(zombie_sprite.frame == 3 and zombie.collision_layer == 0 and main.kills == 1,
+	check(zombie_sprite.frame == 5 and zombie.collision_layer == 0 and main.kills == 1,
 		"Death finaliza con enemigo desactivado y una sola baja")
 	await capture("03-death")
 	# Impacto en escenario; conservar hit por rayo, sin lógica en efectos.

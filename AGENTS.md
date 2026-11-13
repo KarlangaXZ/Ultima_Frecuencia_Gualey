@@ -57,6 +57,11 @@
   No aplicar el pivote frontal a walk/death provisionales ni modificar la física.
 
 ## Convenciones y reglas
+- Fase 4.4: Zombie/Visual usa zombie_visual.gd (subclase de CharacterVisual) y
+  base/ZombieBaseFrames.tres, 96 PNG técnicos. Attack observa renovaciones del
+  cooldown y no produce daño. Death termina dentro del fade existente de 0.45 s.
+  No cambiar el controlador visual del protagonista para ajustes del zombi.
+  Validación: tests/zombie_visual_test.gd; informe docs/zombie_base_integration.md.
 - Fase 4.3: Player/Visual.action_library es PlayerActionAnimations.tres, separado
   de Idle/Walk. Reload lee progreso de Weapon tras reload_changed; no transfiere
   balas. Death se activa por died, no repite y conserva frame final. Shoot corregido
