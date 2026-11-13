@@ -1,0 +1,687 @@
+{
+  "project": "Ultima Frecuencia: Gualey",
+  "asset": "Zombie base",
+  "quality": "TECHNICAL_PROVISIONAL",
+  "frame_size": [
+    128,
+    128
+  ],
+  "sprites": {
+    "zombies/base/idle/zombie_idle_down_00.png": {
+      "sha256": "739cda5cd24415be83f6ef587426c9df68bdfe45b98cba6b4dcf0b6f58cd4f72",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/idle/zombie_idle_down_01.png": {
+      "sha256": "1f1f796518bd760b50a47492c32f3ce436ecec5b0228d7b480ee4cc4428d03c2",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/idle/zombie_idle_down_02.png": {
+      "sha256": "739cda5cd24415be83f6ef587426c9df68bdfe45b98cba6b4dcf0b6f58cd4f72",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/idle/zombie_idle_down_03.png": {
+      "sha256": "f23e45f90943a63a3ccfd31a4343d6f96ab1be0128f48a3e70f595ba9e1444b8",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/idle/zombie_idle_up_00.png": {
+      "sha256": "959b52fbf3b0903022ac698c09ba2af237bcf3a4484daf1e4a969ab2be20ecb8",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/idle/zombie_idle_up_01.png": {
+      "sha256": "8b3e893fb1ec9a7d17855236e04f40a02a8cdd742265db2fe21073a362b99c46",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/idle/zombie_idle_up_02.png": {
+      "sha256": "959b52fbf3b0903022ac698c09ba2af237bcf3a4484daf1e4a969ab2be20ecb8",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/idle/zombie_idle_up_03.png": {
+      "sha256": "0ea2dfced76b1cbebd33a2d0adc50151f0a6123669891959d8fd2bf9de17b1fc",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/idle/zombie_idle_left_00.png": {
+      "sha256": "fa9d2763f5beb7b2ab8919f95a36a80ee98012e3f8950ffd3d396dfab99c9d7a",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/idle/zombie_idle_left_01.png": {
+      "sha256": "7d2e33df588c149cfde945cf3d10e451519c2fc3afaa90e36342b06c1285fe43",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/idle/zombie_idle_left_02.png": {
+      "sha256": "fa9d2763f5beb7b2ab8919f95a36a80ee98012e3f8950ffd3d396dfab99c9d7a",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/idle/zombie_idle_left_03.png": {
+      "sha256": "ac874ac92f9b6cfc601c37c4cc80c8aff401b7fe79bba477093721c0cb608ac0",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/idle/zombie_idle_right_00.png": {
+      "sha256": "a9a72a1c12ef0bff806a2d0e881fc0ed969dd4d35f0fd1666b6ac0ff7aff9ce6",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/idle/zombie_idle_right_01.png": {
+      "sha256": "dbfcd8d920f722d2bceca83adfa7c6929a309503e0dd5fddf2099b2d7a6205f9",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/idle/zombie_idle_right_02.png": {
+      "sha256": "a9a72a1c12ef0bff806a2d0e881fc0ed969dd4d35f0fd1666b6ac0ff7aff9ce6",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/idle/zombie_idle_right_03.png": {
+      "sha256": "fa0a99dd691afdfdfcd62b5245decb08cb574349bcaef54c9e8b553c9bafad3c",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/walk/zombie_walk_down_00.png": {
+      "sha256": "739cda5cd24415be83f6ef587426c9df68bdfe45b98cba6b4dcf0b6f58cd4f72",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/walk/zombie_walk_down_01.png": {
+      "sha256": "d176fa93b19540ae55ed85f4986220de271c69d29d4f29400749249088c801ab",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/walk/zombie_walk_down_02.png": {
+      "sha256": "2a267cf7c489ce54308d3e635bf32713b676c00feb13a962054337a73ed2f412",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/walk/zombie_walk_down_03.png": {
+      "sha256": "31e74ac19eb8f4c1d4db6e64a1435ebe4e2255b6f04306e3e8ff4358971f1794",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/walk/zombie_walk_down_04.png": {
+      "sha256": "739cda5cd24415be83f6ef587426c9df68bdfe45b98cba6b4dcf0b6f58cd4f72",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/walk/zombie_walk_down_05.png": {
+      "sha256": "94c51596e2c68d7f13f6381df2ce5e70e651c8eb19e4aa92c00259e451178142",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/walk/zombie_walk_down_06.png": {
+      "sha256": "1b3fd4834a7bd2b4fccc6b50300631f3feb728ddb846d28d58e19fcbfaae142a",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/walk/zombie_walk_down_07.png": {
+      "sha256": "d22b59e281f0a2f5cbcb713ea1edb2da08456949db7b300f5cb635ce92ae25cc",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/walk/zombie_walk_up_00.png": {
+      "sha256": "959b52fbf3b0903022ac698c09ba2af237bcf3a4484daf1e4a969ab2be20ecb8",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/walk/zombie_walk_up_01.png": {
+      "sha256": "f45636e0fa8fdb898da8fba7eb7fae4d480aecc0c898d6a0d63971965eff9fb5",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/walk/zombie_walk_up_02.png": {
+      "sha256": "8889b7e23db508ba276122851b59861635fff4f34f9abd54abed94509512ef5c",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/walk/zombie_walk_up_03.png": {
+      "sha256": "0e34cef34dfa270aa06623bd4991248215ee1bd981726503b93d1aaea6d6d513",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/walk/zombie_walk_up_04.png": {
+      "sha256": "959b52fbf3b0903022ac698c09ba2af237bcf3a4484daf1e4a969ab2be20ecb8",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/walk/zombie_walk_up_05.png": {
+      "sha256": "6cd7f4ecba951429ae951fae8080224d871b8233c07438ee4097718c7c525043",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/walk/zombie_walk_up_06.png": {
+      "sha256": "1f8239a396bfcfa518bffcc06cf751fcd120f8ddb1e697330409cbb8896c0d80",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/walk/zombie_walk_up_07.png": {
+      "sha256": "23f55cd30f2fd5258a5766215b31e630d337fdff3a503bf40e57cbec32d351d4",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/walk/zombie_walk_left_00.png": {
+      "sha256": "fa9d2763f5beb7b2ab8919f95a36a80ee98012e3f8950ffd3d396dfab99c9d7a",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/walk/zombie_walk_left_01.png": {
+      "sha256": "78804952f8037aebadcf1a747ffc9f93a13776fa83c80d08ecce03fb4ebed461",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/walk/zombie_walk_left_02.png": {
+      "sha256": "0af56c4b934c7bc0331d783ca806f600407660926e4ca9e817c70399f375e219",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/walk/zombie_walk_left_03.png": {
+      "sha256": "c43f70157240c2cd65489586d21273cbe26db01bb12c2cf1145df9522ca24214",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/walk/zombie_walk_left_04.png": {
+      "sha256": "fa9d2763f5beb7b2ab8919f95a36a80ee98012e3f8950ffd3d396dfab99c9d7a",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/walk/zombie_walk_left_05.png": {
+      "sha256": "2dec3256fff7bab632a7f9b16377f2ea6fefb39a928fb664842355912d54d224",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/walk/zombie_walk_left_06.png": {
+      "sha256": "48ad16e66a4837fc21f36cf1bd2de43cf82643d7c4ea6f7321ce2ec2f798d9a2",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/walk/zombie_walk_left_07.png": {
+      "sha256": "a91e79183c9156dae47d11566c8ea2a028b6ff7dc11140823312548e97244c45",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/walk/zombie_walk_right_00.png": {
+      "sha256": "a9a72a1c12ef0bff806a2d0e881fc0ed969dd4d35f0fd1666b6ac0ff7aff9ce6",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/walk/zombie_walk_right_01.png": {
+      "sha256": "2443f058b89e4613f7a968ba9858b060e90f296ac5956973a30af06896a5ddc6",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/walk/zombie_walk_right_02.png": {
+      "sha256": "f950e122dd97d8f5b061015478da5b62776718b431dd0354ccc61b763f6bacd8",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/walk/zombie_walk_right_03.png": {
+      "sha256": "223da9a010be2dbebbd0bddfce6c8f758b4fad3d0b0f43e7fb1f4ae5ce5d2998",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/walk/zombie_walk_right_04.png": {
+      "sha256": "a9a72a1c12ef0bff806a2d0e881fc0ed969dd4d35f0fd1666b6ac0ff7aff9ce6",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/walk/zombie_walk_right_05.png": {
+      "sha256": "4ebc073fc586a53007d204e6e7a044df2b2e608bcd207b1ca407e97d7c3eb278",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/walk/zombie_walk_right_06.png": {
+      "sha256": "4efe80544615879619c27050e80551952fac3ccfe5bf2d47c0451a63ba8e86bf",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/walk/zombie_walk_right_07.png": {
+      "sha256": "b9415bfcf733b102c5b95180a5e167ba5a2b143442e91ef2d58fe5e10fcc5079",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/attack/zombie_attack_down_00.png": {
+      "sha256": "739cda5cd24415be83f6ef587426c9df68bdfe45b98cba6b4dcf0b6f58cd4f72",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/attack/zombie_attack_down_01.png": {
+      "sha256": "fff06c608a0debf1fdfc2303b85fdb17dd4eeb622c0cb9d329617942f4e25317",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/attack/zombie_attack_down_02.png": {
+      "sha256": "47d83b00e55a65d73d4a33a86242dfe6af39a43fb9b14d94c8a9782359b2d453",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/attack/zombie_attack_down_03.png": {
+      "sha256": "71a66aa3f8277031a59434d9197f43071bbf11b313b76bdd3d28a377335b2585",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/attack/zombie_attack_down_04.png": {
+      "sha256": "d903962eb381b8e3635876ef926e3ca4efef5a63b24d291b7759a786f2c59009",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/attack/zombie_attack_down_05.png": {
+      "sha256": "a42abc751f0dde4176206341003530deeb9928392f9dad1c90bd233a4e3b0c66",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/attack/zombie_attack_up_00.png": {
+      "sha256": "959b52fbf3b0903022ac698c09ba2af237bcf3a4484daf1e4a969ab2be20ecb8",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/attack/zombie_attack_up_01.png": {
+      "sha256": "aae12df231476d165ca26e7f994776fb94de952afa459c2408aeff08ca461daa",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/attack/zombie_attack_up_02.png": {
+      "sha256": "107f777e2a38ca8b94432aef5ee7370963d44beac35470f3d3ca0472a3f73192",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/attack/zombie_attack_up_03.png": {
+      "sha256": "ef26b478cd3ef2c51806fa94dbbd7e22715995ea007f189c986db1b713150f78",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/attack/zombie_attack_up_04.png": {
+      "sha256": "9a69c0d9e64a3cbc5078a7fb38fa025dda4f2f654e2440deebac056a450e766e",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/attack/zombie_attack_up_05.png": {
+      "sha256": "2d670e4f17f1e85713c51b080fd8046b42c1b33c08528a7a65d18442ab2cefb8",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/attack/zombie_attack_left_00.png": {
+      "sha256": "fa9d2763f5beb7b2ab8919f95a36a80ee98012e3f8950ffd3d396dfab99c9d7a",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/attack/zombie_attack_left_01.png": {
+      "sha256": "79c66df6ca7289927b465beda088b990627199b9d53912804c4d3c922b3d9340",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/attack/zombie_attack_left_02.png": {
+      "sha256": "f0bd4cbe72db581adfb92a16c9454d5a7df08ac36344a869f15a5508c5652b71",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/attack/zombie_attack_left_03.png": {
+      "sha256": "2ef7a36f9555d5febcbb82427f0dd9b680cef239670e67283a624fef34c84f39",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/attack/zombie_attack_left_04.png": {
+      "sha256": "34f2939b5b108b406260828c8898a2ab6ade32d7479f96baddef8f6bd0ed9bd4",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/attack/zombie_attack_left_05.png": {
+      "sha256": "a25ac163c35ea6c711fa67286057f4c0ae0ed53f8b250d94ac47d7355155e8d9",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/attack/zombie_attack_right_00.png": {
+      "sha256": "a9a72a1c12ef0bff806a2d0e881fc0ed969dd4d35f0fd1666b6ac0ff7aff9ce6",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/attack/zombie_attack_right_01.png": {
+      "sha256": "7479632988a6790f52f96fcf314db6d2595727bb3105e534bf149f74d4020741",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/attack/zombie_attack_right_02.png": {
+      "sha256": "15db84d1c002d732dfbd8e66d10c6a614cad3ff6597c01d59cc2f3cae6473c38",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/attack/zombie_attack_right_03.png": {
+      "sha256": "32a3d660eb99b4bffc502250627a6df4306af3e013e93186c9b72c7192d56e24",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/attack/zombie_attack_right_04.png": {
+      "sha256": "a5fb87f5e992edda0939dacdd105203d85ca3d79a9525ee524fa0f3a336ac431",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/attack/zombie_attack_right_05.png": {
+      "sha256": "b448847f733776fffc89c9b1a76671fbf34d6bd2875f2d8e61dd8dac27e05f7c",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/death/zombie_death_down_00.png": {
+      "sha256": "739cda5cd24415be83f6ef587426c9df68bdfe45b98cba6b4dcf0b6f58cd4f72",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/death/zombie_death_down_01.png": {
+      "sha256": "7d06951c6f2b921fed26aff9f32d6648ea55decadf048304ca426208795c6d1e",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/death/zombie_death_down_02.png": {
+      "sha256": "be99abb438650fe286f4696ea8382277e58f7d4faaacb5ec5c98799113e4ea22",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/death/zombie_death_down_03.png": {
+      "sha256": "de55a8653cc7bef937fbc3f9fd82e80474598707e0fe2e6aa6ba7f7822ea6674",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/death/zombie_death_down_04.png": {
+      "sha256": "b46a9a25ef0f3cda235dc255ce65af4f811e67875ec6d5ae85304c88cf19b79a",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/death/zombie_death_down_05.png": {
+      "sha256": "fff930ab0c39f118e864f6f178cc0113f6e2289d3bfcc3574d7c6298ce07a796",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/death/zombie_death_up_00.png": {
+      "sha256": "959b52fbf3b0903022ac698c09ba2af237bcf3a4484daf1e4a969ab2be20ecb8",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/death/zombie_death_up_01.png": {
+      "sha256": "d15414a5547acb925bf5286daa9b71dcd4fe4aaf741fcd8626cf1f86fe2aff12",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/death/zombie_death_up_02.png": {
+      "sha256": "b6123eafbf79351f96ab98d56e3a2f74e588288310fcc4ccababc4994f4b96a6",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/death/zombie_death_up_03.png": {
+      "sha256": "fed402dd5d134de389a18bd20d7aec1baa129f169295f4bbcef1faf89d98f4b2",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/death/zombie_death_up_04.png": {
+      "sha256": "22bf4dc2939c5562f2d912b8fdcea8eefd66033a8db718738b90dc17a9d38a76",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/death/zombie_death_up_05.png": {
+      "sha256": "e74e82527c84b9472ddd43fb3ec4d8915124af4c1cb93da47e4349a338b3c3a3",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/death/zombie_death_left_00.png": {
+      "sha256": "fa9d2763f5beb7b2ab8919f95a36a80ee98012e3f8950ffd3d396dfab99c9d7a",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/death/zombie_death_left_01.png": {
+      "sha256": "cb707060ae987b9448583bc680c3e5c8264e9055a14444a0e6183ae11b216765",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/death/zombie_death_left_02.png": {
+      "sha256": "f0b658b254a6ff0467f3650fe80f3208472eb7150d51b5406deca380e2f0b587",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/death/zombie_death_left_03.png": {
+      "sha256": "4fdacc3e00df48545bb83275224d01013e552c1a1190c957311ee723e4da8d06",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/death/zombie_death_left_04.png": {
+      "sha256": "95069cd93541d15423de080c553298da1baea933ad3926bc11c0ffdfd03a4a88",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/death/zombie_death_left_05.png": {
+      "sha256": "e9900112b0534ae5aea940d5b14e3a233a63c63eb3dfa9dd71dbef6f3dcd7005",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/death/zombie_death_right_00.png": {
+      "sha256": "a9a72a1c12ef0bff806a2d0e881fc0ed969dd4d35f0fd1666b6ac0ff7aff9ce6",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/death/zombie_death_right_01.png": {
+      "sha256": "54b4c24af2519a6ea9df4859f98dd68f9c666363c61630654511be0c85ed6e9b",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/death/zombie_death_right_02.png": {
+      "sha256": "e95aa4367152f6217f060b1af6fb878dc52c01cb86b6990f70f36f7039f37b22",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/death/zombie_death_right_03.png": {
+      "sha256": "0e72750da3ca41575e5fb3a25a1e9f78aa6995687b65d9f5665bb17b6e786e89",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/death/zombie_death_right_04.png": {
+      "sha256": "e9a23bb9b75bf122d9e476d0a4dae91ede80b20d749b072e7020740a037898c4",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "zombies/base/death/zombie_death_right_05.png": {
+      "sha256": "9a33324f2b296d2163431f52c77c3806cd277215fd3c6829a50d50361a68b4cb",
+      "size": [
+        128,
+        128
+      ]
+    }
+  },
+  "warnings": [
+    "Source art is low resolution and frames use procedural motion, not hand-authored frame-by-frame animation.",
+    "Do not label as final art. Review direction and timing in Godot before enabling."
+  ]
+}

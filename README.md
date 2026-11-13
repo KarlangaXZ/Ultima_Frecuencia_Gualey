@@ -44,6 +44,11 @@ Los nombres de varios PNG históricos no coinciden con la orientación que muest
 
 ## Progreso del desarrollo
 
+Fase 4.4, zombi base: **integrada técnicamente** con 96 PNG provisionales y cuatro
+direcciones por estado. [Resultados y limitaciones](docs/zombie_base_integration.md).
+
+![Zombi base: Idle, Walk, Attack y Death en cuatro direcciones](docs/images/zombie-base.png)
+
 | Fase | Funcionalidad | Estado |
 | --- | --- | --- |
 | 1 | Movimiento y escenario | Completada |
@@ -53,6 +58,7 @@ Los nombres de varios PNG históricos no coinciden con la orientación que muest
 | 4.1 | Identidad Última Frecuencia: Gualey | Completada |
 | 4.2 | Animaciones Idle y Walk | Completada |
 | 4.3 | Shoot, Reload y Death | Completada técnicamente |
+| 4.4 | Zombi base: Idle, Walk, Attack y Death | Completada técnicamente |
 | 5 | Inventario y supervivencia | Pendiente |
 
 “Completada técnicamente” significa que la integración y sus pruebas funcionan; no implica arte final ni aprobación artística de todos los ciclos. La fase 5 es una etapa futura y no está implementada.
@@ -146,7 +152,7 @@ godot --headless --path . --fixed-fps 60 --script res://tests/player_actions_tes
 godot --headless --path . --fixed-fps 60 --script res://tests/player_shoot_test.gd
 ```
 
-La última validación funcional documentada aprobó **307 comprobaciones**, con cero fallos. Cubre movimiento, colisiones, cámara, navegación, daño, munición, cadencia, recarga, muerte, reinicio y estados visuales. [Resultados y límites de la validación](docs/shoot_final_integration.md).
+La última validación funcional documentada aprobó **383 comprobaciones**, con cero fallos. Cubre movimiento, colisiones, cámara, navegación, daño, munición, cadencia, recarga, muerte, reinicio y estados visuales. [Resultados del zombi base](docs/zombie_base_integration.md) y [validación de Shoot](docs/shoot_final_integration.md).
 
 Para producir capturas actuales con renderizado real:
 

@@ -1,5 +1,10 @@
 # Imágenes del README
 
+Actualización fase 4.4: zombie-base.png compone fotogramas reales del paquete
+técnico (Idle 00, Walk 02, Attack 03, Death 05), en down/up/left/right.
+No sustituye el arte fuente ni representa arte definitivo. Se añade a las cuatro
+imágenes iniciales descritas abajo.
+
 No son portadas ni arte nuevo. Son capturas y una composición de recursos reales
 del proyecto, preparadas para documentación el 12 de noviembre de 2026.
 

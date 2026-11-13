@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=8 format=3]
 [ext_resource type="Script" path="res://scripts/enemies/zombie.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/components/health_component.gd" id="2"]
-[ext_resource type="Script" path="res://scripts/visuals/character_visual.gd" id="3"]
+[ext_resource type="Script" path="res://scripts/visuals/zombie_visual.gd" id="3"]
 [ext_resource type="Texture2D" path="res://assets/placeholders/characters/zombies/temp_zombie_sheet.svg" id="4"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/zombies/base/ZombieBaseFrames.tres" id="5"]
 [sub_resource type="SpriteFrames" id="EmptyFrames"]
 [sub_resource type="CircleShape2D" id="Shape"]
 radius = 16.0
@@ -16,6 +17,9 @@ script = ExtResource("1")
 script = ExtResource("3")
 sheet = ExtResource("4")
 is_zombie = true
+animation_library = ExtResource("5")
+library_scale = Vector2(0.85, 0.85)
+library_offset = Vector2(0, -46)
 [node name="Sprite" type="AnimatedSprite2D" parent="Visual"]
 sprite_frames = SubResource("EmptyFrames")
 scale = Vector2(0.85, 0.85)
