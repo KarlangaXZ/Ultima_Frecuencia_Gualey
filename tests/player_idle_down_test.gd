@@ -30,7 +30,7 @@ func run() -> void:
 	player.get_node("Aim").rotation = PI / 2.0 + 0.2
 	await frames(2)
 	var library := sprite.sprite_frames
-	check(library.get_animation_names().size() == 16, "Sustitución conserva las 16 animaciones")
+	check(library.get_animation_names().size() == 20, "Biblioteca conserva estados anteriores y añade recarga")
 	check(library.get_frame_count("idle_down") == 4 and library.get_animation_speed("idle_down") == 4.0
 		and library.get_animation_loop("idle_down"), "Idle real: cuatro fotogramas, 4 FPS, bucle")
 	for index in range(4):
@@ -51,18 +51,18 @@ func run() -> void:
 			"Captura del protagonista real en Main")
 	player.velocity = Vector2(240, 0)
 	await frames(2)
-	check(sprite.animation == &"walk_right" and sprite.sprite_frames.get_frame_texture("walk_right", 0) is AtlasTexture,
-		"Caminar a la derecha conserva los fotogramas provisionales")
-	check(sprite.scale == Vector2(0.85, 0.85) and sprite.offset == Vector2.ZERO,
-		"Salir de idle real restaura escala y pivote provisionales")
+	check(sprite.animation == &"walk_right" and sprite.sprite_frames.get_frame_count("walk_right") == 8,
+		"Caminar a la derecha utiliza los ocho fotogramas integrados")
+	check(sprite.scale == Vector2(0.4, 0.4) and sprite.offset == Vector2(0, -56),
+		"Idle y walk reales comparten escala y pivote")
 	player.velocity = Vector2.ZERO
 	player.get_node("Aim").rotation = 0.0
 	await frames(2)
-	check(sprite.animation == &"idle_right" and library.get_frame_count("idle_right") == 2,
-		"Las otras direcciones de reposo siguen provisionales")
+	check(sprite.animation == &"idle_right" and library.get_frame_count("idle_right") == 4,
+		"Reposo derecho tiene cuatro fotogramas reales")
 	player.health.take_damage(100)
 	await frames(2)
-	check(sprite.animation == &"death_right" and sprite.scale == Vector2(0.85, 0.85),
-		"Muerte conserva animación y transformaciones anteriores")
+	check(sprite.animation == &"death_right" and sprite.scale == Vector2(0.4, 0.4),
+		"Muerte usa la nueva biblioteca visual")
 	print("Resultado idle_down: ", checks, " comprobaciones, ", failures, " fallos")
 	quit(0 if failures == 0 else 1)

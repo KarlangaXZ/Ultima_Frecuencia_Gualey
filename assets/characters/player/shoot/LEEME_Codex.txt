@@ -1,0 +1,23 @@
+ÚLTIMA FRECUENCIA: GUALEY — FASE 4.3 — 64 PNG TÉCNICOS
+
+Contenido: shoot (16), reload (24), death (24); 128×128 RGBA.
+
+IMPORTANTE: ANIMACIONES PROVISIONALES. Generadas mediante transformaciones de los sprites transparentes existentes.
+NO son 64 poses dibujadas a mano ni ciclos definitivos de armas/muerte.
+En shoot el destello es ilustrativo y NO debe reemplazar el efecto hitscan existente.
+En reload las poses aproximan movimiento corporal, NO representan manualmente el cambio de cargador.
+En death el personaje gira y cae; es una aproximación visual del fallecimiento.
+
+Para Codex:
+1. Leer AGENTS.md y README.md; realizar copia de seguridad o trabajar en rama.
+2. Colocar shoot/, reload/ y death/ dentro de assets/characters/player/, sin tocar idle/ y walk/.
+3. Verificar los 64 PNG usando MANIFEST.json.
+4. Configurar SpriteFrames respetando estructura actual. Ejemplo: shoot 12 FPS, reload 4 FPS, death 7 FPS (ajustar a duraciones del juego).
+5. Disparar solo debe activar animación al dispararse un tiro real, no al clic sin munición.
+6. Recarga debe durar lo que dura la recarga existente (1.5 segundos) y sincronizarse al estado real.
+7. Death solo debe activarse una vez y dejar el último fotograma visible.
+8. No modificar lógica de arma, colisiones, salud, cámara, IA ni los sistemas ya funcionales.
+9. Pruebas, captura de cada animación y validación manual de continuidad.
+10. Si la calidad no es aceptable, conservar animaciones anteriores; no declarar arte final.
+
+Pendiente artístico: redibujar posturas reales de disparo, manipulación de cargador y caída, manteniendo transparencia y consistencia.

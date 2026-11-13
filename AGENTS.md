@@ -46,11 +46,22 @@
   La misma biblioteca conserva su ruta y añade walk_down con ocho PNG a 8 FPS.
   Al caminar, la dirección visual usa la velocidad; al parar conserva esa dirección
   hasta mover el mouse. Aim/disparos mantienen su comportamiento independiente.
+  Actualización: el reposo conserva ahora la última dirección de marcha aunque
+  se mueva el mouse. Idle real en cuatro direcciones; walk real down/up/right.
+  Actualización V2: walk_left usa los PNG nuevos player_walk_left_*; walk_right
+  conserva los anteriores en walk/legacy_right/. Idle/walk completos en cuatro
+  direcciones. Validación: docs/walk_left_v2_validation.md. Mapa anterior:
+  docs/player_directions_integration.md. No integrar los PNG con fondo gris.
   Visual combina bibliotecas parciales con el atlas provisional; solo animaciones
   presentes adoptan library_scale/offset y orientación fija salvo configuración.
   No aplicar el pivote frontal a walk/death provisionales ni modificar la física.
 
 ## Convenciones y reglas
+- Fase 4.3: Player/Visual.action_library es PlayerActionAnimations.tres, separado
+  de Idle/Walk. Reload lee progreso de Weapon tras reload_changed; no transfiere
+  balas. Death se activa por died, no repite y conserva frame final. Shoot del
+  paquete no integrado: contiene destello que duplicaría el efecto actual.
+  Mapa de acciones up/right corregido y límites: docs/phase_4_3_actions.md.
 - Escenas PascalCase, scripts snake_case, indentación GDScript con tabuladores.
 - Acciones move_up/down/left/right: teclas físicas W/S/A/D.
 - Acciones shoot y reload: clic izquierdo y tecla física R. Mantener clic permite

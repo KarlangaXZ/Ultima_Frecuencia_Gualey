@@ -64,8 +64,14 @@ func run() -> void:
 	for direction in [Vector2.LEFT, Vector2.RIGHT, Vector2.UP]:
 		player.velocity = direction * 240.0
 		await frames(2)
-		check(library.get_frame_texture(sprite.animation, 0) is AtlasTexture,
-			"Otra dirección conserva atlas provisional " + str(direction))
+		var texture := library.get_frame_texture(sprite.animation, 0)
+		var valid: bool = texture.resource_path == "res://assets/characters/player/walk/player_walk_left_00.png"
+		if direction == Vector2.UP:
+			valid = texture.resource_path.ends_with("player_walk_up_00.png")
+		elif direction == Vector2.RIGHT:
+			valid = texture.resource_path.ends_with("player_walk_left_00.png")
+		check(valid,
+			"Otra dirección usa recurso disponible " + str(direction))
 	player.velocity = Vector2.ZERO
 	player.health.take_damage(100)
 	await frames(2)

@@ -9,6 +9,11 @@ reservadas para arte final. Desde fase 4.2, characters/player/idle contiene los
 cuatro PNG reales suministrados para idle_down y player/walk los ocho PNG de
 walk_down (8 FPS). Los demás módulos siguen provisionales.
 
+Actualización de direcciones: idle tiene cuatro direcciones reales; walk tiene
+down/up/right. walk_left sigue provisional por defectos de fondo en los archivos.
+Los nombres originales de varios PNG no coinciden con su orientación: consultar
+`docs/player_directions_integration.md` antes de ampliar o reorganizar la biblioteca.
+
 - `characters/player/temp_survivor_sheet.svg`: superviviente con chaqueta verde,
   chaleco y gafas. Atlas horizontal de **12 celdas de 64 × 64**, transparente.
 - `characters/zombies/temp_zombie_sheet.svg`: infectado con ropa marrón y piel oliva,

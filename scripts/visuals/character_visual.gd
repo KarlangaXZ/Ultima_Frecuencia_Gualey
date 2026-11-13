@@ -3,6 +3,7 @@ extends Node2D
 @export var sheet: Texture2D
 ## Biblioteca opcional de arte final; respeta nombres estado_dirección.
 @export var animation_library: SpriteFrames
+@export var action_library: SpriteFrames
 @export var library_scale: Vector2 = Vector2(0.4, 0.4)
 @export var library_offset: Vector2 = Vector2(0, -56)
 @export var rotate_library_with_actor: bool = false
@@ -19,9 +20,11 @@ var fallback_scale: Vector2
 var fallback_offset: Vector2
 var barrel: Sprite2D
 var fallback_barrel_position: Vector2
-var last_mouse_position: Vector2
 var movement_facing: Vector2 = Vector2.DOWN
 var has_moved: bool = false
+var reloading_visual: bool = false
+var action_direction: String = "down"
+var weapon: Node
 
 func _ready() -> void:
 	fallback_scale = sprite.scale
@@ -33,6 +36,9 @@ func _ready() -> void:
 	last_health = health.max_health
 	health.health_changed.connect(_on_health_changed)
 	health.died.connect(_on_death)
+	weapon = actor.get_node_or_null("Weapon")
+	if weapon != null:
+		weapon.reload_changed.connect(_on_reload_changed)
 	var frames := SpriteFrames.new()
 	frames.remove_animation("default")
 	for state_name in ["idle", "walk", "attack", "death"]:
@@ -53,18 +59,20 @@ func _ready() -> void:
 				texture.region = Rect2(index * 64, 0, 64, 64)
 				frames.add_frame(animation_name, texture)
 	# Sobrescribir solo animaciones disponibles, conservando el atlas existente.
-	if animation_library != null:
-		for animation_name in animation_library.get_animation_names():
-			if animation_library.get_frame_count(animation_name) == 0:
+	for source_library in [animation_library, action_library]:
+		if source_library == null:
+			continue
+		for animation_name in source_library.get_animation_names():
+			if source_library.get_frame_count(animation_name) == 0:
 				continue
 			if frames.has_animation(animation_name):
 				frames.remove_animation(animation_name)
 			frames.add_animation(animation_name)
-			frames.set_animation_loop(animation_name, animation_library.get_animation_loop(animation_name))
-			frames.set_animation_speed(animation_name, animation_library.get_animation_speed(animation_name))
-			for index in range(animation_library.get_frame_count(animation_name)):
-				frames.add_frame(animation_name, animation_library.get_frame_texture(animation_name, index),
-					animation_library.get_frame_duration(animation_name, index))
+			frames.set_animation_loop(animation_name, source_library.get_animation_loop(animation_name))
+			frames.set_animation_speed(animation_name, source_library.get_animation_speed(animation_name))
+			for index in range(source_library.get_frame_count(animation_name)):
+				frames.add_frame(animation_name, source_library.get_frame_texture(animation_name, index),
+					source_library.get_frame_duration(animation_name, index))
 	sprite.sprite_frames = frames
 	sprite.play("idle_down")
 	_update_sprite_transform()
@@ -72,6 +80,7 @@ func _ready() -> void:
 func _update_sprite_transform() -> void:
 	var uses_library := animation_library != null and animation_library.has_animation(sprite.animation) \
 		and animation_library.get_frame_count(sprite.animation) > 0
+	uses_library = uses_library or (action_library != null and action_library.has_animation(sprite.animation))
 	sprite.scale = library_scale if uses_library else fallback_scale
 	sprite.offset = library_offset if uses_library else fallback_offset
 	if uses_library and not rotate_library_with_actor:
@@ -81,6 +90,19 @@ func _update_sprite_transform() -> void:
 		barrel.position = Vector2(9, -18).rotated(-actor.get_node("Aim").rotation) \
 			if uses_library and not rotate_library_with_actor else fallback_barrel_position
 
+func _on_reload_changed(active: bool) -> void:
+	if dead:
+		return
+	reloading_visual = active
+	if active:
+		action_direction = direction_name
+		var animation_name := "reload_" + action_direction
+		if sprite.sprite_frames.has_animation(animation_name):
+			sprite.play(animation_name)
+			sprite.pause()
+			sprite.set_frame_and_progress(0, 0.0)
+			_update_sprite_transform()
+
 func _on_health_changed(current: float, _maximum: float) -> void:
 	if current < last_health and effects_enabled:
 		flash_remaining = 0.18
@@ -88,6 +110,7 @@ func _on_health_changed(current: float, _maximum: float) -> void:
 
 func _on_death() -> void:
 	dead = true
+	reloading_visual = false
 	sprite.play("death_" + direction_name)
 	# Restablecer la orientación del atlas provisional al salir de un idle fijo.
 	if not is_zombie:
@@ -102,20 +125,27 @@ func _process(delta: float) -> void:
 	sprite.modulate = Color(2.0, 0.65, 0.5) if flash_remaining > 0.0 else Color.WHITE
 	if dead:
 		return
+	if reloading_visual and weapon != null and weapon.reloading:
+		var animation_name := "reload_" + action_direction
+		if sprite.sprite_frames.has_animation(animation_name):
+			var count := sprite.sprite_frames.get_frame_count(animation_name)
+			var progress: float = 1.0 - weapon.reload_remaining / weapon.config.reload_duration
+			var position_in_cycle := clampf(progress * count, 0.0, count - 0.00001)
+			sprite.set_frame_and_progress(int(position_in_cycle), fmod(position_in_cycle, 1.0))
+			_update_sprite_transform()
+			return
 	var direction := actor.velocity
 	if not is_zombie:
 		var aim_angle: float = actor.get_node("Aim").rotation
-		var mouse_position := get_viewport().get_mouse_position()
 		if actor.velocity.length_squared() > 1.0:
 			direction = actor.velocity
 			movement_facing = direction
 			has_moved = true
-		elif not has_moved or not mouse_position.is_equal_approx(last_mouse_position):
+		elif not has_moved:
 			direction = Vector2.RIGHT.rotated(aim_angle)
 			movement_facing = direction
 		else:
 			direction = movement_facing
-		last_mouse_position = mouse_position
 	elif is_instance_valid(actor.get("target")) and actor.get("state") == 2:
 		direction = actor.global_position.direction_to(actor.get("target").global_position)
 	if not direction.is_zero_approx():
