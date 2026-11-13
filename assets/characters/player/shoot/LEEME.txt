@@ -1,0 +1,15 @@
+ULTIMA FRECUENCIA: GUALEY - SHOOT CORREGIDO
+
+16 PNG en shoot/ con nombres y orientaciones corregidas:
+shoot_down, shoot_up, shoot_left, shoot_right, 4 frames cada una.
+Todos los PNG tienen 128x128 y canal alpha.
+El frame de destello del paquete anterior fue reemplazado por una variacion de retroceso.
+No se altera el efecto de disparo ya implementado en Godot.
+
+IMPORTANTE: este es un conjunto TECNICO PROVISIONAL, NO ARTE FINAL.
+Algunas poses se reutilizan con microdesplazamientos para la prueba tecnica.
+La integracion depende de revisar visualmente las direcciones en Godot.
+
+Extraer solamente la carpeta shoot/ dentro de assets/characters/player/.
+No modificar idle/, walk/, reload/ ni death/.
+Codex debe revisar las direcciones antes de cambiar SpriteFrames.

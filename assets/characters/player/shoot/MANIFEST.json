@@ -1,267 +1,151 @@
 {
-  "project": "Última Frecuencia: Gualey",
-  "classification": "PROVISIONAL — procedural animation frames, not independently painted final art",
-  "size": [
-    128,
-    128
-  ],
-  "count": 64,
-  "files": [
-    {
-      "name": "death/player_death_down_00.png",
-      "sha256": "fd2f777267f504e472685b3c7a21167b59ab7beeb1a280b1ef41c8acab7a7561"
+  "project": "Ultima Frecuencia: Gualey",
+  "status": "provisional, integration-ready for visual testing",
+  "frame_count": 16,
+  "frames": {
+    "player_shoot_down_00.png": {
+      "sha256": "778c2964bca1e0bce6ec23a837de147c078f329e0c54f60af0e0b9875c0aedb0",
+      "size": [
+        128,
+        128
+      ],
+      "source_pose": "down",
+      "flash_removed": true
     },
-    {
-      "name": "death/player_death_down_01.png",
-      "sha256": "e19c875b0e742fca634e3851ac69b6c1330dbc5ce796e102ac53a3fb8b33f9d2"
+    "player_shoot_down_01.png": {
+      "sha256": "057c0529a180a63483f168b624917f811d8fbd4ef4a9f588930f4ca3ee95dd61",
+      "size": [
+        128,
+        128
+      ],
+      "source_pose": "down",
+      "flash_removed": true
     },
-    {
-      "name": "death/player_death_down_02.png",
-      "sha256": "1ddf4d782ebb0cff30bd6cbecfa1abc91eab9604d933fdbda3fc245ab1ff527e"
+    "player_shoot_down_02.png": {
+      "sha256": "63ec79fb658d6a315c2edeba89a3f11c3351366ecab89de96b9e6c04c57f8ea1",
+      "size": [
+        128,
+        128
+      ],
+      "source_pose": "down",
+      "flash_removed": true
     },
-    {
-      "name": "death/player_death_down_03.png",
-      "sha256": "bb7233d233402e113723885cae5c1d62a42234d0bea6ca027583f5d73e08b32d"
+    "player_shoot_down_03.png": {
+      "sha256": "f48bb173580e63ac5cdb3f2689aeb971722bf860885504649423f7008c5af371",
+      "size": [
+        128,
+        128
+      ],
+      "source_pose": "down",
+      "flash_removed": true
     },
-    {
-      "name": "death/player_death_down_04.png",
-      "sha256": "2ed71f8b5922a529c2fb7fdbadbbc5eee37768d8cc5e875e148a201fb16545e6"
+    "player_shoot_up_00.png": {
+      "sha256": "87bbe42e0cb70e2d34389e3344fd5e5f7b103f1d576eee501532126469a97f7d",
+      "size": [
+        128,
+        128
+      ],
+      "source_pose": "right",
+      "flash_removed": true
     },
-    {
-      "name": "death/player_death_down_05.png",
-      "sha256": "df59ea4ac4b72d9bb4d64e01505338ef0ab080cb2a88f6f4d9564d7ae506bb50"
+    "player_shoot_up_01.png": {
+      "sha256": "454719730b77c290b2c0c0f7c269021a5fe3cafb750ef74763a5906ad3a985f8",
+      "size": [
+        128,
+        128
+      ],
+      "source_pose": "right",
+      "flash_removed": true
     },
-    {
-      "name": "death/player_death_left_00.png",
-      "sha256": "27ddce352d6cd174e91346ad48b38d03ce6d9a626573997cf7b0904ff71b4254"
+    "player_shoot_up_02.png": {
+      "sha256": "fc28d8ca686593eed1c7a4b7352a1720d8a44475b17dce122801e069f235cb38",
+      "size": [
+        128,
+        128
+      ],
+      "source_pose": "right",
+      "flash_removed": true
     },
-    {
-      "name": "death/player_death_left_01.png",
-      "sha256": "a43e46579b7caee7ee347f1fa4e4ff702e3796c33b291a60dfadcbc12f1f191b"
+    "player_shoot_up_03.png": {
+      "sha256": "42ad8755beb26b5791a612d4ce5dee0bbe710c463f1903b88b5b671062cc3f0f",
+      "size": [
+        128,
+        128
+      ],
+      "source_pose": "right",
+      "flash_removed": true
     },
-    {
-      "name": "death/player_death_left_02.png",
-      "sha256": "d9c7eb4079581bc6059d8ee80e3167bdb13db54fadd3c4c41562d277537df8c3"
+    "player_shoot_right_00.png": {
+      "sha256": "5db89b75b3e9069bde06b595a0f9becb4e247189deb2dfc3a89dfc68837fb880",
+      "size": [
+        128,
+        128
+      ],
+      "source_pose": "left",
+      "flash_removed": true
     },
-    {
-      "name": "death/player_death_left_03.png",
-      "sha256": "c0e88840de6176bdceda79d6d54c4f681e5514314d768bcb3cfa13d9a63830e9"
+    "player_shoot_right_01.png": {
+      "sha256": "ae9396dc0fb31707c7abbc405fe4206e2b3a3161f405aa5158bfe36fc0539bfc",
+      "size": [
+        128,
+        128
+      ],
+      "source_pose": "left",
+      "flash_removed": true
     },
-    {
-      "name": "death/player_death_left_04.png",
-      "sha256": "bb360c689052344ac17e40c7a288a6a25b29b72fefff21241abd2e903c4eadca"
+    "player_shoot_right_02.png": {
+      "sha256": "681ef15b28f488406c4c9c21c3cf32a9a71387d6afba8000f1db6e3719598f69",
+      "size": [
+        128,
+        128
+      ],
+      "source_pose": "left",
+      "flash_removed": true
     },
-    {
-      "name": "death/player_death_left_05.png",
-      "sha256": "e189961604512cc45656f30f3866c4f3398224a5cbf6720df156d863492df591"
+    "player_shoot_right_03.png": {
+      "sha256": "9030263d62f46de517d7193da301eb2a85fcf2eab5d11e43abb3b788894a5f7f",
+      "size": [
+        128,
+        128
+      ],
+      "source_pose": "left",
+      "flash_removed": true
     },
-    {
-      "name": "death/player_death_right_00.png",
-      "sha256": "60f498a62eb2ea66e4d5b960dbb677c9dd1505a177f22acfdf6663c488ab1c5f"
+    "player_shoot_left_00.png": {
+      "sha256": "c3233ec98440440f1957004c34b556f42c3281e998a6b4cff363b8d3172fa294",
+      "size": [
+        128,
+        128
+      ],
+      "source_pose": "left",
+      "flash_removed": true
     },
-    {
-      "name": "death/player_death_right_01.png",
-      "sha256": "4edf6adf4f46ef43bed31d7bb0047fe65e4e7c0bed024f4a3d793c525f99194f"
+    "player_shoot_left_01.png": {
+      "sha256": "b9fb6f5c380df8c82227fa238d6d106156279e006f10f6ab838c7e4d821e3103",
+      "size": [
+        128,
+        128
+      ],
+      "source_pose": "left",
+      "flash_removed": true
     },
-    {
-      "name": "death/player_death_right_02.png",
-      "sha256": "8ac0301535d53257d6ada9c1afbd9cd65851ac20bad9212eaa0f250d520d3d45"
+    "player_shoot_left_02.png": {
+      "sha256": "06cc37442f24a9332d7f85aee476b75a03cbfad842645d3ca3b767f281cebf3d",
+      "size": [
+        128,
+        128
+      ],
+      "source_pose": "left",
+      "flash_removed": true
     },
-    {
-      "name": "death/player_death_right_03.png",
-      "sha256": "672d9dd1a1acd63a8739bc594b37606d50018a920c49e9df685edb8db3f7f4c7"
-    },
-    {
-      "name": "death/player_death_right_04.png",
-      "sha256": "69a33b5e7581cf26f4b926783d8d54212fb57be7b0c63aa7d4aecdf3ea5449f6"
-    },
-    {
-      "name": "death/player_death_right_05.png",
-      "sha256": "ce18fb9c558738ca9dc9f223562e4573e335cc0ea48e34d8c45cdfe8eb6f3be3"
-    },
-    {
-      "name": "death/player_death_up_00.png",
-      "sha256": "a3bf9949f9a84bfed8856d7ca5639a2d2f30c9deb8d0a45b06b98d25473a182e"
-    },
-    {
-      "name": "death/player_death_up_01.png",
-      "sha256": "dd2ef84078b5e3ed591acc66f4119ad129dea2232cf48880d5f6981fdf5646b1"
-    },
-    {
-      "name": "death/player_death_up_02.png",
-      "sha256": "e76af1a131abc37fdca52b4db24a073c467cf61ec10480d0c53d96345e7427ea"
-    },
-    {
-      "name": "death/player_death_up_03.png",
-      "sha256": "24c194ef134b0c916ae7569fea623a2f980a1a431d835f2e313dfc707d914041"
-    },
-    {
-      "name": "death/player_death_up_04.png",
-      "sha256": "d7fafd1af620ed00a94ace35e1dab5feea9a5a7c62b6bb5be886a8f0d1adbebc"
-    },
-    {
-      "name": "death/player_death_up_05.png",
-      "sha256": "62a4fadab920afb6fee7f90c8231a16281f693254f35ef7c21cfc1b3f6bbc59c"
-    },
-    {
-      "name": "reload/player_reload_down_00.png",
-      "sha256": "fd2f777267f504e472685b3c7a21167b59ab7beeb1a280b1ef41c8acab7a7561"
-    },
-    {
-      "name": "reload/player_reload_down_01.png",
-      "sha256": "75804e08a00cc6d343f4412a48679d7ab45d050e88d0178491e196b504fd6cde"
-    },
-    {
-      "name": "reload/player_reload_down_02.png",
-      "sha256": "84015a0459fefe89fbadce38c75678b5dc7d37bc29021b207d9f13a04c87a29a"
-    },
-    {
-      "name": "reload/player_reload_down_03.png",
-      "sha256": "873437318f381b209842ce63e5b6d12082d39d83bbf12d43e7c8461896491ba0"
-    },
-    {
-      "name": "reload/player_reload_down_04.png",
-      "sha256": "56d7c5b80c82e264915415331f1de6f7a40c112ecf64fc37fe7b8177d4539dc0"
-    },
-    {
-      "name": "reload/player_reload_down_05.png",
-      "sha256": "fd2f777267f504e472685b3c7a21167b59ab7beeb1a280b1ef41c8acab7a7561"
-    },
-    {
-      "name": "reload/player_reload_left_00.png",
-      "sha256": "27ddce352d6cd174e91346ad48b38d03ce6d9a626573997cf7b0904ff71b4254"
-    },
-    {
-      "name": "reload/player_reload_left_01.png",
-      "sha256": "4c340918b874178b772de0a9cebe1a0777096ef3ed58687fcc3dc14648d2362c"
-    },
-    {
-      "name": "reload/player_reload_left_02.png",
-      "sha256": "fd4f3e80f42d372da7759dedeca0630d39a78a48125d02a4e9625aee0cae056a"
-    },
-    {
-      "name": "reload/player_reload_left_03.png",
-      "sha256": "19b7e15aa4367283a0a11044241e4ff14db2cb22ae44e4b3bfc5ebcc5d4b6464"
-    },
-    {
-      "name": "reload/player_reload_left_04.png",
-      "sha256": "646b9d42994c7f9256cb3fc7f1eed12f2f0c1edbf9c7dc4393add7cfdd9bc0b6"
-    },
-    {
-      "name": "reload/player_reload_left_05.png",
-      "sha256": "27ddce352d6cd174e91346ad48b38d03ce6d9a626573997cf7b0904ff71b4254"
-    },
-    {
-      "name": "reload/player_reload_right_00.png",
-      "sha256": "60f498a62eb2ea66e4d5b960dbb677c9dd1505a177f22acfdf6663c488ab1c5f"
-    },
-    {
-      "name": "reload/player_reload_right_01.png",
-      "sha256": "908e6942a2041d74f3b0efa783372ac0450f9b3e4e417e3dad4f742211ea0d93"
-    },
-    {
-      "name": "reload/player_reload_right_02.png",
-      "sha256": "4baa84a5063504ca8b19e95393c1abcc65abbdcc8fd5c6954477914d438ee53c"
-    },
-    {
-      "name": "reload/player_reload_right_03.png",
-      "sha256": "48a02097ec44a0415378d21faecb8da6e0d3572023c22234b82d4cfe6e9a542a"
-    },
-    {
-      "name": "reload/player_reload_right_04.png",
-      "sha256": "13fb40a2f646794450e3596938470f9f288625a12e7339aaa356ae8df50a3988"
-    },
-    {
-      "name": "reload/player_reload_right_05.png",
-      "sha256": "60f498a62eb2ea66e4d5b960dbb677c9dd1505a177f22acfdf6663c488ab1c5f"
-    },
-    {
-      "name": "reload/player_reload_up_00.png",
-      "sha256": "a3bf9949f9a84bfed8856d7ca5639a2d2f30c9deb8d0a45b06b98d25473a182e"
-    },
-    {
-      "name": "reload/player_reload_up_01.png",
-      "sha256": "9bd863f1f43c8b9366a75f56d2f144f34f7523eb0f204d11d685fbe1826dd1cc"
-    },
-    {
-      "name": "reload/player_reload_up_02.png",
-      "sha256": "b658751a79b921357bd7a5f04b0e4901b9c3b9ee0e98227fd012afcb37d433cb"
-    },
-    {
-      "name": "reload/player_reload_up_03.png",
-      "sha256": "6601443676f193b40edd2313c7e7e66bf2e2498b0351d1b622bdf7255cc5bba4"
-    },
-    {
-      "name": "reload/player_reload_up_04.png",
-      "sha256": "9934cba2b1601d43958b0035face3e5298e055fd1b567d3d5041355d6c6d613d"
-    },
-    {
-      "name": "reload/player_reload_up_05.png",
-      "sha256": "a3bf9949f9a84bfed8856d7ca5639a2d2f30c9deb8d0a45b06b98d25473a182e"
-    },
-    {
-      "name": "shoot/player_shoot_down_00.png",
-      "sha256": "fd2f777267f504e472685b3c7a21167b59ab7beeb1a280b1ef41c8acab7a7561"
-    },
-    {
-      "name": "shoot/player_shoot_down_01.png",
-      "sha256": "2da90a6743d1b9f3f61b3531369fe36141a8aecc0daaa79a88eedd97b3778e76"
-    },
-    {
-      "name": "shoot/player_shoot_down_02.png",
-      "sha256": "4473c14ba702af00eeaef8b4a2479e1daee3fb189fb83b11d28426c77372ab8a"
-    },
-    {
-      "name": "shoot/player_shoot_down_03.png",
-      "sha256": "ad4935dd3e2c48b5e61c635744e95a4b97464b6159f885674136f059d5b861c0"
-    },
-    {
-      "name": "shoot/player_shoot_left_00.png",
-      "sha256": "27ddce352d6cd174e91346ad48b38d03ce6d9a626573997cf7b0904ff71b4254"
-    },
-    {
-      "name": "shoot/player_shoot_left_01.png",
-      "sha256": "ac9407761c203118b392f96f7ad84a8bd67e4bf72ead49f42dcfb81990dc98d6"
-    },
-    {
-      "name": "shoot/player_shoot_left_02.png",
-      "sha256": "bc288550608860962e104d42e4562526a0e167be3e85bde1056ff8e9a5437f2d"
-    },
-    {
-      "name": "shoot/player_shoot_left_03.png",
-      "sha256": "6fea1626efea82fe7709ec00ab5af9ca4bb2dc2af99ed1ec0d67cbc97dbbc0a0"
-    },
-    {
-      "name": "shoot/player_shoot_right_00.png",
-      "sha256": "60f498a62eb2ea66e4d5b960dbb677c9dd1505a177f22acfdf6663c488ab1c5f"
-    },
-    {
-      "name": "shoot/player_shoot_right_01.png",
-      "sha256": "9153fdc14da590a80e2677c6f029778bab0875e5eb919e08412a2748c7b28d42"
-    },
-    {
-      "name": "shoot/player_shoot_right_02.png",
-      "sha256": "9bcccfec633e4043b5211fa526f4a936222143e60e7a99191fef13637d608238"
-    },
-    {
-      "name": "shoot/player_shoot_right_03.png",
-      "sha256": "aa78e78ceabae63a8462a61ebc9f7e91a384d52c4bc7f2ec1d095d7b3a205726"
-    },
-    {
-      "name": "shoot/player_shoot_up_00.png",
-      "sha256": "a3bf9949f9a84bfed8856d7ca5639a2d2f30c9deb8d0a45b06b98d25473a182e"
-    },
-    {
-      "name": "shoot/player_shoot_up_01.png",
-      "sha256": "c4862ad901ff11aa69e35f34a173a5d7c08f7d0113379fa48d3ace90b7682ea5"
-    },
-    {
-      "name": "shoot/player_shoot_up_02.png",
-      "sha256": "8c4a683b4ac93f49a0b080343872918635fe28a80c33b538d18e2bac2df62682"
-    },
-    {
-      "name": "shoot/player_shoot_up_03.png",
-      "sha256": "6f18f55c0144b39c90803a27b8e6c1d38fe684843f2bf3d601eadbbeae5150e5"
+    "player_shoot_left_03.png": {
+      "sha256": "b05056e5afbb408dc4d2109fd56b85f7fcc333996bcce37f5acdf2b190432db6",
+      "size": [
+        128,
+        128
+      ],
+      "source_pose": "left",
+      "flash_removed": true
     }
-  ]
+  }
 }
