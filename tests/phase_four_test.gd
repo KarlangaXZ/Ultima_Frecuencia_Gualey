@@ -45,7 +45,7 @@ func run() -> void:
 	var zombie := main.get_node("Zombies/ZombieA")
 	var zombie_visual := zombie.get_node("Visual")
 	var zombie_sprite := zombie_visual.get_node("Sprite") as AnimatedSprite2D
-	check(sprite.sprite_frames.get_animation_names().size() == 20, "Jugador conserva estados y añade recarga")
+	check(sprite.sprite_frames.get_animation_names().size() == 24, "Jugador incluye Shoot y conserva estados")
 	for direction in ["down", "up", "left", "right"]:
 		check(sprite.sprite_frames.has_animation("idle_" + direction)
 			and sprite.sprite_frames.has_animation("walk_" + direction), "Reposo y marcha disponibles: " + direction)

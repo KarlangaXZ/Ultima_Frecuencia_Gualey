@@ -30,7 +30,7 @@ func run() -> void:
 	player.get_node("Aim").rotation = PI / 2.0 + 0.2
 	await frames(2)
 	var library := sprite.sprite_frames
-	check(library.get_animation_names().size() == 20, "Biblioteca conserva estados anteriores y añade recarga")
+	check(library.get_animation_names().size() == 24, "Biblioteca incluye Shoot y conserva estados anteriores")
 	check(library.get_frame_count("idle_down") == 4 and library.get_animation_speed("idle_down") == 4.0
 		and library.get_animation_loop("idle_down"), "Idle real: cuatro fotogramas, 4 FPS, bucle")
 	for index in range(4):

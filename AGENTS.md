@@ -59,8 +59,10 @@
 ## Convenciones y reglas
 - Fase 4.3: Player/Visual.action_library es PlayerActionAnimations.tres, separado
   de Idle/Walk. Reload lee progreso de Weapon tras reload_changed; no transfiere
-  balas. Death se activa por died, no repite y conserva frame final. Shoot del
-  paquete no integrado: contiene destello que duplicaría el efecto actual.
+  balas. Death se activa por died, no repite y conserva frame final. Shoot corregido
+  se activa por shot_fired y usa cooldown/fire_interval reales para sus cuatro
+  frames; no modifica el arma ni añade destello. Perfiles left/right corregidos
+  solo en SpriteFrames. Ver docs/shoot_final_integration.md.
   Mapa de acciones up/right corregido y límites: docs/phase_4_3_actions.md.
 - Escenas PascalCase, scripts snake_case, indentación GDScript con tabuladores.
 - Acciones move_up/down/left/right: teclas físicas W/S/A/D.

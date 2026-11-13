@@ -1,5 +1,9 @@
 # Última Frecuencia: Gualey — Fase 4.1
 
+Shoot corregido integrado en cuatro direcciones: [validación final](docs/shoot_final_integration.md).
+16 hashes correctos, sin destellos incrustados; 307 comprobaciones aprobadas.
+Los avisos históricos sobre Shoot rechazado quedan superados por este paquete.
+
 Fase 4.3: [Reload y Death integrados en cuatro direcciones](docs/phase_4_3_actions.md).
 64 hashes verificados; 48 PNG técnicos provisionales aceptados. Shoot permanece
 pendiente por destello incrustado y orientación/poses incorrectas; se conserva

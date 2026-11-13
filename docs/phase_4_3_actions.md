@@ -1,5 +1,8 @@
 # Fase 4.3 — acciones visuales provisionales
 
+Actualización: Shoot corregido ya integrado; [resultado final](shoot_final_integration.md).
+La decisión de rechazo descrita abajo corresponde al paquete anterior.
+
 ## Resultado
 
 Integradas **Reload y Death en cuatro direcciones**, 48 PNG. Los 16 PNG Shoot

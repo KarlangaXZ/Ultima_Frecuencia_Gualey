@@ -25,6 +25,8 @@ var has_moved: bool = false
 var reloading_visual: bool = false
 var action_direction: String = "down"
 var weapon: Node
+var shooting_visual: bool = false
+var shoot_direction: String = "down"
 
 func _ready() -> void:
 	fallback_scale = sprite.scale
@@ -39,6 +41,7 @@ func _ready() -> void:
 	weapon = actor.get_node_or_null("Weapon")
 	if weapon != null:
 		weapon.reload_changed.connect(_on_reload_changed)
+		weapon.shot_fired.connect(_on_shot_fired)
 	var frames := SpriteFrames.new()
 	frames.remove_animation("default")
 	for state_name in ["idle", "walk", "attack", "death"]:
@@ -95,6 +98,7 @@ func _on_reload_changed(active: bool) -> void:
 		return
 	reloading_visual = active
 	if active:
+		shooting_visual = false
 		action_direction = direction_name
 		var animation_name := "reload_" + action_direction
 		if sprite.sprite_frames.has_animation(animation_name):
@@ -102,6 +106,22 @@ func _on_reload_changed(active: bool) -> void:
 			sprite.pause()
 			sprite.set_frame_and_progress(0, 0.0)
 			_update_sprite_transform()
+
+func _on_shot_fired(_origin: Vector2, direction: Vector2, _damage: float, _range: float) -> void:
+	if dead:
+		return
+	if absf(direction.x) > absf(direction.y):
+		shoot_direction = "right" if direction.x > 0 else "left"
+	else:
+		shoot_direction = "down" if direction.y > 0 else "up"
+	var animation_name := "shoot_" + shoot_direction
+	if not sprite.sprite_frames.has_animation(animation_name):
+		return
+	shooting_visual = true
+	sprite.play(animation_name)
+	sprite.pause()
+	sprite.set_frame_and_progress(0, 0.0)
+	_update_sprite_transform()
 
 func _on_health_changed(current: float, _maximum: float) -> void:
 	if current < last_health and effects_enabled:
@@ -111,6 +131,7 @@ func _on_health_changed(current: float, _maximum: float) -> void:
 func _on_death() -> void:
 	dead = true
 	reloading_visual = false
+	shooting_visual = false
 	sprite.play("death_" + direction_name)
 	# Restablecer la orientación del atlas provisional al salir de un idle fijo.
 	if not is_zombie:
@@ -134,6 +155,18 @@ func _process(delta: float) -> void:
 			sprite.set_frame_and_progress(int(position_in_cycle), fmod(position_in_cycle, 1.0))
 			_update_sprite_transform()
 			return
+	if shooting_visual and weapon != null:
+		if actor.velocity.length_squared() > 1.0:
+			movement_facing = actor.velocity
+			has_moved = true
+		if weapon.cooldown > 0.00001:
+			var count := sprite.sprite_frames.get_frame_count(sprite.animation)
+			var progress: float = 1.0 - weapon.cooldown / weapon.config.fire_interval
+			var cycle := clampf(progress * count, 0.0, count - 0.00001)
+			sprite.set_frame_and_progress(int(cycle), fmod(cycle, 1.0))
+			_update_sprite_transform()
+			return
+		shooting_visual = false
 	var direction := actor.velocity
 	if not is_zombie:
 		var aim_angle: float = actor.get_node("Aim").rotation
