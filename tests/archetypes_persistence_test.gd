@@ -16,7 +16,7 @@ func run() -> void:
 	var saves := main.get_node("SaveCoordinator")
 	saves.store.directory = "user://tests/phase-eleven-types-%d" % OS.get_process_id()
 	var directory: String = saves.store.directory
-	var legacy_one: Dictionary = saves.capture(3)
+	var legacy_one: Dictionary = preload("res://tests/legacy_save_fixture.gd").convert(saves.capture(3),1)
 	legacy_one.version = 1
 	legacy_one.erase("zones")
 	legacy_one.erase("stats")
@@ -27,7 +27,7 @@ func run() -> void:
 	check(FIXTURE.counts(main) == {"base":3,"runner":2,"resistant":1},"Mercado real inicial 3/2/1")
 	check(main.get_node("Population").active_limit == 6 and main.get_node("Population").total_budget == 18 and main.get_node("Population").replacement_interval == 10,"Límites de zona intactos")
 	check(main.get_node("Population").active_enemies().all(func(e): return e.is_physics_processing()),"Variantes sin física desactivada")
-	var legacy_two: Dictionary = saves.capture(2)
+	var legacy_two: Dictionary = preload("res://tests/legacy_save_fixture.gd").convert(saves.capture(2),2)
 	for enemy in legacy_two.world.zombies:
 		enemy.type = "base"
 		enemy.health = 50.0
@@ -43,7 +43,7 @@ func run() -> void:
 	var expected := FIXTURE.states(main)
 	check(saves.save_slot(1).has("ok"),"Guardar tipos y salud en v2")
 	var data: Dictionary = saves.capture(1)
-	check(data.version == 2 and SaveSchema.validate(data).is_empty(),"Sin cambiar estructura del formato v2")
+	check(data.version == SaveSchema.VERSION and SaveSchema.validate(data).is_empty(),"Formato actual válido con arquetipos")
 	for type_id in ["runner","resistant"]:
 		var invalid := data.duplicate(true)
 		for enemy in invalid.world.zombies:

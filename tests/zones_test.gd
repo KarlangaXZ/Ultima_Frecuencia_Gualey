@@ -42,7 +42,7 @@ func run() -> void:
 	var directory: String = saves.store.directory
 	var original := saves.capture(3) as Dictionary
 	# Archivo con el formato exacto anterior: sin zonas ni estadísticas globales.
-	var legacy := original.duplicate(true)
+	var legacy := preload("res://tests/legacy_save_fixture.gd").convert(original,1)
 	legacy.version = 1
 	legacy.erase("zones")
 	legacy.erase("stats")
@@ -50,7 +50,7 @@ func run() -> void:
 	check(saves.store.write_slot(3,legacy).has("ok"), "Escribir fixture v1")
 	var legacy_bytes := FileAccess.get_file_as_string(saves.store.path_for(3))
 	var migrated: Dictionary = saves.store.read_slot(3)
-	check(migrated.migrated and migrated.data.version == 2 and migrated.data.zones.is_empty(), "Migración explícita v1 → v2")
+	check(migrated.migrated and migrated.data.version == SaveSchema.VERSION and migrated.data.zones.is_empty(), "Migración explícita v1 → formato actual")
 	check(FileAccess.get_file_as_string(saves.store.path_for(3)) == legacy_bytes, "Leer no sobrescribe archivo v1")
 	await preload("res://tests/save_fixture.gd").build(self,main)
 	# Terminar el capítulo mediante la radio existente; no se reescriben misiones.
@@ -67,7 +67,7 @@ func run() -> void:
 	check(ZoneCatalog.MARKET in manager.unlocked, "Capítulo desbloquea mercado")
 	check(main.get_node("World/ChapterPoints/MarketExit").available, "Salida se habilita")
 	check(saves.save_slot(1).has("ok"), "Guardar zona 1 con capítulo terminado")
-	var completed_v1: Dictionary = saves.capture(3)
+	var completed_v1: Dictionary = preload("res://tests/legacy_save_fixture.gd").convert(saves.capture(3),1)
 	completed_v1.version = 1
 	completed_v1.erase("zones")
 	completed_v1.erase("stats")
@@ -98,7 +98,7 @@ func run() -> void:
 	check(main.get_node("Player").position == Vector2(320,800), "Entrada segura")
 	check(main.get_node("Player").get_instance_id() == player_id and main.get_node("Audio").get_instance_id() == audio_id, "Jugador y audio conservan identidad")
 	check(player_data(main) == before, "Salud, necesidades, RPG, pilas, armas y cooldown sin cambios durante viaje")
-	check(MissionSaveState.capture(main) == missions, "Misiones y radio globales sin cambios")
+	check(preload("res://tests/legacy_save_fixture.gd").convert({"missions":MissionSaveState.capture(main)},2).missions == preload("res://tests/legacy_save_fixture.gd").convert({"missions":missions},2).missions and main.get_node("Missions").active_chapter==ChapterCatalog.MARKET, "Capítulo 1/radio conservados; capítulo 2 inicia al entrar")
 	check(old_world.get_ref() == null and old_zombie.get_ref() == null, "Mapa y enemigos anteriores liberados")
 	check(main.get_node("Population").active_enemies().size() == 6, "Seis vivos antes de continuar")
 	check(manager.states[ZoneCatalog.HOME].population.spawned == 7 and manager.states[ZoneCatalog.HOME].kills == 3, "Presupuesto original guardado aparte")

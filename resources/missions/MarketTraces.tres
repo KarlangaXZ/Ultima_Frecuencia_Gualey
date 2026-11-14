@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="MissionDefinition" format=3]
+[ext_resource type="Script" path="res://scripts/missions/mission_definition.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/missions/mission_objective.gd" id="2"]
+[sub_resource type="Resource" id="Objective0"]
+script = ExtResource("2")
+event_key = &"market_stall"
+description = "Investigar un puesto abandonado."
+target = 1
+historical = false
+[sub_resource type="Resource" id="Objective1"]
+script = ExtResource("2")
+event_key = &"market_evacuation"
+description = "Examinar el punto de evacuación."
+target = 1
+historical = false
+[sub_resource type="Resource" id="Objective2"]
+script = ExtResource("2")
+event_key = &"market_record"
+description = "Recuperar el registro de supervivientes."
+target = 1
+historical = false
+[resource]
+script = ExtResource("1")
+id = &"market_traces"
+chapter_id = &"market_echoes"
+title = "Rastros entre los puestos"
+description = "Investiga los rastros de una evacuación en el Mercado abandonado."
+prerequisites = Array[StringName]([&"broadcast"])
+objectives = Array[ExtResource("2")]([SubResource("Objective0"), SubResource("Objective1"), SubResource("Objective2")])
+reward_xp = 30
+sequential = false

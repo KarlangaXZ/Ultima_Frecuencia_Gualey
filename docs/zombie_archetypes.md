@@ -1,5 +1,8 @@
 # Fase 11 — variantes de zombis y dificultad por zona
 
+**Actualización Fase 12:** [Ecos del Mercado](market_chapter.md) añade 205 XP de
+misiones y guardado v3. Los totales de este informe corresponden a fase 11.
+
 Validado el 14 de noviembre de 2026 con Godot 4.7.2 Stable, Windows,
 Compatibility y Radeon RX 580. Integración técnica con arte provisional.
 

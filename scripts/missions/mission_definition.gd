@@ -1,6 +1,7 @@
 class_name MissionDefinition
 extends Resource
 @export var id: StringName
+@export var chapter_id: StringName = &"signal_lost"
 @export var title: String
 @export_multiline var description: String
 @export var prerequisites: Array[StringName] = []

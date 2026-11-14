@@ -7,8 +7,9 @@ var available := false:
 		available = value
 		queue_redraw()
 var destination_label := "Salida"
+var locked_hint := "Salida cerrada · completa La señal perdida"
 func interaction_name() -> String:
-	return "Viajar a " + destination_label if available else "Salida cerrada · completa La señal perdida"
+	return "Viajar a " + destination_label if available else locked_hint
 func try_activate(interaction: Node) -> bool:
 	if not available or interaction.actor.controls_blocked or not interaction.can_access(self): return false
 	return interaction.actor.get_parent().get_node("ZoneManager").request_travel(destination, entry)

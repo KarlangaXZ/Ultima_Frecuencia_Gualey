@@ -2,6 +2,7 @@ extends Node
 ## Secuencia textual reutilizable. La vista gestiona la modalidad y el cierre.
 signal message_changed(sender: String, message: String, index: int, total: int)
 signal finished
+signal transmission_completed(value: RadioTransmission)
 var transmission: RadioTransmission
 var index := 0
 var enabled := true
@@ -17,8 +18,10 @@ func advance() -> void:
 	if not enabled or transmission == null: return
 	index += 1
 	if index >= transmission.messages.size():
+		var completed := transmission
 		transmission = null
 		finished.emit()
+		transmission_completed.emit(completed)
 	else: _emit_message()
 
 func _emit_message() -> void:

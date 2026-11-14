@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="MissionDefinition" format=3]
+[ext_resource type="Script" path="res://scripts/missions/mission_definition.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/missions/mission_objective.gd" id="2"]
+[sub_resource type="Resource" id="Objective0"]
+script = ExtResource("2")
+event_key = &"market_comms"
+description = "Localizar el equipo de comunicaciones."
+target = 1
+historical = false
+[sub_resource type="Resource" id="Objective1"]
+script = ExtResource("2")
+event_key = &"market_power"
+description = "Activar su alimentación eléctrica."
+target = 1
+historical = false
+[sub_resource type="Resource" id="Objective2"]
+script = ExtResource("2")
+event_key = &"market_repeater"
+description = "Restablecer el repetidor."
+target = 1
+historical = false
+[sub_resource type="Resource" id="Objective3"]
+script = ExtResource("2")
+event_key = &"market_listen"
+description = "Escuchar la transmisión final completa."
+target = 1
+historical = false
+[resource]
+script = ExtResource("1")
+id = &"market_frequency"
+chapter_id = &"market_echoes"
+title = "Ecos en la frecuencia"
+description = "Localiza el equipo, conecta su alimentación y restablece el repetidor. Lee la transmisión hasta el final."
+prerequisites = Array[StringName]([&"market_horde"])
+objectives = Array[ExtResource("2")]([SubResource("Objective0"), SubResource("Objective1"), SubResource("Objective2"), SubResource("Objective3")])
+reward_xp = 75
+sequential = true

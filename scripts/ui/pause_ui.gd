@@ -86,7 +86,7 @@ func refresh_slots() -> void:
 		var result: Dictionary = saves.store.read_slot(index + 1)
 		var label := "Ranura %d · Vacía" % (index + 1)
 		if result.has("data"):
-			label = "Ranura %d · Nivel %d · La señal perdida\n%s · %s UTC%s" % [index + 1, result.data.player.progression.level,
+			label = "Ranura %d · Nivel %d · %s\n%s · %s UTC%s" % [index + 1, result.data.player.progression.level,ChapterCatalog.title(result.data.chapter),
 				ZoneCatalog.definition(result.data.map).display_name, String(result.data.saved_at).replace("T", " ").trim_suffix("Z"), " · Respaldo" if result.recovered else ""]
 		elif saves.store.occupied(index + 1): label = "Ranura %d · %s" % [index + 1, result.error]
 		rows[index].label.text = label

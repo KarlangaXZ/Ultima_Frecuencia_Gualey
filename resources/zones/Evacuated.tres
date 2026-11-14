@@ -12,3 +12,5 @@ pickup_ids = Array[String](["pickup_water", "pickup_medkit", "pickup_food", "pic
 enemy_prefix = "zombie_"
 initial_enemies = PackedVector2Array(1000, 800, 1650, 700, 800, 1250)
 spawn_points = PackedVector2Array(1600, 450, 1960, 700, 1800, 1250, 1320, 1210, 650, 1250, 320, 950, 950, 370, 1500, 750, 1900, 560, 2100, 850, 1000, 1050, 1200, 350, 550, 350, 350, 900, 1500, 1150)
+
+connections = Dictionary[String,String]({"market_abandoned":"from_gualey"})

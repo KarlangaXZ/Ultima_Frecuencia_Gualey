@@ -6,6 +6,9 @@ conceptuales para representar funcionalidades.
 
 | Archivo | Fuente | Fecha y preparación |
 | --- | --- | --- |
+| market-chapter-journal.png | test-results/phase-twelve/01-market-journal.png | 2026-11-14, recorrido real de ambos capítulos; IA aislada solo en esta fixture |
+| market-station-signal.png | test-results/phase-twelve/03-station-signal.png | 2026-11-14, recorrido real de ambos capítulos; IA aislada solo en esta fixture |
+| market-chapter-complete.png | test-results/phase-twelve/04-chapter-two-complete.png | 2026-11-14, recorrido real de ambos capítulos; IA aislada solo en esta fixture |
 | zombie-common.png | test-results/archetypes/01-home-common.png | 2026-11-14, zona inicial con comunes e IA activa |
 | zombie-variants.png | test-results/archetypes/02-market-variants.png | 2026-11-14, común/corredor/resistente de izquierda a derecha, IA activa |
 | market.png | test-results/zones/02-market.png | 2026-11-14, entrada real con personajes visibles y nombre de zona |
@@ -28,7 +31,7 @@ conceptuales para representar funcionalidades.
 | player-animations.png | PNG down de idle/shoot/reload/death y walk_left V2 | 2026-11-12, composición en orden, escala nativa |
 | zombie-base.png | PNG de Idle 00, Walk 02, Attack 03 y Death 05 | Fase 4.4, down/up/left/right del paquete técnico |
 
-Las diecinueve capturas son PNG 1280 × 720 optimizados sin pérdida. La lámina del
+Las veintidós capturas son PNG 1280 × 720 optimizados sin pérdida. La lámina del
 protagonista mide 1024 × 800; la del zombi, 512 × 624. Las fuentes permanecen en
 assets/ y los resultados de pruebas en test-results/ (ignorado).
 
@@ -83,3 +86,10 @@ Fase 11 añade dos capturas reales de tres producidas por la prueba de variantes
 (23 comprobaciones). Posiciones preparadas, IA y física activas; sin cambiar
 cámara, escala o arte del juego. PNG optimizados sin pérdida y verificados
 píxel a píxel. [Validación y pendientes](../zombie_archetypes.md).
+
+Fase 12 añade tres capturas de cuatro generadas por el recorrido automático de
+ambos capítulos: diario inicial, último mensaje y capítulo 2 completado. Se revisan
+legibilidad y rótulo de zona oculto durante modales. PNG optimizados sin pérdida,
+idénticos píxel a píxel a su fuente. La IA se aísla en esta fixture de narrativa;
+las pruebas adicionales de estado mantienen persecución y ataques activos.
+[Recorrido, guardados y limitaciones](../market_chapter.md).

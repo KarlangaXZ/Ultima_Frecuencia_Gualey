@@ -1,0 +1,405 @@
+[gd_scene format=3]
+[ext_resource type="Script" path="res://scripts/world/world_navigation.gd" id="Nav"]
+[ext_resource type="Script" path="res://scripts/world/station_ground.gd" id="Ground"]
+[ext_resource type="Script" path="res://scripts/world/station_structure.gd" id="Structure"]
+[ext_resource type="Script" path="res://scripts/zones/zone_exit.gd" id="Exit"]
+[ext_resource type="Script" path="res://scripts/world/mission_point.gd" id="Point"]
+[ext_resource type="PackedScene" path="res://scenes/items/LootContainer.tscn" id="Container"]
+[ext_resource type="PackedScene" path="res://scenes/items/WorldPickup.tscn" id="Pickup"]
+[ext_resource type="Script" path="res://scripts/inventory/item_definition.gd" id="Item"]
+[ext_resource type="Resource" path="res://resources/items/Water.tres" id="Water"]
+[ext_resource type="Resource" path="res://resources/items/Medkit.tres" id="Medkit"]
+[ext_resource type="Resource" path="res://resources/items/Food.tres" id="Food"]
+[ext_resource type="Resource" path="res://resources/items/PistolAmmo.tres" id="PistolAmmo"]
+[ext_resource type="Resource" path="res://resources/items/RevolverAmmo.tres" id="RevolverAmmo"]
+[sub_resource type="RectangleShape2D" id="Foot0"]
+size = Vector2(2100,16)
+[sub_resource type="RectangleShape2D" id="Foot1"]
+size = Vector2(2100,16)
+[sub_resource type="RectangleShape2D" id="Foot2"]
+size = Vector2(16,570)
+[sub_resource type="RectangleShape2D" id="Foot3"]
+size = Vector2(16,570)
+[sub_resource type="RectangleShape2D" id="Foot4"]
+size = Vector2(16,1300)
+[sub_resource type="RectangleShape2D" id="Foot5"]
+size = Vector2(480,220)
+[sub_resource type="RectangleShape2D" id="Foot6"]
+size = Vector2(110,100)
+[sub_resource type="RectangleShape2D" id="Foot7"]
+size = Vector2(110,100)
+[sub_resource type="RectangleShape2D" id="Foot8"]
+size = Vector2(800,32)
+[sub_resource type="RectangleShape2D" id="Foot9"]
+size = Vector2(32,380)
+[sub_resource type="RectangleShape2D" id="Foot10"]
+size = Vector2(32,380)
+[sub_resource type="RectangleShape2D" id="Foot11"]
+size = Vector2(400,32)
+[sub_resource type="RectangleShape2D" id="Foot12"]
+size = Vector2(240,32)
+[sub_resource type="RectangleShape2D" id="Foot13"]
+size = Vector2(100,120)
+[sub_resource type="RectangleShape2D" id="Foot14"]
+size = Vector2(100,120)
+[sub_resource type="RectangleShape2D" id="Foot15"]
+size = Vector2(100,100)
+[sub_resource type="RectangleShape2D" id="Foot16"]
+size = Vector2(200,200)
+[sub_resource type="RectangleShape2D" id="Foot17"]
+size = Vector2(200,110)
+[sub_resource type="RectangleShape2D" id="Foot18"]
+size = Vector2(120,120)
+[sub_resource type="RectangleShape2D" id="Foot19"]
+size = Vector2(200,110)
+[sub_resource type="RectangleShape2D" id="Foot20"]
+size = Vector2(180,80)
+[sub_resource type="RectangleShape2D" id="Foot21"]
+size = Vector2(140,32)
+[sub_resource type="RectangleShape2D" id="Foot22"]
+size = Vector2(170,32)
+[sub_resource type="RectangleShape2D" id="Foot23"]
+size = Vector2(400,160)
+[sub_resource type="RectangleShape2D" id="Foot24"]
+size = Vector2(140,90)
+[sub_resource type="RectangleShape2D" id="Foot25"]
+size = Vector2(140,60)
+[sub_resource type="RectangleShape2D" id="Horizontal"]
+size = Vector2(2400,48)
+[sub_resource type="RectangleShape2D" id="Vertical"]
+size = Vector2(48,1600)
+[sub_resource type="CircleShape2D" id="PointShape"]
+radius = 26.0
+[node name="World" type="Node2D"]
+[node name="Navigation" type="NavigationRegion2D" parent="."]
+script = ExtResource("Nav")
+[node name="Ground" type="Node2D" parent="."]
+script = ExtResource("Ground")
+[node name="Obstacles" type="Node2D" parent="."]
+[node name="FenceN" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(1200,150)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "fence"
+surface_color = Color(0.39,0.47,0.44,1)
+sign_text = ""
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/FenceN"]
+shape = SubResource("Foot0")
+[node name="FenceS" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(1200,1450)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "fence"
+surface_color = Color(0.39,0.47,0.44,1)
+sign_text = ""
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/FenceS"]
+shape = SubResource("Foot1")
+[node name="FenceWNorth" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(150,435)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "fence"
+surface_color = Color(0.39,0.47,0.44,1)
+sign_text = ""
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/FenceWNorth"]
+shape = SubResource("Foot2")
+[node name="FenceWSouth" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(150,1165)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "fence"
+surface_color = Color(0.39,0.47,0.44,1)
+sign_text = ""
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/FenceWSouth"]
+shape = SubResource("Foot3")
+[node name="FenceE" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(2250,800)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "fence"
+surface_color = Color(0.39,0.47,0.44,1)
+sign_text = ""
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/FenceE"]
+shape = SubResource("Foot4")
+[node name="Garage" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(500,300)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "building"
+surface_color = Color(0.39,0.47,0.44,1)
+sign_text = "MANTENIMIENTO"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/Garage"]
+shape = SubResource("Foot5")
+[node name="GuardN" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(350,550)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "checkpoint"
+surface_color = Color(0.39,0.47,0.44,1)
+sign_text = "CONTROL"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/GuardN"]
+shape = SubResource("Foot6")
+[node name="GuardS" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(350,1260)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "checkpoint"
+surface_color = Color(0.39,0.47,0.44,1)
+sign_text = "SALIDA"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/GuardS"]
+shape = SubResource("Foot7")
+[node name="CommsN" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(1300,240)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "wall"
+surface_color = Color(0.32,0.45,0.51,1)
+sign_text = "COMUNICACIONES"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/CommsN"]
+shape = SubResource("Foot8")
+[node name="CommsW" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(900,430)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "wall"
+surface_color = Color(0.32,0.45,0.51,1)
+sign_text = ""
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/CommsW"]
+shape = SubResource("Foot9")
+[node name="CommsE" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(1700,430)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "wall"
+surface_color = Color(0.32,0.45,0.51,1)
+sign_text = ""
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/CommsE"]
+shape = SubResource("Foot10")
+[node name="CommsSW" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(1100,620)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "wall"
+surface_color = Color(0.32,0.45,0.51,1)
+sign_text = ""
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/CommsSW"]
+shape = SubResource("Foot11")
+[node name="CommsSE" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(1580,620)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "wall"
+surface_color = Color(0.32,0.45,0.51,1)
+sign_text = ""
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/CommsSE"]
+shape = SubResource("Foot12")
+[node name="RackA" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(1030,380)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "rack"
+surface_color = Color(0.32,0.45,0.51,1)
+sign_text = "RADIO"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/RackA"]
+shape = SubResource("Foot13")
+[node name="RackB" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(1240,380)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "rack"
+surface_color = Color(0.32,0.45,0.51,1)
+sign_text = "DATOS"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/RackB"]
+shape = SubResource("Foot14")
+[node name="RackC" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(1560,520)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "rack"
+surface_color = Color(0.32,0.45,0.51,1)
+sign_text = "ENLACE"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/RackC"]
+shape = SubResource("Foot15")
+[node name="Antenna" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(1200,1020)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "tower"
+surface_color = Color(0.32,0.45,0.51,1)
+sign_text = "RF"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/Antenna"]
+shape = SubResource("Foot16")
+[node name="Generator" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(1860,460)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "generator"
+surface_color = Color(0.39,0.47,0.44,1)
+sign_text = "GENERADOR"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/Generator"]
+shape = SubResource("Foot17")
+[node name="Transformer" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(2050,460)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "transformer"
+surface_color = Color(0.39,0.47,0.44,1)
+sign_text = "ALTA TENSIÓN"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/Transformer"]
+shape = SubResource("Foot18")
+[node name="Electrical" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(1860,300)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "rack"
+surface_color = Color(0.32,0.45,0.51,1)
+sign_text = "SUBESTACIÓN"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/Electrical"]
+shape = SubResource("Foot19")
+[node name="MaintenanceVan" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(750,1080)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "car"
+surface_color = Color(0.39,0.47,0.44,1)
+sign_text = ""
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/MaintenanceVan"]
+shape = SubResource("Foot20")
+[node name="WestBarricade" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(480,1040)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "barricade"
+surface_color = Color(0.39,0.47,0.44,1)
+sign_text = ""
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/WestBarricade"]
+shape = SubResource("Foot21")
+[node name="EastBarricade" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(1850,860)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "barricade"
+surface_color = Color(0.39,0.47,0.44,1)
+sign_text = ""
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/EastBarricade"]
+shape = SubResource("Foot22")
+[node name="TechnicalAnnex" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(1850,1200)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "building"
+surface_color = Color(0.39,0.47,0.44,1)
+sign_text = "ÁREA TÉCNICA"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/TechnicalAnnex"]
+shape = SubResource("Foot23")
+[node name="TechnicalCrate" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(1580,1020)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "crate"
+surface_color = Color(0.39,0.47,0.44,1)
+sign_text = "EQUIPOS"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/TechnicalCrate"]
+shape = SubResource("Foot24")
+[node name="EvacuationCrate" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(780,1300)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "crate"
+surface_color = Color(0.39,0.47,0.44,1)
+sign_text = "EVACUACIÓN"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/EvacuationCrate"]
+shape = SubResource("Foot25")
+[node name="Supplies" type="Node2D" parent="."]
+[node name="Medical" parent="Supplies" instance=ExtResource("Container")]
+metadata/persistence_id = "station_medical"
+position = Vector2(1950,620)
+display_name = "Botiquines de mantenimiento"
+initial_items = Array[ExtResource("Item")]([ExtResource("Medkit"), ExtResource("Water")])
+initial_quantities = PackedInt32Array(2,1)
+[node name="Parts" parent="Supplies" instance=ExtResource("Container")]
+metadata/persistence_id = "station_parts"
+position = Vector2(1780,1080)
+display_name = "Caja de equipos técnicos"
+initial_items = Array[ExtResource("Item")]([ExtResource("PistolAmmo"), ExtResource("RevolverAmmo")])
+initial_quantities = PackedInt32Array(24,6)
+[node name="Canteen" parent="Supplies" instance=ExtResource("Container")]
+metadata/persistence_id = "station_canteen"
+position = Vector2(600,500)
+display_name = "Suministros de guardia"
+initial_items = Array[ExtResource("Item")]([ExtResource("Food"), ExtResource("Water")])
+initial_quantities = PackedInt32Array(2,2)
+[node name="Water" parent="Supplies" instance=ExtResource("Pickup")]
+metadata/persistence_id = "station_water"
+position = Vector2(520,900)
+item = ExtResource("Water")
+quantity = 1
+[node name="Ammo" parent="Supplies" instance=ExtResource("Pickup")]
+metadata/persistence_id = "station_ammo"
+position = Vector2(2000,1100)
+item = ExtResource("PistolAmmo")
+quantity = 12
+[node name="ChapterPoints" type="Node2D" parent="."]
+[node name="Return" type="Area2D" parent="ChapterPoints"]
+position = Vector2(240,800)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("Exit")
+destination = "market_abandoned"
+entry = "from_station"
+metadata/persistence_id = "station_return"
+[node name="Shape" type="CollisionShape2D" parent="ChapterPoints/Return"]
+shape = SubResource("PointShape")
+[node name="StationRadio" type="Area2D" parent="ChapterPoints"]
+position = Vector2(1420,440)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("Point")
+point_id = &"station_radio"
+display_name = "Equipo principal de la estación"
+metadata/persistence_id = "station_radio"
+[node name="Shape" type="CollisionShape2D" parent="ChapterPoints/StationRadio"]
+shape = SubResource("PointShape")
+[node name="Ambient" type="CanvasModulate" parent="."]
+color = Color(0.93,0.96,1,1)
+[node name="Boundary" type="StaticBody2D" parent="."]
+collision_layer = 1
+collision_mask = 2
+[node name="Top" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(1200,0)
+shape = SubResource("Horizontal")
+[node name="Bottom" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(1200,1600)
+shape = SubResource("Horizontal")
+[node name="Left" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(0,800)
+shape = SubResource("Vertical")
+[node name="Right" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(2400,800)
+shape = SubResource("Vertical")

@@ -11,6 +11,7 @@
 [ext_resource type="Resource" path="res://resources/items/Food.tres" id="Food"]
 [ext_resource type="Resource" path="res://resources/items/PistolAmmo.tres" id="PistolAmmo"]
 [ext_resource type="Resource" path="res://resources/items/ShotgunAmmo.tres" id="ShotgunAmmo"]
+[ext_resource type="Script" path="res://scripts/world/mission_point.gd" id="MissionPoint"]
 [sub_resource type="RectangleShape2D" id="Shape0"]
 size = Vector2(500,260)
 [sub_resource type="RectangleShape2D" id="Shape1"]
@@ -288,3 +289,80 @@ shape = SubResource("Vertical")
 [node name="Right" type="CollisionShape2D" parent="Boundary"]
 position = Vector2(2400,800)
 shape = SubResource("Vertical")
+
+[node name="Stall" type="Area2D" parent="ChapterPoints"]
+position = Vector2(650,700)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("MissionPoint")
+point_id = &"market_stall"
+display_name = "Puesto abandonado"
+metadata/persistence_id = "market_stall"
+[node name="Shape" type="CollisionShape2D" parent="ChapterPoints/Stall"]
+shape = SubResource("ExitShape")
+
+[node name="Evacuation" type="Area2D" parent="ChapterPoints"]
+position = Vector2(400,1040)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("MissionPoint")
+point_id = &"market_evacuation"
+display_name = "Punto de evacuación"
+metadata/persistence_id = "market_evacuation"
+[node name="Shape" type="CollisionShape2D" parent="ChapterPoints/Evacuation"]
+shape = SubResource("ExitShape")
+
+[node name="Record" type="Area2D" parent="ChapterPoints"]
+position = Vector2(830,1180)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("MissionPoint")
+point_id = &"market_record"
+display_name = "Registro de supervivientes"
+metadata/persistence_id = "market_record"
+[node name="Shape" type="CollisionShape2D" parent="ChapterPoints/Record"]
+shape = SubResource("ExitShape")
+
+[node name="Comms" type="Area2D" parent="ChapterPoints"]
+position = Vector2(1760,890)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("MissionPoint")
+point_id = &"market_comms"
+display_name = "Equipo de comunicaciones"
+metadata/persistence_id = "market_comms"
+[node name="Shape" type="CollisionShape2D" parent="ChapterPoints/Comms"]
+shape = SubResource("ExitShape")
+
+[node name="Power" type="Area2D" parent="ChapterPoints"]
+position = Vector2(1850,940)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("MissionPoint")
+point_id = &"market_power"
+display_name = "Alimentación del repetidor"
+metadata/persistence_id = "market_power"
+[node name="Shape" type="CollisionShape2D" parent="ChapterPoints/Power"]
+shape = SubResource("ExitShape")
+
+[node name="Repeater" type="Area2D" parent="ChapterPoints"]
+position = Vector2(1970,900)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("MissionPoint")
+point_id = &"market_repeater"
+display_name = "Repetidor del Mercado"
+metadata/persistence_id = "market_repeater"
+[node name="Shape" type="CollisionShape2D" parent="ChapterPoints/Repeater"]
+shape = SubResource("ExitShape")
+
+[node name="StationExit" type="Area2D" parent="ChapterPoints"]
+position = Vector2(2280,800)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("Exit")
+destination = "communications_station"
+entry = "from_market"
+metadata/persistence_id = "market_station_exit"
+[node name="Shape" type="CollisionShape2D" parent="ChapterPoints/StationExit"]
+shape = SubResource("ExitShape")

@@ -12,6 +12,24 @@ var _totals: Dictionary = {}
 var _receipts: Dictionary = {}
 var _busy := false
 var _dirty := false
+var started_chapters: Array[String] = ["signal_lost"]
+var active_chapter := "signal_lost"
+var legacy_waivers: Array[String] = []
+
+func chapter_completed(id: String) -> bool:
+	if not ChapterCatalog.DEFINITIONS.has(id): return false
+	return ChapterCatalog.DEFINITIONS[id].missions.all(func(m): return state_of(StringName(m)) == State.COMPLETED)
+
+func completed_chapters() -> Array:
+	return ChapterCatalog.DEFINITIONS.keys().filter(chapter_completed)
+
+func begin_chapter(id: String) -> bool:
+	if not enabled or not ChapterCatalog.DEFINITIONS.has(id) or id in started_chapters: return false
+	if id == ChapterCatalog.MARKET and not chapter_completed(ChapterCatalog.FIRST): return false
+	started_chapters.append(id)
+	active_chapter = id
+	_refresh()
+	return true
 
 func _ready() -> void:
 	for mission in definitions:
@@ -94,6 +112,7 @@ func _refresh() -> void:
 		var completed: Array[MissionDefinition] = []
 		for mission in definitions:
 			if state_of(mission.id) == State.LOCKED:
+				if String(mission.chapter_id) not in started_chapters: continue
 				var ready := true
 				for required in mission.prerequisites:
 					if state_of(required) != State.COMPLETED: ready = false

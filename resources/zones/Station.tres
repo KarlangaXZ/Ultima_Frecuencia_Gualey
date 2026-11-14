@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ZoneDefinition" format=3]
+[ext_resource type="Script" path="res://scripts/zones/zone_definition.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/world/StationWorld.tscn" id="2"]
+[resource]
+script = ExtResource("1")
+id = "communications_station"
+display_name = "Estación de comunicaciones"
+unlock_mission = &"market_frequency"
+world_scene = ExtResource("2")
+entries = Dictionary[String,Vector2]({"initial":Vector2(320,800),"from_market":Vector2(320,800)})
+connections = Dictionary[String,String]({"market_abandoned":"from_station"})
+interaction_ids = Array[String](["station_radio"])
+container_ids = Array[String](["station_medical","station_parts","station_canteen"])
+pickup_ids = Array[String](["station_water","station_ammo"])
+enemy_prefix = "station_zombie_"
+initial_enemies = PackedVector2Array(1400,800,1850,800,1600,1300)
+spawn_points = PackedVector2Array(2050,800,2100,1250,1500,1320,900,1280,450,1180,700,700,1100,700,1900,650,2050,1000,700,1200,1500,800,1800,1000,600,950,1000,1250,800,650,1400,750,2000,1320,450,650)
+enemy_weights = Dictionary[String,int]({"base":40,"runner":40,"resistant":20})

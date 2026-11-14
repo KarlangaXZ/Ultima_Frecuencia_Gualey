@@ -104,7 +104,7 @@ func run() -> void:
 		completed_events += 1
 		check(not rewards.award(mission), "Recompensa ya reservada antes de otros observadores"))
 	interaction.supply_recovered.connect(func(_item: ItemDefinition, token: String): receipt = token)
-	check(tracker.definitions.size() == 3 and tracker.active_mission().id == &"signal", "Tres misiones, inicio correcto")
+	check(tracker.definitions.filter(func(m):return m.chapter_id==&"signal_lost").size() == 3 and tracker.active_mission().id == &"signal", "Tres misiones, inicio correcto")
 	check(progression.total_xp() == 0 and main.kills == 0, "XP y bajas iniciales intactas")
 	check(InputMap.action_get_events("missions")[0].physical_keycode == KEY_J, "J físico")
 	check(main.get_node("World/Obstacles").get_child_count() == 28 and main.get_node("Zombies").get_child_count() == 3, "Mundo y enemigos conservados")

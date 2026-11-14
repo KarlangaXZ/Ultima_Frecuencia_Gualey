@@ -11,8 +11,16 @@ static func capture(main: Node) -> Dictionary:
 		"awarded": main.get_node("Missions/Rewards")._awarded.keys().map(func(id): return String(id)),
 		"radio": {"transmission": transmission, "index": radio.index if transmission != "" else 0}, "unlocked_zones": main.get_node("ZoneManager").unlocked.duplicate()}
 
-static func restore(main: Node, data: Dictionary) -> void:
+static func story(main: Node) -> Dictionary:
 	var tracker: MissionTracker = main.get_node("Missions")
+	return {"started":tracker.started_chapters.duplicate(),"completed":tracker.completed_chapters(),
+		"legacy_waivers":tracker.legacy_waivers.duplicate(),"station_hint":tracker.chapter_completed(ChapterCatalog.MARKET)}
+
+static func restore(main: Node, data: Dictionary, narrative: Dictionary, chapter: String) -> void:
+	var tracker: MissionTracker = main.get_node("Missions")
+	tracker.started_chapters.assign(narrative.started)
+	tracker.active_chapter = chapter
+	tracker.legacy_waivers.assign(narrative.legacy_waivers)
 	tracker._states.clear()
 	tracker._progress.clear()
 	tracker._totals.clear()

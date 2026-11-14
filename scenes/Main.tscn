@@ -30,6 +30,10 @@
 [ext_resource type="Script" path="res://scripts/zones/zone_manager.gd" id="Zones"]
 [ext_resource type="Script" path="res://scripts/ui/zone_overlay.gd" id="ZoneOverlay"]
 
+[ext_resource type="Resource" path="res://resources/missions/MarketTraces.tres" id="MarketTraces"]
+[ext_resource type="Resource" path="res://resources/missions/MarketSupplies.tres" id="MarketSupplies"]
+[ext_resource type="Resource" path="res://resources/missions/MarketHorde.tres" id="MarketHorde"]
+[ext_resource type="Resource" path="res://resources/missions/MarketFrequency.tres" id="MarketFrequency"]
 [node name="Main" type="Node2D" unique_id=1506309]
 script = ExtResource("4")
 
@@ -57,7 +61,7 @@ position = Vector2(800, 1250)
 [node name="CharacterUI" parent="." instance=ExtResource("8")]
 [node name="Missions" type="Node" parent="."]
 script = ExtResource("Tracker")
-definitions = Array[ExtResource("Definition")]([ExtResource("Signal"), ExtResource("Supplies"), ExtResource("Broadcast")])
+definitions = Array[ExtResource("Definition")]([ExtResource("Signal"), ExtResource("Supplies"), ExtResource("Broadcast"), ExtResource("MarketTraces"), ExtResource("MarketSupplies"), ExtResource("MarketHorde"), ExtResource("MarketFrequency")])
 [node name="Rewards" type="Node" parent="Missions"]
 script = ExtResource("Rewards")
 [node name="Chapter" type="Node" parent="Missions"]

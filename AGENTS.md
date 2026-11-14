@@ -57,6 +57,22 @@
   No aplicar el pivote frontal a walk/death provisionales ni modificar la física.
 
 ## Convenciones y reglas
+- Fase 12: un único MissionTracker/Radio/Rewards gestiona signal_lost y market_echoes.
+  ChapterCatalog registra IDs; MissionDefinition.chapter_id y started_chapters gatean
+  la cadena. El capítulo 2 inicia al entrar al Mercado con broadcast completada.
+  market_traces/supplies/horde/frequency conceden 30/40/60/75 XP una vez (205).
+  Eventos market_* separados de Gualey; recibos y cadáveres tipados por zona conservan
+  recuperaciones/bajas previas a activar objetivos. No exigir conservar consumibles.
+  La alimentación es interacción fija, sin objeto ni capacidad de mochila. El último
+  premio espera transmission_completed de MarketFinal; cerrar o morir no lo emite.
+  Reabrir Repeater continúa el índice guardado. Pista de estación no es una zona.
+  Save v3 añade chapter/story y siete misiones. Validar v1/v2 antes de migrar en memoria,
+  sin reescribir al leer ni otorgar premios. MarketHistory deriva evidencia del mundo.
+  legacy_waivers solo para variantes ausentes del historial y de todos los ordinales
+  futuros finitos: reconocer requisito narrativo, nunca inventar bajas/XP/enemigos.
+  Guardar/cargar no refresca misiones con recompensas. Diary/ObjectiveHUD reutilizados;
+  ocultar rótulo breve de zona al abrir modal. Sin cambios de IA/armas/balance/VSync.
+  Ver docs/market_chapter.md y tests/market_chapter*_test.gd; rutas user://tests/phase-twelve-*.
 - Fase 11: ZombieArchetype configura Common/Runner/Resistant en resources/enemies/;
   Resource inmutable, valores por instancia aplicados en _enter_tree antes de hijos.
   Conservar una sola IA/escena y flujo de salud/daño/muerte. XP 30/45/60 por tipo,
@@ -86,7 +102,7 @@
   volver a premiar; broadcast completada deduce desbloqueo. Catálogo confiable,
   validación y rutas de archivo de Fase 9 se reutilizan. No aceptar escenas del JSON.
   Tests nuevos usan user://tests/phase-ten-*; no tocar partidas normales. Máximo
-  actual de contenido completo: 1.390 XP, nivel 7, seis puntos. Ver docs/zones_transitions.md.
+  del contenido en fase 10: 1.390 XP, nivel 7, seis puntos. Ver docs/zones_transitions.md.
 - Fase 9 autoriza persistencia local: SaveCoordinator/SaveSchema/SaveFileStore y
   adaptadores PlayerSaveState, MissionSaveState, WorldSaveState en scripts/save/.
   user://saves/slot_1..3.json, v1, JSON puro, catálogo de IDs confiables; nunca

@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="RadioTransmission" format=3]
+[ext_resource type="Script" path="res://scripts/radio/radio_transmission.gd" id="1"]
+[resource]
+script = ExtResource("1")
+sender = "REGISTRO DE LA ESTACIÓN"
+messages = PackedStringArray("El equipo aún está tibio. Alguien operó esta instalación después de la evacuación.", "[Señal interrumpida] Si llegaste desde el Mercado, revisa el área técnica. Dejamos el enlace preparado. La siguiente transmisión todavía no está disponible.")

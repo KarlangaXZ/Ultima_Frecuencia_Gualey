@@ -9,6 +9,7 @@ var combat: SoundEmitter
 var ambience: AudioStreamPlayer
 var _inventory_open := false
 var ambience_paused := false
+var _level_sound_frame := -1
 @onready var main: Node = get_parent()
 @onready var actor: Node = main.get_node("Player")
 
@@ -20,8 +21,13 @@ func _ready() -> void:
 	inventory_ui.selection_changed.connect(func(): ui.play_event(&"ui_select"))
 	main.get_node("CharacterUI").opened_changed.connect(func(active: bool):
 		ui.play_event(&"inventory_open" if active else &"inventory_close"))
-	actor.get_node("ProgressionComponent").leveled_up.connect(func(_level: int, _points: int): ui.play_event(&"pickup_supply"))
+	actor.get_node("ProgressionComponent").leveled_up.connect(func(_level: int, _points: int):
+		_level_sound_frame=Engine.get_process_frames()
+		ui.play_event(&"pickup_supply"))
 	actor.get_node("SkillsComponent").skill_acquired.connect(func(_id: StringName, _rank: int): ui.play_event(&"item_use"))
+	main.get_node("Missions/Chapter").equipment_activated.connect(func(): ui.play_event(&"item_use",0.12))
+	main.get_node("Missions").mission_completed.connect(func(mission: MissionDefinition):
+		if mission.chapter_id==&"market_echoes" and _level_sound_frame!=Engine.get_process_frames(): ui.play_event(&"pickup_supply",0.12))
 	main.get_node("MissionUI").opened_changed.connect(func(active: bool):
 		ui.play_event(&"inventory_open" if active else &"inventory_close"))
 	# Un aviso electrónico existente por mensaje; sin voz ni doble sonido al abrir.

@@ -24,6 +24,8 @@ func _refresh_block() -> void:
 	for name in ["InventoryUI", "CharacterUI", "MissionUI", "RadioUI", "PauseUI"]:
 		blocked = blocked or main.get_node(name).window.visible
 	main.get_node("Player").set_controls_blocked(blocked)
+	# El rótulo breve de zona está en una capa superior: no tapar el diario/radio.
+	if blocked: main.get_node("ZoneOverlay").banner.hide()
 	main.get_node("ObjectiveHUD").visible = not blocked and not main.get_node("Player/HealthComponent").is_dead()
 	var paused: bool = main.get_node("PauseUI").window.visible or transitioning
 	if paused != _paused:

@@ -6,6 +6,8 @@ extends Resource
 @export var world_scene: PackedScene
 @export var dimensions := Vector2(2400,1600)
 @export var entries: Dictionary[String, Vector2] = {}
+@export var connections: Dictionary[String,String] = {}
+@export var interaction_ids: Array[String] = []
 @export var container_ids: Array[String] = []
 @export var pickup_ids: Array[String] = []
 @export var enemy_prefix := "zombie_"

@@ -54,6 +54,28 @@ Los nombres de varios PNG históricos no coinciden con la orientación que muest
 
 ## Progreso del desarrollo
 
+Fase 12: **Ecos del Mercado**, segundo capítulo jugable. Completa La señal perdida
+y entra al Mercado abandonado para investigar una evacuación, recuperar suministros,
+reconocer corredores/resistentes y restablecer un repetidor. Las cuatro misiones
+conceden **30 + 40 + 60 + 75 = 205 XP** una sola vez.
+
+![Diario real del capítulo Ecos del Mercado](docs/images/market-chapter-journal.png)
+
+Las recogidas y bajas previas cuentan; consumir suministros conserva el progreso.
+La alimentación funciona con la mochila llena. La última recompensa exige terminar
+la transmisión; cerrar temprano permite continuarla después. El guardado **v3**
+conserva capítulos, interacciones e historial y migra v1/v2 en memoria, sin repetir
+recompensas. El juego sigue activo al terminar y puedes regresar a Gualey.
+
+![Transmisión real de la estación de comunicaciones](docs/images/market-station-signal.png)
+
+La estación es una pista narrativa: todavía no hay tercera zona ni salida nueva.
+Con todo el contenido de una partida nueva, la configuración actual ofrece hasta
+**1.730 XP**, nivel 7, 380/400 XP y seis puntos; los guardados anteriores pueden
+conservar otra mezcla de enemigos. [Misiones, registro de capítulos, compatibilidad,
+recorrido y capturas](docs/market_chapter.md).
+
+
 Fase 11.1: **diagnóstico reproducible de rendimiento y estabilidad**. Se corrige
 la interpretación de los 32,18 ms anteriores: eran lecturas de máximos del
 monitor, no un tiempo medio real por frame. La comparación identifica una
@@ -76,7 +98,7 @@ Las variantes tienen tintes, marcadores y audio moderados; reutilizan arte técn
 provisional. El guardado v2 conserva tipo, heridas y bajas; lee partidas v1/v2
 anteriores sin transformar enemigos guardados.
 
-Una partida nueva ofrece hasta **1.525 XP**, nivel 7, 175/400 XP y seis puntos.
+El contenido hasta fase 11 ofrecía hasta **1.525 XP**, nivel 7, 175/400 XP y seis puntos.
 El total de partidas anteriores depende de sus enemigos ya guardados.
 [Configuración, capturas, persistencia y límites de rendimiento](docs/zombie_archetypes.md).
 
@@ -235,6 +257,7 @@ direcciones por estado. [Resultados y limitaciones](docs/zombie_base_integration
 | 9 | Guardado, carga y pausa | Tres ranuras locales; validación automática y reapertura aprobadas |
 | 10 | Mercado abandonado y transiciones | Dos zonas persistentes; guardado v2 y migración v1 validados |
 | 11 | Variantes de zombis y dificultad por zona | Integración técnica validada; arte, balance y rendimiento pendientes de pulido |
+| 12 | Ecos del Mercado | Cuatro misiones, 205 XP, transmisión final y persistencia v3 |
 
 “Completada técnicamente” significa que la integración y sus pruebas funcionan; no implica arte final ni aprobación artística de todos los ciclos. El guardado se incorpora en fase 9; las revisiones manuales pendientes se detallan en cada informe.
 
@@ -334,6 +357,10 @@ Se versionan los metadatos de identidad/importación necesarios (`.uid`, `.impor
 
 ## Pruebas automatizadas
 
+Fase 12: **1.934 comprobaciones headless**, cero fallos; recorrido físico de ambos capítulos y pruebas adicionales
+con IA activa, migración v1/v2 y reapertura de capítulo parcial entre procesos.
+[Resultados, alcance y pendientes](docs/market_chapter.md).
+
 Fase 11: **1.764 comprobaciones automáticas**, cero fallos, incluidas las 1.512
 anteriores y reapertura de variantes entre procesos. En ventana: 150 de
 arquetipos, 76 de persistencia, 23 visuales con capturas y 94 de HUD/audio,
@@ -402,11 +429,17 @@ godot --headless --path . --fixed-fps 60 --script res://tests/archetypes_persist
 godot --headless --path . --fixed-fps 60 --script res://tests/archetypes_visual_test.gd
 godot --headless --path . --fixed-fps 60 --script res://tests/archetypes_restart_test.gd -- --write
 godot --headless --path . --fixed-fps 60 --script res://tests/archetypes_restart_test.gd -- --read
+godot --headless --path . --fixed-fps 60 --script res://tests/market_chapter_test.gd
+godot --headless --path . --fixed-fps 60 --script res://tests/market_chapter_state_test.gd
+godot --headless --path . --fixed-fps 60 --script res://tests/market_chapter_restart_test.gd -- --write
+godot --headless --path . --fixed-fps 60 --script res://tests/market_chapter_restart_test.gd -- --read
 ```
 
 La validación de fase 7 aprobó **905 comprobaciones**, con cero fallos: las 759 anteriores, 58 de componente y 88 de integración RPG. Se comprueban premios únicos, multinivel, límites, compras, modificadores, recargas/animaciones, UI y reinicio, conservando las regresiones previas. [Informe de progresión](docs/progression_skills.md), [HUD/audio](docs/hud_audio_polish.md), [fase 6](docs/arsenal_equipment.md), [fase 5](docs/inventory_survival.md), [zona urbana](docs/urban_world_integration.md), [zombi base](docs/zombie_base_integration.md) y [Shoot](docs/shoot_final_integration.md).
 
 Para producir capturas actuales con renderizado real:
+
+Capítulo 2: `godot --path . --fixed-fps 60 --script res://tests/market_chapter_test.gd -- --capture`.
 
 Variantes con IA activa: `godot --path . --fixed-fps 60 --script res://tests/archetypes_visual_test.gd -- --capture`.
 

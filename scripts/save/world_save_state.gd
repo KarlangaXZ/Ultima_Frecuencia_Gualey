@@ -17,11 +17,13 @@ static func capture(main: Node) -> Dictionary:
 	var population: Node = main.get_node("Population")
 	var rewards: Node = main.get_node("Player/ProgressionRewards")
 	return {"containers": containers, "pickups": pickups, "zombies": zombies,
+		"interactions":main.get_node("ZoneManager").interactions.duplicate(),
 		"population": {"spawned": population.total_spawned, "remaining": population._remaining, "cursor": population._cursor},
 		"rewarded_zombies": rewards._zombies.keys(), "rewarded_containers": rewards._containers.keys(),
 		"kills": zombies.filter(func(z): return z.health <= 0).size(), "survival_time": main.survival_time}
 
 static func restore(main: Node, data: Dictionary) -> void:
+	main.get_node("ZoneManager").interactions.assign(data.interactions)
 	var zone: ZoneDefinition = main.get_node("ZoneManager").active_definition()
 	for id in zone.container_ids:
 		var container: Node = SaveCatalog.find(main.get_node("World"), id)
@@ -71,3 +73,4 @@ static func restore(main: Node, data: Dictionary) -> void:
 	for id in data.rewarded_containers: rewards._containers[id] = true
 	main.kills = int(data.kills)
 	main.survival_time = data.survival_time
+	main.get_node("Missions/Chapter")._update_points()

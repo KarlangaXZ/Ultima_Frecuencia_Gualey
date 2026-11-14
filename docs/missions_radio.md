@@ -1,5 +1,9 @@
 # Fase 8 — misiones, exploración y radio
 
+**Actualización Fase 12:** [Ecos del Mercado y guardado v3](market_chapter.md).
+Este informe conserva la arquitectura/resultados históricos; el juego actual
+tiene dos capítulos, siete misiones y migración v1/v2 → v3.
+
 Capítulo 1: **La señal perdida**. Godot 4.7.2 Stable, Windows, Compatibility.
 El protagonista despierta en una zona evacuada, busca una radio junto al colmado
 y recibe la petición de una estación desconocida. Recupera suministros, despeja

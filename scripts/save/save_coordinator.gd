@@ -12,7 +12,7 @@ func _ready() -> void:
 
 func capture(slot: int) -> Dictionary:
 	return {"version": SaveSchema.VERSION, "slot": slot, "saved_at": Time.get_datetime_string_from_system(true) + "Z",
-		"chapter": "signal_lost", "map": main.get_node("ZoneManager").current_zone, "player": PlayerSaveState.capture(main.get_node("Player")),
+		"chapter": main.get_node("Missions").active_chapter,"story":MissionSaveState.story(main), "map": main.get_node("ZoneManager").current_zone, "player": PlayerSaveState.capture(main.get_node("Player")),
 		"zones": main.get_node("ZoneManager").states.duplicate(true), "stats": {"kills": main.kills,"survival_time": main.survival_time},
 		"world": WorldSaveState.capture(main), "missions": MissionSaveState.capture(main)}
 
@@ -59,7 +59,7 @@ func load_slot(slot: int) -> Dictionary:
 	_set_audio(candidate, false)
 	candidate.get_node("ZoneManager").restore_session(data.map,data.zones,data.missions.unlocked_zones)
 	PlayerSaveState.restore(candidate.get_node("Player"), data.player)
-	MissionSaveState.restore(candidate, data.missions)
+	MissionSaveState.restore(candidate, data.missions,data.story,data.chapter)
 	WorldSaveState.restore(candidate, data.world)
 	candidate.kills = int(data.stats.kills)
 	candidate.survival_time = data.stats.survival_time
@@ -89,7 +89,7 @@ func load_slot(slot: int) -> Dictionary:
 	var audio: Node = candidate.get_node("Audio")
 	if audio.ambience_enabled and DisplayServer.get_name() != "headless": audio.ambience.play()
 	var message := "Partida cargada desde respaldo." if loaded.recovered else "Partida cargada."
-	if loaded.get("migrated",false): message += " Guardado v1 adaptado a v2."
+	if loaded.get("migrated",false): message += " Guardado anterior adaptado a v4."
 	if relocated: message += " Posición recuperada en el inicio seguro."
 	candidate.get_node("HUD").show_message(message)
 	candidate.get_node("ZoneOverlay").show_location(ZoneCatalog.definition(data.map).display_name)

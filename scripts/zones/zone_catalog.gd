@@ -2,7 +2,8 @@ class_name ZoneCatalog
 extends RefCounted
 const HOME := "gualey_sector_04"
 const MARKET := "market_abandoned"
-const DEFINITIONS := {HOME: preload("res://resources/zones/Evacuated.tres"), MARKET: preload("res://resources/zones/Market.tres")}
+const STATION := "communications_station"
+const DEFINITIONS := {HOME: preload("res://resources/zones/Evacuated.tres"), MARKET: preload("res://resources/zones/Market.tres"), STATION: preload("res://resources/zones/Station.tres")}
 static var _geometry: Dictionary = {}
 static func definition(id: String) -> ZoneDefinition:
 	return DEFINITIONS.get(id)

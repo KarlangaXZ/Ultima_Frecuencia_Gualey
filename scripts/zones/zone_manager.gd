@@ -6,6 +6,7 @@ signal zone_changed(id: String)
 var current_zone := "gualey_sector_04"
 var unlocked: Array[String] = []
 var states: Dictionary = {}
+var interactions: Array[String] = []
 var busy := false
 @onready var main: Node = get_parent()
 func _ready() -> void:
@@ -25,10 +26,12 @@ func sync_exits() -> void:
 		if point is ZoneExit:
 			point.available = point.destination == ZoneCatalog.HOME or point.destination in unlocked
 			point.destination_label = ZoneCatalog.definition(point.destination).display_name
+			point.locked_hint = "Salida cerrada · completa Ecos del Mercado" if point.destination==ZoneCatalog.STATION else "Salida cerrada · completa La señal perdida"
 func request_travel(destination: String, entry: String) -> bool:
 	if busy or main.restoring or main.game_ended or main.get_node("Player").controls_blocked: return false
 	var zone := ZoneCatalog.definition(destination)
 	if zone == null or destination == current_zone or not zone.entries.has(entry): return false
+	if active_definition().connections.get(destination,"")!=entry: return false
 	if destination != ZoneCatalog.HOME and destination not in unlocked: return false
 	var point: Vector2 = zone.entries[entry]
 	if not ZoneCatalog.point_free(destination,[point.x,point.y]): return false
@@ -81,6 +84,7 @@ func install_world(id: String) -> void:
 		zombie.get_parent().remove_child(zombie)
 		zombie.queue_free()
 	current_zone = id
+	interactions.clear()
 	var zone := active_definition()
 	var world := zone.world_scene.instantiate()
 	world.name = "World"

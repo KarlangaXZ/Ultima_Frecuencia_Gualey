@@ -39,11 +39,9 @@ func _ready() -> void:
 func refresh() -> void:
 	var mission := tracker.active_mission()
 	if mission == null:
-		var completed := not tracker.definitions.is_empty()
-		for entry in tracker.definitions:
-			if tracker.state_of(entry.id) != MissionTracker.State.COMPLETED: completed = false
-		title.text = "CAPÍTULO COMPLETADO" if completed else "SIN MISIÓN ACTIVA"
-		objective_label.text = "Sigue explorando · J: historial" if completed else "J: consultar misiones"
+		var completed := tracker.chapter_completed(tracker.active_chapter)
+		title.text = "Capítulo %d completado" % ChapterCatalog.DEFINITIONS[tracker.active_chapter].number if completed else "SIN MISIÓN ACTIVA"
+		objective_label.text = "Explora la Estación · J" if tracker.chapter_completed(ChapterCatalog.MARKET) else "Viaja al Mercado · J: historial" if completed else "J: consultar misiones"
 		return
 	title.text = mission.title + " · J"
 	for index in range(mission.objectives.size()):
