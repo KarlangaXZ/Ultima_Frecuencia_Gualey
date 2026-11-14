@@ -57,6 +57,19 @@
   No aplicar el pivote frontal a walk/death provisionales ni modificar la física.
 
 ## Convenciones y reglas
+- Fase 6.1: HUD conserva sus rutas/datos y mide 256 × 172 en reposo; Text oculto,
+  SECTOR 04 discreto, Reload solo visible mientras recarga. Inventario: MOCHILA.
+  Main/Audio usa GameAudio, AudioCatalog/TechnicalAudio y pools SoundEmitter;
+  Zombie/Audio observa salud/cooldown sin cambiar IA. WAV sintéticos originales
+  en assets/placeholders/audio/ (generador tools/generate_placeholder_audio.py).
+  Sonidos solo por señales semánticas de resultados válidos; no parsear feedback.
+  Una descarga de escopeta produce un sonido, no ocho; un contenedor no duplica
+  apertura de mochila. Invalid/dry_fire/herida tienen límites solo sonoros, nunca
+  alteran cooldown/daño. Lethal solo muerte, no herida adicional. No crear nodos
+  por efecto. No reproducir ataque/recarga/vacío del jugador con UI o muerte.
+  Headless verifica eventos sin iniciar voces del driver Dummy; probar mezcla real
+  con tests/hud_audio_test.gd -- --capture en ventana. Ambiente -30 dB, loop copia
+  del banco, pausado/volumen mediante GameAudio. Ver docs/hud_audio_polish.md.
 - Fase 6: EquipmentComponent conserva Player/Weapon como pistola inicial activa;
   posee además machete y crea un Weapon por cada arma incorporada desde ItemUse.
   No duplicar instancias ni municiones. Equipment solo posee referencias a estados;

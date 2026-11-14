@@ -286,5 +286,6 @@ func run() -> void:
 	main.get_node("InventoryUI").open_inventory()
 	await frames(3)
 	check(player.health.current_health == 90 and survival.thirst < 100, "Zombis y supervivencia siguen activos con UI abierta")
+	await preload("res://tests/audio_cleanup.gd").finish(self)
 	print("Resultado fase 5: ", checks, " comprobaciones, ", failures, " fallos")
 	quit(0 if failures == 0 else 1)

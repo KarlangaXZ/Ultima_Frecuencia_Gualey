@@ -1,6 +1,8 @@
 extends Node
 ## Adaptador de consumibles: no mantiene copias de HP ni munición utilizable.
 signal feedback(message: String)
+signal item_used(item: ItemDefinition)
+signal action_rejected
 @onready var inventory: InventoryComponent = $"../InventoryComponent"
 @onready var health: HealthComponent = $"../HealthComponent"
 @onready var survival: SurvivalComponent = $"../SurvivalComponent"
@@ -31,6 +33,7 @@ func use_slot(index: int) -> bool:
 		elif not blocked_slot.is_empty() and blocked_slot.item.effect == "weapon":
 			message = "No se puede incorporar: arma ya poseída o no disponible."
 		feedback.emit(message)
+		action_rejected.emit()
 		return false
 	_using = true
 	var slot := inventory.get_slot(index)
@@ -48,5 +51,6 @@ func use_slot(index: int) -> bool:
 	if item.effect == "ammo": message = "Reserva reabastecida: +%d balas." % (int(item.effect_amount) * quantity)
 	elif item.effect == "weapon": message = "Arsenal: " + item.display_name + ". Selecciona con 1–4 al cerrar."
 	feedback.emit(message)
+	item_used.emit(item)
 	_using = false
 	return true

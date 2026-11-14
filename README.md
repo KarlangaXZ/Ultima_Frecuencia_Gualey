@@ -54,6 +54,12 @@ Los nombres de varios PNG históricos no coinciden con la orientación que muest
 
 ## Progreso del desarrollo
 
+Fase 6.1: **HUD compacto, mochila renombrada y audio base integrado**. El panel
+persistente ocupa aproximadamente un 63 % menos de área y conserva todas las
+estadísticas. La interfaz se titula «MOCHILA»; el nombre oficial sigue en la
+ventana y el branding general. Se añaden 19 efectos sintéticos breves y un loop
+ambiental tenue, todos provisionales. [Arquitectura, mezcla y validación](docs/hud_audio_polish.md).
+
 Fase 6: **arsenal y equipamiento implementados**. Machete y pistola disponibles
 al empezar; revólver y escopeta se encuentran explorando, se guardan en la mochila
 y se incorporan al arsenal con su botón. Cada arma conserva su estado y munición.
@@ -111,6 +117,7 @@ direcciones por estado. [Resultados y limitaciones](docs/zombie_base_integration
 | 4.5 | Primera zona urbana de Gualey | Completada técnicamente; arte provisional |
 | 5 | Inventario, suministros, hambre y sed | Implementada y validada automáticamente |
 | 6 | Arsenal, equipamiento y cambio de armas | Implementada y validada automáticamente |
+| 6.1 | HUD, textos y audio base | Integrada técnicamente; audio provisional |
 
 “Completada técnicamente” significa que la integración y sus pruebas funcionan; no implica arte final ni aprobación artística de todos los ciclos. La fase 5 funciona sin guardado persistente y mantiene revisiones manuales pendientes.
 
@@ -165,7 +172,7 @@ Sustituir `godot` por la ruta de su ejecutable si no está en PATH. El motor por
 
 **Resolución base:** 1280 × 720 · **Escalado:** canvas_items · **Renderizador:** Compatibility (OpenGL).
 
-No se necesitan plugins, paquetes externos ni Python para jugar. El generador Python de arte provisional es una herramienta opcional de desarrollo. Todavía no se entrega un ejecutable Windows independiente: se ejecuta con Godot.
+No se necesitan plugins, paquetes externos ni Python para jugar. Los generadores de SVG y audio provisional son herramientas opcionales de desarrollo. Todavía no se entrega un ejecutable Windows independiente: se ejecuta con Godot.
 
 ## Estructura del repositorio
 
@@ -218,9 +225,10 @@ godot --headless --path . --fixed-fps 60 --script res://tests/urban_world_test.g
 godot --headless --path . --fixed-fps 60 --script res://tests/inventory_component_test.gd
 godot --headless --path . --fixed-fps 60 --script res://tests/phase_five_test.gd
 godot --headless --path . --fixed-fps 60 --script res://tests/phase_six_test.gd
+godot --headless --path . --fixed-fps 60 --script res://tests/hud_audio_test.gd
 ```
 
-La validación funcional de la fase 6 aprobó **665 comprobaciones**, con cero fallos: las 564 anteriores y 101 de arsenal. Incluye adquisición, rechazo de duplicados, teclas y rueda, municiones separadas, cancelación de recargas, golpes frontales, paredes, ocho perdigones, animaciones, bajas, Game Over y reinicio. [Informe de fase 6](docs/arsenal_equipment.md), [fase 5](docs/inventory_survival.md), [zona urbana](docs/urban_world_integration.md), [zombi base](docs/zombie_base_integration.md) y [Shoot](docs/shoot_final_integration.md).
+La validación de fase 6.1 aprobó **759 comprobaciones**, con cero fallos: las 665 anteriores y 94 de HUD/audio. Se conservan combate, inventario, supervivencia y arsenal. En headless se validan eventos; la ejecución gráfica verifica reproducción y graba una mezcla real no silenciosa, sin clipping en la muestra analizada. [Informe HUD/audio](docs/hud_audio_polish.md), [fase 6](docs/arsenal_equipment.md), [fase 5](docs/inventory_survival.md), [zona urbana](docs/urban_world_integration.md), [zombi base](docs/zombie_base_integration.md) y [Shoot](docs/shoot_final_integration.md).
 
 Para producir capturas actuales con renderizado real:
 
@@ -232,9 +240,10 @@ godot --path . --fixed-fps 60 --script res://tests/player_shoot_test.gd -- --cap
 godot --path . --fixed-fps 60 --script res://tests/urban_world_test.gd -- --capture
 godot --path . --fixed-fps 60 --script res://tests/phase_five_test.gd -- --capture
 godot --path . --fixed-fps 60 --script res://tests/phase_six_test.gd -- --capture
+godot --path . --fixed-fps 60 --script res://tests/hud_audio_test.gd -- --capture
 ```
 
-Los PNG se guardan en `test-results/`. En fase 6 aprobaron la regresión visual general (**39 comprobaciones**, cinco capturas) y el arsenal (**107 comprobaciones**, seis capturas). Se renuevan las tres imágenes de juego con el HUD actual. La mochila base conserva su captura de fase 5 y el plano, la de fase 4.5. Las pruebas automatizadas no sustituyen una sesión manual ni la inspección del panel gráfico del depurador.
+Los resultados se guardan en `test-results/`. En fase 6.1 aprobaron las pruebas gráficas de HUD/audio (**99 comprobaciones**, dos PNG y mezcla WAV), la general (**39**), inventario (**80**) y arsenal (**107**). La galería muestra el HUD compacto y el título nuevo de mochila; el plano conserva su captura de fase 4.5. Las pruebas automáticas no sustituyen escucha manual, una sesión prolongada ni la inspección del panel gráfico del depurador.
 
 ## Limitaciones y próximos pasos
 
@@ -243,6 +252,7 @@ Los PNG se guardan en `test-results/`. En fase 6 aprobaron la regresión visual 
 - El escenario conserva tres zombis iniciales; no hay reposición automática.
 - Los personajes colisionan con el mundo, pero no se bloquean físicamente entre sí.
 - El arte es reemplazable y todavía provisional en varios módulos; falta revisar fluidez, halos, posturas y coherencia de perspectiva.
+- El audio es síntesis técnica provisional; falta revisión auditiva de mezcla/volumen y sonidos realistas finales. Ganancias y pausa ambiental son ajustables en la capa de audio.
 - Game Over aparece inmediatamente: la animación de muerte se ejecuta detrás de su panel. Algunas capturas técnicas ocultan ese panel únicamente para inspección.
 - La navegación deriva rectángulos de todos los sólidos y un perímetro fijo. Formas no rectangulares requieren adaptar su generación.
 - Faltan una revisión manual completa del combate y transiciones, pruebas de exportación y una distribución independiente.
@@ -258,6 +268,7 @@ Los PNG se guardan en `test-results/`. En fase 6 aprobaron la regresión visual 
 - [Zona urbana: arquitectura, recursos y validación](docs/urban_world_integration.md).
 - [Inventario, suministros y supervivencia: arquitectura y validación](docs/inventory_survival.md).
 - [Arsenal y equipamiento: configuración, municiones y validación](docs/arsenal_equipment.md).
+- [HUD compacto y audio: eventos, recursos y validación](docs/hud_audio_polish.md).
 - [Historial técnico completo de las fases anteriores](docs/development_history.md).
 
 El historial conserva los detalles, problemas resueltos y resultados anteriores. Sus avisos de recursos pendientes describen el estado de cada momento; el estado vigente se resume en esta página y en los informes finales.

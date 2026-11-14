@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=9 format=3]
 [ext_resource type="Script" path="res://scripts/enemies/zombie.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/components/health_component.gd" id="2"]
 [ext_resource type="Script" path="res://scripts/visuals/zombie_visual.gd" id="3"]
 [ext_resource type="Texture2D" path="res://assets/placeholders/characters/zombies/temp_zombie_sheet.svg" id="4"]
 [ext_resource type="SpriteFrames" path="res://assets/characters/zombies/base/ZombieBaseFrames.tres" id="5"]
+[ext_resource type="Script" path="res://scripts/audio/zombie_audio.gd" id="6"]
 [sub_resource type="SpriteFrames" id="EmptyFrames"]
 [sub_resource type="CircleShape2D" id="Shape"]
 radius = 16.0
@@ -31,3 +32,5 @@ max_health = 50.0
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 6.0
 target_desired_distance = 28.0
+[node name="Audio" type="Node2D" parent="."]
+script = ExtResource("6")

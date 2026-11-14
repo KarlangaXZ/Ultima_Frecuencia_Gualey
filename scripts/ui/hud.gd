@@ -48,6 +48,7 @@ func update_equipment(equipment: EquipmentComponent) -> void:
 
 func update_reload(active: bool) -> void:
 	$Panel/Margin/Content/Reload.text = "RECARGANDO..." if active else ""
+	$Panel/Margin/Content/Reload.visible = active
 
 func update_stats(kills: int, seconds: float) -> void:
 	$Panel/Margin/Content/Stats.text = "Eliminados: %d · Tiempo: %02d:%02d" % [kills, int(seconds) / 60, int(seconds) % 60]

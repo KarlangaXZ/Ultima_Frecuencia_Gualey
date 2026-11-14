@@ -4,6 +4,7 @@ signal ammo_changed(loaded: int, reserve: int)
 signal reload_changed(active: bool)
 signal shot_fired(origin: Vector2, direction: Vector2, damage: float, shot_range: float)
 signal melee_attacked(origin: Vector2, direction: Vector2, damage: float, shot_range: float)
+signal empty_triggered
 
 @export var config: WeaponConfig
 var loaded: int
@@ -36,7 +37,9 @@ func try_fire(origin: Vector2, direction: Vector2) -> bool:
 	if not enabled or not equipped or reloading or cooldown > 0.00001 or direction.is_zero_approx():
 		return false
 	if config.weapon_type != "melee":
-		if loaded <= 0: return false
+		if loaded <= 0:
+			empty_triggered.emit()
+			return false
 		loaded -= 1
 	cooldown = config.fire_interval
 	if config.weapon_type == "melee":
