@@ -12,22 +12,27 @@
 
 [node name="Supplies" type="Node2D"]
 [node name="Water" parent="." instance=ExtResource("Pickup")]
+metadata/persistence_id = "pickup_water"
 position = Vector2(560, 840)
 item = ExtResource("Water")
 quantity = 2
 [node name="Medkit" parent="." instance=ExtResource("Pickup")]
+metadata/persistence_id = "pickup_medkit"
 position = Vector2(650, 910)
 item = ExtResource("Medkit")
 [node name="Food" parent="." instance=ExtResource("Pickup")]
+metadata/persistence_id = "pickup_food"
 position = Vector2(680, 1000)
 item = ExtResource("Food")
 quantity = 2
 [node name="Ammo" parent="." instance=ExtResource("Pickup")]
+metadata/persistence_id = "pickup_ammo"
 position = Vector2(900, 940)
 item = ExtResource("Ammo")
 quantity = 24
 
 [node name="SupplyCrate" parent="." instance=ExtResource("Container")]
+metadata/persistence_id = "supply_crate"
 position = Vector2(1320, 690)
 display_name = "Caja de suministros"
 icon = ExtResource("CrateIcon")
@@ -37,6 +42,7 @@ initial_quantities = PackedInt32Array(24, 2, 2)
 scale = Vector2(0.33, 0.33)
 
 [node name="MedicalCase" parent="." instance=ExtResource("Container")]
+metadata/persistence_id = "medical_case"
 position = Vector2(770, 650)
 display_name = "Contenedor médico"
 icon = ExtResource("MedicalIcon")
@@ -44,6 +50,7 @@ initial_items = Array[ExtResource("Item")]([ExtResource("Medkit"), ExtResource("
 initial_quantities = PackedInt32Array(2, 1)
 
 [node name="Backpack" parent="." instance=ExtResource("Container")]
+metadata/persistence_id = "abandoned_bag"
 position = Vector2(600, 1060)
 display_name = "Mochila abandonada"
 icon = ExtResource("BagIcon")

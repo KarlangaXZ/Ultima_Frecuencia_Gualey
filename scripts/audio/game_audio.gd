@@ -45,7 +45,7 @@ func _ready() -> void:
 	ambience.stream = stream
 	ambience.volume_db = ambience_volume_db
 	add_child(ambience)
-	if ambience_enabled and DisplayServer.get_name() != "headless": ambience.play()
+	if ambience_enabled and not main.restoring and DisplayServer.get_name() != "headless": ambience.play()
 
 func _make_emitter(label: String, gain: float, voices: int) -> SoundEmitter:
 	var emitter := SoundEmitter.new()

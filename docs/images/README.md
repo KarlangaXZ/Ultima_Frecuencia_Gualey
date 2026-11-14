@@ -6,6 +6,7 @@ conceptuales para representar funcionalidades.
 
 | Archivo | Fuente | Fecha y preparación |
 | --- | --- | --- |
+| save-slots.png | test-results/save/01-slots.png | 2026-11-14, tres ranuras con partida rica en estado y ranura inicial de fixture |
 | zombie-pursuit.png | test-results/population/03-simultaneous.png | 2026-11-14, tres perseguidores con IA activa dentro de población de seis |
 | missions.png | test-results/phase-eight/02-missions.png | 2026-11-14, diario con misión 3 activa e historial de las dos primeras |
 | radio.png | test-results/phase-eight/01-radio.png | 2026-11-14, primer mensaje textual, sin doblaje |
@@ -22,7 +23,7 @@ conceptuales para representar funcionalidades.
 | player-animations.png | PNG down de idle/shoot/reload/death y walk_left V2 | 2026-11-12, composición en orden, escala nativa |
 | zombie-base.png | PNG de Idle 00, Walk 02, Attack 03 y Death 05 | Fase 4.4, down/up/left/right del paquete técnico |
 
-Las trece capturas son PNG 1280 × 720 optimizados sin pérdida. La lámina del
+Las catorce capturas son PNG 1280 × 720 optimizados sin pérdida. La lámina del
 protagonista mide 1024 × 800; la del zombi, 512 × 624. Las fuentes permanecen en
 assets/ y los resultados de pruebas en test-results/ (ignorado).
 
@@ -62,3 +63,8 @@ el indicador actual de misión se comprueba en 00-objective.png, solo en resulta
 
 Fase 8.1 añade persecución real, sin congelar enemigos: posiciones preparadas
 en Main, física, navegación y animaciones activas. [Movilidad, población y límites](../zombie_population.md).
+
+Fase 9 añade el menú de partidas desde su prueba gráfica: 114 comprobaciones,
+dos capturas reales; la confirmación queda solo en resultados para no duplicar
+la galería. La fixture prepara objetos/XP/posiciones y refresca el HUD antes de
+pausar. [Formato, integridad, reapertura y límites](../save_load.md).

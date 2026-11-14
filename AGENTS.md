@@ -57,6 +57,27 @@
   No aplicar el pivote frontal a walk/death provisionales ni modificar la física.
 
 ## Convenciones y reglas
+- Fase 9 autoriza persistencia local: SaveCoordinator/SaveSchema/SaveFileStore y
+  adaptadores PlayerSaveState, MissionSaveState, WorldSaveState en scripts/save/.
+  user://saves/slot_1..3.json, v1, JSON puro, catálogo de IDs confiables; nunca
+  cargar rutas/scripts/recursos procedentes del JSON. Confirmar sobrescritura.
+  Temporal validado → respaldo → commit; recuperar .bak, ignorar .tmp huérfano.
+  Validar estructura, rangos y coherencia completa antes de reconstruir candidato.
+  Reemplazar Main solo tras validar ese candidato: sin población/ambiente/region
+  activos durante preparación ni eventos de recompensa. No restaurar sobre la
+  partida actual a medias. Cargar cancela recarga sin mover balas, conserva cooldown.
+  Recalcular modificadores desde bases/rangos; no acumular ni curar al restaurar.
+  metadata/persistence_id identifica mundo y semillas; dinámicos zombie_04..18.
+  Conservar IDs al renombrar nodos. Recibos/XP usan IDs estables, no instance_id
+  persistido. Adapta formato/esquema/versión y pruebas si cambian estados internos.
+  Esc cierra primero las otras cuatro ventanas y después abre PauseUI. Solo
+  InterfaceCoordinator controla tree.paused y bloqueo. PauseUI/SaveCoordinator
+  procesan mientras pausa; el mundo y temporizadores se congelan. Game Over deja
+  cargar, rechaza guardar. Reintentar no borra ranuras. Exigir soltar shoot al volver.
+  Autoguardado opt-in desactivado por defecto, slot 0/archivo separado, diferido
+  tras misiones; no ejecutar durante muerte, pausa, restauración o estado incompleto.
+  Tests escriben solo user://tests/phase-nine-*, nunca las partidas del jugador.
+  Ver docs/save_load.md y save_integrity_test/save_load_test/save_restart_test.gd.
 - Fase 8.1 autoriza población limitada: Main/Population (zombie_population.gd),
   6 vivos, presupuesto 18 incluyendo los tres originales, reposición 1/10 s.
   Único gestor: valida malla/ruta, círculo World/Player/Zombie, distancia 320,

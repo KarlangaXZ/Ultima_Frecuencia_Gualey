@@ -63,9 +63,10 @@ func try_interact() -> void:
 		if not message.is_empty():
 			if pickup.claimed:
 				item_collected.emit(pickup.item)
-				supply_recovered.emit(pickup.item, "pickup:%d" % pickup.get_instance_id())
+				supply_recovered.emit(pickup.item, "pickup:" + SaveCatalog.id_of(pickup))
 			else: action_rejected.emit()
 	elif target is LootContainer:
+		target.opened = true
 		container_opened.emit(target)
 	elif target is MissionPoint:
 		if not target.try_activate(self): action_rejected.emit()
@@ -79,7 +80,7 @@ func transfer_from_container(container: LootContainer, index: int) -> bool:
 	if container.inventory.transfer_slot_to(index, inventory):
 		feedback.emit("Suministros guardados en la mochila.")
 		item_collected.emit(slot.item)
-		supply_recovered.emit(slot.item, "container:%d:%d" % [container.get_instance_id(), index])
+		supply_recovered.emit(slot.item, "container:%s:%d" % [SaveCatalog.id_of(container), index])
 		return true
 	feedback.emit("No se pudo transferir: sin espacio o compartimento vacío.")
 	action_rejected.emit()

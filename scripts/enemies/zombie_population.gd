@@ -83,12 +83,25 @@ func _spawn_one() -> bool:
 		_cursor = (index + 1) % spawn_points.size()
 		var zombie := ZOMBIE.instantiate() as CharacterBody2D
 		zombie.name = "PopulationZombie%02d" % total_spawned
+		zombie.set_meta("persistence_id", "zombie_%02d" % total_spawned)
 		zombie.position = actors.to_local(point)
 		actors.add_child(zombie)
 		_track(zombie)
 		spawned.emit(zombie)
 		return true
 	return false
+
+func restore_population(data: Dictionary) -> void:
+	_started = true
+	_initialized = true
+	running = true
+	total_spawned = int(data.spawned)
+	_remaining = data.remaining
+	_cursor = int(data.cursor)
+	_living.clear()
+	actor.health.died.connect(stop)
+	for zombie in actors.get_children():
+		if not zombie.health.is_dead(): _track(zombie)
 
 func _physics_process(delta: float) -> void:
 	if not running or actor.health.is_dead(): return

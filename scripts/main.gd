@@ -4,6 +4,7 @@ signal zombie_added(zombie: CharacterBody2D)
 var kills: int = 0
 var survival_time: float = 0.0
 var game_ended: bool = false
+var restoring := false
 
 func _ready() -> void:
 	var health := $Player/HealthComponent as HealthComponent
@@ -28,7 +29,7 @@ func _ready() -> void:
 	_bind_progression()
 	$Missions/Chapter.bind()
 	$Population.spawned.connect(_register_zombie)
-	$Population.start()
+	if not restoring: $Population.start()
 
 func _register_zombie(zombie: CharacterBody2D) -> void:
 	zombie.set_target($Player)
