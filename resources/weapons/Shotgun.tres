@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="WeaponConfig" load_steps=3 format=3]
+[ext_resource type="Script" path="res://scripts/weapons/weapon_config.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/placeholders/weapons/temp_shotgun.svg" id="2"]
+[resource]
+script = ExtResource("1")
+id = &"shotgun"
+weapon_name = "Escopeta"
+weapon_type = "spread"
+ammo_type = &"shotgun"
+icon = ExtResource("2")
+visual = ExtResource("2")
+capacity = 6
+initial_loaded = 0
+initial_reserve = 0
+damage = 8.0
+fire_interval = 0.9
+reload_duration = 2.4
+shot_range = 360.0
+pellet_count = 8
+spread_degrees = 18.0

@@ -6,11 +6,11 @@ Supervivencia zombi 2D con vista cenital, ambientada en un barrio urbano devasta
 
 **Estado:** Desarrollo activo · **Plataforma inicial:** Windows
 
-Un prototipo jugable con movimiento, navegación de enemigos, combate, salud, recarga y reinicio. La integración visual funciona; el arte y varias animaciones todavía son provisionales. No hay una portada oficial incluida: esta presentación utiliza capturas reales del juego.
+Un prototipo jugable con movimiento, navegación de enemigos, combate, salud, recarga, inventario, suministros, hambre, sed y reinicio. La integración visual funciona; el arte y varias animaciones todavía son provisionales. No hay una portada oficial incluida: esta presentación utiliza capturas reales del juego.
 
 ## Galería del juego
 
-**Escenario, protagonista, zombis y HUD.** Depósito evacuado con obstáculos y colisiones.
+**Escenario, protagonista, zombis y HUD.** Primera zona urbana de Gualey, con colmado, aceras y obstáculos sólidos.
 
 ![Escenario principal con protagonista, zombi y HUD](docs/images/gameplay.png)
 
@@ -22,7 +22,17 @@ Un prototipo jugable con movimiento, navegación de enemigos, combate, salud, re
 
 ![Panel Game Over con botón Reintentar](docs/images/game-over.png)
 
-Capturas generadas el **12 de noviembre de 2026** ejecutando el estado actual del proyecto en Godot, mediante su prueba visual de integración. Las posiciones y acciones se preparan automáticamente en esa prueba; no son imágenes conceptuales. [Origen de las imágenes](docs/images/README.md).
+Capturas renovadas el **13 de noviembre de 2026** ejecutando el proyecto en Godot, mediante su prueba visual de integración. Las posiciones y acciones se preparan automáticamente en esa prueba; no son imágenes conceptuales. [Origen de las imágenes](docs/images/README.md).
+
+## Zona urbana de Gualey
+
+La fase 4.5 compone un barrio cenital ficticio inspirado en Gualey: viviendas con techos de concreto y tanques de agua, colmado, botica, ferretería, taller, carros abandonados, contenedores con bolsas, barricadas y postes con cables. El asfalto deteriorado, las aceras, el cruce peatonal y los escombros delimitan calles y pasos transitables. Una modulación ambiental suave conserva visibles los personajes y el HUD.
+
+![Plano técnico completo de la zona urbana](docs/images/urban-plan.png)
+
+Vista técnica capturada en el motor con zoom reducido y HUD oculto únicamente en la prueba. La cámara de juego conserva su configuración original. Los 23 sólidos nuevos se añaden a las cinco cajas existentes; la navegación deriva sus huellas de las colisiones reales.
+
+**Presentación provisional:** se reutilizan el asfalto, los escombros y las cajas SVG existentes. Los edificios y props nuevos son dibujos geométricos sustituibles, sin imágenes realistas nuevas ni interiores accesibles. Faltan texturas y sprites urbanos finales; [arquitectura, sustituciones y pruebas de la fase 4.5](docs/urban_world_integration.md).
 
 ## Protagonista y animaciones
 
@@ -34,8 +44,8 @@ Idle, Walk, Shoot, Reload y Death están conectadas en las cuatro direcciones. L
 | --- | ---: | --- |
 | Idle | 4 | 4 FPS, en bucle |
 | Walk | 8 | 8 FPS, en bucle; conserva la dirección al detenerse |
-| Shoot | 4 | Solo con un tiro válido; duración ligada a la cadencia real de 0,3 s |
-| Reload | 6 | Sincronizada con los 1,5 s de recarga real |
+| Shoot | 4 | Solo con un tiro válido; duración ligada a la cadencia del arma activa (pistola: 0,3 s) |
+| Reload | 6 | Sincronizada con la recarga real del arma activa (pistola: 1,5 s) |
 | Death | 6 | Una sola reproducción; conserva el último fotograma |
 
 **Estado del arte:** recursos de integración, no arte definitivo. Shoot, Reload y Death contienen aproximaciones técnicas de poses y movimiento corporal. Los zombis, el entorno y parte de la interfaz usan recursos provisionales. Algunas secuencias conservan retoques de bordes y continuidad pendientes.
@@ -43,6 +53,45 @@ Idle, Walk, Shoot, Reload y Death están conectadas en las cuatro direcciones. L
 Los nombres de varios PNG históricos no coinciden con la orientación que muestran. Sus asignaciones están corregidas en SpriteFrames; antes de reemplazarlos, consultar la [guía visual](assets/README.md), la [validación de walk_left V2](docs/walk_left_v2_validation.md) y la [integración final de Shoot](docs/shoot_final_integration.md). Las referencias descartadas de `draft/` no forman parte de esta galería.
 
 ## Progreso del desarrollo
+
+Fase 6: **arsenal y equipamiento implementados**. Machete y pistola disponibles
+al empezar; revólver y escopeta se encuentran explorando, se guardan en la mochila
+y se incorporan al arsenal con su botón. Cada arma conserva su estado y munición.
+
+![Escopeta: ocho perdigones bloqueados por un obstáculo real](docs/images/arsenal-shotgun.png)
+
+| Arma | Daño | Alcance | Intervalo | Cargador | Recarga |
+| --- | --- | --- | --- | --- | --- |
+| Machete | 30 HP por enemigo frontal | 55 px entre centros, arco 90° | 0,65 s | Sin munición | No aplica |
+| Pistola básica | 25 HP | 600 px | 0,3 s | 12 | 1,5 s |
+| Revólver | 45 HP | 650 px | 0,55 s | 6 | 2,1 s |
+| Escopeta | 8 HP × 8 perdigones | 360 px, abanico de 18° | 0,9 s | 6 | 2,4 s |
+
+Valores iniciales configurables, sin balance definitivo. **1/2/3/4** seleccionan
+machete/pistola/revólver/escopeta; la rueda recorre únicamente las armas poseídas.
+La pistola sigue activa al iniciar. Cambiar cancela la recarga sin transferir
+balas y conserva el cooldown. Las armas encontradas empiezan vacías; sus
+municiones propias deben transferirse desde la mochila y cargarse con R.
+
+Los nuevos dibujos de arma son SVG técnicos provisionales. Shoot/Reload reutilizan
+los frames existentes; el machete añade un arco breve de feedback, sin inventar
+sprites corporales definitivos. [Arquitectura, obtención y pruebas de fase 6](docs/arsenal_equipment.md).
+
+Fase 5: **inventario y supervivencia implementados**. Mochila de 12 espacios,
+objetos apilables, cuatro tipos de suministros, tres contenedores finitos y
+necesidades conectadas a la salud existente.
+
+![Inventario real con doce espacios y descripción del objeto](docs/images/inventory.png)
+
+**E** recoge o abre un contenedor cercano; **Tab** abre/cierra la mochila y
+**Esc** la cierra. Selecciona un espacio y pulsa **UTILIZAR**. La munición usa
+**PASAR A RESERVA** para transferir toda la pila al arma; el cargador sigue
+llenándose con R. El mundo permanece activo: mientras la ventana está abierta,
+se bloquean movimiento, apuntado, disparo, nueva recarga e interacción exterior.
+Los zombis, las necesidades y una recarga ya iniciada continúan.
+
+[Reglas, configuración y pruebas de inventario](docs/inventory_survival.md) ·
+[Captura real de un contenedor](docs/images/loot-container.png).
 
 Fase 4.4, zombi base: **integrada técnicamente** con 96 PNG provisionales y cuatro
 direcciones por estado. [Resultados y limitaciones](docs/zombie_base_integration.md).
@@ -59,9 +108,11 @@ direcciones por estado. [Resultados y limitaciones](docs/zombie_base_integration
 | 4.2 | Animaciones Idle y Walk | Completada |
 | 4.3 | Shoot, Reload y Death | Completada técnicamente |
 | 4.4 | Zombi base: Idle, Walk, Attack y Death | Completada técnicamente |
-| 5 | Inventario y supervivencia | Pendiente |
+| 4.5 | Primera zona urbana de Gualey | Completada técnicamente; arte provisional |
+| 5 | Inventario, suministros, hambre y sed | Implementada y validada automáticamente |
+| 6 | Arsenal, equipamiento y cambio de armas | Implementada y validada automáticamente |
 
-“Completada técnicamente” significa que la integración y sus pruebas funcionan; no implica arte final ni aprobación artística de todos los ciclos. La fase 5 es una etapa futura y no está implementada.
+“Completada técnicamente” significa que la integración y sus pruebas funcionan; no implica arte final ni aprobación artística de todos los ciclos. La fase 5 funciona sin guardado persistente y mantiene revisiones manuales pendientes.
 
 ## Controles
 
@@ -69,21 +120,31 @@ direcciones por estado. [Resultados y limitaciones](docs/zombie_base_integration
 | --- | --- |
 | WASD | Movimiento en ocho direcciones |
 | Mouse | Apuntar |
-| Clic izquierdo | Disparar; mantener pulsado repite tiros respetando la cadencia |
-| R | Recargar |
+| Clic izquierdo | Atacar/disparar; mantener pulsado respeta el intervalo del arma |
+| R | Recargar arma activa |
+| 1 / 2 / 3 / 4 | Machete / pistola / revólver / escopeta, si se poseen |
+| Rueda del mouse | Recorrer armas disponibles; bloqueada con la mochila abierta |
+| E | Recoger o abrir contenedor a un máximo de 56 px, sin paredes entre ambos |
+| Tab | Abrir/cerrar inventario |
+| Esc | Cerrar inventario |
 
 Al morir se bloquean las acciones y aparece **Reintentar**. El botón reinicia salud, munición, posiciones, zombis, bajas y tiempo.
 
 ## Funciones actuales
 
-- Escenario de 2400 × 1600, cinco obstáculos y límites físicos; cámara con seguimiento.
+- Escenario urbano de 2400 × 1600, 28 obstáculos y límites físicos; cámara con seguimiento.
 - Movimiento normalizado: la diagonal no aumenta la velocidad.
 - Tres zombis con estados IDLE, CHASE, ATTACK y DEAD, y rutas alrededor de las cajas.
 - Salud compartida por componentes: 100 HP para el jugador, 50 HP para cada zombi.
 - Pistola con cargador de 12, reserva inicial de 48, daño de 25 HP y alcance de 600 px.
-- Un hitscan por disparo: los obstáculos bloquean impactos; dos aciertos eliminan un zombi.
+- Machete frontal, revólver y escopeta con ocho rayos por descarga; configuración compartida y estado independiente por arma.
+- La pistola resuelve un hitscan por disparo: los obstáculos bloquean impactos y dos aciertos eliminan un zombi.
 - HUD con salud, munición, estado de recarga, bajas y tiempo de supervivencia.
 - Game Over, reinicio completo y efectos visuales sin influencia sobre el daño.
+- Mochila de 12 espacios: botiquín (+40 HP, pila 5), agua (+30 sed, pila 10), comida (+30 hambre, pila 10) y munición (pila 60).
+- Cuatro recogibles y tres contenedores finitos; transferencias completas, sin perder contenido si no cabe.
+- Dos puntos adicionales del arsenal reutilizan LootContainer: revólver con 12 balas y escopeta con 8 cartuchos, sin reposición durante la partida.
+- Hambre y sed iniciales de 100: pierden un punto cada 30 y 20 segundos respectivamente. Si alguna llega a cero, una única penalización de 2 HP cada 5 segundos; todos los valores de ritmo/efecto son configurables.
 
 Cada zombi detecta a 250 px y ataca a 35 px: 10 HP cada 1,5 s, con intervalo propio. Estos valores y la configuración de la pistola se editan en el inspector. [Detalles de arquitectura](AGENTS.md).
 
@@ -114,10 +175,12 @@ scenes/
   Main.tscn                 Composición de la partida
   player/Player.tscn        Jugador, cámara y nodos visuales
   enemies/Zombie.tscn       Enemigo reutilizable
+  items/                   Recogibles y contenedores reutilizables
   world/                   Escenario y obstáculos
 scripts/
   player/  enemies/        Comportamientos de personajes
   components/              Salud reutilizable
+  inventory/               Definiciones y uso de suministros
   weapons/  combat/        Munición, recarga e impactos
   visuals/  ui/            Presentación, animaciones y HUD
   world/  main.gd          Navegación, suelo y coordinación
@@ -127,7 +190,7 @@ assets/
   environment/             Suelo, props y decals
   weapons/  effects/  ui/   Recursos visuales por módulo
   placeholders/            Arte provisional separado
-resources/                 Configuración reutilizable de la pistola
+resources/                 Configuración reutilizable de la pistola y los objetos
 tests/                     Pruebas Godot, sin plugins
 docs/                      Informes técnicos y capturas de presentación
 tools/                     Generador opcional de SVG provisionales
@@ -150,9 +213,14 @@ godot --headless --path . --fixed-fps 60 --script res://tests/player_walk_down_t
 godot --headless --path . --fixed-fps 60 --script res://tests/player_directions_test.gd
 godot --headless --path . --fixed-fps 60 --script res://tests/player_actions_test.gd
 godot --headless --path . --fixed-fps 60 --script res://tests/player_shoot_test.gd
+godot --headless --path . --fixed-fps 60 --script res://tests/zombie_visual_test.gd
+godot --headless --path . --fixed-fps 60 --script res://tests/urban_world_test.gd
+godot --headless --path . --fixed-fps 60 --script res://tests/inventory_component_test.gd
+godot --headless --path . --fixed-fps 60 --script res://tests/phase_five_test.gd
+godot --headless --path . --fixed-fps 60 --script res://tests/phase_six_test.gd
 ```
 
-La última validación funcional documentada aprobó **383 comprobaciones**, con cero fallos. Cubre movimiento, colisiones, cámara, navegación, daño, munición, cadencia, recarga, muerte, reinicio y estados visuales. [Resultados del zombi base](docs/zombie_base_integration.md) y [validación de Shoot](docs/shoot_final_integration.md).
+La validación funcional de la fase 6 aprobó **665 comprobaciones**, con cero fallos: las 564 anteriores y 101 de arsenal. Incluye adquisición, rechazo de duplicados, teclas y rueda, municiones separadas, cancelación de recargas, golpes frontales, paredes, ocho perdigones, animaciones, bajas, Game Over y reinicio. [Informe de fase 6](docs/arsenal_equipment.md), [fase 5](docs/inventory_survival.md), [zona urbana](docs/urban_world_integration.md), [zombi base](docs/zombie_base_integration.md) y [Shoot](docs/shoot_final_integration.md).
 
 Para producir capturas actuales con renderizado real:
 
@@ -161,18 +229,22 @@ godot --path . --fixed-fps 60 --script res://tests/phase_four_test.gd -- --captu
 godot --path . --fixed-fps 60 --script res://tests/player_directions_test.gd -- --capture
 godot --path . --fixed-fps 60 --script res://tests/player_actions_test.gd -- --capture
 godot --path . --fixed-fps 60 --script res://tests/player_shoot_test.gd -- --capture
+godot --path . --fixed-fps 60 --script res://tests/urban_world_test.gd -- --capture
+godot --path . --fixed-fps 60 --script res://tests/phase_five_test.gd -- --capture
+godot --path . --fixed-fps 60 --script res://tests/phase_six_test.gd -- --capture
 ```
 
-Los PNG se guardan en `test-results/`. Para esta edición de documentación se repitió la prueba visual general: **39 comprobaciones aprobadas**, incluyendo cinco capturas. Las pruebas simulan entradas y pueden activar directamente la señal del botón; no sustituyen una sesión manual ni la inspección del panel gráfico del depurador.
+Los PNG se guardan en `test-results/`. En fase 6 aprobaron la regresión visual general (**39 comprobaciones**, cinco capturas) y el arsenal (**107 comprobaciones**, seis capturas). Se renuevan las tres imágenes de juego con el HUD actual. La mochila base conserva su captura de fase 5 y el plano, la de fase 4.5. Las pruebas automatizadas no sustituyen una sesión manual ni la inspección del panel gráfico del depurador.
 
 ## Limitaciones y próximos pasos
 
-- Inventario, sistemas adicionales de supervivencia, oleadas y aparición infinita aún no están implementados.
+- Fabricación, progresión RPG, misiones, guardado persistente, multiplayer, oleadas y aparición infinita no están implementados.
+- El inventario y los contenedores duran solo la partida; Reintentar restaura las existencias iniciales. La mochila no pausa a los zombis.
 - El escenario conserva tres zombis iniciales; no hay reposición automática.
 - Los personajes colisionan con el mundo, pero no se bloquean físicamente entre sí.
 - El arte es reemplazable y todavía provisional en varios módulos; falta revisar fluidez, halos, posturas y coherencia de perspectiva.
 - Game Over aparece inmediatamente: la animación de muerte se ejecuta detrás de su panel. Algunas capturas técnicas ocultan ese panel únicamente para inspección.
-- La navegación deriva rectángulos de las cajas y un perímetro fijo. Nuevos tipos de obstáculo requieren adaptar su generación.
+- La navegación deriva rectángulos de todos los sólidos y un perímetro fijo. Formas no rectangulares requieren adaptar su generación.
 - Faltan una revisión manual completa del combate y transiciones, pruebas de exportación y una distribución independiente.
 
 ## Documentación técnica
@@ -183,6 +255,9 @@ Los PNG se guardan en `test-results/`. Para esta edición de documentación se r
 - [Integración de walk_left V2 y conservación de walk_right](docs/walk_left_v2_validation.md).
 - [Reload y Death: sincronización, recursos y limitaciones](docs/phase_4_3_actions.md).
 - [Shoot corregido: asignaciones y validación vigente](docs/shoot_final_integration.md).
+- [Zona urbana: arquitectura, recursos y validación](docs/urban_world_integration.md).
+- [Inventario, suministros y supervivencia: arquitectura y validación](docs/inventory_survival.md).
+- [Arsenal y equipamiento: configuración, municiones y validación](docs/arsenal_equipment.md).
 - [Historial técnico completo de las fases anteriores](docs/development_history.md).
 
 El historial conserva los detalles, problemas resueltos y resultados anteriores. Sus avisos de recursos pendientes describen el estado de cada momento; el estado vigente se resume en esta página y en los informes finales.

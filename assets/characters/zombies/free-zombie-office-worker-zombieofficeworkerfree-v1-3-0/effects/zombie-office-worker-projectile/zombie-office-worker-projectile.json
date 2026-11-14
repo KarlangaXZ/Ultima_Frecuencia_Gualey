@@ -1,0 +1,84 @@
+{
+  "name": "Zombie Office Worker Projectile",
+  "frame_size": [
+    397,
+    274
+  ],
+  "animations": {
+    "block": {
+      "sheet": "sheets/block.png",
+      "frames": 5,
+      "rows": 1,
+      "fps": 18,
+      "loop": false,
+      "pivot": [
+        198.5,
+        137.0
+      ],
+      "rotate_to_heading": false
+    },
+    "break": {
+      "sheet": "sheets/break.png",
+      "frames": 6,
+      "rows": 1,
+      "fps": 12,
+      "loop": false,
+      "pivot": [
+        198.5,
+        137.0
+      ],
+      "rotate_to_heading": false
+    },
+    "restore": {
+      "sheet": "sheets/restore.png",
+      "frames": 6,
+      "rows": 1,
+      "fps": 12,
+      "loop": false,
+      "pivot": [
+        198.5,
+        137.0
+      ],
+      "rotate_to_heading": false
+    },
+    "block_smooth": {
+      "sheet": "sheets/block_smooth.png",
+      "frames": 10,
+      "rows": 1,
+      "fps": 36,
+      "loop": false,
+      "pivot": [
+        198.5,
+        137.0
+      ],
+      "rotate_to_heading": false,
+      "smooth_of": "block"
+    },
+    "break_smooth": {
+      "sheet": "sheets/break_smooth.png",
+      "frames": 12,
+      "rows": 1,
+      "fps": 24,
+      "loop": false,
+      "pivot": [
+        198.5,
+        137.0
+      ],
+      "rotate_to_heading": false,
+      "smooth_of": "break"
+    },
+    "restore_smooth": {
+      "sheet": "sheets/restore_smooth.png",
+      "frames": 12,
+      "rows": 1,
+      "fps": 24,
+      "loop": false,
+      "pivot": [
+        198.5,
+        137.0
+      ],
+      "rotate_to_heading": false,
+      "smooth_of": "restore"
+    }
+  }
+}

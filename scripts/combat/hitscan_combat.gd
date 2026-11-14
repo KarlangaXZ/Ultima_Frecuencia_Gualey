@@ -12,26 +12,33 @@ func _ready() -> void:
 	global_transform = Transform2D.IDENTITY
 
 func fire(origin: Vector2, direction: Vector2, damage: float, shot_range: float) -> void:
-	trace_start = origin
-	trace_end = origin + direction.normalized() * shot_range
-	var query := PhysicsRayQueryParameters2D.create(origin, trace_end, 1 | 4)
+	present_result(origin, cast_hit(origin, direction, damage, shot_range))
+
+func cast_hit(origin: Vector2, direction: Vector2, damage: float, shot_range: float) -> Dictionary:
+	var endpoint := origin + direction.normalized() * shot_range
+	var query := PhysicsRayQueryParameters2D.create(origin, endpoint, 1 | 4)
 	query.hit_from_inside = true
 	var result := get_world_2d().direct_space_state.intersect_ray(query)
-	hit_something = not result.is_empty()
 	var impact_kind := "none"
-	if hit_something:
+	if not result.is_empty():
 		impact_kind = "world"
-		trace_end = result.position
+		endpoint = result.position
 		var collider := result.collider as Node
 		if collider.get_collision_layer() & 4:
 			impact_kind = "zombie"
 			var health := collider.get_node_or_null("HealthComponent") as HealthComponent
 			if health != null:
 				health.take_damage(damage)
-	trace_remaining = 0.1
+	return {"endpoint": endpoint, "hit": not result.is_empty(), "kind": impact_kind}
+
+func present_result(origin: Vector2, result: Dictionary, show_trace: bool = true) -> void:
+	trace_start = origin
+	trace_end = result.endpoint
+	hit_something = result.hit
+	trace_remaining = 0.1 if show_trace else 0.0
 	queue_redraw()
 	shot_resolved.emit(trace_end, hit_something)
-	visual_shot.emit(origin, trace_end, impact_kind)
+	visual_shot.emit(origin, trace_end, result.kind)
 
 func _process(delta: float) -> void:
 	if trace_remaining > 0.0:

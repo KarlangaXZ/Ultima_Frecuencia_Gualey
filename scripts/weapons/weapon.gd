@@ -3,6 +3,7 @@ extends Node
 signal ammo_changed(loaded: int, reserve: int)
 signal reload_changed(active: bool)
 signal shot_fired(origin: Vector2, direction: Vector2, damage: float, shot_range: float)
+signal melee_attacked(origin: Vector2, direction: Vector2, damage: float, shot_range: float)
 
 @export var config: WeaponConfig
 var loaded: int
@@ -11,10 +12,11 @@ var cooldown: float = 0.0
 var reload_remaining: float = 0.0
 var reloading: bool = false
 var enabled: bool = true
+var equipped: bool = true
 
 func _ready() -> void:
-	loaded = config.capacity
-	reserve = config.initial_reserve
+	loaded = config.capacity if config.initial_loaded < 0 else clampi(config.initial_loaded, 0, config.capacity)
+	reserve = config.initial_reserve if config.weapon_type != "melee" else 0
 
 func _physics_process(delta: float) -> void:
 	if not enabled:
@@ -31,16 +33,21 @@ func _physics_process(delta: float) -> void:
 			reload_changed.emit(false)
 
 func try_fire(origin: Vector2, direction: Vector2) -> bool:
-	if not enabled or reloading or cooldown > 0.00001 or loaded <= 0 or direction.is_zero_approx():
+	if not enabled or not equipped or reloading or cooldown > 0.00001 or direction.is_zero_approx():
 		return false
-	loaded -= 1
+	if config.weapon_type != "melee":
+		if loaded <= 0: return false
+		loaded -= 1
 	cooldown = config.fire_interval
-	ammo_changed.emit(loaded, reserve)
-	shot_fired.emit(origin, direction.normalized(), config.damage, config.shot_range)
+	if config.weapon_type == "melee":
+		melee_attacked.emit(origin, direction.normalized(), config.damage, config.shot_range)
+	else:
+		ammo_changed.emit(loaded, reserve)
+		shot_fired.emit(origin, direction.normalized(), config.damage, config.shot_range)
 	return true
 
 func start_reload() -> bool:
-	if not enabled or reloading or loaded >= config.capacity or reserve <= 0:
+	if not enabled or not equipped or config.weapon_type == "melee" or reloading or loaded >= config.capacity or reserve <= 0:
 		return false
 	reloading = true
 	reload_remaining = config.reload_duration
@@ -52,4 +59,17 @@ func disable() -> void:
 	reload_remaining = 0.0
 	if reloading:
 		reloading = false
+		reload_changed.emit(false)
+
+func add_reserve(amount: int) -> bool:
+	if not enabled or config.weapon_type == "melee" or amount <= 0: return false
+	reserve += amount
+	ammo_changed.emit(loaded, reserve)
+	return true
+
+func set_equipped(active: bool) -> void:
+	equipped = active
+	if not active and reloading:
+		reloading = false
+		reload_remaining = 0
 		reload_changed.emit(false)

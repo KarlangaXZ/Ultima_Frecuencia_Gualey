@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemDefinition" load_steps=3 format=3]
+[ext_resource type="Script" path="res://scripts/inventory/item_definition.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/ui/items/medkit.svg" id="2"]
+[resource]
+script = ExtResource("1")
+id = &"medkit"
+display_name = "Botiquín"
+description = "Recupera hasta 40 HP. No se utiliza con salud completa."
+category = &"medical"
+icon = ExtResource("2")
+max_stack = 5
+effect = "health"
+effect_amount = 40.0

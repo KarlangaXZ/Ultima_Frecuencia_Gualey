@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" path="res://interfaces/HUD.tscn" id="3"]
 [ext_resource type="Script" uid="uid://8233ljs8dwu1" path="res://scripts/main.gd" id="4"]
 [ext_resource type="PackedScene" path="res://scenes/enemies/Zombie.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://interfaces/InventoryUI.tscn" id="6"]
 
 [node name="Main" type="Node2D" unique_id=1506309]
 script = ExtResource("4")
@@ -26,3 +27,4 @@ position = Vector2(1650, 700)
 position = Vector2(800, 1250)
 
 [node name="HUD" parent="." unique_id=943109359 instance=ExtResource("3")]
+[node name="InventoryUI" parent="." instance=ExtResource("6")]
