@@ -13,7 +13,7 @@ func bind() -> void:
 	for zombie in main.get_node("Zombies").get_children():
 		_observe_zombie(zombie)
 	main.zombie_added.connect(_observe_zombie)
-	for point in points.get_children(): point.activated.connect(_on_point)
+	bind_points()
 	tracker.changed.connect(_update_points)
 	main.get_node("Player/HealthComponent").died.connect(tracker.stop)
 	main.get_node("Player/HealthComponent").died.connect(radio.stop)
@@ -30,8 +30,16 @@ func _on_recovered(item: ItemDefinition, receipt: String) -> void:
 		tracker.record_event(StringName("recovered_" + String(item.id)), receipt)
 
 func _update_points() -> void:
-	points.get_node("Radio").available = tracker.accepts(&"inspect_radio") or tracker.accepts(&"send_radio")
-	points.get_node("Generator").available = tracker.accepts(&"power_on")
+	var receiver := points.get_node_or_null("Radio")
+	var generator := points.get_node_or_null("Generator")
+	if receiver != null: receiver.available = tracker.accepts(&"inspect_radio") or tracker.accepts(&"send_radio")
+	if generator != null: generator.available = tracker.accepts(&"power_on")
+
+func bind_points() -> void:
+	points = main.get_node("World/ChapterPoints")
+	for point in points.get_children():
+		if point is MissionPoint and not point.activated.is_connected(_on_point): point.activated.connect(_on_point)
+	_update_points()
 
 func _on_point(point: MissionPoint) -> void:
 	if not tracker.enabled or main.game_ended: return

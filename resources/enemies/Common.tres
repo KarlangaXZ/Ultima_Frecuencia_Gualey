@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ZombieArchetype" format=3]
+[ext_resource type="Script" path="res://scripts/enemies/zombie_archetype.gd" id="1"]
+[ext_resource type="SpriteFrames" path="res://assets/characters/zombies/base/ZombieBaseFrames.tres" id="2"]
+[ext_resource type="Resource" path="res://resources/audio/TechnicalAudio.tres" id="3"]
+[resource]
+script = ExtResource("1")
+id = &"base"
+display_name = "Zombi común"
+base_health = 50.0
+base_speed = 105.0
+base_damage = 10.0
+detection_radius = 250.0
+attack_distance = 35.0
+attack_interval = 1.5
+xp_reward = 30
+visual_library = ExtResource("2")
+audio_bank = ExtResource("3")

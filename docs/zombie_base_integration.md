@@ -1,5 +1,9 @@
 # Fase 4.4 — integración técnica del zombi base
 
+**Actualización Fase 11:** [variantes, distribución, XP y persistencia](zombie_archetypes.md).
+Los valores de enemigo común y resultados históricos de este informe se conservan;
+las variantes actuales se configuran mediante ZombieArchetype.
+
 ## Resultado
 
 Integradas las 16 animaciones idle/walk/attack/death en down/up/left/right.

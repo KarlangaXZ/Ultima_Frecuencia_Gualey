@@ -32,7 +32,7 @@ func nearest_target() -> Area2D:
 	var distance := INF
 	for result in get_world_2d().direct_space_state.intersect_shape(query, 64):
 		var candidate := result.collider as Area2D
-		if not (candidate is WorldPickup or candidate is LootContainer or candidate is MissionPoint): continue
+		if not (candidate is WorldPickup or candidate is LootContainer or candidate is MissionPoint or candidate is ZoneExit): continue
 		if candidate is WorldPickup and candidate.claimed: continue
 		if not can_access(candidate): continue
 		var current := actor.global_position.distance_squared_to(candidate.global_position)
@@ -68,7 +68,7 @@ func try_interact() -> void:
 	elif target is LootContainer:
 		target.opened = true
 		container_opened.emit(target)
-	elif target is MissionPoint:
+	elif target is MissionPoint or target is ZoneExit:
 		if not target.try_activate(self): action_rejected.emit()
 
 func transfer_from_container(container: LootContainer, index: int) -> bool:

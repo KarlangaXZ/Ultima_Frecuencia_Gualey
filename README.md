@@ -6,7 +6,7 @@ Supervivencia zombi 2D con vista cenital, ambientada en un barrio urbano devasta
 
 **Estado:** Desarrollo activo · **Plataforma inicial:** Windows
 
-Un prototipo jugable con movimiento, navegación de enemigos, combate, salud, recarga, inventario, suministros, hambre, sed, progresión de personaje, misiones encadenadas, radio textual, guardado local y reinicio. La integración visual funciona; el arte y varias animaciones todavía son provisionales. No hay una portada oficial incluida: esta presentación utiliza capturas reales del juego.
+Un prototipo jugable con movimiento, navegación de enemigos, combate, salud, recarga, inventario, suministros, hambre, sed, progresión de personaje, misiones encadenadas, radio textual, guardado local, dos zonas conectadas y reinicio. La integración visual funciona; el arte y varias animaciones todavía son provisionales. No hay una portada oficial incluida: esta presentación utiliza capturas reales del juego.
 
 ## Galería del juego
 
@@ -53,6 +53,53 @@ Idle, Walk, Shoot, Reload y Death están conectadas en las cuatro direcciones. L
 Los nombres de varios PNG históricos no coinciden con la orientación que muestran. Sus asignaciones están corregidas en SpriteFrames; antes de reemplazarlos, consultar la [guía visual](assets/README.md), la [validación de walk_left V2](docs/walk_left_v2_validation.md) y la [integración final de Shoot](docs/shoot_final_integration.md). Las referencias descartadas de `draft/` no forman parte de esta galería.
 
 ## Progreso del desarrollo
+
+Fase 11.1: **diagnóstico reproducible de rendimiento y estabilidad**. Se corrige
+la interpretación de los 32,18 ms anteriores: eran lecturas de máximos del
+monitor, no un tiempo medio real por frame. La comparación identifica una
+limitación asociada a VSync/presentación en este equipo; no justifica reescribir
+la IA ni reducir enemigos. Se conserva la configuración original del juego.
+[Metodología, escenarios, memoria, resultados y pendientes](docs/performance_phase_11_1.md).
+
+
+Fase 11: **tres tipos de zombis configurables y dificultad por zona**, con la
+misma IA y navegación. El común conserva sus estadísticas; el corredor tiene
+140 % de velocidad y 75 % de salud, y el resistente 75 % de velocidad, 200 % de
+salud y 125 % de daño. Sus bajas conceden 30 / 45 / 60 XP, respectivamente.
+
+![Común, corredor naranja y resistente verde persiguiendo en el mercado](docs/images/zombie-variants.png)
+
+La zona inicial conserva solo comunes. El mercado usa pesos 60/30/10 y genera
+3 comunes, 2 corredores y 1 resistente al entrar; sus 18 apariciones se reparten
+11/5/2. Siguen los límites de seis vivos y una reposición cada diez segundos.
+Las variantes tienen tintes, marcadores y audio moderados; reutilizan arte técnico
+provisional. El guardado v2 conserva tipo, heridas y bajas; lee partidas v1/v2
+anteriores sin transformar enemigos guardados.
+
+Una partida nueva ofrece hasta **1.525 XP**, nivel 7, 175/400 XP y seis puntos.
+El total de partidas anteriores depende de sus enemigos ya guardados.
+[Configuración, capturas, persistencia y límites de rendimiento](docs/zombie_archetypes.md).
+
+
+Fase 10: **dos zonas conectadas**. Completa La señal perdida y busca la salida
+de la calle este de la zona evacuada. **E** lleva al **Mercado abandonado** con un
+fundido breve; su salida oeste permite regresar. El mismo protagonista conserva
+salud, necesidades, inventario, arsenal, munición, RPG y misiones.
+
+![Entrada real al Mercado abandonado](docs/images/market.png)
+
+El mercado reutiliza el arte urbano provisional: locales, seis puestos, carros,
+barricadas, cajas, aceras y desvíos, con cuatro recogibles y tres contenedores.
+Cada zona conserva sus recursos, cadáveres y presupuesto: hasta seis vivos y
+18 apariciones. Las zonas descargadas no mantienen enemigos procesándose.
+
+![Plano técnico del mercado, capturado con zoom reducido solo en la prueba](docs/images/market-plan.png)
+
+Guardado **v2** con estado independiente por zona y migración explícita de **v1**.
+Puedes guardar en el mercado, cerrar Godot y cargar directamente allí. El
+contenido de fase 10, con todos los enemigos comunes, ofrecía hasta **1.390 XP**,
+nivel 7 y seis puntos. Fase 11 amplía ese total en partidas nuevas. [Arquitectura, pruebas y compatibilidad](docs/zones_transitions.md).
+[Captura del fundido real entre mapas](docs/images/zone-transition.png).
 
 Fase 9: **guardar y continuar partidas localmente**. Esc abre PAUSA · PARTIDAS
 cuando no hay otra ventana que cerrar. Hay tres ranuras manuales, resumen de
@@ -186,6 +233,8 @@ direcciones por estado. [Resultados y limitaciones](docs/zombie_base_integration
 | 8 | Capítulo 1, misiones y transmisiones de radio | Implementada y validada automáticamente; presentación provisional |
 | 8.1 | Movilidad comprobada y población limitada | 6 vivos / 18 totales; balance manual pendiente |
 | 9 | Guardado, carga y pausa | Tres ranuras locales; validación automática y reapertura aprobadas |
+| 10 | Mercado abandonado y transiciones | Dos zonas persistentes; guardado v2 y migración v1 validados |
+| 11 | Variantes de zombis y dificultad por zona | Integración técnica validada; arte, balance y rendimiento pendientes de pulido |
 
 “Completada técnicamente” significa que la integración y sus pruebas funcionan; no implica arte final ni aprobación artística de todos los ciclos. El guardado se incorpora en fase 9; las revisiones manuales pendientes se detallan en cada informe.
 
@@ -199,7 +248,7 @@ direcciones por estado. [Resultados y limitaciones](docs/zombie_base_integration
 | R | Recargar arma activa |
 | 1 / 2 / 3 / 4 | Machete / pistola / revólver / escopeta, si se poseen |
 | Rueda del mouse | Recorrer armas disponibles; bloqueada con la mochila abierta |
-| E | Recoger, abrir contenedor o activar radio/generador a 56 px sin paredes; avanzar transmisión |
+| E | Recoger, abrir contenedor, radio/generador o salida de zona a 56 px sin paredes; avanzar transmisión |
 | Tab | Abrir/cerrar inventario |
 | K | Abrir/cerrar PERSONAJE; sustituye la mochila si está abierta |
 | J | Abrir/cerrar MISIONES; sustituye la ventana anterior |
@@ -209,6 +258,7 @@ Al morir se bloquean las acciones y aparece **Reintentar**. El botón reinicia s
 
 ## Funciones actuales
 
+- Zona evacuada y Mercado abandonado conectados por salidas; estado independiente de suministros y enemigos, protagonista y misiones globales.
 - Tres ranuras manuales con confirmación, respaldo y restauración completa; Esc pausa el mundo desde el menú de partidas.
 - Primer capítulo con tres misiones, historial, radio textual y 150 XP de recompensas únicas; completar permite seguir jugando.
 - Progresión por partida: recompensas únicas, niveles hasta 10 y cuatro habilidades con estadísticas efectivas; Reintentar restaura sus bases.
@@ -263,6 +313,7 @@ scripts/
   components/              Salud, inventario, supervivencia y progresión
   missions/  radio/        Objetivos, seguimiento, recompensas y transmisiones
   save/                    Formato, archivos, validación y adaptadores de estado
+  zones/                   Definiciones, catálogo, salidas y transición de mapas
   inventory/               Definiciones y uso de suministros
   weapons/  combat/        Munición, recarga e impactos
   visuals/  ui/            Presentación, animaciones y HUD
@@ -282,6 +333,20 @@ tools/                     Generador opcional de SVG provisionales
 Se versionan los metadatos de identidad/importación necesarios (`.uid`, `.import`). Las cachés `.godot/`, herramientas locales y resultados `test-results/` están excluidos de Git. Las imágenes seleccionadas para esta página se conservan en `docs/images/`.
 
 ## Pruebas automatizadas
+
+Fase 11: **1.764 comprobaciones automáticas**, cero fallos, incluidas las 1.512
+anteriores y reapertura de variantes entre procesos. En ventana: 150 de
+arquetipos, 76 de persistencia, 23 visuales con capturas y 94 de HUD/audio,
+todas aprobadas. Medición observada de 32,18 ms por frame en esta máquina;
+pendiente benchmark controlado/exportado y balance manual.
+[Alcance, resultados y limitaciones](docs/zombie_archetypes.md).
+
+
+Fase 10: **1.512 comprobaciones automáticas**, cero fallos: conserva las 1.369
+anteriores y añade 70 de zonas, 59 de navegación y 14 de reapertura del mercado
+en dos procesos distintos. En ventana aprobaron 65 del mercado/fundido y 70 de
+viajes repetidos, además de las regresiones de guardado y HUD/audio.
+[Alcance de pruebas y acciones simuladas](docs/zones_transitions.md).
 
 Fase 9: **1.369 comprobaciones headless**, cero fallos: las 1.161 anteriores,
 62 de integridad, 112 de carga/pausa y 34 entre dos procesos Godot separados.
@@ -328,11 +393,22 @@ godot --headless --path . --fixed-fps 60 --script res://tests/save_integrity_tes
 godot --headless --path . --fixed-fps 60 --script res://tests/save_load_test.gd
 godot --headless --path . --fixed-fps 60 --script res://tests/save_restart_test.gd -- --write
 godot --headless --path . --fixed-fps 60 --script res://tests/save_restart_test.gd -- --read
+godot --headless --path . --fixed-fps 60 --script res://tests/zones_test.gd
+godot --headless --path . --fixed-fps 60 --script res://tests/market_navigation_test.gd
+godot --headless --path . --fixed-fps 60 --script res://tests/zones_restart_test.gd -- --write
+godot --headless --path . --fixed-fps 60 --script res://tests/zones_restart_test.gd -- --read
+godot --headless --path . --fixed-fps 60 --script res://tests/archetypes_test.gd
+godot --headless --path . --fixed-fps 60 --script res://tests/archetypes_persistence_test.gd
+godot --headless --path . --fixed-fps 60 --script res://tests/archetypes_visual_test.gd
+godot --headless --path . --fixed-fps 60 --script res://tests/archetypes_restart_test.gd -- --write
+godot --headless --path . --fixed-fps 60 --script res://tests/archetypes_restart_test.gd -- --read
 ```
 
 La validación de fase 7 aprobó **905 comprobaciones**, con cero fallos: las 759 anteriores, 58 de componente y 88 de integración RPG. Se comprueban premios únicos, multinivel, límites, compras, modificadores, recargas/animaciones, UI y reinicio, conservando las regresiones previas. [Informe de progresión](docs/progression_skills.md), [HUD/audio](docs/hud_audio_polish.md), [fase 6](docs/arsenal_equipment.md), [fase 5](docs/inventory_survival.md), [zona urbana](docs/urban_world_integration.md), [zombi base](docs/zombie_base_integration.md) y [Shoot](docs/shoot_final_integration.md).
 
 Para producir capturas actuales con renderizado real:
+
+Variantes con IA activa: `godot --path . --fixed-fps 60 --script res://tests/archetypes_visual_test.gd -- --capture`.
 
 ```text
 godot --path . --fixed-fps 60 --script res://tests/phase_four_test.gd -- --capture
@@ -347,6 +423,7 @@ godot --path . --fixed-fps 60 --script res://tests/phase_seven_test.gd -- --capt
 godot --path . --fixed-fps 60 --script res://tests/phase_eight_test.gd -- --capture
 godot --path . --fixed-fps 60 --script res://tests/zombie_mobility_test.gd -- --capture
 godot --path . --fixed-fps 60 --script res://tests/save_load_test.gd -- --capture
+godot --path . --fixed-fps 60 --script res://tests/market_navigation_test.gd -- --capture
 ```
 
 Los resultados se guardan en `test-results/`. En fase 6.1 aprobaron las pruebas gráficas de HUD/audio (**99 comprobaciones**, dos PNG y mezcla WAV), la general (**39**), inventario (**80**) y arsenal (**107**). La galería muestra el HUD compacto y el título nuevo de mochila; el plano conserva su captura de fase 4.5. Las pruebas automáticas no sustituyen escucha manual, una sesión prolongada ni la inspección del panel gráfico del depurador.
@@ -359,9 +436,9 @@ reales del motor; no se declara validada una sesión manual prolongada.
 ## Limitaciones y próximos pasos
 
 - Fabricación, segundo capítulo, guardado en nube, multiplayer, oleadas y aparición infinita no están implementados.
-- La progresión puede guardarse localmente; el contenido finito del capítulo con población completa ofrece cuatro puntos de habilidad. Ampliar contenido/balance queda pendiente.
+- La progresión puede guardarse localmente; el contenido finito de ambos mapas con población completa ofrece seis puntos de habilidad. Ampliar contenido/balance queda pendiente.
 - Guardar conserva inventario y contenedores; Reintentar restaura existencias iniciales sin borrar ranuras. La mochila no pausa a los zombis; el menú de partidas sí.
-- La población mantiene hasta seis vivos y termina al agotar 18 apariciones. La dificultad con reposiciones aún requiere balance manual.
+- La población de cada zona mantiene hasta seis vivos y termina al agotar 18 apariciones por zona. La dificultad con reposiciones aún requiere balance manual.
 - Los personajes colisionan con el mundo, pero no se bloquean físicamente entre sí.
 - El arte es reemplazable y todavía provisional en varios módulos; falta revisar fluidez, halos, posturas y coherencia de perspectiva.
 - El audio es síntesis técnica provisional; falta revisión auditiva de mezcla/volumen y sonidos realistas finales. Ganancias y pausa ambiental son ajustables en la capa de audio.
@@ -385,6 +462,7 @@ reales del motor; no se declara validada una sesión manual prolongada.
 - [Misiones y radio: capítulo, recompensas, recorrido y pruebas](docs/missions_radio.md).
 - [Movilidad real y población de zombis: diagnóstico, límites, XP y pruebas](docs/zombie_population.md).
 - [Guardado y carga: formato, ranuras, integridad, pausa y reapertura](docs/save_load.md).
+- [Zonas y transiciones: mercado, conservación de estado y guardados v2](docs/zones_transitions.md).
 - [Historial técnico completo de las fases anteriores](docs/development_history.md).
 
 El historial conserva los detalles, problemas resueltos y resultados anteriores. Sus avisos de recursos pendientes describen el estado de cada momento; el estado vigente se resume en esta página y en los informes finales.

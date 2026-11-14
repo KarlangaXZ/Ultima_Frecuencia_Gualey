@@ -1,6 +1,6 @@
 class_name SaveSchema
 extends RefCounted
-const VERSION := 1
+const VERSION := 2
 static func number(value: Variant, low: float, high: float, integer := false) -> bool:
 	return typeof(value) in [TYPE_INT, TYPE_FLOAT] and is_finite(value) and value >= low and value <= high and (not integer or floor(value) == value)
 static func fields(value: Variant, keys: Array) -> bool:
@@ -35,14 +35,27 @@ static func timestamp(value: Variant) -> bool:
 	return day >= 1 and day <= days[month - 1] and int(value.substr(11,2)) < 24 and int(value.substr(14,2)) < 60 and int(value.substr(17,2)) < 60
 static func validate(value: Variant, expected_slot: int = -1) -> String:
 	if not value is Dictionary: return "El archivo no contiene una partida válida."
-	if not value.has("version") or not number(value.version, VERSION, VERSION, true): return "Versión de guardado incompatible."
-	if not fields(value, ["version", "slot", "saved_at", "chapter", "map", "player", "world", "missions"]): return "Estructura de guardado incompleta."
+	if not value.has("version") or not number(value.version, 1, VERSION, true): return "Versión de guardado incompatible."
+	var root_fields := ["version", "slot", "saved_at", "chapter", "map", "player", "world", "missions"]
+	if value.version == 2: root_fields.append_array(["zones","stats"])
+	if not fields(value, root_fields): return "Estructura de guardado incompleta."
 	if not number(value.slot, 0, 3, true) or (expected_slot >= 0 and value.slot != expected_slot): return "Identificador de ranura inválido."
 	if not timestamp(value.saved_at): return "Fecha de guardado inválida."
-	if value.chapter != "signal_lost" or value.map != "gualey_sector_04": return "Este capítulo o mapa no está disponible en esta versión."
+	if value.chapter != "signal_lost" or not value.map is String or not ZoneCatalog.DEFINITIONS.has(value.map): return "Este capítulo o mapa no está disponible en esta versión."
+	if value.version == 1 and value.map != ZoneCatalog.HOME: return "Mapa incompatible con guardado v1."
 	if not _player(value.player): return "Datos del protagonista, inventario o armas inválidos."
-	if not _world(value.world): return "Datos del mundo o población inválidos."
-	if not _missions(value.missions, int(value.world.kills)): return "Progreso de misiones inválido o incoherente."
+	if not _world(value.world,value.map,value.version >= 2): return "Datos del mundo o población inválidos."
+	var kills := int(value.world.kills)
+	if value.version == 2:
+		if not value.zones is Dictionary or value.zones.size() > 1 or value.zones.has(value.map): return "Estados de zonas inválidos."
+		for id in value.zones:
+			if not id is String or not ZoneCatalog.DEFINITIONS.has(id) or not _world(value.zones[id],id): return "Datos de zona inactiva inválidos."
+			kills += int(value.zones[id].kills)
+		if value.map != ZoneCatalog.HOME and not value.zones.has(ZoneCatalog.HOME): return "Falta el estado de la zona inicial."
+		if not fields(value.stats,["kills","survival_time"]) or not number(value.stats.kills,0,36,true) or value.stats.kills != kills or not number(value.stats.survival_time,0,31536000): return "Estadísticas globales incoherentes."
+	if not _missions(value.missions,kills,value.version == 2): return "Progreso de misiones inválido o incoherente."
+	if value.version == 2:
+		if (value.map == ZoneCatalog.MARKET or value.zones.has(ZoneCatalog.MARKET)) and ZoneCatalog.MARKET not in value.missions.unlocked_zones: return "Zona visitada sin desbloquear."
 	return ""
 static func _player(p: Variant) -> bool:
 	if not fields(p, ["position", "base_health", "health", "base_speed", "hunger", "thirst", "hunger_period", "thirst_period", "penalty_time", "progression", "skills", "inventory", "weapons", "equipped", "facing", "aim"]): return false
@@ -73,15 +86,17 @@ static func _player(p: Variant) -> bool:
 		if not number(weapon.loaded, 0, config.capacity, true) or not number(weapon.reserve, 0, 100000, true) or not number(weapon.cooldown, 0, config.fire_interval): return false
 		if id == "machete" and (weapon.loaded != 0 or weapon.reserve != 0): return false
 	return p.equipped is String and p.weapons.has(p.equipped) and p.facing in ["down", "up", "left", "right"] and number(p.aim, -1000, 1000)
-static func _world(w: Variant) -> bool:
+static func _world(w: Variant, zone_id: String = "gualey_sector_04", allow_variants := true) -> bool:
+	var zone := ZoneCatalog.definition(zone_id)
+	if zone == null: return false
 	if not fields(w, ["containers", "pickups", "zombies", "population", "rewarded_zombies", "rewarded_containers", "kills", "survival_time"]): return false
-	if not keys_match(w.containers, SaveCatalog.CONTAINERS) or not keys_match(w.pickups, SaveCatalog.PICKUPS): return false
+	if not keys_match(w.containers, zone.container_ids) or not keys_match(w.pickups, zone.pickup_ids): return false
 	for available in w.pickups.values():
 		if not available is bool: return false
 	for container in w.containers.values():
 		if not fields(container, ["opened", "slots"]) or not container.opened is bool or not inventory(container.slots): return false
 	if not fields(w.population, ["spawned", "remaining", "cursor"]): return false
-	if not number(w.population.spawned, 3, 18, true) or not number(w.population.remaining, 0, 10) or not number(w.population.cursor, 0, 14, true): return false
+	if not number(w.population.spawned, 3, zone.total_budget, true) or not number(w.population.remaining, 0, zone.replacement_interval) or not number(w.population.cursor, 0, zone.spawn_points.size() - 1, true): return false
 	if not w.zombies is Array or w.zombies.size() != w.population.spawned: return false
 	if not strings(w.rewarded_zombies, 18) or not strings(w.rewarded_containers, 5): return false
 	var found := {}
@@ -89,23 +104,30 @@ static func _world(w: Variant) -> bool:
 	var living := 0
 	for zombie in w.zombies:
 		if not fields(zombie, ["id", "type", "position", "health", "cooldown"]) or not zombie.id is String: return false
-		if zombie.type != "base" or not position(zombie.position) or not number(zombie.health, 0, 50) or not number(zombie.cooldown, 0, 1.5): return false
+		if not zombie.type is String: return false
+		var archetype := ZombieArchetypes.definition(zombie.type)
+		if archetype == null or (not allow_variants and zombie.type != "base"): return false
+		if not position(zombie.position) or not number(zombie.health, 0, archetype.health_value()) or not number(zombie.cooldown, 0, archetype.attack_interval): return false
 		if found.has(zombie.id): return false
 		found[zombie.id] = true
 		if zombie.health <= 0: dead.append(zombie.id)
 		else: living += 1
 	for index in range(1, int(w.population.spawned) + 1):
-		if not found.has("zombie_%02d" % index): return false
+		if not found.has(zone.enemy_prefix + "%02d" % index): return false
 	if living > 6 or not number(w.kills, 0, 18, true) or w.kills != dead.size() or not number(w.survival_time, 0, 31536000): return false
 	if dead.size() != w.rewarded_zombies.size() or not dead.all(func(id): return id in w.rewarded_zombies): return false
 	for id in w.rewarded_containers:
-		if id not in SaveCatalog.CONTAINERS or not w.containers[id].opened: return false
+		if id not in zone.container_ids or not w.containers[id].opened: return false
 	return true
-static func _missions(m: Variant, kills: int) -> bool:
+static func _missions(m: Variant, kills: int, with_zones := false) -> bool:
 	if not fields(m, ["states", "progress", "totals", "receipts", "awarded", "radio", "unlocked_zones"]): return false
 	var mission_ids := ["signal", "supplies", "broadcast"]
 	if not keys_match(m.states, mission_ids) or not keys_match(m.progress, mission_ids): return false
-	if not strings(m.receipts) or not strings(m.awarded, 3) or not m.unlocked_zones is Array or not m.unlocked_zones.is_empty(): return false
+	if not strings(m.receipts) or not strings(m.awarded, 3) or not strings(m.unlocked_zones,1): return false
+	if not with_zones and not m.unlocked_zones.is_empty(): return false
+	if with_zones:
+		if not m.unlocked_zones.all(func(id): return id == ZoneCatalog.MARKET): return false
+		if (m.states.broadcast == 3) != (ZoneCatalog.MARKET in m.unlocked_zones): return false
 	var events := ["inspect_radio", "recovered_medkit", "recovered_water", "kills", "power_on", "send_radio"]
 	if not m.totals is Dictionary or m.totals.size() > events.size(): return false
 	for key in m.totals:

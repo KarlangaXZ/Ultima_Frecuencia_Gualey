@@ -8,7 +8,7 @@ func _on_death() -> void:
 
 func _process(delta: float) -> void:
 	flash_remaining = maxf(0.0, flash_remaining - delta)
-	sprite.modulate = Color(2.0, 0.65, 0.5) if flash_remaining > 0.0 else Color.WHITE
+	sprite.modulate = actor.archetype.tint * (Color(2.0, 0.65, 0.5) if flash_remaining > 0.0 else Color.WHITE)
 	if dead:
 		return
 	var cooldown: float = actor.get("cooldown")
@@ -34,9 +34,13 @@ func _process(delta: float) -> void:
 				sprite.pause()
 				sprite.frame = sprite.sprite_frames.get_frame_count(animation_name) - 1
 	else:
-		sprite.speed_scale = 1.0
 		var state_name := "walk" if actor.velocity.length_squared() > 1.0 else "idle"
+		sprite.speed_scale = actor.velocity.length() / actor.archetype.reference_speed() if state_name == "walk" else 1.0
 		var animation_name := state_name + "_" + direction_name
 		if sprite.animation != animation_name:
 			sprite.play(animation_name)
 	_update_sprite_transform()
+
+func _draw() -> void:
+	var color: Color = get_parent().archetype.marker_color
+	if color.a > 0: draw_arc(Vector2.ZERO,19,0,TAU,32,color,2)

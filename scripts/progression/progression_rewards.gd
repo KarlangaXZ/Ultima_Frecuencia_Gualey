@@ -1,6 +1,5 @@
 extends Node
 ## Única concesión por evento. Registro por instancia, reservado antes de notificar.
-@export_range(0, 10000) var zombie_xp := 30
 @export_range(0, 10000) var container_xp := 20
 @onready var progression: ProgressionComponent = $"../ProgressionComponent"
 @onready var health: HealthComponent = $"../HealthComponent"
@@ -17,7 +16,8 @@ func zombie_eliminated(source: Node) -> bool:
 	var id := SaveCatalog.id_of(source)
 	if _zombies.has(id): return false
 	_zombies[id] = true
-	return progression.add_xp(zombie_xp)
+	var archetype := source.get("archetype") as ZombieArchetype
+	return progression.add_xp(archetype.xp_reward if archetype != null else ZombieArchetypes.definition("base").xp_reward)
 
 func container_opened(source: LootContainer) -> bool:
 	if not is_instance_valid(source) or health.is_dead() or not progression.enabled: return false

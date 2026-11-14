@@ -12,7 +12,9 @@ func _ready() -> void:
 	emitter = SoundEmitter.new()
 	emitter.positional = true
 	emitter.max_voices = 3
-	emitter.volume_db = volume_db
+	emitter.bank = actor.archetype.sound_bank()
+	emitter.volume_db = volume_db + actor.archetype.audio_gain_db
+	emitter.pitch_scale = actor.archetype.audio_pitch
 	add_child(emitter)
 	_last_health = actor.max_health
 	_groan_remaining = 3.0 + actor.get_index() * 1.7
@@ -29,7 +31,7 @@ func _process(delta: float) -> void:
 	_groan_remaining -= delta
 	if _groan_remaining <= 0:
 		emitter.play_event(&"zombie_groan")
-		_groan_remaining = 12.0 + actor.get_index() * 1.1
+		_groan_remaining = (12.0 + actor.get_index() * 1.1) * actor.archetype.groan_interval_multiplier
 
 func _on_health_changed(current: float, _maximum: float) -> void:
 	if current > 0 and current < _last_health: emitter.play_event(&"zombie_hurt", 0.12)

@@ -1,5 +1,6 @@
 [gd_scene format=3]
 [ext_resource type="Script" path="res://scripts/world/mission_point.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/zones/zone_exit.gd" id="Exit"]
 [sub_resource type="CircleShape2D" id="PointShape"]
 radius = 24.0
 [node name="ChapterPoints" type="Node2D"]
@@ -22,4 +23,15 @@ script = ExtResource("1")
 point_id = &"generator"
 display_name = "Generador de emergencia"
 [node name="Shape" type="CollisionShape2D" parent="Generator"]
+shape = SubResource("PointShape")
+
+[node name="MarketExit" type="Area2D" parent="."]
+position = Vector2(2120,800)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("Exit")
+destination = "market_abandoned"
+entry = "from_gualey"
+metadata/persistence_id = "home_market_exit"
+[node name="Shape" type="CollisionShape2D" parent="MarketExit"]
 shape = SubResource("PointShape")

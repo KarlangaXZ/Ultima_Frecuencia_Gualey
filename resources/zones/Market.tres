@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ZoneDefinition" format=3]
+[ext_resource type="Script" path="res://scripts/zones/zone_definition.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/world/MarketWorld.tscn" id="2"]
+[resource]
+script = ExtResource("1")
+id = "market_abandoned"
+unlock_mission = &"broadcast"
+display_name = "Mercado abandonado"
+world_scene = ExtResource("2")
+entries = Dictionary[String, Vector2]({"from_gualey": Vector2(320, 800), "initial": Vector2(320, 800)})
+container_ids = Array[String](["market_medical", "market_food", "market_ammo"])
+pickup_ids = Array[String](["market_water", "market_medkit", "market_food_pickup", "market_ammo_pickup"])
+enemy_prefix = "market_zombie_"
+initial_enemies = PackedVector2Array(900, 800, 1600, 850, 1750, 1200)
+spawn_points = PackedVector2Array(1950, 800, 2100, 1100, 1650, 420, 1100, 1180, 900, 420, 400, 1200, 2100, 500, 650, 750, 1500, 850, 1900, 1200, 350, 1050, 1350, 700, 1100, 900, 750, 1200, 2000, 850)
+enemy_weights = Dictionary[String, int]({"base":60,"runner":30,"resistant":10})

@@ -27,6 +27,9 @@
 [ext_resource type="Script" path="res://scripts/save/save_coordinator.gd" id="Save"]
 [ext_resource type="Script" path="res://scripts/ui/pause_ui.gd" id="Pause"]
 
+[ext_resource type="Script" path="res://scripts/zones/zone_manager.gd" id="Zones"]
+[ext_resource type="Script" path="res://scripts/ui/zone_overlay.gd" id="ZoneOverlay"]
+
 [node name="Main" type="Node2D" unique_id=1506309]
 script = ExtResource("4")
 
@@ -79,3 +82,8 @@ script = ExtResource("Population")
 script = ExtResource("Pause")
 [node name="SaveCoordinator" type="Node" parent="."]
 script = ExtResource("Save")
+
+[node name="ZoneOverlay" type="CanvasLayer" parent="."]
+script = ExtResource("ZoneOverlay")
+[node name="ZoneManager" type="Node" parent="."]
+script = ExtResource("Zones")

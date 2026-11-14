@@ -21,7 +21,10 @@ func _read(path: String, slot: int) -> Dictionary:
 	var parser := JSON.new()
 	if parser.parse(raw) != OK: return {"error": "Archivo dañado: JSON inválido."}
 	var problem := SaveSchema.validate(parser.data, slot)
-	return {"data": parser.data, "recovered": false} if problem.is_empty() else {"error": problem}
+	if not problem.is_empty(): return {"error": problem}
+	var migrated := SaveMigration.to_current(parser.data)
+	problem = SaveSchema.validate(migrated,slot)
+	return {"data": migrated, "recovered": false,"migrated": parser.data.version != migrated.version} if problem.is_empty() else {"error": problem}
 func read_slot(slot: int) -> Dictionary:
 	if slot < 0 or slot > 3: return {"error": "Ranura inválida."}
 	var primary := _read(path_for(slot), slot)

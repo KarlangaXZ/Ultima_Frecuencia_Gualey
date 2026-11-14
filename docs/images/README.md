@@ -6,6 +6,11 @@ conceptuales para representar funcionalidades.
 
 | Archivo | Fuente | Fecha y preparación |
 | --- | --- | --- |
+| zombie-common.png | test-results/archetypes/01-home-common.png | 2026-11-14, zona inicial con comunes e IA activa |
+| zombie-variants.png | test-results/archetypes/02-market-variants.png | 2026-11-14, común/corredor/resistente de izquierda a derecha, IA activa |
+| market.png | test-results/zones/02-market.png | 2026-11-14, entrada real con personajes visibles y nombre de zona |
+| market-plan.png | test-results/zones/06-market-plan.png | 2026-11-14, plano técnico; zoom 0.43 y HUD oculto solo en fixture |
+| zone-transition.png | test-results/zones/01-transition.png | 2026-11-14, fundido negro y nombre del mercado |
 | save-slots.png | test-results/save/01-slots.png | 2026-11-14, tres ranuras con partida rica en estado y ranura inicial de fixture |
 | zombie-pursuit.png | test-results/population/03-simultaneous.png | 2026-11-14, tres perseguidores con IA activa dentro de población de seis |
 | missions.png | test-results/phase-eight/02-missions.png | 2026-11-14, diario con misión 3 activa e historial de las dos primeras |
@@ -23,7 +28,7 @@ conceptuales para representar funcionalidades.
 | player-animations.png | PNG down de idle/shoot/reload/death y walk_left V2 | 2026-11-12, composición en orden, escala nativa |
 | zombie-base.png | PNG de Idle 00, Walk 02, Attack 03 y Death 05 | Fase 4.4, down/up/left/right del paquete técnico |
 
-Las catorce capturas son PNG 1280 × 720 optimizados sin pérdida. La lámina del
+Las diecinueve capturas son PNG 1280 × 720 optimizados sin pérdida. La lámina del
 protagonista mide 1024 × 800; la del zombi, 512 × 624. Las fuentes permanecen en
 assets/ y los resultados de pruebas en test-results/ (ignorado).
 
@@ -68,3 +73,13 @@ Fase 9 añade el menú de partidas desde su prueba gráfica: 114 comprobaciones,
 dos capturas reales; la confirmación queda solo en resultados para no duplicar
 la galería. La fixture prepara objetos/XP/posiciones y refresca el HUD antes de
 pausar. [Formato, integridad, reapertura y límites](../save_load.md).
+
+Fase 10 añade tres capturas del mercado/fundido de las seis producidas por la
+prueba con IA activa (65 comprobaciones). Se revisaron personajes visibles, HUD,
+rutas y orden de dibujo. Son escenas reales con posiciones preparadas; el plano
+no cambia la cámara del juego. [Pruebas y límites](../zones_transitions.md).
+
+Fase 11 añade dos capturas reales de tres producidas por la prueba de variantes
+(23 comprobaciones). Posiciones preparadas, IA y física activas; sin cambiar
+cámara, escala o arte del juego. PNG optimizados sin pérdida y verificados
+píxel a píxel. [Validación y pendientes](../zombie_archetypes.md).

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ZoneDefinition" format=3]
+[ext_resource type="Script" path="res://scripts/zones/zone_definition.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/world/World.tscn" id="2"]
+[resource]
+script = ExtResource("1")
+id = "gualey_sector_04"
+display_name = "Gualey — Zona evacuada"
+world_scene = ExtResource("2")
+entries = Dictionary[String, Vector2]({"initial": Vector2(600, 800), "from_market": Vector2(2020, 800)})
+container_ids = Array[String](["supply_crate", "medical_case", "abandoned_bag", "revolver_case", "shotgun_case"])
+pickup_ids = Array[String](["pickup_water", "pickup_medkit", "pickup_food", "pickup_ammo"])
+enemy_prefix = "zombie_"
+initial_enemies = PackedVector2Array(1000, 800, 1650, 700, 800, 1250)
+spawn_points = PackedVector2Array(1600, 450, 1960, 700, 1800, 1250, 1320, 1210, 650, 1250, 320, 950, 950, 370, 1500, 750, 1900, 560, 2100, 850, 1000, 1050, 1200, 350, 550, 350, 350, 900, 1500, 1150)

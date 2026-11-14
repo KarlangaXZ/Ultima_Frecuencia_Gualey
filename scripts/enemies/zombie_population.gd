@@ -23,12 +23,13 @@ var _initialized := false
 var _remaining := 0.0
 var _cursor := 0
 var _living: Dictionary = {}
+var persistent_prefix := "zombie_"
 
 func start() -> void:
 	if _started: return
 	_started = true
 	running = not actor.health.is_dead()
-	actor.health.died.connect(stop)
+	if not actor.health.died.is_connected(stop): actor.health.died.connect(stop)
 	for zombie in actors.get_children():
 		total_spawned += 1
 		if not zombie.health.is_dead(): _track(zombie)
@@ -82,8 +83,9 @@ func _spawn_one() -> bool:
 		total_spawned += 1
 		_cursor = (index + 1) % spawn_points.size()
 		var zombie := ZOMBIE.instantiate() as CharacterBody2D
+		zombie.archetype = main.get_node("ZoneManager").active_definition().archetype_for(total_spawned)
 		zombie.name = "PopulationZombie%02d" % total_spawned
-		zombie.set_meta("persistence_id", "zombie_%02d" % total_spawned)
+		zombie.set_meta("persistence_id", persistent_prefix + "%02d" % total_spawned)
 		zombie.position = actors.to_local(point)
 		actors.add_child(zombie)
 		_track(zombie)
@@ -99,9 +101,23 @@ func restore_population(data: Dictionary) -> void:
 	_remaining = data.remaining
 	_cursor = int(data.cursor)
 	_living.clear()
-	actor.health.died.connect(stop)
+	if not actor.health.died.is_connected(stop): actor.health.died.connect(stop)
 	for zombie in actors.get_children():
 		if not zombie.health.is_dead(): _track(zombie)
+
+func configure_zone(zone: ZoneDefinition) -> void:
+	running = false
+	_started = false
+	_initialized = false
+	total_spawned = 0
+	_living.clear()
+	_cursor = 0
+	_remaining = zone.replacement_interval
+	active_limit = zone.active_limit
+	total_budget = zone.total_budget
+	replacement_interval = zone.replacement_interval
+	spawn_points = zone.spawn_points
+	persistent_prefix = zone.enemy_prefix
 
 func _physics_process(delta: float) -> void:
 	if not running or actor.health.is_dead(): return

@@ -9,7 +9,7 @@ static func capture(main: Node) -> Dictionary:
 	return {"states": tracker._states.duplicate(true), "progress": tracker._progress.duplicate(true),
 		"totals": tracker._totals.duplicate(true), "receipts": tracker._receipts.keys(),
 		"awarded": main.get_node("Missions/Rewards")._awarded.keys().map(func(id): return String(id)),
-		"radio": {"transmission": transmission, "index": radio.index if transmission != "" else 0}, "unlocked_zones": []}
+		"radio": {"transmission": transmission, "index": radio.index if transmission != "" else 0}, "unlocked_zones": main.get_node("ZoneManager").unlocked.duplicate()}
 
 static func restore(main: Node, data: Dictionary) -> void:
 	var tracker: MissionTracker = main.get_node("Missions")
@@ -28,6 +28,8 @@ static func restore(main: Node, data: Dictionary) -> void:
 	var radio: Node = main.get_node("Radio")
 	radio.transmission = SaveCatalog.TRANSMISSIONS.get(data.radio.transmission)
 	radio.index = int(data.radio.index)
+	main.get_node("ZoneManager").unlocked.assign(data.unlocked_zones)
+	main.get_node("ZoneManager").sync_exits()
 	# No changed/mission_completed/leveled_up: reconstruir no vuelve a premiar.
 	main.get_node("Missions/Chapter")._update_points()
 	main.get_node("MissionUI").refresh()

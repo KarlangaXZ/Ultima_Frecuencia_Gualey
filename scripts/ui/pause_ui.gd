@@ -56,6 +56,7 @@ func _setup(title: Label) -> void:
 	content.add_child(policy)
 
 func _input(event: InputEvent) -> void:
+	if get_parent().get_node("ZoneManager").busy: return
 	if not event.is_action_pressed("ui_cancel"): return
 	if window.visible: close_window()
 	else:
@@ -85,8 +86,8 @@ func refresh_slots() -> void:
 		var result: Dictionary = saves.store.read_slot(index + 1)
 		var label := "Ranura %d · Vacía" % (index + 1)
 		if result.has("data"):
-			label = "Ranura %d · Nivel %d · La señal perdida\n%s UTC%s" % [index + 1, result.data.player.progression.level,
-				String(result.data.saved_at).replace("T", " ").trim_suffix("Z"), " · Respaldo" if result.recovered else ""]
+			label = "Ranura %d · Nivel %d · La señal perdida\n%s · %s UTC%s" % [index + 1, result.data.player.progression.level,
+				ZoneCatalog.definition(result.data.map).display_name, String(result.data.saved_at).replace("T", " ").trim_suffix("Z"), " · Respaldo" if result.recovered else ""]
 		elif saves.store.occupied(index + 1): label = "Ranura %d · %s" % [index + 1, result.error]
 		rows[index].label.text = label
 		rows[index].save.disabled = get_parent().game_ended

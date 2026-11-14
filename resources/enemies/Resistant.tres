@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ZombieArchetype" format=3]
+[ext_resource type="Script" path="res://scripts/enemies/zombie_archetype.gd" id="1"]
+[ext_resource type="Resource" path="res://resources/enemies/Common.tres" id="2"]
+[resource]
+script = ExtResource("1")
+id = &"resistant"
+display_name = "Zombi resistente"
+base_archetype = ExtResource("2")
+health_multiplier = 2
+speed_multiplier = 0.75
+damage_multiplier = 1.25
+attack_interval = 1.5
+xp_reward = 60
+tint = Color(0.72,0.94,0.82,1)
+marker_color = Color(0.42,0.78,0.65,0.8)
+audio_pitch = 0.88
+audio_gain_db = -1
+groan_interval_multiplier = 1.3

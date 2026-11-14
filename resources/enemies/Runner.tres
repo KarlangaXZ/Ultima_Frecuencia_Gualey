@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ZombieArchetype" format=3]
+[ext_resource type="Script" path="res://scripts/enemies/zombie_archetype.gd" id="1"]
+[ext_resource type="Resource" path="res://resources/enemies/Common.tres" id="2"]
+[resource]
+script = ExtResource("1")
+id = &"runner"
+display_name = "Zombi corredor"
+base_archetype = ExtResource("2")
+health_multiplier = 0.75
+speed_multiplier = 1.4
+damage_multiplier = 1
+attack_interval = 1.5
+xp_reward = 45
+tint = Color(1,0.82,0.66,1)
+marker_color = Color(0.95,0.67,0.31,0.8)
+audio_pitch = 1.12
+audio_gain_db = -2
+groan_interval_multiplier = 1.2
