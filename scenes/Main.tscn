@@ -6,6 +6,26 @@
 [ext_resource type="Script" uid="uid://8233ljs8dwu1" path="res://scripts/main.gd" id="4"]
 [ext_resource type="PackedScene" path="res://scenes/enemies/Zombie.tscn" id="5"]
 [ext_resource type="PackedScene" path="res://interfaces/InventoryUI.tscn" id="6"]
+[ext_resource type="Script" path="res://scripts/audio/game_audio.gd" id="7"]
+[ext_resource type="PackedScene" path="res://interfaces/CharacterUI.tscn" id="8"]
+[ext_resource type="Script" path="res://scripts/ui/interface_coordinator.gd" id="9"]
+
+[ext_resource type="Script" path="res://scripts/missions/mission_tracker.gd" id="Tracker"]
+[ext_resource type="Script" path="res://scripts/missions/mission_definition.gd" id="Definition"]
+[ext_resource type="Resource" path="res://resources/missions/Signal.tres" id="Signal"]
+[ext_resource type="Resource" path="res://resources/missions/Supplies.tres" id="Supplies"]
+[ext_resource type="Resource" path="res://resources/missions/Broadcast.tres" id="Broadcast"]
+[ext_resource type="Script" path="res://scripts/missions/mission_rewards.gd" id="Rewards"]
+[ext_resource type="Script" path="res://scripts/missions/chapter_controller.gd" id="Chapter"]
+[ext_resource type="Script" path="res://scripts/radio/radio_controller.gd" id="Radio"]
+[ext_resource type="Script" path="res://scripts/ui/mission_ui.gd" id="Journal"]
+[ext_resource type="Script" path="res://scripts/ui/radio_ui.gd" id="RadioUI"]
+[ext_resource type="Script" path="res://scripts/ui/objective_hud.gd" id="ObjectiveHUD"]
+
+[ext_resource type="Script" path="res://scripts/enemies/zombie_population.gd" id="Population"]
+
+[ext_resource type="Script" path="res://scripts/save/save_coordinator.gd" id="Save"]
+[ext_resource type="Script" path="res://scripts/ui/pause_ui.gd" id="Pause"]
 
 [node name="Main" type="Node2D" unique_id=1506309]
 script = ExtResource("4")
@@ -18,13 +38,44 @@ position = Vector2(600, 800)
 [node name="Zombies" type="Node2D" parent="." unique_id=78811774]
 
 [node name="ZombieA" parent="Zombies" unique_id=1246982326 instance=ExtResource("5")]
+metadata/persistence_id = "zombie_01"
 position = Vector2(1000, 800)
 
 [node name="ZombieB" parent="Zombies" unique_id=1893499562 instance=ExtResource("5")]
+metadata/persistence_id = "zombie_02"
 position = Vector2(1650, 700)
 
 [node name="ZombieC" parent="Zombies" unique_id=897671308 instance=ExtResource("5")]
+metadata/persistence_id = "zombie_03"
 position = Vector2(800, 1250)
 
 [node name="HUD" parent="." unique_id=943109359 instance=ExtResource("3")]
 [node name="InventoryUI" parent="." instance=ExtResource("6")]
+[node name="CharacterUI" parent="." instance=ExtResource("8")]
+[node name="Missions" type="Node" parent="."]
+script = ExtResource("Tracker")
+definitions = Array[ExtResource("Definition")]([ExtResource("Signal"), ExtResource("Supplies"), ExtResource("Broadcast")])
+[node name="Rewards" type="Node" parent="Missions"]
+script = ExtResource("Rewards")
+[node name="Chapter" type="Node" parent="Missions"]
+script = ExtResource("Chapter")
+[node name="Radio" type="Node" parent="."]
+script = ExtResource("Radio")
+[node name="MissionUI" type="CanvasLayer" parent="."]
+script = ExtResource("Journal")
+[node name="RadioUI" type="CanvasLayer" parent="."]
+script = ExtResource("RadioUI")
+[node name="ObjectiveHUD" type="CanvasLayer" parent="."]
+script = ExtResource("ObjectiveHUD")
+[node name="InterfaceCoordinator" type="Node" parent="."]
+script = ExtResource("9")
+[node name="Audio" type="Node" parent="."]
+script = ExtResource("7")
+
+[node name="Population" type="Node" parent="."]
+script = ExtResource("Population")
+
+[node name="PauseUI" type="CanvasLayer" parent="."]
+script = ExtResource("Pause")
+[node name="SaveCoordinator" type="Node" parent="."]
+script = ExtResource("Save")

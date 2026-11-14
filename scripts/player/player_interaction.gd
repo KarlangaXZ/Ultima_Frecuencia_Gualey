@@ -3,6 +3,9 @@ extends Node2D
 signal prompt_changed(text: String)
 signal feedback(message: String)
 signal container_opened(container: LootContainer)
+signal item_collected(item: ItemDefinition)
+signal supply_recovered(item: ItemDefinition, receipt: String)
+signal action_rejected
 @export_range(1, 200) var interaction_radius: float = 56.0
 @onready var actor: CharacterBody2D = get_parent()
 @onready var inventory: InventoryComponent = $"../InventoryComponent"
@@ -29,7 +32,7 @@ func nearest_target() -> Area2D:
 	var distance := INF
 	for result in get_world_2d().direct_space_state.intersect_shape(query, 64):
 		var candidate := result.collider as Area2D
-		if not (candidate is WorldPickup or candidate is LootContainer): continue
+		if not (candidate is WorldPickup or candidate is LootContainer or candidate is MissionPoint): continue
 		if candidate is WorldPickup and candidate.claimed: continue
 		if not can_access(candidate): continue
 		var current := actor.global_position.distance_squared_to(candidate.global_position)
@@ -54,16 +57,31 @@ func try_interact() -> void:
 	if actor.controls_blocked or actor.health.is_dead(): return
 	target = nearest_target()
 	if target is WorldPickup:
-		feedback.emit(target.try_collect(inventory))
+		var pickup := target as WorldPickup
+		var message := pickup.try_collect(inventory)
+		feedback.emit(message)
+		if not message.is_empty():
+			if pickup.claimed:
+				item_collected.emit(pickup.item)
+				supply_recovered.emit(pickup.item, "pickup:" + SaveCatalog.id_of(pickup))
+			else: action_rejected.emit()
 	elif target is LootContainer:
+		target.opened = true
 		container_opened.emit(target)
+	elif target is MissionPoint:
+		if not target.try_activate(self): action_rejected.emit()
 
 func transfer_from_container(container: LootContainer, index: int) -> bool:
 	if not can_access(container):
 		feedback.emit("El contenedor está fuera de alcance.")
+		action_rejected.emit()
 		return false
+	var slot := container.inventory.get_slot(index)
 	if container.inventory.transfer_slot_to(index, inventory):
 		feedback.emit("Suministros guardados en la mochila.")
+		item_collected.emit(slot.item)
+		supply_recovered.emit(slot.item, "container:%s:%d" % [SaveCatalog.id_of(container), index])
 		return true
 	feedback.emit("No se pudo transferir: sin espacio o compartimento vacío.")
+	action_rejected.emit()
 	return false

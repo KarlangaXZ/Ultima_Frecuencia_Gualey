@@ -33,7 +33,7 @@ func _initialize() -> void:
 	call_deferred("run")
 
 func run() -> void:
-	change_scene_to_file("res://scenes/Main.tscn")
+	change_scene_to_file("res://tests/fixtures/LegacyMain.tscn")
 	await frames(5)
 	var main := current_scene
 	var player := main.get_node("Player") as CharacterBody2D
@@ -127,5 +127,6 @@ func run() -> void:
 	check(not main.get_node("HUD/GameOver").visible and main.get_node("HUD/DamageFlash").color.a == 0.0,
 		"Reinicio limpia overlays")
 	check(main.get_node("Player/Combat/Effects").particles.is_empty(), "Reinicio limpia efectos")
+	await preload("res://tests/audio_cleanup.gd").finish(self)
 	print("Resultado fase 4: ", checks, " comprobaciones, ", failures, " fallos")
 	quit(0 if failures == 0 else 1)

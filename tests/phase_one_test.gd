@@ -19,7 +19,7 @@ func _initialize() -> void:
 	call_deferred("run")
 
 func run() -> void:
-	var main := load("res://scenes/Main.tscn").instantiate() as Node2D
+	var main := load("res://tests/fixtures/LegacyMain.tscn").instantiate() as Node2D
 	root.add_child(main)
 	var player := main.get_node("Player") as CharacterBody2D
 	var camera := player.get_node("Camera2D") as Camera2D

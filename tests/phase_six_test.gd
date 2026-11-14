@@ -79,7 +79,7 @@ func _initialize() -> void:
 	call_deferred("run")
 
 func run() -> void:
-	change_scene_to_file("res://scenes/Main.tscn")
+	change_scene_to_file("res://tests/fixtures/LegacyMain.tscn")
 	await frames(5)
 	var main := current_scene
 	var player := main.get_node("Player") as CharacterBody2D
@@ -332,5 +332,6 @@ func run() -> void:
 	check(current_scene.get_node("World/ArsenalSupplies/RevolverCase/InventoryComponent").count_item(&"weapon_revolver") == 1, "Reinicio restaura arma del contenedor")
 	var survival := player.get_node("SurvivalComponent") as SurvivalComponent
 	check(survival.hunger_seconds_per_point == 30 and survival.thirst_seconds_per_point == 20 and survival.penalty_damage == 2 and survival.penalty_interval == 5, "Parámetros de supervivencia intactos")
+	await preload("res://tests/audio_cleanup.gd").finish(self)
 	print("Resultado fase 6: ", checks, " comprobaciones, ", failures, " fallos")
 	quit(0 if failures == 0 else 1)

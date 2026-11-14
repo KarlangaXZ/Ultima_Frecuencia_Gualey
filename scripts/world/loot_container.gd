@@ -1,5 +1,6 @@
 class_name LootContainer
 extends Area2D
+var opened := false
 @export var display_name: String = "Suministros"
 @export var icon: Texture2D
 @export var initial_items: Array[ItemDefinition] = []

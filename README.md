@@ -6,7 +6,7 @@ Supervivencia zombi 2D con vista cenital, ambientada en un barrio urbano devasta
 
 **Estado:** Desarrollo activo · **Plataforma inicial:** Windows
 
-Un prototipo jugable con movimiento, navegación de enemigos, combate, salud, recarga, inventario, suministros, hambre, sed y reinicio. La integración visual funciona; el arte y varias animaciones todavía son provisionales. No hay una portada oficial incluida: esta presentación utiliza capturas reales del juego.
+Un prototipo jugable con movimiento, navegación de enemigos, combate, salud, recarga, inventario, suministros, hambre, sed, progresión de personaje, misiones encadenadas, radio textual, guardado local y reinicio. La integración visual funciona; el arte y varias animaciones todavía son provisionales. No hay una portada oficial incluida: esta presentación utiliza capturas reales del juego.
 
 ## Galería del juego
 
@@ -22,7 +22,7 @@ Un prototipo jugable con movimiento, navegación de enemigos, combate, salud, re
 
 ![Panel Game Over con botón Reintentar](docs/images/game-over.png)
 
-Capturas renovadas el **13 de noviembre de 2026** ejecutando el proyecto en Godot, mediante su prueba visual de integración. Las posiciones y acciones se preparan automáticamente en esa prueba; no son imágenes conceptuales. [Origen de las imágenes](docs/images/README.md).
+Capturas principales renovadas el **14 de noviembre de 2026** ejecutando el proyecto en Godot, mediante su prueba visual de integración. Las posiciones y acciones se preparan automáticamente en esa prueba; no son imágenes conceptuales. [Origen de las imágenes](docs/images/README.md).
 
 ## Zona urbana de Gualey
 
@@ -53,6 +53,76 @@ Idle, Walk, Shoot, Reload y Death están conectadas en las cuatro direcciones. L
 Los nombres de varios PNG históricos no coinciden con la orientación que muestran. Sus asignaciones están corregidas en SpriteFrames; antes de reemplazarlos, consultar la [guía visual](assets/README.md), la [validación de walk_left V2](docs/walk_left_v2_validation.md) y la [integración final de Shoot](docs/shoot_final_integration.md). Las referencias descartadas de `draft/` no forman parte de esta galería.
 
 ## Progreso del desarrollo
+
+Fase 9: **guardar y continuar partidas localmente**. Esc abre PAUSA · PARTIDAS
+cuando no hay otra ventana que cerrar. Hay tres ranuras manuales, resumen de
+nivel/capítulo/fecha y confirmación antes de sobrescribir.
+
+![Menú real de pausa con tres ranuras de guardado](docs/images/save-slots.png)
+
+Se conservan salud, necesidades, nivel/habilidades, pilas, arsenal y munición,
+misiones, suministros y enemigos, incluido el presupuesto de población. Las
+recargas en curso se cancelan al cargar sin transferir balas. JSON versionado en
+user://saves/, temporal verificado y respaldo recuperable; los archivos inválidos
+no restauran la partida a medias. El autoguardado separado queda optativo y
+**desactivado por defecto**. [Formato, ubicación y pruebas](docs/save_load.md).
+
+Fase 8.1: **población finita de zombis e IA comprobada en ventana**. Se mantienen
+hasta **6 vivos**, con **18 apariciones totales** por capítulo y una reposición
+cada 10 segundos cuando quedan vacantes. Los nuevos enemigos aparecen fuera de
+cámara, en puntos transitables, separados del jugador y de los puntos de misión.
+
+La IA anterior funcionaba: al inicio el enemigo más cercano está a 400 px, fuera
+de sus 250 px de detección. Las fixtures de misiones inmovilizaban enemigos para
+aislación; el juego normal no lo hace. Se verificaron persecución simultánea,
+ruta alrededor del colmado, Walk y ataques reales sin reescribir la IA.
+
+![Tres zombis persiguiendo con IA activa](docs/images/zombie-pursuit.png)
+
+Con toda la población, cinco contenedores y las misiones hay **790 XP posibles**:
+nivel 5, 90/300 XP y cuatro puntos. Se conservan los premios de 30 XP por baja y
+los demás valores. [Diagnóstico, límites y pruebas](docs/zombie_population.md).
+
+Fase 8: **primer capítulo jugable, La señal perdida**. Una radio junto al
+colmado recibe una petición de ayuda: recupera un botiquín y agua, elimina dos
+zombis, activa el generador de la calle este y vuelve a transmitir.
+
+**J** abre MISIONES con objetivos, progreso e historial. **E** inspecciona los
+puntos cercanos y avanza la radio; Esc o CERRAR permiten volver al juego. Las
+ventanas se coordinan con MOCHILA y PERSONAJE, sin pausar el mundo.
+
+![Diario real de misiones del primer capítulo](docs/images/missions.png)
+
+![Primera transmisión textual recibida en la radio](docs/images/radio.png)
+
+Las misiones conceden **25 + 50 + 75 XP**, una sola vez. Las recogidas reales y
+bajas anteriores cuentan para preparar suministros; el inventario inicial no.
+En la población original de fase 8, el capítulo añade 150 XP a los 190 existentes: **340 XP, nivel 3 y dos
+puntos de habilidad**. Al terminar puedes seguir explorando y combatiendo.
+No hay segundo capítulo, nuevo mapa ni voces grabadas. La fase 9 añade guardado local.
+[Arquitectura, recorrido y pruebas](docs/missions_radio.md).
+
+Fase 7: **experiencia, niveles y cuatro habilidades implementados**. Las bajas
+otorgan 30 XP y la primera apertura de cada contenedor con suministros, 20 XP.
+Se empieza en nivel 1, sin puntos; hacen falta 100 XP para nivel 2 y 50 más por
+cada salto posterior. Máximo inicial: nivel 10; un punto por subida.
+
+![Panel PERSONAJE con nivel, experiencia, puntos y habilidades](docs/images/character.png)
+
+**K** abre PERSONAJE. Vitalidad añade +5 HP máximos por rango; Agilidad, +3 % de
+velocidad base; Manejo reduce 4 % la recarga base; Supervivencia reduce 5 % el
+consumo. Cada habilidad admite cinco rangos, sin acumulaciones por refrescar UI
+ni cambios de recursos compartidos. No hay redistribución; la fase 9 añade persistencia local.
+
+El mapa actual ofrece **190 XP**: alcanza nivel 2 y un punto. Los niveles
+superiores están preparados para contenido futuro; no se añade XP pasiva por
+tiempo sin una tasa definida ni respawn. La fase 8 añade las misiones y XP descritas arriba. [Arquitectura y validación](docs/progression_skills.md).
+
+Fase 6.1: **HUD compacto, mochila renombrada y audio base integrado**. El panel
+persistente ocupa aproximadamente un 63 % menos de área y conserva todas las
+estadísticas. La interfaz se titula «MOCHILA»; el nombre oficial sigue en la
+ventana y el branding general. Se añaden 19 efectos sintéticos breves y un loop
+ambiental tenue, todos provisionales. [Arquitectura, mezcla y validación](docs/hud_audio_polish.md).
 
 Fase 6: **arsenal y equipamiento implementados**. Machete y pistola disponibles
 al empezar; revólver y escopeta se encuentran explorando, se guardan en la mochila
@@ -111,8 +181,13 @@ direcciones por estado. [Resultados y limitaciones](docs/zombie_base_integration
 | 4.5 | Primera zona urbana de Gualey | Completada técnicamente; arte provisional |
 | 5 | Inventario, suministros, hambre y sed | Implementada y validada automáticamente |
 | 6 | Arsenal, equipamiento y cambio de armas | Implementada y validada automáticamente |
+| 6.1 | HUD, textos y audio base | Integrada técnicamente; audio provisional |
+| 7 | Experiencia, niveles y habilidades | Implementada y validada automáticamente |
+| 8 | Capítulo 1, misiones y transmisiones de radio | Implementada y validada automáticamente; presentación provisional |
+| 8.1 | Movilidad comprobada y población limitada | 6 vivos / 18 totales; balance manual pendiente |
+| 9 | Guardado, carga y pausa | Tres ranuras locales; validación automática y reapertura aprobadas |
 
-“Completada técnicamente” significa que la integración y sus pruebas funcionan; no implica arte final ni aprobación artística de todos los ciclos. La fase 5 funciona sin guardado persistente y mantiene revisiones manuales pendientes.
+“Completada técnicamente” significa que la integración y sus pruebas funcionan; no implica arte final ni aprobación artística de todos los ciclos. El guardado se incorpora en fase 9; las revisiones manuales pendientes se detallan en cada informe.
 
 ## Controles
 
@@ -124,17 +199,23 @@ direcciones por estado. [Resultados y limitaciones](docs/zombie_base_integration
 | R | Recargar arma activa |
 | 1 / 2 / 3 / 4 | Machete / pistola / revólver / escopeta, si se poseen |
 | Rueda del mouse | Recorrer armas disponibles; bloqueada con la mochila abierta |
-| E | Recoger o abrir contenedor a un máximo de 56 px, sin paredes entre ambos |
+| E | Recoger, abrir contenedor o activar radio/generador a 56 px sin paredes; avanzar transmisión |
 | Tab | Abrir/cerrar inventario |
-| Esc | Cerrar inventario |
+| K | Abrir/cerrar PERSONAJE; sustituye la mochila si está abierta |
+| J | Abrir/cerrar MISIONES; sustituye la ventana anterior |
+| Esc | Cerrar ventana/transmisión; si ninguna está abierta, abrir/cerrar PAUSA · PARTIDAS |
 
 Al morir se bloquean las acciones y aparece **Reintentar**. El botón reinicia salud, munición, posiciones, zombis, bajas y tiempo.
 
 ## Funciones actuales
 
+- Tres ranuras manuales con confirmación, respaldo y restauración completa; Esc pausa el mundo desde el menú de partidas.
+- Primer capítulo con tres misiones, historial, radio textual y 150 XP de recompensas únicas; completar permite seguir jugando.
+- Progresión por partida: recompensas únicas, niveles hasta 10 y cuatro habilidades con estadísticas efectivas; Reintentar restaura sus bases.
+
 - Escenario urbano de 2400 × 1600, 28 obstáculos y límites físicos; cámara con seguimiento.
 - Movimiento normalizado: la diagonal no aumenta la velocidad.
-- Tres zombis con estados IDLE, CHASE, ATTACK y DEAD, y rutas alrededor de las cajas.
+- Hasta seis zombis vivos con estados IDLE, CHASE, ATTACK y DEAD; presupuesto de 18 por capítulo, rutas alrededor de obstáculos y reposición limitada.
 - Salud compartida por componentes: 100 HP para el jugador, 50 HP para cada zombi.
 - Pistola con cargador de 12, reserva inicial de 48, daño de 25 HP y alcance de 600 px.
 - Machete frontal, revólver y escopeta con ocho rayos por descarga; configuración compartida y estado independiente por arma.
@@ -165,7 +246,7 @@ Sustituir `godot` por la ruta de su ejecutable si no está en PATH. El motor por
 
 **Resolución base:** 1280 × 720 · **Escalado:** canvas_items · **Renderizador:** Compatibility (OpenGL).
 
-No se necesitan plugins, paquetes externos ni Python para jugar. El generador Python de arte provisional es una herramienta opcional de desarrollo. Todavía no se entrega un ejecutable Windows independiente: se ejecuta con Godot.
+No se necesitan plugins, paquetes externos ni Python para jugar. Los generadores de SVG y audio provisional son herramientas opcionales de desarrollo. Todavía no se entrega un ejecutable Windows independiente: se ejecuta con Godot.
 
 ## Estructura del repositorio
 
@@ -179,12 +260,14 @@ scenes/
   world/                   Escenario y obstáculos
 scripts/
   player/  enemies/        Comportamientos de personajes
-  components/              Salud reutilizable
+  components/              Salud, inventario, supervivencia y progresión
+  missions/  radio/        Objetivos, seguimiento, recompensas y transmisiones
+  save/                    Formato, archivos, validación y adaptadores de estado
   inventory/               Definiciones y uso de suministros
   weapons/  combat/        Munición, recarga e impactos
   visuals/  ui/            Presentación, animaciones y HUD
   world/  main.gd          Navegación, suelo y coordinación
-interfaces/                HUD y Game Over existentes
+interfaces/                HUD, Game Over, MOCHILA y PERSONAJE; diario/radio compuestos por sus vistas
 assets/
   characters/              Recursos del protagonista y zombis
   environment/             Suelo, props y decals
@@ -199,6 +282,22 @@ tools/                     Generador opcional de SVG provisionales
 Se versionan los metadatos de identidad/importación necesarios (`.uid`, `.import`). Las cachés `.godot/`, herramientas locales y resultados `test-results/` están excluidos de Git. Las imágenes seleccionadas para esta página se conservan en `docs/images/`.
 
 ## Pruebas automatizadas
+
+Fase 9: **1.369 comprobaciones headless**, cero fallos: las 1.161 anteriores,
+62 de integridad, 112 de carga/pausa y 34 entre dos procesos Godot separados.
+La prueba gráfica de ranuras aprueba **114**. [Estado recuperado, recuperación
+de archivos y límites](docs/save_load.md).
+
+Fase 8.1: **1.161 comprobaciones automáticas**, cero fallos (1.054 previas +
+22 de movilidad con IA activa + 85 de población). En ventana aprobaron **25**
+de movilidad con capturas y **85** de población/capítulo con IA activa. Las
+fixtures históricas heredan Main con tres enemigos; las pruebas nuevas usan la
+población normal. [Evidencia y rendimiento](docs/zombie_population.md).
+
+La fase 8 conserva las 905 comprobaciones anteriores y añade 27 de seguimiento
+de misiones y 122 del capítulo: **1.054 comprobaciones automáticas, cero fallos**.
+Su recorrido gráfico aprueba **126**, completa las tres misiones y produce cuatro
+capturas reales. [Alcance, acciones simuladas y pendientes](docs/missions_radio.md).
 
 Desde la raíz del repositorio:
 
@@ -218,9 +317,20 @@ godot --headless --path . --fixed-fps 60 --script res://tests/urban_world_test.g
 godot --headless --path . --fixed-fps 60 --script res://tests/inventory_component_test.gd
 godot --headless --path . --fixed-fps 60 --script res://tests/phase_five_test.gd
 godot --headless --path . --fixed-fps 60 --script res://tests/phase_six_test.gd
+godot --headless --path . --fixed-fps 60 --script res://tests/hud_audio_test.gd
+godot --headless --path . --fixed-fps 60 --script res://tests/progression_component_test.gd
+godot --headless --path . --fixed-fps 60 --script res://tests/phase_seven_test.gd
+godot --headless --path . --fixed-fps 60 --script res://tests/mission_tracker_test.gd
+godot --headless --path . --fixed-fps 60 --script res://tests/phase_eight_test.gd
+godot --headless --path . --fixed-fps 60 --script res://tests/zombie_mobility_test.gd
+godot --headless --path . --fixed-fps 60 --script res://tests/zombie_population_test.gd
+godot --headless --path . --fixed-fps 60 --script res://tests/save_integrity_test.gd
+godot --headless --path . --fixed-fps 60 --script res://tests/save_load_test.gd
+godot --headless --path . --fixed-fps 60 --script res://tests/save_restart_test.gd -- --write
+godot --headless --path . --fixed-fps 60 --script res://tests/save_restart_test.gd -- --read
 ```
 
-La validación funcional de la fase 6 aprobó **665 comprobaciones**, con cero fallos: las 564 anteriores y 101 de arsenal. Incluye adquisición, rechazo de duplicados, teclas y rueda, municiones separadas, cancelación de recargas, golpes frontales, paredes, ocho perdigones, animaciones, bajas, Game Over y reinicio. [Informe de fase 6](docs/arsenal_equipment.md), [fase 5](docs/inventory_survival.md), [zona urbana](docs/urban_world_integration.md), [zombi base](docs/zombie_base_integration.md) y [Shoot](docs/shoot_final_integration.md).
+La validación de fase 7 aprobó **905 comprobaciones**, con cero fallos: las 759 anteriores, 58 de componente y 88 de integración RPG. Se comprueban premios únicos, multinivel, límites, compras, modificadores, recargas/animaciones, UI y reinicio, conservando las regresiones previas. [Informe de progresión](docs/progression_skills.md), [HUD/audio](docs/hud_audio_polish.md), [fase 6](docs/arsenal_equipment.md), [fase 5](docs/inventory_survival.md), [zona urbana](docs/urban_world_integration.md), [zombi base](docs/zombie_base_integration.md) y [Shoot](docs/shoot_final_integration.md).
 
 Para producir capturas actuales con renderizado real:
 
@@ -232,17 +342,29 @@ godot --path . --fixed-fps 60 --script res://tests/player_shoot_test.gd -- --cap
 godot --path . --fixed-fps 60 --script res://tests/urban_world_test.gd -- --capture
 godot --path . --fixed-fps 60 --script res://tests/phase_five_test.gd -- --capture
 godot --path . --fixed-fps 60 --script res://tests/phase_six_test.gd -- --capture
+godot --path . --fixed-fps 60 --script res://tests/hud_audio_test.gd -- --capture
+godot --path . --fixed-fps 60 --script res://tests/phase_seven_test.gd -- --capture
+godot --path . --fixed-fps 60 --script res://tests/phase_eight_test.gd -- --capture
+godot --path . --fixed-fps 60 --script res://tests/zombie_mobility_test.gd -- --capture
+godot --path . --fixed-fps 60 --script res://tests/save_load_test.gd -- --capture
 ```
 
-Los PNG se guardan en `test-results/`. En fase 6 aprobaron la regresión visual general (**39 comprobaciones**, cinco capturas) y el arsenal (**107 comprobaciones**, seis capturas). Se renuevan las tres imágenes de juego con el HUD actual. La mochila base conserva su captura de fase 5 y el plano, la de fase 4.5. Las pruebas automatizadas no sustituyen una sesión manual ni la inspección del panel gráfico del depurador.
+Los resultados se guardan en `test-results/`. En fase 6.1 aprobaron las pruebas gráficas de HUD/audio (**99 comprobaciones**, dos PNG y mezcla WAV), la general (**39**), inventario (**80**) y arsenal (**107**). La galería muestra el HUD compacto y el título nuevo de mochila; el plano conserva su captura de fase 4.5. Las pruebas automáticas no sustituyen escucha manual, una sesión prolongada ni la inspección del panel gráfico del depurador.
+
+En fase 7 aprobaron **90 comprobaciones gráficas** con dos capturas de PERSONAJE,
+y se repitió la regresión gráfica general (**39**) con cinco capturas. El HUD
+conserva su tamaño y añade NIV/XP a la línea discreta del sector. Son fixtures
+reales del motor; no se declara validada una sesión manual prolongada.
 
 ## Limitaciones y próximos pasos
 
-- Fabricación, progresión RPG, misiones, guardado persistente, multiplayer, oleadas y aparición infinita no están implementados.
-- El inventario y los contenedores duran solo la partida; Reintentar restaura las existencias iniciales. La mochila no pausa a los zombis.
-- El escenario conserva tres zombis iniciales; no hay reposición automática.
+- Fabricación, segundo capítulo, guardado en nube, multiplayer, oleadas y aparición infinita no están implementados.
+- La progresión puede guardarse localmente; el contenido finito del capítulo con población completa ofrece cuatro puntos de habilidad. Ampliar contenido/balance queda pendiente.
+- Guardar conserva inventario y contenedores; Reintentar restaura existencias iniciales sin borrar ranuras. La mochila no pausa a los zombis; el menú de partidas sí.
+- La población mantiene hasta seis vivos y termina al agotar 18 apariciones. La dificultad con reposiciones aún requiere balance manual.
 - Los personajes colisionan con el mundo, pero no se bloquean físicamente entre sí.
 - El arte es reemplazable y todavía provisional en varios módulos; falta revisar fluidez, halos, posturas y coherencia de perspectiva.
+- El audio es síntesis técnica provisional; falta revisión auditiva de mezcla/volumen y sonidos realistas finales. Ganancias y pausa ambiental son ajustables en la capa de audio.
 - Game Over aparece inmediatamente: la animación de muerte se ejecuta detrás de su panel. Algunas capturas técnicas ocultan ese panel únicamente para inspección.
 - La navegación deriva rectángulos de todos los sólidos y un perímetro fijo. Formas no rectangulares requieren adaptar su generación.
 - Faltan una revisión manual completa del combate y transiciones, pruebas de exportación y una distribución independiente.
@@ -258,6 +380,11 @@ Los PNG se guardan en `test-results/`. En fase 6 aprobaron la regresión visual 
 - [Zona urbana: arquitectura, recursos y validación](docs/urban_world_integration.md).
 - [Inventario, suministros y supervivencia: arquitectura y validación](docs/inventory_survival.md).
 - [Arsenal y equipamiento: configuración, municiones y validación](docs/arsenal_equipment.md).
+- [HUD compacto y audio: eventos, recursos y validación](docs/hud_audio_polish.md).
+- [Progresión y habilidades: recompensas, modificadores, UI y pruebas](docs/progression_skills.md).
+- [Misiones y radio: capítulo, recompensas, recorrido y pruebas](docs/missions_radio.md).
+- [Movilidad real y población de zombis: diagnóstico, límites, XP y pruebas](docs/zombie_population.md).
+- [Guardado y carga: formato, ranuras, integridad, pausa y reapertura](docs/save_load.md).
 - [Historial técnico completo de las fases anteriores](docs/development_history.md).
 
 El historial conserva los detalles, problemas resueltos y resultados anteriores. Sus avisos de recursos pendientes describen el estado de cada momento; el estado vigente se resume en esta página y en los informes finales.

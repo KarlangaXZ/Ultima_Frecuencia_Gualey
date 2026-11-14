@@ -159,7 +159,7 @@ func _process(delta: float) -> void:
 		var animation_name := "reload_" + action_direction
 		if sprite.sprite_frames.has_animation(animation_name):
 			var count := sprite.sprite_frames.get_frame_count(animation_name)
-			var progress: float = 1.0 - weapon.reload_remaining / weapon.config.reload_duration
+			var progress: float = 1.0 - weapon.reload_remaining / maxf(0.0001, weapon.reload_duration_current)
 			var position_in_cycle := clampf(progress * count, 0.0, count - 0.00001)
 			sprite.set_frame_and_progress(int(position_in_cycle), fmod(position_in_cycle, 1.0))
 			_update_sprite_transform()

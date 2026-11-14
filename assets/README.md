@@ -91,6 +91,10 @@ recursos. Las texturas rasterizadas y cachés permanecen en `.godot/`, excluida 
 
 ## Efectos opcionales
 
+Fase 6.1 añade audio sintético original en assets/placeholders/audio/, separado
+del futuro audio final. Banco sustituible resources/audio/TechnicalAudio.tres;
+sin plugins ni efectos de juego desde sonidos. [Recursos y ajustes de audio](audio/README.md).
+
 `Combat/Effects.effects_enabled` desactiva destello y partículas; `Visual.effects_enabled`
 desactiva el flash del personaje y `HUD.effects_enabled` el overlay de daño.
 Se pueden retirar los nodos Visual y Combat/Effects sin cambiar el gameplay.

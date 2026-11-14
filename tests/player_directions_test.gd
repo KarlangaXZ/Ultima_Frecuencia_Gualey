@@ -28,7 +28,7 @@ func capture(label: String) -> void:
 		"Captura " + label)
 
 func run() -> void:
-	change_scene_to_file("res://scenes/Main.tscn")
+	change_scene_to_file("res://tests/fixtures/LegacyMain.tscn")
 	await frames(3)
 	var player := current_scene.get_node("Player") as CharacterBody2D
 	var sprite := player.get_node("Visual/Sprite") as AnimatedSprite2D

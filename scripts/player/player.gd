@@ -5,6 +5,10 @@ extends CharacterBody2D
 @onready var health: HealthComponent = $HealthComponent
 @onready var weapon: Node = $Weapon
 var controls_blocked := false
+var movement_multiplier: float = 1.0
+
+func effective_speed() -> float:
+	return speed * movement_multiplier
 var _require_shoot_release := false
 
 func set_controls_blocked(active: bool) -> void:
@@ -36,7 +40,7 @@ func _physics_process(_delta: float) -> void:
 		velocity = Vector2.ZERO
 		return
 	var direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = direction * speed
+	velocity = direction * effective_speed()
 	move_and_slide()
 	var aim_direction := global_position.direction_to(get_global_mouse_position())
 	$Aim.rotation = aim_direction.angle()

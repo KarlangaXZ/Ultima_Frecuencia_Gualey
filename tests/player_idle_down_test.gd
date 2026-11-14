@@ -20,7 +20,7 @@ func _initialize() -> void:
 	call_deferred("run")
 
 func run() -> void:
-	change_scene_to_file("res://scenes/Main.tscn")
+	change_scene_to_file("res://tests/fixtures/LegacyMain.tscn")
 	await frames(3)
 	var player := current_scene.get_node("Player") as CharacterBody2D
 	var visual := player.get_node("Visual")

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SkillDefinition" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/progression/skill_definition.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"handling"
+display_name = "Manejo de armas"
+description = "−4 % del tiempo base de recarga por rango."
+max_rank = 5
+modifier = "reload"
+per_rank = 0.04

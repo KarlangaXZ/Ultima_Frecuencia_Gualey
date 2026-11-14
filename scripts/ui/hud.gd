@@ -48,6 +48,7 @@ func update_equipment(equipment: EquipmentComponent) -> void:
 
 func update_reload(active: bool) -> void:
 	$Panel/Margin/Content/Reload.text = "RECARGANDO..." if active else ""
+	$Panel/Margin/Content/Reload.visible = active
 
 func update_stats(kills: int, seconds: float) -> void:
 	$Panel/Margin/Content/Stats.text = "Eliminados: %d · Tiempo: %02d:%02d" % [kills, int(seconds) / 60, int(seconds) % 60]
@@ -58,6 +59,10 @@ func update_needs(hunger: float, thirst: float) -> void:
 
 func update_interaction(text: String) -> void:
 	$InteractionPrompt.text = text
+
+func update_progression(level: int, xp: int, required: int) -> void:
+	$Panel/Margin/Content/Sector.text = "SECTOR 04 · NIV %d · %s" % [level,
+		"XP %d/%d" % [xp, required] if required > 0 else "MÁXIMO"]
 
 func show_message(message: String) -> void:
 	$Feedback.text = message

@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="MissionDefinition" format=3]
+[ext_resource type="Script" path="res://scripts/missions/mission_definition.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/missions/mission_objective.gd" id="2"]
+[sub_resource type="Resource" id="Objective0"]
+script = ExtResource("2")
+event_key = &"power_on"
+description = "Activar el generador de la calle este."
+target = 1
+historical = false
+[sub_resource type="Resource" id="Objective1"]
+script = ExtResource("2")
+event_key = &"send_radio"
+description = "Regresar a la radio y transmitir."
+target = 1
+historical = false
+[resource]
+script = ExtResource("1")
+id = &"broadcast"
+title = "Volver al aire"
+description = "Busca el generador en la calle al este del colmado. Actívalo y regresa a la radio para responder."
+prerequisites = Array[StringName]([&"supplies"])
+objectives = Array[ExtResource("2")]([SubResource("Objective0"), SubResource("Objective1")])
+reward_xp = 75
+sequential = true

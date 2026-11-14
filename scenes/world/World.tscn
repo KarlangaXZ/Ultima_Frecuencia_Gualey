@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3]
+[gd_scene load_steps=20 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/world/Obstacle.tscn" id="1"]
 [ext_resource type="Script" path="res://scripts/world/ground.gd" id="2"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/world/urban_details.gd" id="5"]
 [ext_resource type="PackedScene" path="res://scenes/world/Supplies.tscn" id="6"]
 [ext_resource type="PackedScene" path="res://scenes/world/ArsenalSupplies.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://scenes/world/ChapterPoints.tscn" id="8"]
 [sub_resource type="RectangleShape2D" id="Horizontal"]
 size = Vector2(2400, 48)
 [sub_resource type="RectangleShape2D" id="Vertical"]
@@ -242,6 +243,8 @@ color = Color(0.92, 0.94, 0.91, 1)
 [node name="Supplies" parent="." instance=ExtResource("6")]
 [node name="ArsenalSupplies" parent="." instance=ExtResource("7")]
 
+
+[node name="ChapterPoints" parent="." instance=ExtResource("8")]
 
 [node name="Boundary" type="StaticBody2D" parent="."]
 collision_layer = 1

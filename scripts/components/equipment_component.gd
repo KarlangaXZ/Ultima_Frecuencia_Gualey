@@ -3,6 +3,7 @@ extends Node
 ## Propiedad y estado por arma. No replica municiones ni consulta la física.
 signal active_changed(weapon: Node)
 signal arsenal_changed
+signal empty_triggered
 signal ammo_changed(loaded: int, reserve: int)
 signal reload_changed(active: bool)
 signal attack_performed(config: WeaponConfig, origin: Vector2, direction: Vector2, damage: float, shot_range: float)
@@ -25,6 +26,11 @@ func owns(id: StringName) -> bool:
 func get_weapon(id: StringName) -> Node:
 	return _weapons.get(id)
 
+func get_weapons() -> Array[Node]:
+	var result: Array[Node] = []
+	for weapon in _weapons.values(): result.append(weapon)
+	return result
+
 func can_obtain(config: WeaponConfig) -> bool:
 	return _enabled and config != null and config.id in ORDER and not owns(config.id)
 
@@ -43,6 +49,8 @@ func _register(weapon: Node) -> void:
 	_weapons[weapon.config.id] = weapon
 	weapon.shot_fired.connect(_on_attack.bind(weapon))
 	weapon.melee_attacked.connect(_on_attack.bind(weapon))
+	weapon.empty_triggered.connect(func():
+		if _enabled and weapon == active_weapon: empty_triggered.emit())
 	weapon.ammo_changed.connect(func(loaded: int, reserve: int):
 		if weapon == active_weapon: ammo_changed.emit(loaded, reserve))
 	weapon.reload_changed.connect(func(active: bool):

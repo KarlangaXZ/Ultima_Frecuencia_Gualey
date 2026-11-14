@@ -1,6 +1,7 @@
 extends CanvasLayer
 ## Presentación y solicitudes. No almacena recursos ni aplica efectos.
 signal opened_changed(active: bool)
+signal selection_changed
 signal use_requested(index: int)
 signal transfer_requested(container: LootContainer, index: int)
 @onready var window: Control = $Root
@@ -122,6 +123,7 @@ func on_player_died() -> void:
 func _select(index: int) -> void:
 	selected = index
 	refresh()
+	selection_changed.emit()
 
 func refresh() -> void:
 	if inventory == null or not window.visible: return
