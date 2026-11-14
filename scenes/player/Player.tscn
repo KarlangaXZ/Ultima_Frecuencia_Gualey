@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3]
+[gd_scene load_steps=27 format=3]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/components/health_component.gd" id="2"]
@@ -20,6 +20,10 @@
 [ext_resource type="Script" path="res://scripts/combat/spread_combat.gd" id="18"]
 [ext_resource type="Script" path="res://scripts/combat/melee_combat.gd" id="19"]
 [ext_resource type="Script" path="res://scripts/visuals/weapon_visual.gd" id="20"]
+[ext_resource type="Script" path="res://scripts/components/progression_component.gd" id="21"]
+[ext_resource type="Script" path="res://scripts/components/skills_component.gd" id="22"]
+[ext_resource type="Script" path="res://scripts/progression/progression_rewards.gd" id="23"]
+[ext_resource type="Script" path="res://scripts/progression/character_stats.gd" id="24"]
 [sub_resource type="SpriteFrames" id="EmptyFrames"]
 [sub_resource type="CircleShape2D" id="PlayerShape"]
 radius = 16.0
@@ -46,6 +50,14 @@ script = ExtResource("14")
 script = ExtResource("15")
 [node name="Equipment" type="Node" parent="."]
 script = ExtResource("16")
+[node name="ProgressionComponent" type="Node" parent="."]
+script = ExtResource("21")
+[node name="SkillsComponent" type="Node" parent="."]
+script = ExtResource("22")
+[node name="ProgressionRewards" type="Node" parent="."]
+script = ExtResource("23")
+[node name="Stats" type="Node" parent="."]
+script = ExtResource("24")
 [node name="WeaponCombat" type="Node" parent="."]
 script = ExtResource("17")
 [node name="SpreadCombat" type="Node2D" parent="."]

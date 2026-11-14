@@ -57,6 +57,23 @@
   No aplicar el pivote frontal a walk/death provisionales ni modificar la física.
 
 ## Convenciones y reglas
+- Fase 7 autoriza XP/niveles y cuatro habilidades por partida. ProgressionComponent
+  conserva nivel/XP actual/puntos; ProgressionRewards concede 30 por zombi y 20
+  por primer contenedor con suministros, deduplicando instance_id antes de notificar.
+  No añadir XP pasiva por tiempo sin definir tasa. El mapa ofrece 190 XP (nivel 2);
+  el máximo 10 queda probado para contenido futuro. No añadir respawn o misiones.
+  SkillsComponent guarda rangos 0..5 y consume puntos con bloqueo de reentrada.
+  CharacterStats calcula desde bases: Health.base_max_health + 5/rango (sin curar),
+  Player.speed * (1 + .03/rango), recarga * (1 - .04/rango), consumo * (1 - .05/rango).
+  No modificar recursos WeaponConfig ni intervalos base de supervivencia. Weapon
+  mantiene reload_duration_current; cambios de factor conservan progreso y Visual
+  usa esa duración real. Armas nuevas heredan el factor; machete queda excluido.
+  K abre PERSONAJE. InterfaceCoordinator gestiona exclusión con InventoryUI y es
+  la única conexión de ventanas al bloqueo de Player; no desbloquear al cerrar una
+  ventana si otra sigue visible. Death cierra ventanas y bloquea XP/compras. HUD
+  usa la línea Sector para NIV/XP sin agrandar panel. Se reutilizan sonidos de UI.
+  Snapshots son datos independientes, sin persistencia; Reintentar restaura todo.
+  Ver docs/progression_skills.md, progression_component_test.gd y phase_seven_test.gd.
 - Fase 6.1: HUD conserva sus rutas/datos y mide 256 × 172 en reposo; Text oculto,
   SECTOR 04 discreto, Reload solo visible mientras recarga. Inventario: MOCHILA.
   Main/Audio usa GameAudio, AudioCatalog/TechnicalAudio y pools SoundEmitter;

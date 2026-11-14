@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SkillDefinition" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/progression/skill_definition.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = &"vitality"
+display_name = "Vitalidad"
+description = "+5 HP máximos por rango. Aumenta el límite; no cura."
+max_rank = 5
+modifier = "max_health"
+per_rank = 5

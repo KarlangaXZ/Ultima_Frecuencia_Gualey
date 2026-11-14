@@ -11,6 +11,7 @@ var hunger: float = 100.0
 var thirst: float = 100.0
 var _penalty_time: float = 0.0
 var _active: bool = true
+var consumption_multiplier: float = 1.0
 @onready var health: HealthComponent = get_node(health_path)
 
 func _ready() -> void:
@@ -21,8 +22,8 @@ func _physics_process(delta: float) -> void:
 
 func advance(delta: float) -> void:
 	if not _active or health.is_dead() or delta <= 0: return
-	var hunger_period := maxf(0.1, hunger_seconds_per_point)
-	var thirst_period := maxf(0.1, thirst_seconds_per_point)
+	var hunger_period := maxf(0.1, hunger_seconds_per_point) / maxf(0.0001, consumption_multiplier)
+	var thirst_period := maxf(0.1, thirst_seconds_per_point) / maxf(0.0001, consumption_multiplier)
 	var until_empty := minf(hunger * hunger_period, thirst * thirst_period)
 	hunger = clampf(hunger - delta / hunger_period, 0, 100)
 	thirst = clampf(thirst - delta / thirst_period, 0, 100)

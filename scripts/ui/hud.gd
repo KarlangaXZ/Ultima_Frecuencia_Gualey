@@ -60,6 +60,10 @@ func update_needs(hunger: float, thirst: float) -> void:
 func update_interaction(text: String) -> void:
 	$InteractionPrompt.text = text
 
+func update_progression(level: int, xp: int, required: int) -> void:
+	$Panel/Margin/Content/Sector.text = "SECTOR 04 · NIV %d · %s" % [level,
+		"XP %d/%d" % [xp, required] if required > 0 else "MÁXIMO"]
+
 func show_message(message: String) -> void:
 	$Feedback.text = message
 	_message_remaining = 3.0

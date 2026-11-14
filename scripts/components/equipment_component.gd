@@ -26,6 +26,11 @@ func owns(id: StringName) -> bool:
 func get_weapon(id: StringName) -> Node:
 	return _weapons.get(id)
 
+func get_weapons() -> Array[Node]:
+	var result: Array[Node] = []
+	for weapon in _weapons.values(): result.append(weapon)
+	return result
+
 func can_obtain(config: WeaponConfig) -> bool:
 	return _enabled and config != null and config.id in ORDER and not owns(config.id)
 

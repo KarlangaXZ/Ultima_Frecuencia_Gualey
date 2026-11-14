@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" path="res://scenes/enemies/Zombie.tscn" id="5"]
 [ext_resource type="PackedScene" path="res://interfaces/InventoryUI.tscn" id="6"]
 [ext_resource type="Script" path="res://scripts/audio/game_audio.gd" id="7"]
+[ext_resource type="PackedScene" path="res://interfaces/CharacterUI.tscn" id="8"]
+[ext_resource type="Script" path="res://scripts/ui/interface_coordinator.gd" id="9"]
 
 [node name="Main" type="Node2D" unique_id=1506309]
 script = ExtResource("4")
@@ -29,5 +31,8 @@ position = Vector2(800, 1250)
 
 [node name="HUD" parent="." unique_id=943109359 instance=ExtResource("3")]
 [node name="InventoryUI" parent="." instance=ExtResource("6")]
+[node name="CharacterUI" parent="." instance=ExtResource("8")]
+[node name="InterfaceCoordinator" type="Node" parent="."]
+script = ExtResource("9")
 [node name="Audio" type="Node" parent="."]
 script = ExtResource("7")

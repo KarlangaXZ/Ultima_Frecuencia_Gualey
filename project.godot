@@ -21,6 +21,7 @@ window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 
 [input]
+character={"deadzone": 0.2, "events": [Object(InputEventKey,"physical_keycode":75)]}
 weapon_1={"deadzone": 0.2, "events": [Object(InputEventKey,"physical_keycode":49)]}
 weapon_2={"deadzone": 0.2, "events": [Object(InputEventKey,"physical_keycode":50)]}
 weapon_3={"deadzone": 0.2, "events": [Object(InputEventKey,"physical_keycode":51)]}
