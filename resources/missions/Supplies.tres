@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="MissionDefinition" format=3]
+[ext_resource type="Script" path="res://scripts/missions/mission_definition.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/missions/mission_objective.gd" id="2"]
+[sub_resource type="Resource" id="Objective0"]
+script = ExtResource("2")
+event_key = &"recovered_medkit"
+description = "Recuperar un botiquín del mundo."
+target = 1
+historical = true
+[sub_resource type="Resource" id="Objective1"]
+script = ExtResource("2")
+event_key = &"recovered_water"
+description = "Recuperar una botella de agua del mundo."
+target = 1
+historical = true
+[sub_resource type="Resource" id="Objective2"]
+script = ExtResource("2")
+event_key = &"kills"
+description = "Eliminar zombis."
+target = 2
+historical = true
+[resource]
+script = ExtResource("1")
+id = &"supplies"
+title = "Suministros para sobrevivir"
+description = "La voz pide que te prepares: recupera suministros del mundo y despeja la zona. Las recogidas y bajas anteriores también cuentan."
+prerequisites = Array[StringName]([&"signal"])
+objectives = Array[ExtResource("2")]([SubResource("Objective0"), SubResource("Objective1"), SubResource("Objective2")])
+reward_xp = 50
+sequential = false

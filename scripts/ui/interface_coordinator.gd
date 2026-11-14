@@ -3,16 +3,18 @@ extends Node
 @onready var main: Node = get_parent()
 
 func _ready() -> void:
-	main.get_node("InventoryUI").opened_changed.connect(_inventory_changed)
-	main.get_node("CharacterUI").opened_changed.connect(_character_changed)
+	for name in ["InventoryUI", "CharacterUI", "MissionUI", "RadioUI"]:
+		main.get_node(name).opened_changed.connect(_window_changed.bind(name))
 
-func _inventory_changed(active: bool) -> void:
-	if active: main.get_node("CharacterUI").close_window()
-	_refresh_block()
-
-func _character_changed(active: bool) -> void:
-	if active: main.get_node("InventoryUI").close_window()
+func _window_changed(active: bool, source: String) -> void:
+	if active:
+		for name in ["InventoryUI", "CharacterUI", "MissionUI", "RadioUI"]:
+			if name != source: main.get_node(name).close_window()
 	_refresh_block()
 
 func _refresh_block() -> void:
-	main.get_node("Player").set_controls_blocked(main.get_node("InventoryUI").window.visible or main.get_node("CharacterUI").window.visible)
+	var blocked := false
+	for name in ["InventoryUI", "CharacterUI", "MissionUI", "RadioUI"]:
+		blocked = blocked or main.get_node(name).window.visible
+	main.get_node("Player").set_controls_blocked(blocked)
+	main.get_node("ObjectiveHUD").visible = not blocked and not main.get_node("Player/HealthComponent").is_dead()

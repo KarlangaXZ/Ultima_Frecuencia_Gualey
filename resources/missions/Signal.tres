@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="MissionDefinition" format=3]
+[ext_resource type="Script" path="res://scripts/missions/mission_definition.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/missions/mission_objective.gd" id="2"]
+[sub_resource type="Resource" id="Objective0"]
+script = ExtResource("2")
+event_key = &"inspect_radio"
+description = "Inspeccionar la radio junto al colmado (noroeste)."
+target = 1
+historical = false
+[resource]
+script = ExtResource("1")
+id = &"signal"
+title = "La señal perdida"
+description = "Despiertas en una zona evacuada. Busca una radio abandonada junto al colmado, al norte del punto de inicio."
+prerequisites = Array[StringName]([])
+objectives = Array[ExtResource("2")]([SubResource("Objective0")])
+reward_xp = 25
+sequential = false

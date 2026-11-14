@@ -26,7 +26,7 @@ func _initialize() -> void:
 func run() -> void:
 	var directions := {"down": Vector2.DOWN, "up": Vector2.UP, "left": Vector2.LEFT, "right": Vector2.RIGHT}
 	for direction: String in directions:
-		change_scene_to_file("res://scenes/Main.tscn")
+		change_scene_to_file("res://tests/fixtures/LegacyMain.tscn")
 		await frames(5)
 		var main := current_scene
 		var player := main.get_node("Player")

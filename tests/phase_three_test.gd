@@ -30,7 +30,7 @@ func mouse_at_world(player: Node2D, world_position: Vector2) -> void:
 	Input.flush_buffered_events()
 
 func run() -> void:
-	change_scene_to_file("res://scenes/Main.tscn")
+	change_scene_to_file("res://tests/fixtures/LegacyMain.tscn")
 	await frames(5)
 	var main := current_scene
 	var player := main.get_node("Player") as CharacterBody2D

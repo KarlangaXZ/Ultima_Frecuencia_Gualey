@@ -22,6 +22,10 @@ func _ready() -> void:
 		ui.play_event(&"inventory_open" if active else &"inventory_close"))
 	actor.get_node("ProgressionComponent").leveled_up.connect(func(_level: int, _points: int): ui.play_event(&"pickup_supply"))
 	actor.get_node("SkillsComponent").skill_acquired.connect(func(_id: StringName, _rank: int): ui.play_event(&"item_use"))
+	main.get_node("MissionUI").opened_changed.connect(func(active: bool):
+		ui.play_event(&"inventory_open" if active else &"inventory_close"))
+	# Un aviso electrónico existente por mensaje; sin voz ni doble sonido al abrir.
+	main.get_node("Radio").message_changed.connect(func(_sender: String, _message: String, _index: int, _total: int): ui.play_event(&"ui_select"))
 	actor.get_node("Interaction").item_collected.connect(_on_collected)
 	actor.get_node("Interaction").action_rejected.connect(_on_rejected)
 	actor.get_node("ItemUse").item_used.connect(func(_item: ItemDefinition): ui.play_event(&"item_use"))

@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="RadioTransmission" format=3]
+[ext_resource type="Script" path="res://scripts/radio/radio_transmission.gd" id="1"]
+[resource]
+script = ExtResource("1")
+sender = "FRECUENCIA DE EMERGENCIA"
+messages = PackedStringArray("Aquí un superviviente. La radio vuelve a transmitir. ¿Me reciben?", "Te recibimos. Hay más señales al otro lado del sector. Mantén la frecuencia: esto apenas comienza.\n\nCAPÍTULO COMPLETADO · Puedes seguir explorando.")

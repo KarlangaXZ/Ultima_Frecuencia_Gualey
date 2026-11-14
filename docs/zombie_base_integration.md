@@ -98,3 +98,10 @@ godot --path . --fixed-fps 60 --script res://tests/zombie_visual_test.gd -- --ca
 
 Pendiente: sesión manual, continuidad de ciclos y diagonales a velocidad real,
 valoración artística y panel gráfico del depurador. Sin commits automáticos.
+
+## Actualización de fase 8.1
+
+La población actual es de hasta seis vivos y 18 apariciones totales. Se validó
+movilidad con IA activa sin editar zombie.gd ni sus parámetros. El presupuesto
+completo del capítulo ofrece 790 XP; los resultados anteriores conservan su
+fixture histórica de tres enemigos. [Diagnóstico y pruebas actuales](zombie_population.md).

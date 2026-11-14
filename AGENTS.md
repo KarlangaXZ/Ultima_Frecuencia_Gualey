@@ -57,11 +57,45 @@
   No aplicar el pivote frontal a walk/death provisionales ni modificar la física.
 
 ## Convenciones y reglas
+- Fase 8.1 autoriza población limitada: Main/Population (zombie_population.gd),
+  6 vivos, presupuesto 18 incluyendo los tres originales, reposición 1/10 s.
+  Único gestor: valida malla/ruta, círculo World/Player/Zombie, distancia 320,
+  cámara +96 px, separación 96 de vivos y misión. Posponer si no hay punto seguro.
+  Reservar presupuesto y registro antes de notificar spawned. Game Over detiene;
+  Reintentar restaura seis y presupuesto. Cadáveres conservados: máximo 18 nodos.
+  Main._register_zombie conecta objetivo/bajas/XP, emite zombie_added; Chapter
+  observa también nuevos enemigos después del contador existente. No duplicar XP.
+  IA original intacta: detección 250, inicio más cercano 400 px, Idle esperado.
+  No confundir fixtures congeladas con partida normal. No ampliar detección ni
+  reescribir IA para justificar movimiento. Movilidad real usa Main de producción.
+  LegacyMain.tscn hereda Main y configura 3/3 solo para fixtures históricas;
+  no detectar tests desde scripts de juego ni desactivar IA de producción.
+  Presupuesto completo: 790 XP, nivel 5, cuatro puntos. Ver docs/zombie_population.md
+  y tests/zombie_mobility_test.gd / zombie_population_test.gd.
+- Fase 8 autoriza tres misiones y radio textual, sin nuevos mapas/armas/zombis.
+  MissionDefinition/MissionObjective son configuración inmutable en resources/missions/;
+  MissionTracker conserva estados/progreso/recibos por instancia. MissionRewards
+  reserva IDs antes de add_xp (25/50/75), sin cambiar los 30/20 XP anteriores.
+  ChapterController adapta La señal perdida: observa Main.kills después de su
+  actualización, y supply_recovered(item, receipt) solo tras recogida/transferencia
+  válida. No contar inventario inicial, apertura sola, fallo o consumo como recogida.
+  Recibos por pickup o compartimento finito; no reponerlos durante la partida.
+  Recogidas/bajas anteriores cuentan; generador/transmisión exigen estado y orden.
+  World/ChapterPoints contiene Areas transitables, capa 8/máscara 0, fuera de
+  Obstacles. Reutilizar alcance 56 y rayo World de Player/Interaction, sin otro
+  sistema de entrada. No cambiar sólidos, malla ni apariciones para esta historia.
+  J abre MISIONES; E avanza RADIO. InterfaceCoordinator es la única fuente del
+  bloqueo y exclusión de las cuatro ventanas. Mundo activo y soltar shoot al cerrar.
+  ObjectiveHUD independiente; HUD principal mantiene 256×172. RadioController usa
+  RadioTransmission configurable y un aviso ui_select por mensaje, sin voces nuevas.
+  Muerte bloquea progreso/radio y cierra ventanas; Reintentar restaura todo.
+  Completar no termina la partida. Mapa + capítulo: 340 XP, nivel 3, dos puntos.
+  Ver docs/missions_radio.md y mission_tracker_test.gd / phase_eight_test.gd.
 - Fase 7 autoriza XP/niveles y cuatro habilidades por partida. ProgressionComponent
   conserva nivel/XP actual/puntos; ProgressionRewards concede 30 por zombi y 20
   por primer contenedor con suministros, deduplicando instance_id antes de notificar.
   No añadir XP pasiva por tiempo sin definir tasa. El mapa ofrece 190 XP (nivel 2);
-  el máximo 10 queda probado para contenido futuro. No añadir respawn o misiones.
+  el máximo 10 queda probado para contenido futuro. Fase 8 autoriza misiones y Fase 8.1 reposición finita.
   SkillsComponent guarda rangos 0..5 y consume puntos con bloqueo de reentrada.
   CharacterStats calcula desde bases: Health.base_max_health + 5/rango (sin curar),
   Player.speed * (1 + .03/rango), recarga * (1 - .04/rango), consumo * (1 - .05/rango).

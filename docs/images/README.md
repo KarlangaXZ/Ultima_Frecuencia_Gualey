@@ -6,6 +6,9 @@ conceptuales para representar funcionalidades.
 
 | Archivo | Fuente | Fecha y preparación |
 | --- | --- | --- |
+| zombie-pursuit.png | test-results/population/03-simultaneous.png | 2026-11-14, tres perseguidores con IA activa dentro de población de seis |
+| missions.png | test-results/phase-eight/02-missions.png | 2026-11-14, diario con misión 3 activa e historial de las dos primeras |
+| radio.png | test-results/phase-eight/01-radio.png | 2026-11-14, primer mensaje textual, sin doblaje |
 | gameplay.png | test-results/phase-four/01-overview.png | 2026-11-14, fase 7: zona urbana y HUD con NIV/XP |
 | combat.png | test-results/phase-four/02-combat.png | 2026-11-14, fase 7: pistola y HUD actual |
 | game-over.png | test-results/phase-four/05-game-over.png | 2026-11-14, fase 7: panel de muerte real |
@@ -19,7 +22,7 @@ conceptuales para representar funcionalidades.
 | player-animations.png | PNG down de idle/shoot/reload/death y walk_left V2 | 2026-11-12, composición en orden, escala nativa |
 | zombie-base.png | PNG de Idle 00, Walk 02, Attack 03 y Death 05 | Fase 4.4, down/up/left/right del paquete técnico |
 
-Las diez capturas son PNG 1280 × 720 optimizados sin pérdida. La lámina del
+Las trece capturas son PNG 1280 × 720 optimizados sin pérdida. La lámina del
 protagonista mide 1024 × 800; la del zombi, 512 × 624. Las fuentes permanecen en
 assets/ y los resultados de pruebas en test-results/ (ignorado).
 
@@ -49,3 +52,13 @@ una sesión manual. La captura de nivel 2 usa tres bajas y dos contenedores; no
 representa niveles altos alcanzables con el contenido actual. El resto de la
 galería conserva las capturas históricas de sus fases.
 [Recompensas, límites y pruebas](../progression_skills.md).
+
+Fase 8 añade diario y radio desde el recorrido automatizado del capítulo:
+126 comprobaciones gráficas, cuatro PNG en resultados, dos seleccionados aquí.
+El jugador camina mediante entrada y física reales; enemigos inmóviles en esta
+fixture para aislar objetivos. La galería previa conserva sus capturas históricas;
+el indicador actual de misión se comprueba en 00-objective.png, solo en resultados.
+[Recorrido, recompensas y límites de la validación](../missions_radio.md).
+
+Fase 8.1 añade persecución real, sin congelar enemigos: posiciones preparadas
+en Main, física, navegación y animaciones activas. [Movilidad, población y límites](../zombie_population.md).

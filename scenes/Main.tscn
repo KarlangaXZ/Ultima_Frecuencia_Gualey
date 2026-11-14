@@ -10,6 +10,20 @@
 [ext_resource type="PackedScene" path="res://interfaces/CharacterUI.tscn" id="8"]
 [ext_resource type="Script" path="res://scripts/ui/interface_coordinator.gd" id="9"]
 
+[ext_resource type="Script" path="res://scripts/missions/mission_tracker.gd" id="Tracker"]
+[ext_resource type="Script" path="res://scripts/missions/mission_definition.gd" id="Definition"]
+[ext_resource type="Resource" path="res://resources/missions/Signal.tres" id="Signal"]
+[ext_resource type="Resource" path="res://resources/missions/Supplies.tres" id="Supplies"]
+[ext_resource type="Resource" path="res://resources/missions/Broadcast.tres" id="Broadcast"]
+[ext_resource type="Script" path="res://scripts/missions/mission_rewards.gd" id="Rewards"]
+[ext_resource type="Script" path="res://scripts/missions/chapter_controller.gd" id="Chapter"]
+[ext_resource type="Script" path="res://scripts/radio/radio_controller.gd" id="Radio"]
+[ext_resource type="Script" path="res://scripts/ui/mission_ui.gd" id="Journal"]
+[ext_resource type="Script" path="res://scripts/ui/radio_ui.gd" id="RadioUI"]
+[ext_resource type="Script" path="res://scripts/ui/objective_hud.gd" id="ObjectiveHUD"]
+
+[ext_resource type="Script" path="res://scripts/enemies/zombie_population.gd" id="Population"]
+
 [node name="Main" type="Node2D" unique_id=1506309]
 script = ExtResource("4")
 
@@ -32,7 +46,25 @@ position = Vector2(800, 1250)
 [node name="HUD" parent="." unique_id=943109359 instance=ExtResource("3")]
 [node name="InventoryUI" parent="." instance=ExtResource("6")]
 [node name="CharacterUI" parent="." instance=ExtResource("8")]
+[node name="Missions" type="Node" parent="."]
+script = ExtResource("Tracker")
+definitions = Array[ExtResource("Definition")]([ExtResource("Signal"), ExtResource("Supplies"), ExtResource("Broadcast")])
+[node name="Rewards" type="Node" parent="Missions"]
+script = ExtResource("Rewards")
+[node name="Chapter" type="Node" parent="Missions"]
+script = ExtResource("Chapter")
+[node name="Radio" type="Node" parent="."]
+script = ExtResource("Radio")
+[node name="MissionUI" type="CanvasLayer" parent="."]
+script = ExtResource("Journal")
+[node name="RadioUI" type="CanvasLayer" parent="."]
+script = ExtResource("RadioUI")
+[node name="ObjectiveHUD" type="CanvasLayer" parent="."]
+script = ExtResource("ObjectiveHUD")
 [node name="InterfaceCoordinator" type="Node" parent="."]
 script = ExtResource("9")
 [node name="Audio" type="Node" parent="."]
 script = ExtResource("7")
+
+[node name="Population" type="Node" parent="."]
+script = ExtResource("Population")

@@ -1,4 +1,5 @@
 extends Node2D
+signal zombie_added(zombie: CharacterBody2D)
 ## Coordina señales entre personajes y presentación.
 var kills: int = 0
 var survival_time: float = 0.0
@@ -22,11 +23,18 @@ func _ready() -> void:
 	$HUD.update_reload(false)
 	$HUD.update_stats(kills, survival_time)
 	for zombie in $Zombies.get_children():
-		zombie.set_target($Player)
-		zombie.eliminated.connect(_on_eliminated)
-		zombie.eliminated.connect($Player/ProgressionRewards.zombie_eliminated.bind(zombie))
+		_register_zombie(zombie)
 	_bind_supplies()
 	_bind_progression()
+	$Missions/Chapter.bind()
+	$Population.spawned.connect(_register_zombie)
+	$Population.start()
+
+func _register_zombie(zombie: CharacterBody2D) -> void:
+	zombie.set_target($Player)
+	zombie.eliminated.connect(_on_eliminated)
+	zombie.eliminated.connect($Player/ProgressionRewards.zombie_eliminated.bind(zombie))
+	zombie_added.emit(zombie)
 
 func _bind_supplies() -> void:
 	var ui := $InventoryUI

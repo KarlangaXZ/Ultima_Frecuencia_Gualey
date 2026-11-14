@@ -6,7 +6,7 @@ Supervivencia zombi 2D con vista cenital, ambientada en un barrio urbano devasta
 
 **Estado:** Desarrollo activo · **Plataforma inicial:** Windows
 
-Un prototipo jugable con movimiento, navegación de enemigos, combate, salud, recarga, inventario, suministros, hambre, sed, progresión de personaje y reinicio. La integración visual funciona; el arte y varias animaciones todavía son provisionales. No hay una portada oficial incluida: esta presentación utiliza capturas reales del juego.
+Un prototipo jugable con movimiento, navegación de enemigos, combate, salud, recarga, inventario, suministros, hambre, sed, progresión de personaje, misiones encadenadas, radio textual y reinicio. La integración visual funciona; el arte y varias animaciones todavía son provisionales. No hay una portada oficial incluida: esta presentación utiliza capturas reales del juego.
 
 ## Galería del juego
 
@@ -54,6 +54,41 @@ Los nombres de varios PNG históricos no coinciden con la orientación que muest
 
 ## Progreso del desarrollo
 
+Fase 8.1: **población finita de zombis e IA comprobada en ventana**. Se mantienen
+hasta **6 vivos**, con **18 apariciones totales** por capítulo y una reposición
+cada 10 segundos cuando quedan vacantes. Los nuevos enemigos aparecen fuera de
+cámara, en puntos transitables, separados del jugador y de los puntos de misión.
+
+La IA anterior funcionaba: al inicio el enemigo más cercano está a 400 px, fuera
+de sus 250 px de detección. Las fixtures de misiones inmovilizaban enemigos para
+aislación; el juego normal no lo hace. Se verificaron persecución simultánea,
+ruta alrededor del colmado, Walk y ataques reales sin reescribir la IA.
+
+![Tres zombis persiguiendo con IA activa](docs/images/zombie-pursuit.png)
+
+Con toda la población, cinco contenedores y las misiones hay **790 XP posibles**:
+nivel 5, 90/300 XP y cuatro puntos. Se conservan los premios de 30 XP por baja y
+los demás valores. [Diagnóstico, límites y pruebas](docs/zombie_population.md).
+
+Fase 8: **primer capítulo jugable, La señal perdida**. Una radio junto al
+colmado recibe una petición de ayuda: recupera un botiquín y agua, elimina dos
+zombis, activa el generador de la calle este y vuelve a transmitir.
+
+**J** abre MISIONES con objetivos, progreso e historial. **E** inspecciona los
+puntos cercanos y avanza la radio; Esc o CERRAR permiten volver al juego. Las
+ventanas se coordinan con MOCHILA y PERSONAJE, sin pausar el mundo.
+
+![Diario real de misiones del primer capítulo](docs/images/missions.png)
+
+![Primera transmisión textual recibida en la radio](docs/images/radio.png)
+
+Las misiones conceden **25 + 50 + 75 XP**, una sola vez. Las recogidas reales y
+bajas anteriores cuentan para preparar suministros; el inventario inicial no.
+En la población original de fase 8, el capítulo añade 150 XP a los 190 existentes: **340 XP, nivel 3 y dos
+puntos de habilidad**. Al terminar puedes seguir explorando y combatiendo.
+No hay segundo capítulo, nuevo mapa, voces grabadas ni guardado persistente.
+[Arquitectura, recorrido y pruebas](docs/missions_radio.md).
+
 Fase 7: **experiencia, niveles y cuatro habilidades implementados**. Las bajas
 otorgan 30 XP y la primera apertura de cada contenedor con suministros, 20 XP.
 Se empieza en nivel 1, sin puntos; hacen falta 100 XP para nivel 2 y 50 más por
@@ -68,7 +103,7 @@ ni cambios de recursos compartidos. No hay redistribución ni guardado.
 
 El mapa actual ofrece **190 XP**: alcanza nivel 2 y un punto. Los niveles
 superiores están preparados para contenido futuro; no se añade XP pasiva por
-tiempo sin una tasa definida, ni respawn o misiones. [Arquitectura y validación](docs/progression_skills.md).
+tiempo sin una tasa definida ni respawn. La fase 8 añade las misiones y XP descritas arriba. [Arquitectura y validación](docs/progression_skills.md).
 
 Fase 6.1: **HUD compacto, mochila renombrada y audio base integrado**. El panel
 persistente ocupa aproximadamente un 63 % menos de área y conserva todas las
@@ -135,6 +170,8 @@ direcciones por estado. [Resultados y limitaciones](docs/zombie_base_integration
 | 6 | Arsenal, equipamiento y cambio de armas | Implementada y validada automáticamente |
 | 6.1 | HUD, textos y audio base | Integrada técnicamente; audio provisional |
 | 7 | Experiencia, niveles y habilidades | Implementada y validada automáticamente |
+| 8 | Capítulo 1, misiones y transmisiones de radio | Implementada y validada automáticamente; presentación provisional |
+| 8.1 | Movilidad comprobada y población limitada | 6 vivos / 18 totales; balance manual pendiente |
 
 “Completada técnicamente” significa que la integración y sus pruebas funcionan; no implica arte final ni aprobación artística de todos los ciclos. La fase 5 funciona sin guardado persistente y mantiene revisiones manuales pendientes.
 
@@ -148,20 +185,22 @@ direcciones por estado. [Resultados y limitaciones](docs/zombie_base_integration
 | R | Recargar arma activa |
 | 1 / 2 / 3 / 4 | Machete / pistola / revólver / escopeta, si se poseen |
 | Rueda del mouse | Recorrer armas disponibles; bloqueada con la mochila abierta |
-| E | Recoger o abrir contenedor a un máximo de 56 px, sin paredes entre ambos |
+| E | Recoger, abrir contenedor o activar radio/generador a 56 px sin paredes; avanzar transmisión |
 | Tab | Abrir/cerrar inventario |
 | K | Abrir/cerrar PERSONAJE; sustituye la mochila si está abierta |
-| Esc | Cerrar la ventana activa |
+| J | Abrir/cerrar MISIONES; sustituye la ventana anterior |
+| Esc | Cerrar la ventana activa o la transmisión |
 
 Al morir se bloquean las acciones y aparece **Reintentar**. El botón reinicia salud, munición, posiciones, zombis, bajas y tiempo.
 
 ## Funciones actuales
 
+- Primer capítulo con tres misiones, historial, radio textual y 150 XP de recompensas únicas; completar permite seguir jugando.
 - Progresión por partida: recompensas únicas, niveles hasta 10 y cuatro habilidades con estadísticas efectivas; Reintentar restaura sus bases.
 
 - Escenario urbano de 2400 × 1600, 28 obstáculos y límites físicos; cámara con seguimiento.
 - Movimiento normalizado: la diagonal no aumenta la velocidad.
-- Tres zombis con estados IDLE, CHASE, ATTACK y DEAD, y rutas alrededor de las cajas.
+- Hasta seis zombis vivos con estados IDLE, CHASE, ATTACK y DEAD; presupuesto de 18 por capítulo, rutas alrededor de obstáculos y reposición limitada.
 - Salud compartida por componentes: 100 HP para el jugador, 50 HP para cada zombi.
 - Pistola con cargador de 12, reserva inicial de 48, daño de 25 HP y alcance de 600 px.
 - Machete frontal, revólver y escopeta con ocho rayos por descarga; configuración compartida y estado independiente por arma.
@@ -206,12 +245,13 @@ scenes/
   world/                   Escenario y obstáculos
 scripts/
   player/  enemies/        Comportamientos de personajes
-  components/              Salud reutilizable
+  components/              Salud, inventario, supervivencia y progresión
+  missions/  radio/        Objetivos, seguimiento, recompensas y transmisiones
   inventory/               Definiciones y uso de suministros
   weapons/  combat/        Munición, recarga e impactos
   visuals/  ui/            Presentación, animaciones y HUD
   world/  main.gd          Navegación, suelo y coordinación
-interfaces/                HUD y Game Over existentes
+interfaces/                HUD, Game Over, MOCHILA y PERSONAJE; diario/radio compuestos por sus vistas
 assets/
   characters/              Recursos del protagonista y zombis
   environment/             Suelo, props y decals
@@ -226,6 +266,17 @@ tools/                     Generador opcional de SVG provisionales
 Se versionan los metadatos de identidad/importación necesarios (`.uid`, `.import`). Las cachés `.godot/`, herramientas locales y resultados `test-results/` están excluidos de Git. Las imágenes seleccionadas para esta página se conservan en `docs/images/`.
 
 ## Pruebas automatizadas
+
+Fase 8.1: **1.161 comprobaciones automáticas**, cero fallos (1.054 previas +
+22 de movilidad con IA activa + 85 de población). En ventana aprobaron **25**
+de movilidad con capturas y **85** de población/capítulo con IA activa. Las
+fixtures históricas heredan Main con tres enemigos; las pruebas nuevas usan la
+población normal. [Evidencia y rendimiento](docs/zombie_population.md).
+
+La fase 8 conserva las 905 comprobaciones anteriores y añade 27 de seguimiento
+de misiones y 122 del capítulo: **1.054 comprobaciones automáticas, cero fallos**.
+Su recorrido gráfico aprueba **126**, completa las tres misiones y produce cuatro
+capturas reales. [Alcance, acciones simuladas y pendientes](docs/missions_radio.md).
 
 Desde la raíz del repositorio:
 
@@ -248,6 +299,10 @@ godot --headless --path . --fixed-fps 60 --script res://tests/phase_six_test.gd
 godot --headless --path . --fixed-fps 60 --script res://tests/hud_audio_test.gd
 godot --headless --path . --fixed-fps 60 --script res://tests/progression_component_test.gd
 godot --headless --path . --fixed-fps 60 --script res://tests/phase_seven_test.gd
+godot --headless --path . --fixed-fps 60 --script res://tests/mission_tracker_test.gd
+godot --headless --path . --fixed-fps 60 --script res://tests/phase_eight_test.gd
+godot --headless --path . --fixed-fps 60 --script res://tests/zombie_mobility_test.gd
+godot --headless --path . --fixed-fps 60 --script res://tests/zombie_population_test.gd
 ```
 
 La validación de fase 7 aprobó **905 comprobaciones**, con cero fallos: las 759 anteriores, 58 de componente y 88 de integración RPG. Se comprueban premios únicos, multinivel, límites, compras, modificadores, recargas/animaciones, UI y reinicio, conservando las regresiones previas. [Informe de progresión](docs/progression_skills.md), [HUD/audio](docs/hud_audio_polish.md), [fase 6](docs/arsenal_equipment.md), [fase 5](docs/inventory_survival.md), [zona urbana](docs/urban_world_integration.md), [zombi base](docs/zombie_base_integration.md) y [Shoot](docs/shoot_final_integration.md).
@@ -264,6 +319,8 @@ godot --path . --fixed-fps 60 --script res://tests/phase_five_test.gd -- --captu
 godot --path . --fixed-fps 60 --script res://tests/phase_six_test.gd -- --capture
 godot --path . --fixed-fps 60 --script res://tests/hud_audio_test.gd -- --capture
 godot --path . --fixed-fps 60 --script res://tests/phase_seven_test.gd -- --capture
+godot --path . --fixed-fps 60 --script res://tests/phase_eight_test.gd -- --capture
+godot --path . --fixed-fps 60 --script res://tests/zombie_mobility_test.gd -- --capture
 ```
 
 Los resultados se guardan en `test-results/`. En fase 6.1 aprobaron las pruebas gráficas de HUD/audio (**99 comprobaciones**, dos PNG y mezcla WAV), la general (**39**), inventario (**80**) y arsenal (**107**). La galería muestra el HUD compacto y el título nuevo de mochila; el plano conserva su captura de fase 4.5. Las pruebas automáticas no sustituyen escucha manual, una sesión prolongada ni la inspección del panel gráfico del depurador.
@@ -275,10 +332,10 @@ reales del motor; no se declara validada una sesión manual prolongada.
 
 ## Limitaciones y próximos pasos
 
-- Fabricación, misiones, guardado persistente, multiplayer, oleadas y aparición infinita no están implementados.
-- La progresión dura solo la partida y el contenido finito actual ofrece un punto de habilidad; ampliar contenido/balance queda pendiente.
+- Fabricación, segundo capítulo, guardado persistente, multiplayer, oleadas y aparición infinita no están implementados.
+- La progresión dura solo la partida y el contenido finito con el capítulo y su población completa ofrece cuatro puntos de habilidad; ampliar contenido/balance queda pendiente.
 - El inventario y los contenedores duran solo la partida; Reintentar restaura las existencias iniciales. La mochila no pausa a los zombis.
-- El escenario conserva tres zombis iniciales; no hay reposición automática.
+- La población mantiene hasta seis vivos y termina al agotar 18 apariciones. La dificultad con reposiciones aún requiere balance manual.
 - Los personajes colisionan con el mundo, pero no se bloquean físicamente entre sí.
 - El arte es reemplazable y todavía provisional en varios módulos; falta revisar fluidez, halos, posturas y coherencia de perspectiva.
 - El audio es síntesis técnica provisional; falta revisión auditiva de mezcla/volumen y sonidos realistas finales. Ganancias y pausa ambiental son ajustables en la capa de audio.
@@ -299,6 +356,8 @@ reales del motor; no se declara validada una sesión manual prolongada.
 - [Arsenal y equipamiento: configuración, municiones y validación](docs/arsenal_equipment.md).
 - [HUD compacto y audio: eventos, recursos y validación](docs/hud_audio_polish.md).
 - [Progresión y habilidades: recompensas, modificadores, UI y pruebas](docs/progression_skills.md).
+- [Misiones y radio: capítulo, recompensas, recorrido y pruebas](docs/missions_radio.md).
+- [Movilidad real y población de zombis: diagnóstico, límites, XP y pruebas](docs/zombie_population.md).
 - [Historial técnico completo de las fases anteriores](docs/development_history.md).
 
 El historial conserva los detalles, problemas resueltos y resultados anteriores. Sus avisos de recursos pendientes describen el estado de cada momento; el estado vigente se resume en esta página y en los informes finales.
