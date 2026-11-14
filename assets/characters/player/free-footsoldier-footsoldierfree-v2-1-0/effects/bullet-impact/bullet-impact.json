@@ -1,0 +1,84 @@
+{
+  "name": "Bullet Impact",
+  "frame_size": [
+    311,
+    304
+  ],
+  "animations": {
+    "expiry": {
+      "sheet": "sheets/expiry.png",
+      "frames": 3,
+      "rows": 1,
+      "fps": 12,
+      "loop": false,
+      "pivot": [
+        155.5,
+        152.0
+      ],
+      "rotate_to_heading": false
+    },
+    "impact": {
+      "sheet": "sheets/impact.png",
+      "frames": 6,
+      "rows": 1,
+      "fps": 18,
+      "loop": false,
+      "pivot": [
+        155.5,
+        152.0
+      ],
+      "rotate_to_heading": false
+    },
+    "release": {
+      "sheet": "sheets/release.png",
+      "frames": 6,
+      "rows": 1,
+      "fps": 18,
+      "loop": false,
+      "pivot": [
+        155.5,
+        152.0
+      ],
+      "rotate_to_heading": true
+    },
+    "expiry_smooth": {
+      "sheet": "sheets/expiry_smooth.png",
+      "frames": 6,
+      "rows": 1,
+      "fps": 24,
+      "loop": false,
+      "pivot": [
+        155.5,
+        152.0
+      ],
+      "rotate_to_heading": false,
+      "smooth_of": "expiry"
+    },
+    "impact_smooth": {
+      "sheet": "sheets/impact_smooth.png",
+      "frames": 12,
+      "rows": 1,
+      "fps": 36,
+      "loop": false,
+      "pivot": [
+        155.5,
+        152.0
+      ],
+      "rotate_to_heading": false,
+      "smooth_of": "impact"
+    },
+    "release_smooth": {
+      "sheet": "sheets/release_smooth.png",
+      "frames": 12,
+      "rows": 1,
+      "fps": 36,
+      "loop": false,
+      "pivot": [
+        155.5,
+        152.0
+      ],
+      "rotate_to_heading": true,
+      "smooth_of": "release"
+    }
+  }
+}

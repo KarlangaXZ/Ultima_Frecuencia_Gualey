@@ -1,0 +1,70 @@
+[gd_resource type="SpriteFrames" load_steps=19 format=3]
+
+[ext_resource type="Texture2D" path="../sheets/release.png" id="release"]
+[ext_resource type="Texture2D" path="../sheets/impact.png" id="impact"]
+[ext_resource type="Texture2D" path="../sheets/expiry.png" id="expiry"]
+
+[sub_resource type="AtlasTexture" id="frame_1"]
+atlas = ExtResource("release")
+region = Rect2(0, 0, 311, 304)
+
+[sub_resource type="AtlasTexture" id="frame_2"]
+atlas = ExtResource("release")
+region = Rect2(311, 0, 311, 304)
+
+[sub_resource type="AtlasTexture" id="frame_3"]
+atlas = ExtResource("release")
+region = Rect2(622, 0, 311, 304)
+
+[sub_resource type="AtlasTexture" id="frame_4"]
+atlas = ExtResource("release")
+region = Rect2(933, 0, 311, 304)
+
+[sub_resource type="AtlasTexture" id="frame_5"]
+atlas = ExtResource("release")
+region = Rect2(1244, 0, 311, 304)
+
+[sub_resource type="AtlasTexture" id="frame_6"]
+atlas = ExtResource("release")
+region = Rect2(1555, 0, 311, 304)
+
+[sub_resource type="AtlasTexture" id="frame_7"]
+atlas = ExtResource("impact")
+region = Rect2(0, 0, 311, 304)
+
+[sub_resource type="AtlasTexture" id="frame_8"]
+atlas = ExtResource("impact")
+region = Rect2(311, 0, 311, 304)
+
+[sub_resource type="AtlasTexture" id="frame_9"]
+atlas = ExtResource("impact")
+region = Rect2(622, 0, 311, 304)
+
+[sub_resource type="AtlasTexture" id="frame_10"]
+atlas = ExtResource("impact")
+region = Rect2(933, 0, 311, 304)
+
+[sub_resource type="AtlasTexture" id="frame_11"]
+atlas = ExtResource("impact")
+region = Rect2(1244, 0, 311, 304)
+
+[sub_resource type="AtlasTexture" id="frame_12"]
+atlas = ExtResource("impact")
+region = Rect2(1555, 0, 311, 304)
+
+[sub_resource type="AtlasTexture" id="frame_13"]
+atlas = ExtResource("expiry")
+region = Rect2(0, 0, 311, 304)
+
+[sub_resource type="AtlasTexture" id="frame_14"]
+atlas = ExtResource("expiry")
+region = Rect2(311, 0, 311, 304)
+
+[sub_resource type="AtlasTexture" id="frame_15"]
+atlas = ExtResource("expiry")
+region = Rect2(622, 0, 311, 304)
+
+[resource]
+animations = [{"name": &"release_event", "speed": 18, "loop": false, "frames": [{"duration": 1.0, "texture": SubResource("frame_1")},{"duration": 1.0, "texture": SubResource("frame_2")},{"duration": 1.0, "texture": SubResource("frame_3")},{"duration": 1.0, "texture": SubResource("frame_4")},{"duration": 1.0, "texture": SubResource("frame_5")},{"duration": 1.0, "texture": SubResource("frame_6")}]},
+{"name": &"impact_event", "speed": 18, "loop": false, "frames": [{"duration": 1.0, "texture": SubResource("frame_7")},{"duration": 1.0, "texture": SubResource("frame_8")},{"duration": 1.0, "texture": SubResource("frame_9")},{"duration": 1.0, "texture": SubResource("frame_10")},{"duration": 1.0, "texture": SubResource("frame_11")},{"duration": 1.0, "texture": SubResource("frame_12")}]},
+{"name": &"expiry_event", "speed": 12, "loop": false, "frames": [{"duration": 1.0, "texture": SubResource("frame_13")},{"duration": 1.0, "texture": SubResource("frame_14")},{"duration": 1.0, "texture": SubResource("frame_15")}]}]

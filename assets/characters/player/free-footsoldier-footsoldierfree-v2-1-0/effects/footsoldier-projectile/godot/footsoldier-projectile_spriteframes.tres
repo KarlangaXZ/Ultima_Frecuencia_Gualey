@@ -1,0 +1,205 @@
+[gd_resource type="SpriteFrames" load_steps=50 format=3]
+
+[ext_resource type="Texture2D" path="../sheets/flight.png" id="flight"]
+
+[sub_resource type="AtlasTexture" id="frame_1"]
+atlas = ExtResource("flight")
+region = Rect2(0, 0, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_2"]
+atlas = ExtResource("flight")
+region = Rect2(181, 0, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_3"]
+atlas = ExtResource("flight")
+region = Rect2(362, 0, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_4"]
+atlas = ExtResource("flight")
+region = Rect2(543, 0, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_5"]
+atlas = ExtResource("flight")
+region = Rect2(724, 0, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_6"]
+atlas = ExtResource("flight")
+region = Rect2(905, 0, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_7"]
+atlas = ExtResource("flight")
+region = Rect2(0, 150, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_8"]
+atlas = ExtResource("flight")
+region = Rect2(181, 150, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_9"]
+atlas = ExtResource("flight")
+region = Rect2(362, 150, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_10"]
+atlas = ExtResource("flight")
+region = Rect2(543, 150, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_11"]
+atlas = ExtResource("flight")
+region = Rect2(724, 150, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_12"]
+atlas = ExtResource("flight")
+region = Rect2(905, 150, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_13"]
+atlas = ExtResource("flight")
+region = Rect2(0, 300, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_14"]
+atlas = ExtResource("flight")
+region = Rect2(181, 300, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_15"]
+atlas = ExtResource("flight")
+region = Rect2(362, 300, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_16"]
+atlas = ExtResource("flight")
+region = Rect2(543, 300, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_17"]
+atlas = ExtResource("flight")
+region = Rect2(724, 300, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_18"]
+atlas = ExtResource("flight")
+region = Rect2(905, 300, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_19"]
+atlas = ExtResource("flight")
+region = Rect2(0, 450, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_20"]
+atlas = ExtResource("flight")
+region = Rect2(181, 450, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_21"]
+atlas = ExtResource("flight")
+region = Rect2(362, 450, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_22"]
+atlas = ExtResource("flight")
+region = Rect2(543, 450, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_23"]
+atlas = ExtResource("flight")
+region = Rect2(724, 450, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_24"]
+atlas = ExtResource("flight")
+region = Rect2(905, 450, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_25"]
+atlas = ExtResource("flight")
+region = Rect2(0, 600, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_26"]
+atlas = ExtResource("flight")
+region = Rect2(181, 600, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_27"]
+atlas = ExtResource("flight")
+region = Rect2(362, 600, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_28"]
+atlas = ExtResource("flight")
+region = Rect2(543, 600, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_29"]
+atlas = ExtResource("flight")
+region = Rect2(724, 600, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_30"]
+atlas = ExtResource("flight")
+region = Rect2(905, 600, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_31"]
+atlas = ExtResource("flight")
+region = Rect2(0, 750, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_32"]
+atlas = ExtResource("flight")
+region = Rect2(181, 750, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_33"]
+atlas = ExtResource("flight")
+region = Rect2(362, 750, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_34"]
+atlas = ExtResource("flight")
+region = Rect2(543, 750, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_35"]
+atlas = ExtResource("flight")
+region = Rect2(724, 750, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_36"]
+atlas = ExtResource("flight")
+region = Rect2(905, 750, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_37"]
+atlas = ExtResource("flight")
+region = Rect2(0, 900, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_38"]
+atlas = ExtResource("flight")
+region = Rect2(181, 900, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_39"]
+atlas = ExtResource("flight")
+region = Rect2(362, 900, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_40"]
+atlas = ExtResource("flight")
+region = Rect2(543, 900, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_41"]
+atlas = ExtResource("flight")
+region = Rect2(724, 900, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_42"]
+atlas = ExtResource("flight")
+region = Rect2(905, 900, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_43"]
+atlas = ExtResource("flight")
+region = Rect2(0, 1050, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_44"]
+atlas = ExtResource("flight")
+region = Rect2(181, 1050, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_45"]
+atlas = ExtResource("flight")
+region = Rect2(362, 1050, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_46"]
+atlas = ExtResource("flight")
+region = Rect2(543, 1050, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_47"]
+atlas = ExtResource("flight")
+region = Rect2(724, 1050, 181, 150)
+
+[sub_resource type="AtlasTexture" id="frame_48"]
+atlas = ExtResource("flight")
+region = Rect2(905, 1050, 181, 150)
+
+[resource]
+animations = [{"name": &"flight_S", "speed": 12, "loop": true, "frames": [{"duration": 1.0, "texture": SubResource("frame_1")},{"duration": 1.0, "texture": SubResource("frame_2")},{"duration": 1.0, "texture": SubResource("frame_3")},{"duration": 1.0, "texture": SubResource("frame_4")},{"duration": 1.0, "texture": SubResource("frame_5")},{"duration": 1.0, "texture": SubResource("frame_6")}]},
+{"name": &"flight_SE", "speed": 12, "loop": true, "frames": [{"duration": 1.0, "texture": SubResource("frame_7")},{"duration": 1.0, "texture": SubResource("frame_8")},{"duration": 1.0, "texture": SubResource("frame_9")},{"duration": 1.0, "texture": SubResource("frame_10")},{"duration": 1.0, "texture": SubResource("frame_11")},{"duration": 1.0, "texture": SubResource("frame_12")}]},
+{"name": &"flight_E", "speed": 12, "loop": true, "frames": [{"duration": 1.0, "texture": SubResource("frame_13")},{"duration": 1.0, "texture": SubResource("frame_14")},{"duration": 1.0, "texture": SubResource("frame_15")},{"duration": 1.0, "texture": SubResource("frame_16")},{"duration": 1.0, "texture": SubResource("frame_17")},{"duration": 1.0, "texture": SubResource("frame_18")}]},
+{"name": &"flight_NE", "speed": 12, "loop": true, "frames": [{"duration": 1.0, "texture": SubResource("frame_19")},{"duration": 1.0, "texture": SubResource("frame_20")},{"duration": 1.0, "texture": SubResource("frame_21")},{"duration": 1.0, "texture": SubResource("frame_22")},{"duration": 1.0, "texture": SubResource("frame_23")},{"duration": 1.0, "texture": SubResource("frame_24")}]},
+{"name": &"flight_N", "speed": 12, "loop": true, "frames": [{"duration": 1.0, "texture": SubResource("frame_25")},{"duration": 1.0, "texture": SubResource("frame_26")},{"duration": 1.0, "texture": SubResource("frame_27")},{"duration": 1.0, "texture": SubResource("frame_28")},{"duration": 1.0, "texture": SubResource("frame_29")},{"duration": 1.0, "texture": SubResource("frame_30")}]},
+{"name": &"flight_NW", "speed": 12, "loop": true, "frames": [{"duration": 1.0, "texture": SubResource("frame_31")},{"duration": 1.0, "texture": SubResource("frame_32")},{"duration": 1.0, "texture": SubResource("frame_33")},{"duration": 1.0, "texture": SubResource("frame_34")},{"duration": 1.0, "texture": SubResource("frame_35")},{"duration": 1.0, "texture": SubResource("frame_36")}]},
+{"name": &"flight_W", "speed": 12, "loop": true, "frames": [{"duration": 1.0, "texture": SubResource("frame_37")},{"duration": 1.0, "texture": SubResource("frame_38")},{"duration": 1.0, "texture": SubResource("frame_39")},{"duration": 1.0, "texture": SubResource("frame_40")},{"duration": 1.0, "texture": SubResource("frame_41")},{"duration": 1.0, "texture": SubResource("frame_42")}]},
+{"name": &"flight_SW", "speed": 12, "loop": true, "frames": [{"duration": 1.0, "texture": SubResource("frame_43")},{"duration": 1.0, "texture": SubResource("frame_44")},{"duration": 1.0, "texture": SubResource("frame_45")},{"duration": 1.0, "texture": SubResource("frame_46")},{"duration": 1.0, "texture": SubResource("frame_47")},{"duration": 1.0, "texture": SubResource("frame_48")}]}]

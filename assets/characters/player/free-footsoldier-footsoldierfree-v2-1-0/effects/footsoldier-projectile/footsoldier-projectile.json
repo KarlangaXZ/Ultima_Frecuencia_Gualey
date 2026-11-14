@@ -1,0 +1,36 @@
+{
+  "name": "Footsoldier Projectile",
+  "frame_size": [
+    181,
+    150
+  ],
+  "animations": {
+    "flight": {
+      "sheet": "sheets/flight.png",
+      "frames": 6,
+      "rows": 8,
+      "fps": 12,
+      "loop": true,
+      "pivot": [
+        90.5,
+        75.0
+      ],
+      "rotate_to_heading": false,
+      "direction_rows": "Row order top to bottom: S, SE, E, NE, N, NW, W, SW"
+    },
+    "flight_smooth": {
+      "sheet": "sheets/flight_smooth.png",
+      "frames": 12,
+      "rows": 8,
+      "fps": 24,
+      "loop": true,
+      "pivot": [
+        90.5,
+        75.0
+      ],
+      "rotate_to_heading": false,
+      "direction_rows": "Row order top to bottom: S, SE, E, NE, N, NW, W, SW",
+      "smooth_of": "flight"
+    }
+  }
+}
