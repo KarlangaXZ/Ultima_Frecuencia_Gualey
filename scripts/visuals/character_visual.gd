@@ -38,10 +38,7 @@ func _ready() -> void:
 	last_health = health.max_health
 	health.health_changed.connect(_on_health_changed)
 	health.died.connect(_on_death)
-	weapon = actor.get_node_or_null("Weapon")
-	if weapon != null:
-		weapon.reload_changed.connect(_on_reload_changed)
-		weapon.shot_fired.connect(_on_shot_fired)
+	bind_weapon(actor.get_node_or_null("Weapon"))
 	var frames := SpriteFrames.new()
 	frames.remove_animation("default")
 	for state_name in ["idle", "walk", "attack", "death"]:
@@ -79,6 +76,18 @@ func _ready() -> void:
 	sprite.sprite_frames = frames
 	sprite.play("idle_down")
 	_update_sprite_transform()
+
+func bind_weapon(source: Node) -> void:
+	if weapon == source: return
+	if weapon != null:
+		weapon.reload_changed.disconnect(_on_reload_changed)
+		weapon.shot_fired.disconnect(_on_shot_fired)
+	weapon = source
+	reloading_visual = false
+	shooting_visual = false
+	if weapon != null:
+		weapon.reload_changed.connect(_on_reload_changed)
+		weapon.shot_fired.connect(_on_shot_fired)
 
 func _update_sprite_transform() -> void:
 	var uses_library := animation_library != null and animation_library.has_animation(sprite.animation) \

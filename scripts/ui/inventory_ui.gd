@@ -143,6 +143,7 @@ func refresh_usage() -> void:
 	var use_button := content.get_node("Body/Details/Use") as Button
 	content.get_node("Body/Details/Description").text = "Selecciona un objeto de tu mochila." if slot.is_empty() else "%s\n%s" % [slot.item.display_name, slot.item.description]
 	use_button.text = "PASAR A RESERVA" if not slot.is_empty() and slot.item.effect == "ammo" else "UTILIZAR"
+	if not slot.is_empty() and slot.item.effect == "weapon": use_button.text = "INCORPORAR AL ARSENAL"
 	use_button.disabled = not item_user.can_use(selected)
 
 func _refresh_loot() -> void:

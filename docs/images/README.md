@@ -6,16 +6,19 @@ conceptuales para representar funcionalidades.
 
 | Archivo | Fuente | Fecha y preparación |
 | --- | --- | --- |
-| gameplay.png | test-results/phase-four/01-overview.png | 2026-11-13, fase 5: zona urbana y HUD de supervivencia |
-| combat.png | test-results/phase-four/02-combat.png | 2026-11-13, fase 5: combate y HUD actual |
-| game-over.png | test-results/phase-four/05-game-over.png | 2026-11-13, fase 5: panel de muerte real |
+| gameplay.png | test-results/phase-four/01-overview.png | 2026-11-13, fase 6: zona urbana y HUD de equipamiento |
+| combat.png | test-results/phase-four/02-combat.png | 2026-11-13, fase 6: pistola y HUD actual |
+| game-over.png | test-results/phase-four/05-game-over.png | 2026-11-13, fase 6: panel de muerte real |
+| arsenal-shotgun.png | test-results/phase-six/05-shotgun.png | 2026-11-13, ocho rayos bloqueados por caja |
+| arsenal-inventory.png | test-results/phase-six/03-acquisition.png | 2026-11-13, arma recogida en la mochila antes de incorporar |
+| arsenal-machete.png | test-results/phase-six/02-machete.png | 2026-11-13, ataque frontal y feedback provisional |
 | inventory.png | test-results/phase-five/02-inventory.png | 2026-11-13, mochila real con 12 espacios |
 | loot-container.png | test-results/phase-five/03-container.png | 2026-11-13, contenidos finitos de mochila abandonada |
 | urban-plan.png | test-results/urban/04-plan.png | 2026-11-13, plano completo, zoom 0.43 y HUD oculto solo en la prueba |
 | player-animations.png | PNG down de idle/shoot/reload/death y walk_left V2 | 2026-11-12, composición en orden, escala nativa |
 | zombie-base.png | PNG de Idle 00, Walk 02, Attack 03 y Death 05 | Fase 4.4, down/up/left/right del paquete técnico |
 
-Las seis capturas son PNG 1280 × 720 optimizados sin pérdida. La lámina del
+Las nueve capturas son PNG 1280 × 720 optimizados sin pérdida. La lámina del
 protagonista mide 1024 × 800; la del zombi, 512 × 624. Las fuentes permanecen en
 assets/ y los resultados de pruebas en test-results/ (ignorado).
 
@@ -26,3 +29,8 @@ imágenes necesarias para documentación. Las pruebas preparan posiciones y acci
 no son capturas de una sesión manual. El plano no cambia la cámara del juego.
 [Validación y límites](../urban_world_integration.md).
 [Inventario y supervivencia](../inventory_survival.md).
+
+Fase 6: regresión gráfica general repetida, 39 comprobaciones y cinco capturas;
+arsenal, 107 comprobaciones y seis capturas. Las tres imágenes principales muestran
+el HUD actual; inventario base y contenedor mantienen sus capturas de fase 5.
+[Pruebas, fuentes y limitaciones del arsenal](../arsenal_equipment.md).

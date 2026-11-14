@@ -1,8 +1,12 @@
-[gd_resource type="Resource" script_class="WeaponConfig" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="WeaponConfig" load_steps=3 format=3]
 [ext_resource type="Script" path="res://scripts/weapons/weapon_config.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/placeholders/weapons/temp_pistol.svg" id="2"]
 [resource]
 script = ExtResource("1")
 weapon_name = "Pistola básica"
+id = &"pistol"
+icon = ExtResource("2")
+visual = ExtResource("2")
 capacity = 12
 initial_reserve = 48
 damage = 25.0

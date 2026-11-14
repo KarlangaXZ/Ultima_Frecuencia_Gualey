@@ -11,10 +11,14 @@ func _ready() -> void:
 	health.died.connect(func(): game_ended = true)
 	$HUD.retry_requested.connect(_retry)
 	$HUD.update_health(health.current_health, health.max_health)
-	var weapon := $Player/Weapon
+	var weapon := $Player/Equipment
 	weapon.ammo_changed.connect($HUD.update_ammo)
 	weapon.reload_changed.connect($HUD.update_reload)
-	$HUD.update_ammo(weapon.loaded, weapon.reserve)
+	weapon.active_changed.connect(_update_equipment)
+	weapon.arsenal_changed.connect(func():
+		_update_equipment(weapon.active_weapon)
+		$InventoryUI.refresh_usage())
+	_update_equipment(weapon.active_weapon)
 	$HUD.update_reload(false)
 	$HUD.update_stats(kills, survival_time)
 	for zombie in $Zombies.get_children():
@@ -38,6 +42,11 @@ func _bind_supplies() -> void:
 	$Player/HealthComponent.health_changed.connect(func(_current: float, _maximum: float): ui.refresh_usage())
 	survival.needs_changed.connect(_update_needs)
 	_update_needs(survival.hunger, survival.thirst)
+
+func _update_equipment(weapon: Node) -> void:
+	$HUD.update_equipment($Player/Equipment)
+	$HUD.update_ammo(weapon.loaded, weapon.reserve)
+	$HUD.update_reload(weapon.reloading)
 
 func _update_needs(hunger: float, thirst: float) -> void:
 	$HUD.update_needs(hunger, thirst)

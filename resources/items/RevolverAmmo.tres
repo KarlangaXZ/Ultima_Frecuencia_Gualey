@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemDefinition" load_steps=3 format=3]
+[ext_resource type="Script" path="res://scripts/inventory/item_definition.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/ui/items/ammo.svg" id="2"]
+[resource]
+script = ExtResource("1")
+id = &"revolver_ammo"
+display_name = "Munición de revólver"
+description = "Transfiere esta pila a la reserva de revólver. Necesitas poseer el arma; no llena el cargador."
+category = &"ammo"
+icon = ExtResource("2")
+max_stack = 60
+effect = "ammo"
+effect_amount = 1.0
+ammo_type = &"revolver"

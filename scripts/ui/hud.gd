@@ -4,6 +4,7 @@ signal retry_requested
 var previous_health: float = 100.0
 var damage_tween: Tween
 var _message_remaining: float = 0.0
+var _melee := false
 
 @onready var bar: ProgressBar = $Panel/Margin/Content/HealthBar
 @onready var value_label: Label = $Panel/Margin/Content/HealthValue
@@ -29,7 +30,21 @@ func show_game_over() -> void:
 	$GameOver/Center/Panel/Margin/Content/Retry.grab_focus()
 
 func update_ammo(loaded: int, reserve: int) -> void:
-	$Panel/Margin/Content/Ammo.text = "Munición: %d / %d" % [loaded, reserve]
+	$Panel/Margin/Content/Ammo.text = "CUERPO A CUERPO" if _melee else "Munición: %d / %d" % [loaded, reserve]
+
+func update_equipment(equipment: EquipmentComponent) -> void:
+	var config: WeaponConfig = equipment.active_weapon.config
+	_melee = config.weapon_type == "melee"
+	$Panel/Margin/Content/WeaponRow/Icon.texture = config.icon
+	$Panel/Margin/Content/WeaponRow/Name.text = config.weapon_name
+	var shortcuts: Array[String] = []
+	for index in range(4):
+		var id := equipment.ORDER[index]
+		var label := "%d %s" % [index + 1, ["M", "P", "R", "E"][index]]
+		if not equipment.owns(id): label += "—"
+		if id == config.id: label = "[" + label + "]"
+		shortcuts.append(label)
+	$Panel/Margin/Content/Arsenal.text = "  ·  ".join(shortcuts)
 
 func update_reload(active: bool) -> void:
 	$Panel/Margin/Content/Reload.text = "RECARGANDO..." if active else ""

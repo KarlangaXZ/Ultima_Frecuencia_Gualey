@@ -26,7 +26,7 @@
 - `scripts/main.gd`: conecta salud, HUD, objetivos de zombis y recarga de partida.
 - `scripts/ui/hud.gd`: presentación de salud y Game Over; emite retry_requested.
 - `scripts/weapons/weapon_config.gd`, `resources/weapons/BasicPistol.tres`:
-  configuración reutilizable de la única arma actual.
+  configuración reutilizable de armas; la pistola inicial conserva sus parámetros.
 - `scripts/weapons/weapon.gd`: estado por instancia de munición, cadencia y recarga;
   emite ammo_changed, reload_changed y shot_fired. No hace consultas físicas.
 - `scripts/combat/hitscan_combat.gd`: un rayo World/Zombie, daño mediante
@@ -57,6 +57,25 @@
   No aplicar el pivote frontal a walk/death provisionales ni modificar la física.
 
 ## Convenciones y reglas
+- Fase 6: EquipmentComponent conserva Player/Weapon como pistola inicial activa;
+  posee además machete y crea un Weapon por cada arma incorporada desde ItemUse.
+  No duplicar instancias ni municiones. Equipment solo posee referencias a estados;
+  loaded/reserve/cooldown/reload_remaining siguen en Weapon. Config es inmutable.
+  Cambiar cancela recarga sin transferir balas; cooldown continúa incluso inactivo.
+  Armas inactivas no atacan ni recargan. died deshabilita todo el arsenal.
+  ItemDefinition añade efecto weapon, weapon_config y ammo_type (pistol por defecto).
+  Incorporar consume el objeto; munición solo se usa si se posee su arma, aunque
+  esté inactiva. No reflejar reservas en InventoryComponent ni cambiar capacidad 12.
+  WeaponCombat selecciona hitscan, SpreadCombat o MeleeCombat. cast_hit reutiliza
+  el único impacto por rayo; ocho rayos de escopeta consumen un cartucho y emiten
+  un solo efecto. Machete consulta cono frontal y visibilidad World, deduplica
+  enemigos y nunca dispara shot_fired/destellos. Daño solo via HealthComponent.
+  WeaponVisual cambia textura y CharacterVisual.bind_weapon reconecta señales;
+  no editar SpriteFrames para adaptar armas. Melee usa idle/walk y arco provisional.
+  1/2/3/4 y rueda se bloquean con la mochila; mantener exigencia de soltar shoot.
+  ArsenalSupplies.tscn reutiliza LootContainer y Areas 8 fuera de Obstacles.
+  Ver docs/arsenal_equipment.md y tests/phase_six_test.gd. No autoriza RPG, crafting,
+  comerciantes, persistencia ni multiplayer.
 - Fase 5 autoriza inventario, cuatro suministros, tres contenedores finitos,
   hambre y sed. InventoryComponent guarda pilas por instancia; ItemDefinition es
   configuración compartida inmutable en resources/items/. ItemUse aplica efectos

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemDefinition" load_steps=4 format=3]
+[ext_resource type="Script" path="res://scripts/inventory/item_definition.gd" id="1"]
+[ext_resource type="Resource" path="res://resources/weapons/Revolver.tres" id="2"]
+[ext_resource type="Texture2D" path="res://assets/placeholders/weapons/temp_revolver.svg" id="3"]
+[resource]
+script = ExtResource("1")
+id = &"weapon_revolver"
+display_name = "Revólver"
+description = "Incorpora Revólver al arsenal. Después cierra la mochila y selecciónalo con 3. No se consume si ya lo posees."
+category = &"weapon"
+icon = ExtResource("3")
+max_stack = 1
+effect = "weapon"
+effect_amount = 1.0
+weapon_config = ExtResource("2")

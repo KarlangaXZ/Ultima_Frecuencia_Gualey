@@ -21,6 +21,12 @@ window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 
 [input]
+weapon_1={"deadzone": 0.2, "events": [Object(InputEventKey,"physical_keycode":49)]}
+weapon_2={"deadzone": 0.2, "events": [Object(InputEventKey,"physical_keycode":50)]}
+weapon_3={"deadzone": 0.2, "events": [Object(InputEventKey,"physical_keycode":51)]}
+weapon_4={"deadzone": 0.2, "events": [Object(InputEventKey,"physical_keycode":52)]}
+weapon_next={"deadzone": 0.2, "events": [Object(InputEventMouseButton,"button_index":5)]}
+weapon_previous={"deadzone": 0.2, "events": [Object(InputEventMouseButton,"button_index":4)]}
 interact={"deadzone": 0.2, "events": [Object(InputEventKey,"physical_keycode":69)]}
 inventory={"deadzone": 0.2, "events": [Object(InputEventKey,"physical_keycode":4194306)]}
 

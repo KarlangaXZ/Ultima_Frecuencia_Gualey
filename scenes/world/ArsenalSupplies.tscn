@@ -1,0 +1,26 @@
+[gd_scene load_steps=9 format=3]
+[ext_resource type="PackedScene" path="res://scenes/items/LootContainer.tscn" id="Container"]
+[ext_resource type="Script" path="res://scripts/inventory/item_definition.gd" id="Item"]
+[ext_resource type="Resource" path="res://resources/items/Revolver.tres" id="Revolver"]
+[ext_resource type="Resource" path="res://resources/items/Shotgun.tres" id="Shotgun"]
+[ext_resource type="Resource" path="res://resources/items/RevolverAmmo.tres" id="RevolverAmmo"]
+[ext_resource type="Resource" path="res://resources/items/ShotgunAmmo.tres" id="ShotgunAmmo"]
+[ext_resource type="Texture2D" path="res://assets/placeholders/weapons/temp_revolver.svg" id="RIcon"]
+[ext_resource type="Texture2D" path="res://assets/placeholders/weapons/temp_shotgun.svg" id="SIcon"]
+[node name="ArsenalSupplies" type="Node2D"]
+[node name="RevolverCase" parent="." instance=ExtResource("Container")]
+position = Vector2(1560, 1230)
+display_name = "Estuche abandonado / revólver"
+icon = ExtResource("RIcon")
+initial_items = Array[ExtResource("Item")]([ExtResource("Revolver"), ExtResource("RevolverAmmo")])
+initial_quantities = PackedInt32Array(1, 12)
+[node name="Sprite" parent="RevolverCase" index="1"]
+scale = Vector2(0.65, 0.65)
+[node name="ShotgunCase" parent="." instance=ExtResource("Container")]
+position = Vector2(1960, 880)
+display_name = "Suministro de seguridad / escopeta"
+icon = ExtResource("SIcon")
+initial_items = Array[ExtResource("Item")]([ExtResource("Shotgun"), ExtResource("ShotgunAmmo")])
+initial_quantities = PackedInt32Array(1, 8)
+[node name="Sprite" parent="ShotgunCase" index="1"]
+scale = Vector2(0.65, 0.65)
