@@ -53,3 +53,9 @@ func disable() -> void:
 	if reloading:
 		reloading = false
 		reload_changed.emit(false)
+
+func add_reserve(amount: int) -> bool:
+	if not enabled or amount <= 0: return false
+	reserve += amount
+	ammo_changed.emit(loaded, reserve)
+	return true

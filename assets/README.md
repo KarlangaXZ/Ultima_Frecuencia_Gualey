@@ -54,6 +54,13 @@ Para bibliotecas cenitales rotables se puede activar esa última opción.
 
 ## Puntos de reemplazo desde el inspector
 
+Fase 4.5: el entorno sigue provisional. Se reutilizan los tres SVG de asfalto,
+cajas y escombros; `UrbanObstacle.tscn` compone edificios, carros, contenedores,
+barricadas y postes con dibujo geométrico desde su colisión. `ground.gd` compone
+aceras y pintura; `urban_details.gd`, cables aéreos. No hay un paquete de arte
+urbano final en las carpetas modulares. Sustituciones pendientes y reglas de
+huella: [informe de la zona urbana](../docs/urban_world_integration.md).
+
 | Recurso final | Propiedad o nodo | Carpeta final |
 |---|---|---|
 | Personaje | Player/Visual: sheet o animation_library | assets/characters/player/ |

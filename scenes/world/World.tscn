@@ -1,12 +1,33 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=18 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/world/Obstacle.tscn" id="1"]
 [ext_resource type="Script" path="res://scripts/world/ground.gd" id="2"]
 [ext_resource type="Script" path="res://scripts/world/world_navigation.gd" id="3"]
+[ext_resource type="PackedScene" path="res://scenes/world/UrbanObstacle.tscn" id="4"]
+[ext_resource type="Script" path="res://scripts/world/urban_details.gd" id="5"]
+[ext_resource type="PackedScene" path="res://scenes/world/Supplies.tscn" id="6"]
 [sub_resource type="RectangleShape2D" id="Horizontal"]
 size = Vector2(2400, 48)
 [sub_resource type="RectangleShape2D" id="Vertical"]
 size = Vector2(48, 1600)
+[sub_resource type="RectangleShape2D" id="House"]
+size = Vector2(390, 230)
+[sub_resource type="RectangleShape2D" id="Wide"]
+size = Vector2(540, 230)
+[sub_resource type="RectangleShape2D" id="Narrow"]
+size = Vector2(220, 280)
+[sub_resource type="RectangleShape2D" id="South"]
+size = Vector2(540, 180)
+[sub_resource type="RectangleShape2D" id="SouthSmall"]
+size = Vector2(390, 180)
+[sub_resource type="RectangleShape2D" id="Car"]
+size = Vector2(160, 72)
+[sub_resource type="RectangleShape2D" id="Dumpster"]
+size = Vector2(64, 64)
+[sub_resource type="RectangleShape2D" id="Barricade"]
+size = Vector2(160, 32)
+[sub_resource type="RectangleShape2D" id="Pole"]
+size = Vector2(12, 12)
 
 [node name="World" type="Node2D"]
 [node name="Navigation" type="NavigationRegion2D" parent="."]
@@ -28,6 +49,197 @@ position = Vector2(450, 1100)
 [node name="CrateE" parent="Obstacles" instance=ExtResource("1")]
 position = Vector2(1850, 450)
 scale = Vector2(2, 2)
+
+[node name="CasaTurquesa" parent="Obstacles" instance=ExtResource("4")]
+position = Vector2(265, 155)
+appearance = "building"
+surface_color = Color(0.34902, 0.54510, 0.52157, 1)
+sign_text = ""
+[node name="CollisionShape2D" parent="Obstacles/CasaTurquesa" index="0"]
+shape = SubResource("House")
+
+[node name="CasaOcre" parent="Obstacles" instance=ExtResource("4")]
+position = Vector2(725, 155)
+appearance = "building"
+surface_color = Color(0.64706, 0.54118, 0.37647, 1)
+sign_text = ""
+[node name="CollisionShape2D" parent="Obstacles/CasaOcre" index="0"]
+shape = SubResource("House")
+
+[node name="CasaCoral" parent="Obstacles" instance=ExtResource("4")]
+position = Vector2(1300, 155)
+appearance = "building"
+surface_color = Color(0.63137, 0.45490, 0.38431, 1)
+sign_text = ""
+[node name="CollisionShape2D" parent="Obstacles/CasaCoral" index="0"]
+shape = SubResource("House")
+
+[node name="TallerNorte" parent="Obstacles" instance=ExtResource("4")]
+position = Vector2(1940, 155)
+appearance = "building"
+surface_color = Color(0.44314, 0.47843, 0.50196, 1)
+sign_text = "TALLER / CERRADO"
+[node name="CollisionShape2D" parent="Obstacles/TallerNorte" index="0"]
+shape = SubResource("Wide")
+
+[node name="Colmado" parent="Obstacles" instance=ExtResource("4")]
+position = Vector2(570, 495)
+appearance = "building"
+surface_color = Color(0.40000, 0.55686, 0.50196, 1)
+sign_text = "COLMADO LA ESQUINA"
+
+[node name="CasaOeste" parent="Obstacles" instance=ExtResource("4")]
+position = Vector2(170, 505)
+appearance = "building"
+surface_color = Color(0.60784, 0.52941, 0.40784, 1)
+sign_text = ""
+[node name="CollisionShape2D" parent="Obstacles/CasaOeste" index="0"]
+shape = SubResource("Narrow")
+
+[node name="Ferreteria" parent="Obstacles" instance=ExtResource("4")]
+position = Vector2(2230, 490)
+appearance = "building"
+surface_color = Color(0.55294, 0.43137, 0.36471, 1)
+sign_text = "FERRETERIA"
+[node name="CollisionShape2D" parent="Obstacles/Ferreteria" index="0"]
+shape = SubResource("Narrow")
+
+[node name="CasaSurOeste" parent="Obstacles" instance=ExtResource("4")]
+position = Vector2(170, 1120)
+appearance = "building"
+surface_color = Color(0.46667, 0.54510, 0.52549, 1)
+sign_text = ""
+[node name="CollisionShape2D" parent="Obstacles/CasaSurOeste" index="0"]
+shape = SubResource("Narrow")
+
+[node name="CasaEste" parent="Obstacles" instance=ExtResource("4")]
+position = Vector2(2230, 1100)
+appearance = "building"
+surface_color = Color(0.49020, 0.49804, 0.60000, 1)
+sign_text = ""
+[node name="CollisionShape2D" parent="Obstacles/CasaEste" index="0"]
+shape = SubResource("Narrow")
+
+[node name="CasaSur" parent="Obstacles" instance=ExtResource("4")]
+position = Vector2(350, 1460)
+appearance = "building"
+surface_color = Color(0.56078, 0.46667, 0.38431, 1)
+sign_text = ""
+[node name="CollisionShape2D" parent="Obstacles/CasaSur" index="0"]
+shape = SubResource("South")
+
+[node name="Botica" parent="Obstacles" instance=ExtResource("4")]
+position = Vector2(1040, 1460)
+appearance = "building"
+surface_color = Color(0.41569, 0.56471, 0.52157, 1)
+sign_text = "BOTICA / CERRADA"
+[node name="CollisionShape2D" parent="Obstacles/Botica" index="0"]
+shape = SubResource("South")
+
+[node name="CasaSurEste" parent="Obstacles" instance=ExtResource("4")]
+position = Vector2(1720, 1460)
+appearance = "building"
+surface_color = Color(0.61176, 0.53725, 0.40000, 1)
+sign_text = ""
+[node name="CollisionShape2D" parent="Obstacles/CasaSurEste" index="0"]
+shape = SubResource("SouthSmall")
+
+[node name="CarroOeste" parent="Obstacles" instance=ExtResource("4")]
+position = Vector2(420, 736)
+appearance = "car"
+surface_color = Color(0.60392, 0.49020, 0.34902, 1)
+sign_text = ""
+[node name="CollisionShape2D" parent="Obstacles/CarroOeste" index="0"]
+shape = SubResource("Car")
+
+[node name="CarroEste" parent="Obstacles" instance=ExtResource("4")]
+position = Vector2(1820, 1066)
+appearance = "car"
+surface_color = Color(0.40784, 0.48627, 0.52549, 1)
+sign_text = ""
+[node name="CollisionShape2D" parent="Obstacles/CarroEste" index="0"]
+shape = SubResource("Car")
+
+[node name="CarroNorte" parent="Obstacles" instance=ExtResource("4")]
+position = Vector2(1570, 380)
+appearance = "car"
+surface_color = Color(0.54510, 0.39608, 0.33725, 1)
+sign_text = ""
+[node name="CollisionShape2D" parent="Obstacles/CarroNorte" index="0"]
+shape = SubResource("Car")
+
+[node name="ContenedorOeste" parent="Obstacles" instance=ExtResource("4")]
+position = Vector2(365, 550)
+appearance = "dumpster"
+surface_color = Color(0.37255, 0.46275, 0.40392, 1)
+sign_text = ""
+[node name="CollisionShape2D" parent="Obstacles/ContenedorOeste" index="0"]
+shape = SubResource("Dumpster")
+
+[node name="ContenedorEste" parent="Obstacles" instance=ExtResource("4")]
+position = Vector2(2040, 1040)
+appearance = "dumpster"
+surface_color = Color(0.39608, 0.45882, 0.39608, 1)
+sign_text = ""
+[node name="CollisionShape2D" parent="Obstacles/ContenedorEste" index="0"]
+shape = SubResource("Dumpster")
+
+[node name="BarricadaNorte" parent="Obstacles" instance=ExtResource("4")]
+position = Vector2(1400, 380)
+appearance = "barricade"
+surface_color = Color(0.40000, 0.40000, 0.40000, 1)
+sign_text = ""
+[node name="CollisionShape2D" parent="Obstacles/BarricadaNorte" index="0"]
+shape = SubResource("Barricade")
+
+[node name="BarricadaSur" parent="Obstacles" instance=ExtResource("4")]
+position = Vector2(970, 1300)
+appearance = "barricade"
+surface_color = Color(0.40000, 0.40000, 0.40000, 1)
+sign_text = ""
+[node name="CollisionShape2D" parent="Obstacles/BarricadaSur" index="0"]
+shape = SubResource("Barricade")
+
+[node name="PosteOeste" parent="Obstacles" instance=ExtResource("4")]
+position = Vector2(365, 660)
+appearance = "pole"
+surface_color = Color(0.40000, 0.40000, 0.40000, 1)
+sign_text = ""
+[node name="CollisionShape2D" parent="Obstacles/PosteOeste" index="0"]
+shape = SubResource("Pole")
+
+[node name="PosteNorte" parent="Obstacles" instance=ExtResource("4")]
+position = Vector2(1030, 350)
+appearance = "pole"
+surface_color = Color(0.40000, 0.40000, 0.40000, 1)
+sign_text = ""
+[node name="CollisionShape2D" parent="Obstacles/PosteNorte" index="0"]
+shape = SubResource("Pole")
+
+[node name="PosteEste" parent="Obstacles" instance=ExtResource("4")]
+position = Vector2(2040, 640)
+appearance = "pole"
+surface_color = Color(0.40000, 0.40000, 0.40000, 1)
+sign_text = ""
+[node name="CollisionShape2D" parent="Obstacles/PosteEste" index="0"]
+shape = SubResource("Pole")
+
+[node name="PosteSur" parent="Obstacles" instance=ExtResource("4")]
+position = Vector2(2040, 1300)
+appearance = "pole"
+surface_color = Color(0.40000, 0.40000, 0.40000, 1)
+sign_text = ""
+[node name="CollisionShape2D" parent="Obstacles/PosteSur" index="0"]
+shape = SubResource("Pole")
+
+[node name="Decoration" type="Node2D" parent="."]
+z_index = 3
+script = ExtResource("5")
+
+[node name="Ambient" type="CanvasModulate" parent="."]
+color = Color(0.92, 0.94, 0.91, 1)
+[node name="Supplies" parent="." instance=ExtResource("6")]
+
 
 [node name="Boundary" type="StaticBody2D" parent="."]
 collision_layer = 1

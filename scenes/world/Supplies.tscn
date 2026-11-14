@@ -1,0 +1,51 @@
+[gd_scene load_steps=11 format=3]
+[ext_resource type="PackedScene" path="res://scenes/items/WorldPickup.tscn" id="Pickup"]
+[ext_resource type="PackedScene" path="res://scenes/items/LootContainer.tscn" id="Container"]
+[ext_resource type="Script" path="res://scripts/inventory/item_definition.gd" id="Item"]
+[ext_resource type="Resource" path="res://resources/items/Medkit.tres" id="Medkit"]
+[ext_resource type="Resource" path="res://resources/items/Water.tres" id="Water"]
+[ext_resource type="Resource" path="res://resources/items/Food.tres" id="Food"]
+[ext_resource type="Resource" path="res://resources/items/PistolAmmo.tres" id="Ammo"]
+[ext_resource type="Texture2D" path="res://assets/ui/items/medkit.svg" id="MedicalIcon"]
+[ext_resource type="Texture2D" path="res://assets/ui/items/backpack.svg" id="BagIcon"]
+[ext_resource type="Texture2D" path="res://assets/placeholders/environment/props/temp_supply_crate.svg" id="CrateIcon"]
+
+[node name="Supplies" type="Node2D"]
+[node name="Water" parent="." instance=ExtResource("Pickup")]
+position = Vector2(560, 840)
+item = ExtResource("Water")
+quantity = 2
+[node name="Medkit" parent="." instance=ExtResource("Pickup")]
+position = Vector2(650, 910)
+item = ExtResource("Medkit")
+[node name="Food" parent="." instance=ExtResource("Pickup")]
+position = Vector2(680, 1000)
+item = ExtResource("Food")
+quantity = 2
+[node name="Ammo" parent="." instance=ExtResource("Pickup")]
+position = Vector2(900, 940)
+item = ExtResource("Ammo")
+quantity = 24
+
+[node name="SupplyCrate" parent="." instance=ExtResource("Container")]
+position = Vector2(1320, 690)
+display_name = "Caja de suministros"
+icon = ExtResource("CrateIcon")
+initial_items = Array[ExtResource("Item")]([ExtResource("Ammo"), ExtResource("Food"), ExtResource("Water")])
+initial_quantities = PackedInt32Array(24, 2, 2)
+[node name="Sprite" parent="SupplyCrate" index="1"]
+scale = Vector2(0.33, 0.33)
+
+[node name="MedicalCase" parent="." instance=ExtResource("Container")]
+position = Vector2(770, 650)
+display_name = "Contenedor médico"
+icon = ExtResource("MedicalIcon")
+initial_items = Array[ExtResource("Item")]([ExtResource("Medkit"), ExtResource("Water")])
+initial_quantities = PackedInt32Array(2, 1)
+
+[node name="Backpack" parent="." instance=ExtResource("Container")]
+position = Vector2(600, 1060)
+display_name = "Mochila abandonada"
+icon = ExtResource("BagIcon")
+initial_items = Array[ExtResource("Item")]([ExtResource("Food"), ExtResource("Water"), ExtResource("Ammo")])
+initial_quantities = PackedInt32Array(3, 2, 12)

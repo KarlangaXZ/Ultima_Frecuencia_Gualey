@@ -13,6 +13,14 @@ func _ready() -> void:
 func is_dead() -> bool:
 	return current_health <= 0.0
 
+func heal(amount: float) -> float:
+	if amount <= 0 or is_dead(): return 0
+	var restored := minf(amount, max_health - current_health)
+	if restored > 0:
+		current_health += restored
+		health_changed.emit(current_health, max_health)
+	return restored
+
 func take_damage(amount: float) -> void:
 	if amount <= 0.0 or is_dead():
 		return

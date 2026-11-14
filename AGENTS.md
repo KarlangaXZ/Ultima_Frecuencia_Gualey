@@ -57,6 +57,33 @@
   No aplicar el pivote frontal a walk/death provisionales ni modificar la física.
 
 ## Convenciones y reglas
+- Fase 5 autoriza inventario, cuatro suministros, tres contenedores finitos,
+  hambre y sed. InventoryComponent guarda pilas por instancia; ItemDefinition es
+  configuración compartida inmutable en resources/items/. ItemUse aplica efectos
+  mediante HealthComponent.heal, SurvivalComponent.restore_need y Weapon.add_reserve.
+  La munición en mochila son unidades aún sin transferir: nunca reflejar loaded
+  o reserve en el inventario. Usar una pila de balas la retira y añade a reserve;
+  no llena el cargador ni cambia la recarga/cadencia.
+  Player/Interaction consulta Areas en capa 4 (8), radio 56 px y visibilidad World.
+  Supplies está fuera de Obstacles: recogibles y pequeños contenedores son
+  transitables y no alteran la malla. WorldPickup reserva la recogida antes de
+  emitir señales; InventoryComponent transfiere ambos estados antes de notificar.
+  SurvivalComponent empieza 100/100; descenso continuo 1/30 s y 1/20 s, HUD redondea
+  hacia arriba. Un solo reloj de daño 2 HP/5 s si alguna necesidad está a cero.
+  No dañar dos veces por hambre y sed ni revivir tras died. Main conecta señales.
+  InventoryUI usa el tema existente y bloquea movimiento, aim, shoot, reload y E
+  mediante Player.controls_blocked; mundo, necesidades y recarga iniciada siguen.
+  Exigir soltar shoot tras cerrar para evitar clics accidentales. Muerte cierra
+  la ventana; reload_current_scene restaura todos los estados por instancia.
+  Ver docs/inventory_survival.md, tests/inventory_component_test.gd y phase_five_test.gd.
+- Fase 4.5: World conserva dimensiones, límites, cinco cajas y apariciones. Añade
+  23 sólidos urbanos en Obstacles mediante UrbanObstacle.tscn. Sus colisiones
+  rectangulares están serializadas; urban_obstacle.gd solo dibuja desde esa huella.
+  world_navigation.gd ya incluye todos los hijos de Obstacles: no duplicar geometría
+  ni configurar colisiones tardíamente en _ready. ground.gd pinta superficies
+  transitables; urban_details.gd dibuja cables aéreos. Ambient es CanvasModulate suave.
+  Arte geométrico provisional, sin interiores; no ajustar personajes para acomodarlo.
+  Pruebas: tests/urban_world_test.gd; informe: docs/urban_world_integration.md.
 - Fase 4.4: Zombie/Visual usa zombie_visual.gd (subclase de CharacterVisual) y
   base/ZombieBaseFrames.tres, 96 PNG técnicos. Attack observa renovaciones del
   cooldown y no produce daño. Death termina dentro del fade existente de 0.45 s.
@@ -78,7 +105,7 @@
 - Mantener la velocidad diagonal normalizada y usar el motor físico para colisiones.
 - Componer sistemas separados; no acumular combate, inventario o IA en player.gd.
 - Fase 3 autoriza una pistola, apuntado, disparos, munición, recarga y estadísticas,
-  además de los sistemas de fase 2. No añadir más armas, inventario, oleadas
+  además de los sistemas de fase 2. No añadir más armas, fabricación, progresión RPG, oleadas
   ni aparición infinita de enemigos sin nueva solicitud.
 - No modificar WeaponConfig durante una partida: los recursos pueden compartirse;
   el estado mutable de cada arma pertenece exclusivamente a su nodo Weapon.

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3]
+[gd_scene load_steps=18 format=3]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1"]
 [ext_resource type="Script" path="res://scripts/components/health_component.gd" id="2"]
@@ -11,6 +11,10 @@
 [ext_resource type="Script" path="res://scripts/visuals/combat_effects.gd" id="9"]
 [ext_resource type="SpriteFrames" path="res://assets/characters/player/idle/PlayerIdleDown.tres" id="10"]
 [ext_resource type="SpriteFrames" path="res://assets/characters/player/PlayerActionAnimations.tres" id="11"]
+[ext_resource type="Script" path="res://scripts/components/inventory_component.gd" id="12"]
+[ext_resource type="Script" path="res://scripts/components/survival_component.gd" id="13"]
+[ext_resource type="Script" path="res://scripts/inventory/item_use.gd" id="14"]
+[ext_resource type="Script" path="res://scripts/player/player_interaction.gd" id="15"]
 [sub_resource type="SpriteFrames" id="EmptyFrames"]
 [sub_resource type="CircleShape2D" id="PlayerShape"]
 radius = 16.0
@@ -27,6 +31,14 @@ script = ExtResource("2")
 [node name="Weapon" type="Node" parent="."]
 script = ExtResource("3")
 config = ExtResource("4")
+[node name="InventoryComponent" type="Node" parent="."]
+script = ExtResource("12")
+[node name="SurvivalComponent" type="Node" parent="."]
+script = ExtResource("13")
+[node name="ItemUse" type="Node" parent="."]
+script = ExtResource("14")
+[node name="Interaction" type="Node2D" parent="."]
+script = ExtResource("15")
 [node name="Combat" type="Node2D" parent="."]
 script = ExtResource("5")
 [node name="Effects" type="Node2D" parent="Combat"]
