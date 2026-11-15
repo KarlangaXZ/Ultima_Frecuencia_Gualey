@@ -27,7 +27,7 @@ func run() -> void:
 	await frames(8)
 	var main:=current_scene
 	var saves:=main.get_node("SaveCoordinator")
-	var directory: String="user://tests/phase-twelve-state-%d"%OS.get_process_id()
+	var directory: String="user://tests/phase-twelve-state-%d-%d" % [OS.get_process_id(),int(Time.get_unix_time_from_system()*1000000)]
 	saves.store.directory=directory
 	var legacy_one: Dictionary=LEGACY.convert(saves.capture(3),1)
 	check(saves.store.write_slot(3,legacy_one).has("ok"),"v1 exacto anterior")

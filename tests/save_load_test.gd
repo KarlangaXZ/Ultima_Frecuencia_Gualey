@@ -49,7 +49,7 @@ func run() -> void:
 	await frames(8)
 	var main := current_scene
 	var saves := main.get_node("SaveCoordinator")
-	saves.store.directory = "user://tests/phase-nine-smoke-%d" % OS.get_process_id()
+	saves.store.directory = "user://tests/phase-nine-smoke-%d-%d" % [OS.get_process_id(),int(Time.get_unix_time_from_system()*1000000)]
 	var directory: String = saves.store.directory
 	var initial: Dictionary = saves.capture(2)
 	check(SaveSchema.validate(initial).is_empty(), "Snapshot inicial válido")

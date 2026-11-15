@@ -3,7 +3,8 @@ extends RefCounted
 const HOME := "gualey_sector_04"
 const MARKET := "market_abandoned"
 const STATION := "communications_station"
-const DEFINITIONS := {HOME: preload("res://resources/zones/Evacuated.tres"), MARKET: preload("res://resources/zones/Market.tres"), STATION: preload("res://resources/zones/Station.tres")}
+const PERIMETER := "evacuation_perimeter"
+const DEFINITIONS := {HOME: preload("res://resources/zones/Evacuated.tres"), MARKET: preload("res://resources/zones/Market.tres"), STATION: preload("res://resources/zones/Station.tres"), PERIMETER: preload("res://resources/zones/Perimeter.tres")}
 static var _geometry: Dictionary = {}
 static func definition(id: String) -> ZoneDefinition:
 	return DEFINITIONS.get(id)

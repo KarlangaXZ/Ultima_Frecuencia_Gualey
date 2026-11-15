@@ -72,154 +72,154 @@ script = ExtResource("Ground")
 position = Vector2(350,200)
 appearance = "building"
 sign_text = "COLMADO EL PASO"
-surface_color = Color(0.52,0.49,0.32,1)
+surface_color = Color(0.49020,0.52941,0.58039,1)
 [node name="CollisionShape2D" parent="Obstacles/ColmadoElPaso" index="0"]
 shape = SubResource("Shape0")
 [node name="MercadoAlimentos" parent="Obstacles" instance=ExtResource("Urban")]
 position = Vector2(1000,200)
 appearance = "building"
 sign_text = "MERCADO DE ALIMENTOS"
-surface_color = Color(0.32,0.49,0.46,1)
+surface_color = Color(0.55686,0.47451,0.45490,1)
 [node name="CollisionShape2D" parent="Obstacles/MercadoAlimentos" index="0"]
 shape = SubResource("Shape1")
 [node name="Pescaderia" parent="Obstacles" instance=ExtResource("Urban")]
 position = Vector2(1700,200)
 appearance = "building"
 sign_text = "PESCADERIA / CERRADO"
-surface_color = Color(0.48,0.37,0.31,1)
+surface_color = Color(0.55686,0.47451,0.45490,1)
 [node name="CollisionShape2D" parent="Obstacles/Pescaderia" index="0"]
 shape = SubResource("Shape2")
 [node name="LocalEste" parent="Obstacles" instance=ExtResource("Urban")]
 position = Vector2(2200,300)
 appearance = "building"
 sign_text = "SIN ACCESO"
-surface_color = Color(0.52,0.49,0.32,1)
+surface_color = Color(0.66667,0.56471,0.47451,1)
 [node name="CollisionShape2D" parent="Obstacles/LocalEste" index="0"]
 shape = SubResource("Shape3")
 [node name="LocalesSur" parent="Obstacles" instance=ExtResource("Urban")]
 position = Vector2(450,1420)
 appearance = "building"
 sign_text = "LOCALES / EVACUADO"
-surface_color = Color(0.32,0.49,0.46,1)
+surface_color = Color(0.55686,0.47451,0.45490,1)
 [node name="CollisionShape2D" parent="Obstacles/LocalesSur" index="0"]
 shape = SubResource("Shape4")
 [node name="AlmacenSur" parent="Obstacles" instance=ExtResource("Urban")]
 position = Vector2(1250,1420)
 appearance = "building"
 sign_text = "ALMACEN"
-surface_color = Color(0.48,0.37,0.31,1)
+surface_color = Color(0.55686,0.47451,0.45490,1)
 [node name="CollisionShape2D" parent="Obstacles/AlmacenSur" index="0"]
 shape = SubResource("Shape5")
 [node name="LocalSurEste" parent="Obstacles" instance=ExtResource("Urban")]
 position = Vector2(2050,1420)
 appearance = "building"
 sign_text = "COLMADO"
-surface_color = Color(0.52,0.49,0.32,1)
+surface_color = Color(0.66275,0.58824,0.44706,1)
 [node name="CollisionShape2D" parent="Obstacles/LocalSurEste" index="0"]
 shape = SubResource("Shape6")
 [node name="Frutas" parent="Obstacles" instance=ExtResource("Urban")]
 position = Vector2(750,560)
 appearance = "building"
 sign_text = "FRUTAS"
-surface_color = Color(0.32,0.49,0.46,1)
+surface_color = Color(0.49020,0.52941,0.58039,1)
 [node name="CollisionShape2D" parent="Obstacles/Frutas" index="0"]
 shape = SubResource("Shape7")
 [node name="Viandas" parent="Obstacles" instance=ExtResource("Urban")]
 position = Vector2(1100,560)
 appearance = "building"
 sign_text = "VIANDAS"
-surface_color = Color(0.48,0.37,0.31,1)
+surface_color = Color(0.56863,0.56863,0.58039,1)
 [node name="CollisionShape2D" parent="Obstacles/Viandas" index="0"]
 shape = SubResource("Shape8")
 [node name="PuestoNorte" parent="Obstacles" instance=ExtResource("Urban")]
 position = Vector2(1450,560)
 appearance = "building"
 sign_text = "ABASTOS"
-surface_color = Color(0.52,0.49,0.32,1)
+surface_color = Color(0.56863,0.56863,0.58039,1)
 [node name="CollisionShape2D" parent="Obstacles/PuestoNorte" index="0"]
 shape = SubResource("Shape9")
 [node name="PuestoSur" parent="Obstacles" instance=ExtResource("Urban")]
 position = Vector2(750,1040)
 appearance = "building"
 sign_text = "PUESTO 04"
-surface_color = Color(0.32,0.49,0.46,1)
+surface_color = Color(0.66275,0.58824,0.44706,1)
 [node name="CollisionShape2D" parent="Obstacles/PuestoSur" index="0"]
 shape = SubResource("Shape10")
 [node name="Ropa" parent="Obstacles" instance=ExtResource("Urban")]
 position = Vector2(1100,1040)
 appearance = "building"
 sign_text = "ROPA"
-surface_color = Color(0.48,0.37,0.31,1)
+surface_color = Color(0.66275,0.58824,0.44706,1)
 [node name="CollisionShape2D" parent="Obstacles/Ropa" index="0"]
 shape = SubResource("Shape11")
 [node name="PuestoSurEste" parent="Obstacles" instance=ExtResource("Urban")]
 position = Vector2(1450,1040)
 appearance = "building"
 sign_text = "PUESTO 06"
-surface_color = Color(0.52,0.49,0.32,1)
+surface_color = Color(0.49020,0.52941,0.58039,1)
 [node name="CollisionShape2D" parent="Obstacles/PuestoSurEste" index="0"]
 shape = SubResource("Shape12")
 [node name="CarroNorte" parent="Obstacles" instance=ExtResource("Urban")]
 position = Vector2(1750,650)
 appearance = "car"
 sign_text = ""
-surface_color = Color(0.32,0.49,0.46,1)
+surface_color = Color(0.51765,0.41961,0.38039,1)
 [node name="CollisionShape2D" parent="Obstacles/CarroNorte" index="0"]
 shape = SubResource("Shape13")
 [node name="CarroSur" parent="Obstacles" instance=ExtResource("Urban")]
 position = Vector2(1850,1080)
 appearance = "car"
 sign_text = ""
-surface_color = Color(0.48,0.37,0.31,1)
+surface_color = Color(0.51765,0.41961,0.38039,1)
 [node name="CollisionShape2D" parent="Obstacles/CarroSur" index="0"]
 shape = SubResource("Shape14")
 [node name="BarricadaCentral" parent="Obstacles" instance=ExtResource("Urban")]
 position = Vector2(1180,820)
 appearance = "barricade"
 sign_text = ""
-surface_color = Color(0.52,0.49,0.32,1)
+surface_color = Color(0.57255,0.56863,0.55294,1)
 [node name="CollisionShape2D" parent="Obstacles/BarricadaCentral" index="0"]
 shape = SubResource("Shape15")
 [node name="ContenedorEste" parent="Obstacles" instance=ExtResource("Urban")]
 position = Vector2(2060,700)
 appearance = "dumpster"
 sign_text = ""
-surface_color = Color(0.32,0.49,0.46,1)
+surface_color = Color(0.46275,0.45882,0.47451,1)
 [node name="CollisionShape2D" parent="Obstacles/ContenedorEste" index="0"]
 shape = SubResource("Shape16")
 [node name="CajaOeste" parent="Obstacles" instance=ExtResource("Urban")]
 position = Vector2(480,1080)
 appearance = "barricade"
 sign_text = ""
-surface_color = Color(0.48,0.37,0.31,1)
+surface_color = Color(0.57255,0.56863,0.55294,1)
 [node name="CollisionShape2D" parent="Obstacles/CajaOeste" index="0"]
 shape = SubResource("Shape17")
 [node name="CajaNorte" parent="Obstacles" instance=ExtResource("Urban")]
 position = Vector2(1930,450)
 appearance = "barricade"
 sign_text = ""
-surface_color = Color(0.52,0.49,0.32,1)
+surface_color = Color(0.57255,0.56863,0.55294,1)
 [node name="CollisionShape2D" parent="Obstacles/CajaNorte" index="0"]
 shape = SubResource("Shape18")
 [node name="BarreraOeste" parent="Obstacles" instance=ExtResource("Urban")]
 position = Vector2(480,480)
 appearance = "barricade"
 sign_text = ""
-surface_color = Color(0.32,0.49,0.46,1)
+surface_color = Color(0.57255,0.56863,0.55294,1)
 [node name="CollisionShape2D" parent="Obstacles/BarreraOeste" index="0"]
 shape = SubResource("Shape19")
 [node name="PosteEntrada" parent="Obstacles" instance=ExtResource("Urban")]
 position = Vector2(360,650)
 appearance = "pole"
 sign_text = ""
-surface_color = Color(0.48,0.37,0.31,1)
+surface_color = Color(0.40784,0.40784,0.41961,1)
 [node name="CollisionShape2D" parent="Obstacles/PosteEntrada" index="0"]
 shape = SubResource("Shape20")
 [node name="PosteEste" parent="Obstacles" instance=ExtResource("Urban")]
 position = Vector2(2060,1180)
 appearance = "pole"
 sign_text = ""
-surface_color = Color(0.52,0.49,0.32,1)
+surface_color = Color(0.40784,0.40784,0.41961,1)
 [node name="CollisionShape2D" parent="Obstacles/PosteEste" index="0"]
 shape = SubResource("Shape21")
 [node name="Supplies" type="Node2D" parent="."]
@@ -273,7 +273,7 @@ metadata/persistence_id = "market_return"
 [node name="Shape" type="CollisionShape2D" parent="ChapterPoints/Return"]
 shape = SubResource("ExitShape")
 [node name="Ambient" type="CanvasModulate" parent="."]
-color = Color(0.92,0.94,0.91,1)
+color = Color(1,1,1,1)
 [node name="Boundary" type="StaticBody2D" parent="."]
 collision_layer = 1
 collision_mask = 2

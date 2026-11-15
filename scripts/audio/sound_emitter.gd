@@ -5,6 +5,7 @@ signal sound_played(id: StringName)
 @export var bank: AudioCatalog = preload("res://resources/audio/TechnicalAudio.tres")
 @export var enabled := true
 @export var positional := false
+@export var audio_bus: StringName = &"Effects"
 @export_range(1, 12) var max_voices := 4
 @export_range(-60, 0) var volume_db: float = -14.0
 @export_range(0.5,2.0) var pitch_scale := 1.0
@@ -16,6 +17,7 @@ var _next_voice := 0
 func _ready() -> void:
 	for index in range(max_voices):
 		var player: Node = AudioStreamPlayer2D.new() if positional else AudioStreamPlayer.new()
+		player.bus = audio_bus
 		if positional:
 			player.max_distance = 800.0
 			player.attenuation = 1.5
@@ -32,6 +34,7 @@ func play_event(id: StringName, minimum_interval: float = 0.0) -> bool:
 	_next_voice = (_next_voice + 1) % _players.size()
 	player.stop()
 	player.stream = bank.sounds[id]
+	player.bus = audio_bus
 	player.volume_db = volume_db
 	player.pitch_scale = pitch_scale
 	# El driver Dummy de pruebas headless no drena voces al cerrar inmediatamente.

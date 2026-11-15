@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="RadioTransmission" format=3]
+[ext_resource type="Script" path="res://scripts/radio/radio_transmission.gd" id="1"]
+[resource]
+script = ExtResource("1")
+sender = "REGISTRO 041"
+messages = PackedStringArray("La evacuación fue suspendida. El canal de emergencia permanece activo, pero nadie confirma quién está transmitiendo.", "La consola conserva actividad posterior al cierre. Busca los documentos de evacuación y el sistema de respaldo.")

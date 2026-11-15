@@ -34,6 +34,10 @@
 [ext_resource type="Resource" path="res://resources/missions/MarketSupplies.tres" id="MarketSupplies"]
 [ext_resource type="Resource" path="res://resources/missions/MarketHorde.tres" id="MarketHorde"]
 [ext_resource type="Resource" path="res://resources/missions/MarketFrequency.tres" id="MarketFrequency"]
+[ext_resource type="Resource" path="res://resources/missions/StationRecords.tres" id="StationRecords"]
+[ext_resource type="Resource" path="res://resources/missions/StationPower.tres" id="StationPower"]
+[ext_resource type="Resource" path="res://resources/missions/StationFrequency.tres" id="StationFrequency"]
+[ext_resource type="Resource" path="res://resources/missions/StationCall.tres" id="StationCall"]
 [node name="Main" type="Node2D" unique_id=1506309]
 script = ExtResource("4")
 
@@ -61,7 +65,7 @@ position = Vector2(800, 1250)
 [node name="CharacterUI" parent="." instance=ExtResource("8")]
 [node name="Missions" type="Node" parent="."]
 script = ExtResource("Tracker")
-definitions = Array[ExtResource("Definition")]([ExtResource("Signal"), ExtResource("Supplies"), ExtResource("Broadcast"), ExtResource("MarketTraces"), ExtResource("MarketSupplies"), ExtResource("MarketHorde"), ExtResource("MarketFrequency")])
+definitions = Array[ExtResource("Definition")]([ExtResource("Signal"), ExtResource("Supplies"), ExtResource("Broadcast"), ExtResource("MarketTraces"), ExtResource("MarketSupplies"), ExtResource("MarketHorde"), ExtResource("MarketFrequency"), ExtResource("StationRecords"), ExtResource("StationPower"), ExtResource("StationFrequency"), ExtResource("StationCall")])
 [node name="Rewards" type="Node" parent="Missions"]
 script = ExtResource("Rewards")
 [node name="Chapter" type="Node" parent="Missions"]

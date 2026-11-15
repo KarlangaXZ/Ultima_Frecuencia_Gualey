@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="RadioTransmission" format=3]
+[ext_resource type="Script" path="res://scripts/radio/radio_transmission.gd" id="1"]
+[resource]
+script = ExtResource("1")
+sender = "ÚLTIMA LLAMADA"
+messages = PackedStringArray("Si recibes este mensaje, no sigas las señales oficiales de evacuación.", "Busca el perímetro norte. Hay alguien allí que todavía puede explicar lo sucedido.", "Pista registrada: Capítulo 4 — Perímetro de evacuación. Acceso autorizado desde la salida norte de la Estación. Puedes explorar el Perímetro; su capítulo llegará después.")

@@ -1,6 +1,6 @@
 class_name SaveSchema
 extends RefCounted
-const VERSION := 4
+const VERSION := 6
 static func number(value: Variant, low: float, high: float, integer := false) -> bool:
 	return typeof(value) in [TYPE_INT, TYPE_FLOAT] and is_finite(value) and value >= low and value <= high and (not integer or floor(value) == value)
 static func fields(value: Variant, keys: Array) -> bool:
@@ -44,24 +44,31 @@ static func validate(value: Variant, expected_slot: int = -1) -> String:
 	if not timestamp(value.saved_at): return "Fecha de guardado inválida."
 	if not value.chapter is String or not ChapterCatalog.DEFINITIONS.has(value.chapter) or (value.version<3 and value.chapter!=ChapterCatalog.FIRST) or not value.map is String or not ZoneCatalog.DEFINITIONS.has(value.map): return "Este capítulo o mapa no está disponible en esta versión."
 	if value.version<4 and value.map==ZoneCatalog.STATION: return "Zona incompatible con guardado anterior."
+	if value.version<6 and value.map==ZoneCatalog.PERIMETER: return "Perímetro incompatible con guardado anterior."
+	if value.version<5 and value.chapter==ChapterCatalog.STATION: return "Capítulo incompatible con guardado anterior."
 	if value.version == 1 and value.map != ZoneCatalog.HOME: return "Mapa incompatible con guardado v1."
 	if not _player(value.player): return "Datos del protagonista, inventario o armas inválidos."
 	if not _world(value.world,value.map,value.version >= 2,value.version>=4): return "Datos del mundo o población inválidos."
 	var kills := int(value.world.kills)
 	if value.version >= 2:
-		if not value.zones is Dictionary or value.zones.size() > (2 if value.version>=4 else 1) or value.zones.has(value.map): return "Estados de zonas inválidos."
+		if not value.zones is Dictionary or value.zones.size() > (3 if value.version>=6 else 2 if value.version>=4 else 1) or value.zones.has(value.map): return "Estados de zonas inválidos."
 		for id in value.zones:
+			if value.version<6 and id==ZoneCatalog.PERIMETER: return "Zona inactiva incompatible con guardado anterior."
 			if not id is String or not ZoneCatalog.DEFINITIONS.has(id) or (value.version<4 and id==ZoneCatalog.STATION) or not _world(value.zones[id],id,true,value.version>=4): return "Datos de zona inactiva inválidos."
 			kills += int(value.zones[id].kills)
 		if value.map != ZoneCatalog.HOME and not value.zones.has(ZoneCatalog.HOME): return "Falta el estado de la zona inicial."
 		if value.map==ZoneCatalog.STATION and not value.zones.has(ZoneCatalog.MARKET): return "Falta el estado del Mercado."
-		if not fields(value.stats,["kills","survival_time"]) or not number(value.stats.kills,0,54 if value.version>=4 else 36,true) or value.stats.kills != kills or not number(value.stats.survival_time,0,31536000): return "Estadísticas globales incoherentes."
+		if value.map==ZoneCatalog.PERIMETER or value.zones.has(ZoneCatalog.PERIMETER):
+			for previous in [ZoneCatalog.HOME,ZoneCatalog.MARKET,ZoneCatalog.STATION]:
+				if value.map!=previous and not value.zones.has(previous): return "Falta una zona previa al Perímetro."
+		if not fields(value.stats,["kills","survival_time"]) or not number(value.stats.kills,0,72 if value.version>=6 else 54 if value.version>=4 else 36,true) or value.stats.kills != kills or not number(value.stats.survival_time,0,31536000): return "Estadísticas globales incoherentes."
 	if value.version>=3 and (not value.story is Dictionary or not value.story.get("started") is Array): return "Capítulos inválidos."
 	var started: Array = value.story.get("started",[]) if value.version>=3 else [ChapterCatalog.FIRST]
-	if not _missions(value.missions,kills,value.version>=2,value.version>=3,started,value.version>=4): return "Progreso de misiones inválido o incoherente."
+	if not _missions(value.missions,kills,value.version>=2,value.version>=3,started,value.version>=4,value.version>=5,value.version>=6): return "Progreso de misiones inválido o incoherente."
 	if value.version >= 2:
 		if (value.map == ZoneCatalog.MARKET or value.zones.has(ZoneCatalog.MARKET)) and ZoneCatalog.MARKET not in value.missions.unlocked_zones: return "Zona visitada sin desbloquear."
 	if value.version>=4 and (value.map==ZoneCatalog.STATION or value.zones.has(ZoneCatalog.STATION)) and ZoneCatalog.STATION not in value.missions.unlocked_zones: return "Estación visitada sin desbloquear."
+	if value.version>=6 and not _perimeter(value): return "Estado del Perímetro incoherente."
 	if value.version>=3 and not _story(value): return "Estado narrativo incoherente."
 	return ""
 static func _player(p: Variant) -> bool:
@@ -129,19 +136,21 @@ static func _world(w: Variant, zone_id: String = "gualey_sector_04", allow_varia
 	for id in w.rewarded_containers:
 		if id not in zone.container_ids or not w.containers[id].opened: return false
 	return true
-static func _missions(m: Variant, kills: int, with_zones := false, chapters := false, started: Array = ["signal_lost"], station := false) -> bool:
+static func _missions(m: Variant, kills: int, with_zones := false, chapters := false, started: Array = ["signal_lost"], station := false, voices := false, perimeter := false) -> bool:
 	if not fields(m, ["states", "progress", "totals", "receipts", "awarded", "radio", "unlocked_zones"]): return false
-	var definitions: Array = SaveCatalog.MISSIONS if chapters else SaveCatalog.MISSIONS.slice(0,3)
+	var definitions: Array = SaveCatalog.MISSIONS if voices else SaveCatalog.MISSIONS.slice(0,7 if chapters else 3)
 	var mission_ids := definitions.map(func(d): return String(d.id))
 	if not keys_match(m.states, mission_ids) or not keys_match(m.progress, mission_ids): return false
-	if not strings(m.receipts) or not strings(m.awarded, definitions.size()) or not strings(m.unlocked_zones,2 if station else 1): return false
+	if not strings(m.receipts) or not strings(m.awarded, definitions.size()) or not strings(m.unlocked_zones,3 if perimeter else 2 if station else 1): return false
 	if not with_zones and not m.unlocked_zones.is_empty(): return false
 	if with_zones:
-		if not m.unlocked_zones.all(func(id): return id == ZoneCatalog.MARKET or (station and id==ZoneCatalog.STATION)): return false
+		if not m.unlocked_zones.all(func(id): return id == ZoneCatalog.MARKET or (station and id==ZoneCatalog.STATION) or (perimeter and id==ZoneCatalog.PERIMETER)): return false
 		if (m.states.broadcast == 3) != (ZoneCatalog.MARKET in m.unlocked_zones): return false
 		if station and ((m.states.market_frequency==3)!=(ZoneCatalog.STATION in m.unlocked_zones)): return false
+		if perimeter and ((m.states.station_call==3)!=(ZoneCatalog.PERIMETER in m.unlocked_zones)): return false
 	var events := ["inspect_radio", "recovered_medkit", "recovered_water", "kills", "power_on", "send_radio"]
 	if chapters: events.append_array(ChapterCatalog.EVENTS)
+	if voices: events.append_array(ChapterCatalog.STATION_EVENTS)
 	if not m.totals is Dictionary or m.totals.size() > events.size(): return false
 	for key in m.totals:
 		if key not in events or not number(m.totals[key], 0, 128, true): return false
@@ -172,21 +181,29 @@ static func _missions(m: Variant, kills: int, with_zones := false, chapters := f
 	if completed.size() != m.awarded.size() or not completed.all(func(id): return id in m.awarded): return false
 	if not fields(m.radio, ["transmission", "index"]) or not m.radio.transmission is String: return false
 	if m.radio.transmission == "": return m.radio.index == 0
+	if not voices and m.radio.transmission in ["station_records","station_power","station_hidden","station_final"]: return false
+	if not perimeter and m.radio.transmission in SaveCatalog.PERIMETER_RADIOS: return false
 	return SaveCatalog.TRANSMISSIONS.has(m.radio.transmission) and number(m.radio.index, 0, SaveCatalog.TRANSMISSIONS[m.radio.transmission].messages.size() - 1, true)
 
 static func _story(data: Dictionary) -> bool:
 	var s: Variant = data.story
-	if not fields(s,["started","completed","legacy_waivers","station_hint"]): return false
-	if not strings(s.started,2) or not strings(s.completed,2) or not strings(s.legacy_waivers,2) or not s.station_hint is bool: return false
+	var voices: bool = data.version>=5
+	var story_fields := ["started","completed","legacy_waivers","station_hint"]
+	if voices: story_fields.append("perimeter_hint")
+	if not fields(s,story_fields): return false
+	if not strings(s.started,3 if voices else 2) or not strings(s.completed,3 if voices else 2) or not strings(s.legacy_waivers,2) or not s.station_hint is bool: return false
 	if s.started.is_empty() or s.started[0]!=ChapterCatalog.FIRST: return false
 	if not s.started.all(func(id): return ChapterCatalog.DEFINITIONS.has(id)) or not s.completed.all(func(id): return id in s.started): return false
+	if not voices and ChapterCatalog.STATION in s.started: return false
 	if data.chapter!=s.started[-1]: return false
 	var m: Dictionary = data.missions
 	for id in ChapterCatalog.DEFINITIONS:
+		if not voices and id==ChapterCatalog.STATION: continue
 		var done: bool = ChapterCatalog.DEFINITIONS[id].missions.all(func(key): return m.states[key]==3)
 		if done!=(id in s.completed): return false
 	if ChapterCatalog.MARKET in s.started and ChapterCatalog.FIRST not in s.completed: return false
 	if s.station_hint!=(ChapterCatalog.MARKET in s.completed): return false
+	if voices and not _station_story(data): return false
 	var market := MarketHistory.world(data)
 	if (ChapterCatalog.MARKET in s.started)!=(not market.is_empty()): return false
 	var unavailable := MarketHistory.unavailable_types(market)
@@ -208,4 +225,38 @@ static func _story(data: Dictionary) -> bool:
 	for item in ["water","medkit"]:
 		if m.totals.get("market_"+item,0)>0 and not MarketHistory.recovered(market,item): return false
 	if m.totals.get("market_container",0)>0 and (market.is_empty() or not market.containers.market_medical.opened): return false
+	return true
+
+static func _perimeter(data: Dictionary) -> bool:
+	var world: Dictionary = data.world if data.map==ZoneCatalog.PERIMETER else data.zones.get(ZoneCatalog.PERIMETER,{})
+	if not world.is_empty() and ZoneCatalog.PERIMETER not in data.missions.unlocked_zones: return false
+	var transmission: String=data.missions.radio.transmission
+	if transmission in SaveCatalog.PERIMETER_RADIOS:
+		if world.is_empty() or transmission not in world.interactions: return false
+	return true
+
+static func _station_story(data: Dictionary) -> bool:
+	var s: Dictionary = data.story
+	var m: Dictionary = data.missions
+	var world: Dictionary = data.world if data.map==ZoneCatalog.STATION else data.zones.get(ZoneCatalog.STATION,{})
+	if (ChapterCatalog.STATION in s.started)!=not world.is_empty(): return false
+	if ChapterCatalog.STATION in s.started and ChapterCatalog.MARKET not in s.completed: return false
+	if not s.perimeter_hint is bool or s.perimeter_hint!=(ChapterCatalog.STATION in s.completed): return false
+	if int(m.totals.get("station_kills",0))!=int(world.get("kills",0)): return false
+	for definition in SaveCatalog.MISSIONS.slice(7):
+		for index in range(definition.objectives.size()):
+			var objective: MissionObjective = definition.objectives[index]
+			var event := String(objective.event_key)
+			if event=="station_kills": continue
+			var total: Variant = m.totals.get(event,0)
+			if not number(total,0,1,true) or total!=m.progress[String(definition.id)][index]: return false
+			var receipt := event+":"+event
+			if event=="station_hidden_listen": receipt=event+":station_hidden"
+			if event=="station_final_listen": receipt=event+":station_final"
+			if (total==1)!=(receipt in m.receipts): return false
+	var events := {"station_records":"station_log","station_power":"station_secondary","station_hidden":"station_link","station_final":"station_broadcast"}
+	if m.radio.transmission in events:
+		if m.totals.get(events[m.radio.transmission],0)!=1: return false
+		if m.radio.transmission=="station_hidden" and m.totals.get("station_hidden_listen",0)!=0: return false
+		if m.radio.transmission=="station_final" and m.totals.get("station_final_listen",0)!=0: return false
 	return true

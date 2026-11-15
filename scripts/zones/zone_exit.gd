@@ -2,6 +2,7 @@ class_name ZoneExit
 extends Area2D
 @export var destination: String
 @export var entry: String
+@export var arrow_direction:=Vector2.RIGHT
 var available := false:
 	set(value):
 		available = value
@@ -17,5 +18,6 @@ func _draw() -> void:
 	var color := Color("dec787") if available else Color("667b70")
 	draw_circle(Vector2.ZERO,30,Color("142729"))
 	draw_arc(Vector2.ZERO,29,0,TAU,32,color,2)
-	draw_line(Vector2(-16,0),Vector2(16,0),color,4)
-	draw_polyline(PackedVector2Array([Vector2(4,-12),Vector2(16,0),Vector2(4,12)]),color,4)
+	var angle:=arrow_direction.angle()
+	draw_line(Vector2(-16,0).rotated(angle),Vector2(16,0).rotated(angle),color,4)
+	draw_polyline(PackedVector2Array([Vector2(4,-12).rotated(angle),Vector2(16,0).rotated(angle),Vector2(4,12).rotated(angle)]),color,4)

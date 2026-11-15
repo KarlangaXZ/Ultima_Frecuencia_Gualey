@@ -1,5 +1,7 @@
 # Fase 8 — misiones, exploración y radio
 
+**Estado vigente — Fase 14:** [Voces en la oscuridad](station_chapter.md): tres capítulos, once misiones y guardado v5 compatible con v1–v4. Este informe conserva sus resultados históricos.
+
 **Actualización Fase 12:** [Ecos del Mercado y guardado v3](market_chapter.md).
 Este informe conserva la arquitectura/resultados históricos; el juego actual
 tiene dos capítulos, siete misiones y migración v1/v2 → v3.

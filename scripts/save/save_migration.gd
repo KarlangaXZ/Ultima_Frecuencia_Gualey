@@ -16,7 +16,7 @@ static func to_current(source: Dictionary) -> Dictionary:
 		data.story = {"started":[ChapterCatalog.FIRST],"completed":[],"legacy_waivers":MarketHistory.unavailable_types(market),"station_hint":false}
 		if data.missions.states.broadcast==3: data.story.completed.append(ChapterCatalog.FIRST)
 		if started: data.story.started.append(ChapterCatalog.MARKET)
-		for mission in SaveCatalog.MISSIONS.slice(3):
+		for mission in SaveCatalog.MISSIONS.slice(3,7):
 			data.missions.states[String(mission.id)] = 2 if started and mission.id==&"market_traces" else 0
 			data.missions.progress[String(mission.id)] = mission.objectives.map(func(_o): return 0)
 		if started:
@@ -33,4 +33,19 @@ static func to_current(source: Dictionary) -> Dictionary:
 		data.world.interactions=[]
 		for state in data.zones.values(): state.interactions=[]
 		if data.missions.states.market_frequency==3: data.missions.unlocked_zones.append(ZoneCatalog.STATION)
+	if data.version==4:
+		data.version=5
+		var station: Dictionary = data.world if data.map==ZoneCatalog.STATION else data.zones.get(ZoneCatalog.STATION,{})
+		var started := not station.is_empty()
+		data.story.perimeter_hint=false
+		if started:
+			data.story.started.append(ChapterCatalog.STATION)
+			data.chapter=ChapterCatalog.STATION
+			if station.kills>0: data.missions.totals.station_kills=int(station.kills)
+		for mission in SaveCatalog.MISSIONS.slice(7):
+			data.missions.states[String(mission.id)]=2 if started and mission.id==&"station_records" else 0
+			data.missions.progress[String(mission.id)]=mission.objectives.map(func(_o):return 0)
+	if data.version==5:
+		data.version=6
+		if data.missions.states.station_call==3: data.missions.unlocked_zones.append(ZoneCatalog.PERIMETER)
 	return data

@@ -17,7 +17,7 @@ func _draw() -> void:
 		draw_rect(Rect2(940, y, 86, 11), Color("a4a38a", 0.55))
 	for center in [Vector2(515, 930), Vector2(1320, 620), Vector2(1980, 1150)]:
 		draw_circle(center, 31, Color("131d21", 0.35))
-		draw_arc(center, 38, 0.1, 4.5, 14, Color("454c43"), 2)
+		draw_arc(center, 38, 0.1, 4.5, 14, Color("4b4a49"), 2)
 	var random := RandomNumberGenerator.new()
 	random.seed = 404
 	for index in range(55):
@@ -29,12 +29,12 @@ func _draw() -> void:
 			draw_line(position + Vector2(x, 3), position + Vector2(x, 21), Color("526063"), 2.0)
 	# Nombres pintados sobre pavimento: identidad local ficticia, no cartografía real.
 	draw_string(ThemeDB.fallback_font, Vector2(420, 1010), "GUALEY / ZONA EVACUADA", HORIZONTAL_ALIGNMENT_LEFT, -1, 18, Color("9d9b7e", 0.65))
-	draw_rect(Rect2(24, 24, 2352, 1552), Color("797b67"), false, 4)
+	draw_rect(Rect2(24, 24, 2352, 1552), Color("8b8780"), false, 4)
 
 func _draw_sidewalk(area: Rect2) -> void:
-	draw_rect(area, Color("626b65"))
-	draw_rect(area.grow(-5), Color("777b6c"))
+	draw_rect(area, Color("777575"))
+	draw_rect(area.grow(-5), Color("98948d"))
 	for x in range(int(area.position.x) + 32, int(area.end.x), 48):
-		draw_line(Vector2(x, area.position.y + 5), Vector2(x, area.end.y - 5), Color("666e64"), 1)
+		draw_line(Vector2(x, area.position.y + 5), Vector2(x, area.end.y - 5), Color("7c7973"), 1)
 	for y in range(int(area.position.y) + 32, int(area.end.y), 48):
-		draw_line(Vector2(area.position.x + 5, y), Vector2(area.end.x - 5, y), Color("666e64"), 1)
+		draw_line(Vector2(area.position.x + 5, y), Vector2(area.end.x - 5, y), Color("7c7973"), 1)

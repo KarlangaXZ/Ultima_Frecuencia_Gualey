@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="MissionDefinition" format=3 uid="uid://boyo01uk8rkdn"]
+
+[ext_resource type="Script" uid="uid://c7c7f51agrvry" path="res://scripts/missions/mission_definition.gd" id="1"]
+[ext_resource type="Script" uid="uid://4dssexr5xu3t" path="res://scripts/missions/mission_objective.gd" id="2"]
+
+[sub_resource type="Resource" id="Objective0"]
+script = ExtResource("2")
+event_key = &"station_generator"
+description = "Localizar el generador auxiliar."
+
+[sub_resource type="Resource" id="Objective1"]
+script = ExtResource("2")
+event_key = &"station_component"
+description = "Recuperar el componente de alimentación."
+
+[sub_resource type="Resource" id="Objective2"]
+script = ExtResource("2")
+event_key = &"station_secondary"
+description = "Reactivar las comunicaciones secundarias."
+
+[resource]
+script = ExtResource("1")
+chapter_id = &"station_voices"
+id = &"station_power"
+title = "Energía de respaldo"
+description = "Restaura la alimentación secundaria con el componente técnico; no ocupa mochila."
+prerequisites = Array[StringName]([&"station_records"])
+objectives = Array[ExtResource("2")]([SubResource("Objective0"), SubResource("Objective1"), SubResource("Objective2")])
+reward_xp = 50
+sequential = true

@@ -1,5 +1,9 @@
 # Fase 9 — guardado, carga y pausa
 
+**Estado vigente — Fase 15:** [Perímetro de evacuación](evacuation_perimeter.md), cuatro zonas, tres capítulos y guardado v6 compatible con v1–v5. Se conservan abajo los resultados históricos.
+
+**Estado vigente — Fase 14:** [Voces en la oscuridad](station_chapter.md): tres capítulos, once misiones y guardado v5 compatible con v1–v4. Este informe conserva sus resultados históricos.
+
 **Actualización Fase 12:** [Ecos del Mercado y guardado v3](market_chapter.md).
 Este informe conserva la arquitectura/resultados históricos; el juego actual
 tiene dos capítulos, siete misiones y migración v1/v2 → v3.

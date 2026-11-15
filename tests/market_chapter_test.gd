@@ -89,7 +89,7 @@ func run() -> void:
 	change_scene_to_file("res://scenes/Main.tscn")
 	await frames(8)
 	bind_scene()
-	check(tracker.definitions.size()==7 and tracker.started_chapters==[ChapterCatalog.FIRST],"Siete misiones, capítulo 2 bloqueado")
+	check(tracker.definitions.size()==11 and tracker.started_chapters==[ChapterCatalog.FIRST],"Once misiones, capítulos posteriores bloqueados")
 	check(not main.get_node("ZoneManager").request_travel(ZoneCatalog.MARKET,"from_gualey"),"Salida inicialmente bloqueada")
 	# Capítulo 1 completo: sin eventos de misión sintéticos ni XP añadida.
 	await interact(Vector2(560,810))
@@ -142,7 +142,7 @@ func run() -> void:
 	await capture("02-survivor-record")
 	await close_radio()
 	var saves:=main.get_node("SaveCoordinator")
-	saves.store.directory="user://tests/phase-twelve-walk-%d"%OS.get_process_id()
+	saves.store.directory="user://tests/phase-twelve-walk-%d-%d"%[OS.get_process_id(),int(Time.get_unix_time_from_system()*1000000)]
 	check(saves.save_slot(1).has("ok"),"Guardar objetivos históricos y orden")
 	var before: int=player.get_node("ProgressionComponent").total_xp()
 	check(saves.load_slot(1).has("ok"),"Cargar recorrido sin repetir premios")
@@ -178,7 +178,7 @@ func run() -> void:
 	for mission in tracker.definitions:
 		if mission.id in awarded and mission.chapter_id==&"market_echoes":mission_xp+=mission.reward_xp
 	check(mission_xp==205 and awarded.size()==7,"205 XP de capítulo 2 una sola vez")
-	check(ZoneCatalog.DEFINITIONS.size()==3 and main.get_node("ZoneManager").unlocked==[ZoneCatalog.MARKET,ZoneCatalog.STATION],"Estación desbloqueada, sin misiones de capítulo 3")
+	check(ZoneCatalog.DEFINITIONS.size()==4 and main.get_node("ZoneManager").unlocked==[ZoneCatalog.MARKET,ZoneCatalog.STATION],"Estación desbloqueada; Perímetro sigue bloqueado")
 	await key(KEY_J)
 	await capture("04-chapter-two-complete")
 	await key(KEY_J)

@@ -3,10 +3,10 @@
 [ext_resource type="Theme" path="res://assets/ui/SurvivalTheme.tres" id="2"]
 [ext_resource type="Texture2D" path="res://assets/placeholders/ui/temp_zone_mark.svg" id="3"]
 [sub_resource type="StyleBoxFlat" id="CompactPanel"]
-bg_color = Color(0.035, 0.06, 0.067, 0.82)
+bg_color = Color(0.065, 0.07, 0.085, 0.9)
 border_width_left = 1
 border_width_bottom = 1
-border_color = Color(0.35, 0.46, 0.42, 0.55)
+border_color = Color(0.45, 0.44, 0.42, 0.65)
 corner_radius_top_left = 3
 corner_radius_bottom_left = 3
 corner_radius_top_right = 3
@@ -39,7 +39,7 @@ text = "Última Frecuencia:
 Gualey"
 mouse_filter = 2
 [node name="Sector" type="Label" parent="Panel/Margin/Content"]
-theme_override_colors/font_color = Color(0.5, 0.63, 0.62, 1)
+theme_override_colors/font_color = Color(0.65, 0.65, 0.68, 1)
 theme_override_font_sizes/font_size = 10
 text = "SECTOR 04"
 mouse_filter = 2
@@ -50,7 +50,7 @@ value = 100.0
 show_percentage = false
 [node name="HealthValue" type="Label" parent="Panel/Margin/Content"]
 theme_override_font_sizes/font_size = 13
-theme_override_colors/font_color = Color(0.53, 0.82, 0.68, 1)
+theme_override_colors/font_color = Color(0.91, 0.7, 0.6, 1)
 text = "100 / 100"
 mouse_filter = 2
 [node name="Ammo" type="Label" parent="Panel/Margin/Content"]
@@ -76,13 +76,13 @@ theme_override_font_sizes/font_size = 12
 theme_override_colors/font_color = Color(1, 0.77, 0.37, 1)
 mouse_filter = 2
 [node name="Stats" type="Label" parent="Panel/Margin/Content"]
-theme_override_colors/font_color = Color(0.63, 0.72, 0.7, 1)
+theme_override_colors/font_color = Color(0.76, 0.75, 0.73, 1)
 theme_override_font_sizes/font_size = 12
 text = "Eliminados: 0 · Tiempo: 00:00"
 mouse_filter = 2
 [node name="Needs" type="Label" parent="Panel/Margin/Content"]
 theme_override_font_sizes/font_size = 12
-theme_override_colors/font_color = Color(0.63, 0.76, 0.68, 1)
+theme_override_colors/font_color = Color(0.8, 0.76, 0.68, 1)
 text = "Hambre: 100 · Sed: 100"
 mouse_filter = 2
 [node name="InteractionPrompt" type="Label" parent="."]

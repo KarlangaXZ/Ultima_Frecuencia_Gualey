@@ -183,7 +183,7 @@ func run() -> void:
 			check(state.nodes-state.enemy_subtree_nodes==previous.nodes-previous.enemy_subtree_nodes and state.resources==previous.resources and state.player_death_connections-state.enemy_nodes==previous.player_death_connections-previous.enemy_nodes,"Nodos/recursos/señales estables por zona")
 		stable_by_zone[destination] = state
 	var saves := current_scene.get_node("SaveCoordinator")
-	saves.store.directory = "user://tests/phase-eleven-one-performance-"+str(OS.get_process_id())
+	saves.store.directory = "user://tests/phase-eleven-one-performance-"+str(OS.get_process_id())+"-"+str(int(Time.get_unix_time_from_system()*1000000))
 	var start := Time.get_ticks_usec()
 	var saved: Dictionary = saves.save_slot(1,true)
 	var save_ms := (Time.get_ticks_usec()-start)/1000.0

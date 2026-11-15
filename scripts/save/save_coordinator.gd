@@ -2,10 +2,13 @@ extends Node
 ## Captura estable y reemplazo de escena tras validar/construir por completo.
 var store := SaveFileStore.new()
 var busy := false
+static var session_slot: int=-1
+var active_slot: int=-1
 @export var autosave_enabled := false
 @onready var main: Node = get_parent()
 
 func _ready() -> void:
+	active_slot=session_slot
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	main.get_node("Missions").mission_completed.connect(func(_mission: MissionDefinition):
 		if autosave_enabled: call_deferred("_autosave"))
@@ -21,6 +24,9 @@ func save_slot(slot: int, confirmed := false) -> Dictionary:
 	if main.get_node("Missions")._busy or not main.get_node("Population")._initialized: return {"error": "Espera a que termine la actualización del mundo."}
 	busy = true
 	var result := store.write_slot(slot, capture(slot), confirmed)
+	if result.has("ok") and slot>0:
+		active_slot=slot
+		session_slot=slot
 	busy = false
 	return result
 
@@ -64,6 +70,7 @@ func load_slot(slot: int) -> Dictionary:
 	candidate.kills = int(data.stats.kills)
 	candidate.survival_time = data.stats.survival_time
 	candidate.get_node("SaveCoordinator").store.directory = store.directory
+	candidate.get_node("SaveCoordinator").active_slot = slot
 	candidate.get_node("SaveCoordinator").autosave_enabled = autosave_enabled
 	_refresh_presentation(candidate)
 	# Solo datos permitidos y reconstruidos; no se ejecuta ninguna ruta del JSON.
@@ -78,6 +85,7 @@ func load_slot(slot: int) -> Dictionary:
 	main.get_parent().remove_child(main)
 	main.queue_free()
 	tree.current_scene = candidate
+	session_slot=slot
 	candidate.restoring = false
 	candidate.process_mode = Node.PROCESS_MODE_INHERIT
 	candidate.get_node("World/Navigation").enabled = true
@@ -89,7 +97,7 @@ func load_slot(slot: int) -> Dictionary:
 	var audio: Node = candidate.get_node("Audio")
 	if audio.ambience_enabled and DisplayServer.get_name() != "headless": audio.ambience.play()
 	var message := "Partida cargada desde respaldo." if loaded.recovered else "Partida cargada."
-	if loaded.get("migrated",false): message += " Guardado anterior adaptado a v4."
+	if loaded.get("migrated",false): message += " Guardado anterior adaptado a v6."
 	if relocated: message += " Posición recuperada en el inicio seguro."
 	candidate.get_node("HUD").show_message(message)
 	candidate.get_node("ZoneOverlay").show_location(ZoneCatalog.definition(data.map).display_name)

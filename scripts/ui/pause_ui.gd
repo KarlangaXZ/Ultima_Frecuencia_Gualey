@@ -54,6 +54,26 @@ func _setup(title: Label) -> void:
 	policy.text = "ESC: continuar · Cargar cancela la recarga en curso sin transferir munición."
 	policy.add_theme_font_size_override("font_size", 13)
 	content.add_child(policy)
+	var home:=Button.new()
+	home.text="VOLVER AL INICIO"
+	home.add_theme_font_size_override("font_size",15)
+	home.pressed.connect(_request_home)
+	content.add_child(home)
+
+func _request_home() -> void:
+	var dialog:=ConfirmationDialog.new()
+	dialog.title="Volver al inicio"
+	dialog.dialog_text="Se perderán los cambios que no hayas guardado. ¿Quieres volver a la pantalla inicial?"
+	dialog.ok_button_text="Volver al inicio"
+	dialog.cancel_button_text="Cancelar"
+	dialog.process_mode=Node.PROCESS_MODE_ALWAYS
+	dialog.confirmed.connect(func():
+		get_parent().get_node("InterfaceCoordinator").set_transitioning(false)
+		get_tree().paused=false
+		get_tree().change_scene_to_file("res://scenes/TitleMenu.tscn"))
+	dialog.canceled.connect(dialog.queue_free)
+	window.add_child(dialog)
+	dialog.popup_centered(Vector2i(610,180))
 
 func _input(event: InputEvent) -> void:
 	if get_parent().get_node("ZoneManager").busy: return
@@ -90,6 +110,7 @@ func refresh_slots() -> void:
 				ZoneCatalog.definition(result.data.map).display_name, String(result.data.saved_at).replace("T", " ").trim_suffix("Z"), " · Respaldo" if result.recovered else ""]
 		elif saves.store.occupied(index + 1): label = "Ranura %d · %s" % [index + 1, result.error]
 		rows[index].label.text = label
+		if saves.active_slot==index+1:rows[index].label.text+=" · EN USO"
 		rows[index].save.disabled = get_parent().game_ended
 		rows[index].load.disabled = not saves.store.occupied(index + 1)
 

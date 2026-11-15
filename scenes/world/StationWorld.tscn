@@ -82,7 +82,7 @@ collision_layer = 1
 collision_mask = 2
 script = ExtResource("Structure")
 kind = "fence"
-surface_color = Color(0.39,0.47,0.44,1)
+surface_color = Color(0.52157,0.53333,0.55294,1)
 sign_text = ""
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/FenceN"]
 shape = SubResource("Foot0")
@@ -92,7 +92,7 @@ collision_layer = 1
 collision_mask = 2
 script = ExtResource("Structure")
 kind = "fence"
-surface_color = Color(0.39,0.47,0.44,1)
+surface_color = Color(0.52157,0.53333,0.55294,1)
 sign_text = ""
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/FenceS"]
 shape = SubResource("Foot1")
@@ -102,7 +102,7 @@ collision_layer = 1
 collision_mask = 2
 script = ExtResource("Structure")
 kind = "fence"
-surface_color = Color(0.39,0.47,0.44,1)
+surface_color = Color(0.52157,0.53333,0.55294,1)
 sign_text = ""
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/FenceWNorth"]
 shape = SubResource("Foot2")
@@ -112,7 +112,7 @@ collision_layer = 1
 collision_mask = 2
 script = ExtResource("Structure")
 kind = "fence"
-surface_color = Color(0.39,0.47,0.44,1)
+surface_color = Color(0.52157,0.53333,0.55294,1)
 sign_text = ""
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/FenceWSouth"]
 shape = SubResource("Foot3")
@@ -122,7 +122,7 @@ collision_layer = 1
 collision_mask = 2
 script = ExtResource("Structure")
 kind = "fence"
-surface_color = Color(0.39,0.47,0.44,1)
+surface_color = Color(0.52157,0.53333,0.55294,1)
 sign_text = ""
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/FenceE"]
 shape = SubResource("Foot4")
@@ -132,7 +132,7 @@ collision_layer = 1
 collision_mask = 2
 script = ExtResource("Structure")
 kind = "building"
-surface_color = Color(0.39,0.47,0.44,1)
+surface_color = Color(0.56863,0.56863,0.58039,1)
 sign_text = "MANTENIMIENTO"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/Garage"]
 shape = SubResource("Foot5")
@@ -142,7 +142,7 @@ collision_layer = 1
 collision_mask = 2
 script = ExtResource("Structure")
 kind = "checkpoint"
-surface_color = Color(0.39,0.47,0.44,1)
+surface_color = Color(0.54118,0.48627,0.40784,1)
 sign_text = "CONTROL"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/GuardN"]
 shape = SubResource("Foot6")
@@ -152,7 +152,7 @@ collision_layer = 1
 collision_mask = 2
 script = ExtResource("Structure")
 kind = "checkpoint"
-surface_color = Color(0.39,0.47,0.44,1)
+surface_color = Color(0.54118,0.48627,0.40784,1)
 sign_text = "SALIDA"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/GuardS"]
 shape = SubResource("Foot7")
@@ -162,7 +162,7 @@ collision_layer = 1
 collision_mask = 2
 script = ExtResource("Structure")
 kind = "wall"
-surface_color = Color(0.32,0.45,0.51,1)
+surface_color = Color(0.54510,0.54118,0.52941,1)
 sign_text = "COMUNICACIONES"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/CommsN"]
 shape = SubResource("Foot8")
@@ -172,7 +172,7 @@ collision_layer = 1
 collision_mask = 2
 script = ExtResource("Structure")
 kind = "wall"
-surface_color = Color(0.32,0.45,0.51,1)
+surface_color = Color(0.54510,0.54118,0.52941,1)
 sign_text = ""
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/CommsW"]
 shape = SubResource("Foot9")
@@ -182,7 +182,7 @@ collision_layer = 1
 collision_mask = 2
 script = ExtResource("Structure")
 kind = "wall"
-surface_color = Color(0.32,0.45,0.51,1)
+surface_color = Color(0.54510,0.54118,0.52941,1)
 sign_text = ""
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/CommsE"]
 shape = SubResource("Foot10")
@@ -192,7 +192,7 @@ collision_layer = 1
 collision_mask = 2
 script = ExtResource("Structure")
 kind = "wall"
-surface_color = Color(0.32,0.45,0.51,1)
+surface_color = Color(0.54510,0.54118,0.52941,1)
 sign_text = ""
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/CommsSW"]
 shape = SubResource("Foot11")
@@ -202,7 +202,7 @@ collision_layer = 1
 collision_mask = 2
 script = ExtResource("Structure")
 kind = "wall"
-surface_color = Color(0.32,0.45,0.51,1)
+surface_color = Color(0.54510,0.54118,0.52941,1)
 sign_text = ""
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/CommsSE"]
 shape = SubResource("Foot12")
@@ -212,7 +212,7 @@ collision_layer = 1
 collision_mask = 2
 script = ExtResource("Structure")
 kind = "rack"
-surface_color = Color(0.32,0.45,0.51,1)
+surface_color = Color(0.36863,0.41176,0.47843,1)
 sign_text = "RADIO"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/RackA"]
 shape = SubResource("Foot13")
@@ -222,7 +222,7 @@ collision_layer = 1
 collision_mask = 2
 script = ExtResource("Structure")
 kind = "rack"
-surface_color = Color(0.32,0.45,0.51,1)
+surface_color = Color(0.36863,0.41176,0.47843,1)
 sign_text = "DATOS"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/RackB"]
 shape = SubResource("Foot14")
@@ -232,7 +232,7 @@ collision_layer = 1
 collision_mask = 2
 script = ExtResource("Structure")
 kind = "rack"
-surface_color = Color(0.32,0.45,0.51,1)
+surface_color = Color(0.36863,0.41176,0.47843,1)
 sign_text = "ENLACE"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/RackC"]
 shape = SubResource("Foot15")
@@ -242,7 +242,7 @@ collision_layer = 1
 collision_mask = 2
 script = ExtResource("Structure")
 kind = "tower"
-surface_color = Color(0.32,0.45,0.51,1)
+surface_color = Color(0.46667,0.50588,0.55686,1)
 sign_text = "RF"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/Antenna"]
 shape = SubResource("Foot16")
@@ -252,7 +252,7 @@ collision_layer = 1
 collision_mask = 2
 script = ExtResource("Structure")
 kind = "generator"
-surface_color = Color(0.39,0.47,0.44,1)
+surface_color = Color(0.64706,0.54902,0.33725,1)
 sign_text = "GENERADOR"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/Generator"]
 shape = SubResource("Foot17")
@@ -262,7 +262,7 @@ collision_layer = 1
 collision_mask = 2
 script = ExtResource("Structure")
 kind = "transformer"
-surface_color = Color(0.39,0.47,0.44,1)
+surface_color = Color(0.52549,0.54118,0.57255,1)
 sign_text = "ALTA TENSIÓN"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/Transformer"]
 shape = SubResource("Foot18")
@@ -272,7 +272,7 @@ collision_layer = 1
 collision_mask = 2
 script = ExtResource("Structure")
 kind = "rack"
-surface_color = Color(0.32,0.45,0.51,1)
+surface_color = Color(0.36863,0.41176,0.47843,1)
 sign_text = "SUBESTACIÓN"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/Electrical"]
 shape = SubResource("Foot19")
@@ -282,7 +282,7 @@ collision_layer = 1
 collision_mask = 2
 script = ExtResource("Structure")
 kind = "car"
-surface_color = Color(0.39,0.47,0.44,1)
+surface_color = Color(0.51765,0.41961,0.38039,1)
 sign_text = ""
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/MaintenanceVan"]
 shape = SubResource("Foot20")
@@ -292,7 +292,7 @@ collision_layer = 1
 collision_mask = 2
 script = ExtResource("Structure")
 kind = "barricade"
-surface_color = Color(0.39,0.47,0.44,1)
+surface_color = Color(0.57255,0.56863,0.55294,1)
 sign_text = ""
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/WestBarricade"]
 shape = SubResource("Foot21")
@@ -302,7 +302,7 @@ collision_layer = 1
 collision_mask = 2
 script = ExtResource("Structure")
 kind = "barricade"
-surface_color = Color(0.39,0.47,0.44,1)
+surface_color = Color(0.57255,0.56863,0.55294,1)
 sign_text = ""
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/EastBarricade"]
 shape = SubResource("Foot22")
@@ -312,7 +312,7 @@ collision_layer = 1
 collision_mask = 2
 script = ExtResource("Structure")
 kind = "building"
-surface_color = Color(0.39,0.47,0.44,1)
+surface_color = Color(0.66667,0.56471,0.47451,1)
 sign_text = "ÁREA TÉCNICA"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/TechnicalAnnex"]
 shape = SubResource("Foot23")
@@ -322,7 +322,7 @@ collision_layer = 1
 collision_mask = 2
 script = ExtResource("Structure")
 kind = "crate"
-surface_color = Color(0.39,0.47,0.44,1)
+surface_color = Color(0.60784,0.49412,0.34510,1)
 sign_text = "EQUIPOS"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/TechnicalCrate"]
 shape = SubResource("Foot24")
@@ -332,7 +332,7 @@ collision_layer = 1
 collision_mask = 2
 script = ExtResource("Structure")
 kind = "crate"
-surface_color = Color(0.39,0.47,0.44,1)
+surface_color = Color(0.60784,0.49412,0.34510,1)
 sign_text = "EVACUACIÓN"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/EvacuationCrate"]
 shape = SubResource("Foot25")
@@ -386,8 +386,109 @@ display_name = "Equipo principal de la estación"
 metadata/persistence_id = "station_radio"
 [node name="Shape" type="CollisionShape2D" parent="ChapterPoints/StationRadio"]
 shape = SubResource("PointShape")
+[node name="Log" type="Area2D" parent="ChapterPoints"]
+position = Vector2(1130,500)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("Point")
+point_id = &"station_log"
+display_name = "Registro de transmisiones"
+metadata/persistence_id = "station_log"
+[node name="Shape" type="CollisionShape2D" parent="ChapterPoints/Log"]
+shape = SubResource("PointShape")
+[node name="Console" type="Area2D" parent="ChapterPoints"]
+position = Vector2(1480,320)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("Point")
+point_id = &"station_console"
+display_name = "Consola principal"
+metadata/persistence_id = "station_console"
+[node name="Shape" type="CollisionShape2D" parent="ChapterPoints/Console"]
+shape = SubResource("PointShape")
+[node name="Evacuation" type="Area2D" parent="ChapterPoints"]
+position = Vector2(900,1300)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("Point")
+point_id = &"station_evacuation"
+display_name = "Documentos de evacuación"
+metadata/persistence_id = "station_evacuation"
+[node name="Shape" type="CollisionShape2D" parent="ChapterPoints/Evacuation"]
+shape = SubResource("PointShape")
+[node name="Generator" type="Area2D" parent="ChapterPoints"]
+position = Vector2(1860,580)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("Point")
+point_id = &"station_generator"
+display_name = "Generador auxiliar"
+metadata/persistence_id = "station_generator"
+[node name="Shape" type="CollisionShape2D" parent="ChapterPoints/Generator"]
+shape = SubResource("PointShape")
+[node name="Component" type="Area2D" parent="ChapterPoints"]
+position = Vector2(1460,1020)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("Point")
+point_id = &"station_component"
+display_name = "Componente de alimentación"
+metadata/persistence_id = "station_component"
+[node name="Shape" type="CollisionShape2D" parent="ChapterPoints/Component"]
+shape = SubResource("PointShape")
+[node name="Secondary" type="Area2D" parent="ChapterPoints"]
+position = Vector2(2050,760)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("Point")
+point_id = &"station_secondary"
+display_name = "Sistema secundario"
+metadata/persistence_id = "station_secondary"
+[node name="Shape" type="CollisionShape2D" parent="ChapterPoints/Secondary"]
+shape = SubResource("PointShape")
+[node name="Antenna" type="Area2D" parent="ChapterPoints"]
+position = Vector2(1050,1020)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("Point")
+point_id = &"station_antenna"
+display_name = "Enlace de antena"
+metadata/persistence_id = "station_antenna"
+[node name="Shape" type="CollisionShape2D" parent="ChapterPoints/Antenna"]
+shape = SubResource("PointShape")
+[node name="Link" type="Area2D" parent="ChapterPoints"]
+position = Vector2(1580,420)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("Point")
+point_id = &"station_link"
+display_name = "Enlace de radio"
+metadata/persistence_id = "station_link"
+[node name="Shape" type="CollisionShape2D" parent="ChapterPoints/Link"]
+shape = SubResource("PointShape")
+[node name="Broadcast" type="Area2D" parent="ChapterPoints"]
+position = Vector2(1420,560)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("Point")
+point_id = &"station_broadcast"
+display_name = "Transmisor final"
+metadata/persistence_id = "station_broadcast"
+[node name="Shape" type="CollisionShape2D" parent="ChapterPoints/Broadcast"]
+shape = SubResource("PointShape")
+[node name="PerimeterExit" type="Area2D" parent="ChapterPoints"]
+position = Vector2(800,230)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("Exit")
+destination = "evacuation_perimeter"
+entry = "from_station"
+metadata/persistence_id = "station_perimeter_exit"
+arrow_direction = Vector2(0,-1)
+[node name="Shape" type="CollisionShape2D" parent="ChapterPoints/PerimeterExit"]
+shape = SubResource("PointShape")
 [node name="Ambient" type="CanvasModulate" parent="."]
-color = Color(0.93,0.96,1,1)
+color = Color(1,1,1,1)
 [node name="Boundary" type="StaticBody2D" parent="."]
 collision_layer = 1
 collision_mask = 2

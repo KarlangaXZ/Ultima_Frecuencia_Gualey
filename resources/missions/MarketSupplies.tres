@@ -1,31 +1,32 @@
-[gd_resource type="Resource" script_class="MissionDefinition" format=3]
-[ext_resource type="Script" path="res://scripts/missions/mission_definition.gd" id="1"]
-[ext_resource type="Script" path="res://scripts/missions/mission_objective.gd" id="2"]
+[gd_resource type="Resource" script_class="MissionDefinition" format=3 uid="uid://v38lc547qfyr"]
+
+[ext_resource type="Script" uid="uid://c7c7f51agrvry" path="res://scripts/missions/mission_definition.gd" id="1"]
+[ext_resource type="Script" uid="uid://4dssexr5xu3t" path="res://scripts/missions/mission_objective.gd" id="2"]
+
 [sub_resource type="Resource" id="Objective0"]
 script = ExtResource("2")
 event_key = &"market_water"
 description = "Recuperar agua del Mercado."
-target = 1
 historical = true
+
 [sub_resource type="Resource" id="Objective1"]
 script = ExtResource("2")
 event_key = &"market_medkit"
 description = "Recuperar un suministro médico del Mercado."
-target = 1
 historical = true
+
 [sub_resource type="Resource" id="Objective2"]
 script = ExtResource("2")
 event_key = &"market_container"
 description = "Investigar la caja médica principal."
-target = 1
 historical = true
+
 [resource]
 script = ExtResource("1")
-id = &"market_supplies"
 chapter_id = &"market_echoes"
+id = &"market_supplies"
 title = "Los últimos suministros"
 description = "Recupera agua y un botiquín del Mercado; investiga su caja médica principal. Las recuperaciones anteriores cuentan."
 prerequisites = Array[StringName]([&"market_traces"])
 objectives = Array[ExtResource("2")]([SubResource("Objective0"), SubResource("Objective1"), SubResource("Objective2")])
 reward_xp = 40
-sequential = false

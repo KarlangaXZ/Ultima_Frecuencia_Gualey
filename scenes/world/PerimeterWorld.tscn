@@ -1,0 +1,450 @@
+[gd_scene format=3]
+[ext_resource type="Script" path="res://scripts/world/world_navigation.gd" id="Nav"]
+[ext_resource type="Script" path="res://scripts/world/perimeter_ground.gd" id="Ground"]
+[ext_resource type="Script" path="res://scripts/world/perimeter_structure.gd" id="Structure"]
+[ext_resource type="Script" path="res://scripts/zones/zone_exit.gd" id="Exit"]
+[ext_resource type="Script" path="res://scripts/world/mission_point.gd" id="Point"]
+[ext_resource type="PackedScene" path="res://scenes/items/LootContainer.tscn" id="Container"]
+[ext_resource type="PackedScene" path="res://scenes/items/WorldPickup.tscn" id="Pickup"]
+[ext_resource type="Script" path="res://scripts/inventory/item_definition.gd" id="Item"]
+[ext_resource type="Resource" path="res://resources/items/Medkit.tres" id="Medkit"]
+[ext_resource type="Resource" path="res://resources/items/Water.tres" id="Water"]
+[ext_resource type="Resource" path="res://resources/items/Food.tres" id="Food"]
+[ext_resource type="Resource" path="res://resources/items/PistolAmmo.tres" id="PistolAmmo"]
+[ext_resource type="Resource" path="res://resources/items/ShotgunAmmo.tres" id="ShotgunAmmo"]
+[sub_resource type="RectangleShape2D" id="Foot0"]
+size = Vector2(2100,16)
+[sub_resource type="RectangleShape2D" id="Foot1"]
+size = Vector2(16,1300)
+[sub_resource type="RectangleShape2D" id="Foot2"]
+size = Vector2(16,1300)
+[sub_resource type="RectangleShape2D" id="Foot3"]
+size = Vector2(870,16)
+[sub_resource type="RectangleShape2D" id="Foot4"]
+size = Vector2(870,16)
+[sub_resource type="RectangleShape2D" id="Foot5"]
+size = Vector2(140,100)
+[sub_resource type="RectangleShape2D" id="Foot6"]
+size = Vector2(140,100)
+[sub_resource type="RectangleShape2D" id="Foot7"]
+size = Vector2(200,32)
+[sub_resource type="RectangleShape2D" id="Foot8"]
+size = Vector2(200,32)
+[sub_resource type="RectangleShape2D" id="Foot9"]
+size = Vector2(140,360)
+[sub_resource type="RectangleShape2D" id="Foot10"]
+size = Vector2(150,350)
+[sub_resource type="RectangleShape2D" id="Foot11"]
+size = Vector2(145,340)
+[sub_resource type="RectangleShape2D" id="Foot12"]
+size = Vector2(400,200)
+[sub_resource type="RectangleShape2D" id="Foot13"]
+size = Vector2(320,80)
+[sub_resource type="RectangleShape2D" id="Foot14"]
+size = Vector2(200,90)
+[sub_resource type="RectangleShape2D" id="Foot15"]
+size = Vector2(380,200)
+[sub_resource type="RectangleShape2D" id="Foot16"]
+size = Vector2(320,180)
+[sub_resource type="RectangleShape2D" id="Foot17"]
+size = Vector2(140,80)
+[sub_resource type="RectangleShape2D" id="Foot18"]
+size = Vector2(360,180)
+[sub_resource type="RectangleShape2D" id="Foot19"]
+size = Vector2(300,120)
+[sub_resource type="RectangleShape2D" id="Foot20"]
+size = Vector2(320,100)
+[sub_resource type="RectangleShape2D" id="Foot21"]
+size = Vector2(180,32)
+[sub_resource type="RectangleShape2D" id="Foot22"]
+size = Vector2(180,32)
+[sub_resource type="RectangleShape2D" id="Foot23"]
+size = Vector2(380,16)
+[sub_resource type="RectangleShape2D" id="Foot24"]
+size = Vector2(120,60)
+[sub_resource type="RectangleShape2D" id="Foot25"]
+size = Vector2(110,70)
+[sub_resource type="RectangleShape2D" id="Foot26"]
+size = Vector2(130,100)
+[sub_resource type="RectangleShape2D" id="Foot27"]
+size = Vector2(130,100)
+[sub_resource type="CircleShape2D" id="PointShape"]
+radius = 26.0
+[sub_resource type="RectangleShape2D" id="Horizontal"]
+size = Vector2(2400,48)
+[sub_resource type="RectangleShape2D" id="Vertical"]
+size = Vector2(48,1600)
+[node name="World" type="Node2D"]
+[node name="Navigation" type="NavigationRegion2D" parent="."]
+script = ExtResource("Nav")
+[node name="Ground" type="Node2D" parent="."]
+script = ExtResource("Ground")
+[node name="Obstacles" type="Node2D" parent="."]
+[node name="FenceN" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(1200,140)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "fence"
+surface_color = Color(0.52157,0.53333,0.55294,1)
+sign_text = ""
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/FenceN"]
+shape = SubResource("Foot0")
+[node name="FenceW" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(150,800)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "fence"
+surface_color = Color(0.52157,0.53333,0.55294,1)
+sign_text = ""
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/FenceW"]
+shape = SubResource("Foot1")
+[node name="FenceE" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(2250,800)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "fence"
+surface_color = Color(0.52157,0.53333,0.55294,1)
+sign_text = ""
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/FenceE"]
+shape = SubResource("Foot2")
+[node name="FenceSW" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(585,1450)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "fence"
+surface_color = Color(0.52157,0.53333,0.55294,1)
+sign_text = ""
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/FenceSW"]
+shape = SubResource("Foot3")
+[node name="FenceSE" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(1815,1450)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "fence"
+surface_color = Color(0.52157,0.53333,0.55294,1)
+sign_text = ""
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/FenceSE"]
+shape = SubResource("Foot4")
+[node name="BoothW" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(850,1250)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "booth"
+surface_color = Color(0.56078,0.53725,0.50980,1)
+sign_text = "CONTROL 01"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/BoothW"]
+shape = SubResource("Foot5")
+[node name="BoothE" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(1550,1250)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "booth"
+surface_color = Color(0.56078,0.53725,0.50980,1)
+sign_text = "CONTROL 02"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/BoothE"]
+shape = SubResource("Foot6")
+[node name="BarrierS" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(1030,1140)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "barrier"
+surface_color = Color(0.60000,0.57255,0.54118,1)
+sign_text = ""
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/BarrierS"]
+shape = SubResource("Foot7")
+[node name="BarrierMiddle" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(1400,1080)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "barrier"
+surface_color = Color(0.60000,0.57255,0.54118,1)
+sign_text = ""
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/BarrierMiddle"]
+shape = SubResource("Foot8")
+[node name="BusA" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(1150,650)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "bus"
+surface_color = Color(0.71373,0.60392,0.32941,1)
+sign_text = "CONVOY 01"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/BusA"]
+shape = SubResource("Foot9")
+[node name="BusB" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(1550,500)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "bus"
+surface_color = Color(0.71373,0.60392,0.32941,1)
+sign_text = "CONVOY 02"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/BusB"]
+shape = SubResource("Foot10")
+[node name="BusC" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(760,650)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "bus"
+surface_color = Color(0.71373,0.60392,0.32941,1)
+sign_text = "EVACUACIÓN"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/BusC"]
+shape = SubResource("Foot11")
+[node name="MedicalTent" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(460,420)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "tent"
+surface_color = Color(0.83137,0.81569,0.78039,1)
+sign_text = "ATENCIÓN MÉDICA"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/MedicalTent"]
+shape = SubResource("Foot12")
+[node name="Triage" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(460,720)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "medical"
+surface_color = Color(0.82353,0.80784,0.79216,1)
+sign_text = "TRIAJE"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/Triage"]
+shape = SubResource("Foot13")
+[node name="Ambulance" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(470,1000)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "ambulance"
+surface_color = Color(0.88627,0.88235,0.87059,1)
+sign_text = ""
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/Ambulance"]
+shape = SubResource("Foot14")
+[node name="Registration" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(1900,400)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "shelter"
+surface_color = Color(0.70588,0.66667,0.62745,1)
+sign_text = "REGISTRO / ACCESO"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/Registration"]
+shape = SubResource("Foot15")
+[node name="Communications" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(1920,1020)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "comms"
+surface_color = Color(0.43137,0.47451,0.54902,1)
+sign_text = "COMUNICACIONES"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/Communications"]
+shape = SubResource("Foot16")
+[node name="Generator" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(1740,1200)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "generator"
+surface_color = Color(0.64706,0.54902,0.33725,1)
+sign_text = "RESPALDO"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/Generator"]
+shape = SubResource("Foot17")
+[node name="Inspection" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(1900,700)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "inspection"
+surface_color = Color(0.61176,0.60392,0.59216,1)
+sign_text = "REVISIÓN DE VEHÍCULOS"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/Inspection"]
+shape = SubResource("Foot18")
+[node name="StorageW" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(450,1250)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "cargo"
+surface_color = Color(0.61176,0.50196,0.39216,1)
+sign_text = "SUMINISTROS"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/StorageW"]
+shape = SubResource("Foot19")
+[node name="StorageE" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(1900,1300)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "cargo"
+surface_color = Color(0.61176,0.50196,0.39216,1)
+sign_text = "CARGA RETENIDA"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/StorageE"]
+shape = SubResource("Foot20")
+[node name="BarrierW" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(900,850)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "barrier"
+surface_color = Color(0.60000,0.57255,0.54118,1)
+sign_text = ""
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/BarrierW"]
+shape = SubResource("Foot21")
+[node name="BarrierE" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(1450,850)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "barrier"
+surface_color = Color(0.60000,0.57255,0.54118,1)
+sign_text = ""
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/BarrierE"]
+shape = SubResource("Foot22")
+[node name="MedicalRail" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(480,210)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "fence"
+surface_color = Color(0.52157,0.53333,0.55294,1)
+sign_text = ""
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/MedicalRail"]
+shape = SubResource("Foot23")
+[node name="LuggageW" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(700,1100)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "luggage"
+surface_color = Color(0.58824,0.46275,0.36863,1)
+sign_text = ""
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/LuggageW"]
+shape = SubResource("Foot24")
+[node name="LuggageE" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(1800,870)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "luggage"
+surface_color = Color(0.58824,0.46275,0.36863,1)
+sign_text = ""
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/LuggageE"]
+shape = SubResource("Foot25")
+[node name="GuardN" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(850,300)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "booth"
+surface_color = Color(0.56078,0.53725,0.50980,1)
+sign_text = "VIGILANCIA"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/GuardN"]
+shape = SubResource("Foot26")
+[node name="CheckpointN" type="StaticBody2D" parent="Obstacles"]
+position = Vector2(1320,280)
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("Structure")
+kind = "booth"
+surface_color = Color(0.56078,0.53725,0.50980,1)
+sign_text = "ACCESO RESTRINGIDO"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/CheckpointN"]
+shape = SubResource("Foot27")
+[node name="Supplies" type="Node2D" parent="."]
+[node name="Medical" parent="Supplies" instance=ExtResource("Container")]
+metadata/persistence_id = "perimeter_medical_case"
+position = Vector2(480,860)
+display_name = "Suministros de triaje"
+initial_items = Array[ExtResource("Item")]([ExtResource("Medkit"), ExtResource("Water")])
+initial_quantities = PackedInt32Array(2,2)
+[node name="Rations" parent="Supplies" instance=ExtResource("Container")]
+metadata/persistence_id = "perimeter_rations"
+position = Vector2(450,1360)
+display_name = "Raciones del convoy"
+initial_items = Array[ExtResource("Item")]([ExtResource("Food"), ExtResource("Water")])
+initial_quantities = PackedInt32Array(2,2)
+[node name="Equipment" parent="Supplies" instance=ExtResource("Container")]
+metadata/persistence_id = "perimeter_equipment"
+position = Vector2(2100,1200)
+display_name = "Reserva del puesto"
+initial_items = Array[ExtResource("Item")]([ExtResource("PistolAmmo"), ExtResource("ShotgunAmmo")])
+initial_quantities = PackedInt32Array(24,4)
+[node name="Water" parent="Supplies" instance=ExtResource("Pickup")]
+metadata/persistence_id = "perimeter_water"
+position = Vector2(940,980)
+item = ExtResource("Water")
+quantity = 1
+[node name="Ammo" parent="Supplies" instance=ExtResource("Pickup")]
+metadata/persistence_id = "perimeter_ammo"
+position = Vector2(1660,780)
+item = ExtResource("PistolAmmo")
+quantity = 12
+[node name="ChapterPoints" type="Node2D" parent="."]
+[node name="Return" type="Area2D" parent="ChapterPoints"]
+position = Vector2(1200,1400)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("Exit")
+destination = "communications_station"
+entry = "from_perimeter"
+metadata/persistence_id = "perimeter_return"
+arrow_direction = Vector2(0,1)
+[node name="Shape" type="CollisionShape2D" parent="ChapterPoints/Return"]
+shape = SubResource("PointShape")
+[node name="MedicalInspection" type="Area2D" parent="ChapterPoints"]
+position = Vector2(700,420)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("Point")
+point_id = &"perimeter_medical"
+display_name = "Inspección médica"
+metadata/persistence_id = "perimeter_medical"
+[node name="Shape" type="CollisionShape2D" parent="ChapterPoints/MedicalInspection"]
+shape = SubResource("PointShape")
+[node name="Register" type="Area2D" parent="ChapterPoints"]
+position = Vector2(1900,550)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("Point")
+point_id = &"perimeter_register"
+display_name = "Registro de evacuación"
+metadata/persistence_id = "perimeter_register"
+[node name="Shape" type="CollisionShape2D" parent="ChapterPoints/Register"]
+shape = SubResource("PointShape")
+[node name="Comms" type="Area2D" parent="ChapterPoints"]
+position = Vector2(1700,1020)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("Point")
+point_id = &"perimeter_comms"
+display_name = "Puesto de comunicaciones"
+metadata/persistence_id = "perimeter_comms"
+[node name="Shape" type="CollisionShape2D" parent="ChapterPoints/Comms"]
+shape = SubResource("PointShape")
+[node name="Ambient" type="CanvasModulate" parent="."]
+color = Color(1,1,1,1)
+[node name="Boundary" type="StaticBody2D" parent="."]
+collision_layer = 1
+collision_mask = 2
+[node name="Top" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(1200,0)
+shape = SubResource("Horizontal")
+[node name="Bottom" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(1200,1600)
+shape = SubResource("Horizontal")
+[node name="Left" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(0,800)
+shape = SubResource("Vertical")
+[node name="Right" type="CollisionShape2D" parent="Boundary"]
+position = Vector2(2400,800)
+shape = SubResource("Vertical")

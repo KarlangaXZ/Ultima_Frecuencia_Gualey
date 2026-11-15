@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="MissionDefinition" format=3 uid="uid://b7byqju7g58u3"]
+
+[ext_resource type="Script" uid="uid://c7c7f51agrvry" path="res://scripts/missions/mission_definition.gd" id="1"]
+[ext_resource type="Script" uid="uid://4dssexr5xu3t" path="res://scripts/missions/mission_objective.gd" id="2"]
+
+[sub_resource type="Resource" id="Objective0"]
+script = ExtResource("2")
+event_key = &"station_kills"
+description = "Neutralizar amenazas de la estación (bajas previas cuentan)."
+target = 2
+historical = true
+
+[sub_resource type="Resource" id="Objective1"]
+script = ExtResource("2")
+event_key = &"station_broadcast"
+description = "Activar la transmisión final."
+
+[sub_resource type="Resource" id="Objective2"]
+script = ExtResource("2")
+event_key = &"station_final_listen"
+description = "Escuchar el mensaje final completo."
+
+[resource]
+script = ExtResource("1")
+chapter_id = &"station_voices"
+id = &"station_call"
+title = "La última llamada"
+description = "Asegura el área técnica; las bajas anteriores de esta estación cuentan. Escucha el mensaje completo."
+prerequisites = Array[StringName]([&"station_frequency"])
+objectives = Array[ExtResource("2")]([SubResource("Objective0"), SubResource("Objective1"), SubResource("Objective2")])
+reward_xp = 90
+sequential = true
