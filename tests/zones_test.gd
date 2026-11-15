@@ -38,7 +38,7 @@ func run() -> void:
 	var player_id: int = player.get_instance_id()
 	var audio_id: int = main.get_node("Audio").get_instance_id()
 	var saves := main.get_node("SaveCoordinator")
-	saves.store.directory = "user://tests/phase-ten-zones-%d" % OS.get_process_id()
+	saves.store.directory = "user://tests/phase-ten-zones-%d-%d" % [OS.get_process_id(),int(Time.get_unix_time_from_system()*1000000)]
 	var directory: String = saves.store.directory
 	var original := saves.capture(3) as Dictionary
 	# Archivo con el formato exacto anterior: sin zonas ni estadísticas globales.

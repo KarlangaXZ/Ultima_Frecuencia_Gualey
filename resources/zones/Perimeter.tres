@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ZoneDefinition" format=3]
+[ext_resource type="Script" path="res://scripts/zones/zone_definition.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/world/PerimeterWorld.tscn" id="2"]
+[resource]
+script = ExtResource("1")
+id = "evacuation_perimeter"
+display_name = "Perímetro de evacuación"
+unlock_mission = &"station_call"
+world_scene = ExtResource("2")
+entries = Dictionary[String,Vector2]({"initial":Vector2(1200,1350),"from_station":Vector2(1200,1350)})
+connections = Dictionary[String,String]({"communications_station":"from_perimeter"})
+interaction_ids = Array[String](["perimeter_intro","perimeter_medical","perimeter_register","perimeter_comms"])
+container_ids = Array[String](["perimeter_medical_case","perimeter_rations","perimeter_equipment"])
+pickup_ids = Array[String](["perimeter_water","perimeter_ammo"])
+enemy_prefix = "perimeter_zombie_"
+initial_enemies = PackedVector2Array(1200,900,1700,820,600,950)
+enemy_weights = Dictionary[String,int]({"base":30,"runner":40,"resistant":30})
+spawn_points = PackedVector2Array(1800,550,700,400,1000,400,1400,400,2050,1170,700,1250,600,850,1640,1000,1950,1200,1000,1300,1450,1360,2000,220,350,850,350,1100,950,650,1300,600,1300,950,1750,550,2050,850,1650,300,950,1000,1700,1350,620,570,550,200)

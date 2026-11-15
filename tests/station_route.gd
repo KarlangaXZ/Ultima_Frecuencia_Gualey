@@ -19,10 +19,10 @@ static func run(driver: SceneTree) -> void:
 		main.get_node("InventoryUI").close_window()
 	var xp: int=player.get_node("ProgressionComponent").total_xp()
 	await driver.point("StationRadio")
-	driver.check(main.get_node("RadioUI").window.visible and main.get_node("ZoneManager").interactions==["station_radio"],"Inspección única, sin capítulo 3")
+	driver.check(main.get_node("RadioUI").window.visible and main.get_node("ZoneManager").interactions==["station_radio"],"Inspección única, introducción independiente del capítulo 3")
 	await capture(driver,"02-station-radio")
 	await driver.close_radio()
-	driver.check(player.get_node("ProgressionComponent").total_xp()==xp and driver.tracker.definitions.size()==7,"Radio no otorga XP/misiones nuevas")
+	driver.check(player.get_node("ProgressionComponent").total_xp()==xp and driver.tracker.definitions.size()==11,"Radio introductoria no otorga XP ni completa misiones")
 	var camera: Camera2D=player.get_node("Camera2D")
 	var old_zoom:=camera.zoom
 	var old_position: Vector2=player.position

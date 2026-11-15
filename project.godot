@@ -11,8 +11,12 @@ config_version=5
 [application]
 
 config/name="Última Frecuencia: Gualey"
-run/main_scene="res://scenes/Main.tscn"
+run/main_scene="res://scenes/TitleMenu.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
+
+[autoload]
+
+AppPreferences="*res://scripts/ui/app_preferences.gd"
 
 [display]
 

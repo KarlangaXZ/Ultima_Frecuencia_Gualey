@@ -14,7 +14,7 @@ func run() -> void:
 	await FIXTURE.frames(self,8)
 	var main := current_scene
 	var saves := main.get_node("SaveCoordinator")
-	saves.store.directory = "user://tests/phase-eleven-types-%d" % OS.get_process_id()
+	saves.store.directory = "user://tests/phase-eleven-types-%d-%d" % [OS.get_process_id(),int(Time.get_unix_time_from_system()*1000000)]
 	var directory: String = saves.store.directory
 	var legacy_one: Dictionary = preload("res://tests/legacy_save_fixture.gd").convert(saves.capture(3),1)
 	legacy_one.version = 1

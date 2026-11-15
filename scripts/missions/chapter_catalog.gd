@@ -1,11 +1,16 @@
 class_name ChapterCatalog
 extends RefCounted
-## Identidades narrativas. Una futura estación es una pista, no una zona cargable.
+## Identidades narrativas; el perímetro futuro es solo una pista.
 const FIRST := "signal_lost"
 const MARKET := "market_echoes"
+const STATION := "station_voices"
 const DEFINITIONS := {
 	FIRST: {"title":"La señal perdida","number":1,"missions":["signal","supplies","broadcast"]},
-	MARKET: {"title":"Ecos del Mercado","number":2,"missions":["market_traces","market_supplies","market_horde","market_frequency"]}}
+	MARKET: {"title":"Ecos del Mercado","number":2,"missions":["market_traces","market_supplies","market_horde","market_frequency"]},
+	STATION: {"title":"Voces en la oscuridad","number":3,"missions":["station_records","station_power","station_frequency","station_call"]}}
+const STATION_POINTS := ["station_log","station_console","station_evacuation","station_generator",
+	"station_component","station_secondary","station_antenna","station_link","station_broadcast"]
+const STATION_EVENTS := STATION_POINTS + ["station_kills","station_hidden_listen","station_final_listen"]
 const POINT_EVENTS := {"market_stall":"market_stall", "market_evacuation":"market_evacuation",
 	"market_record":"market_record", "market_comms":"market_comms", "market_power":"market_power",
 	"market_repeater":"market_repeater"}

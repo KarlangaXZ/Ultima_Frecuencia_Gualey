@@ -27,7 +27,7 @@ func _ready() -> void:
 	actor.get_node("SkillsComponent").skill_acquired.connect(func(_id: StringName, _rank: int): ui.play_event(&"item_use"))
 	main.get_node("Missions/Chapter").equipment_activated.connect(func(): ui.play_event(&"item_use",0.12))
 	main.get_node("Missions").mission_completed.connect(func(mission: MissionDefinition):
-		if mission.chapter_id==&"market_echoes" and _level_sound_frame!=Engine.get_process_frames(): ui.play_event(&"pickup_supply",0.12))
+		if mission.chapter_id in [&"market_echoes",&"station_voices"] and _level_sound_frame!=Engine.get_process_frames(): ui.play_event(&"pickup_supply",0.12))
 	main.get_node("MissionUI").opened_changed.connect(func(active: bool):
 		ui.play_event(&"inventory_open" if active else &"inventory_close"))
 	# Un aviso electrónico existente por mensaje; sin voz ni doble sonido al abrir.
@@ -41,6 +41,7 @@ func _ready() -> void:
 	actor.get_node("Equipment").empty_triggered.connect(_on_empty)
 	ambience = AudioStreamPlayer.new()
 	ambience.name = "Ambience"
+	ambience.bus = &"Ambience"
 	var stream := ui.bank.sounds[&"ambience"].duplicate() as AudioStream
 	if stream is AudioStreamWAV:
 		stream.loop_mode = AudioStreamWAV.LOOP_FORWARD
@@ -55,6 +56,7 @@ func _ready() -> void:
 
 func _make_emitter(label: String, gain: float, voices: int) -> SoundEmitter:
 	var emitter := SoundEmitter.new()
+	emitter.audio_bus = &"Interface" if label=="UI" else &"Effects"
 	emitter.name = label
 	emitter.volume_db = gain
 	emitter.max_voices = voices

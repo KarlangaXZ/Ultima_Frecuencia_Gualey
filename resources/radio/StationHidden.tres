@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="RadioTransmission" format=3]
+[ext_resource type="Script" path="res://scripts/radio/radio_transmission.gd" id="1"]
+[resource]
+script = ExtResource("1")
+sender = "CANAL OCULTO"
+messages = PackedStringArray("[Registro reciente] Alguien operó esta estación después de la evacuación. La marca de tiempo no corresponde al abandono.", "No estamos solos. El operador mantuvo abierto un enlace hacia el norte. Asegura el área técnica antes de emitir.")

@@ -25,7 +25,7 @@ func run() -> void:
 	await frames(8)
 	var main:=current_scene
 	var manager:=main.get_node("ZoneManager")
-	check(ZoneCatalog.DEFINITIONS.size()==3 and not manager.request_travel(ZoneCatalog.STATION,"from_market"),"Tres zonas, Estación bloqueada inicialmente")
+	check(ZoneCatalog.DEFINITIONS.size()==4 and not manager.request_travel(ZoneCatalog.STATION,"from_market"),"Cuatro zonas, Estación bloqueada inicialmente")
 	await ARC.enter_market(self,main)
 	check(not main.get_node("World/ChapterPoints/StationExit").available,"Salida cerrada antes de finalizar capítulo 2")
 	# Volver a inicio para preparar los capítulos con la misma fixture semántica.
@@ -36,7 +36,7 @@ func run() -> void:
 	manager=main.get_node("ZoneManager")
 	check(main.get_node("Missions").chapter_completed(ChapterCatalog.MARKET) and ZoneCatalog.STATION in manager.unlocked and main.get_node("World/ChapterPoints/StationExit").available,"Final de transmisión desbloquea Estación")
 	var saves:=main.get_node("SaveCoordinator")
-	saves.store.directory="user://tests/phase-thirteen-map-%d"%OS.get_process_id()
+	saves.store.directory="user://tests/phase-thirteen-map-%d-%d" % [OS.get_process_id(),int(Time.get_unix_time_from_system()*1000000)]
 	var directory: String=saves.store.directory
 	var legacy: Dictionary=preload("res://tests/legacy_save_fixture.gd").convert(saves.capture(3),3)
 	check(saves.store.write_slot(3,legacy).has("ok"),"Guardado v3 anterior exacto")
@@ -114,7 +114,7 @@ func run() -> void:
 	var xp: int=player.get_node("ProgressionComponent").total_xp()
 	await F.interact(self,main,radio_point.position+Vector2(0,30))
 	main.get_node("RadioUI").close_window()
-	check(manager.interactions==["station_radio"] and main.get_node("Missions").definitions.size()==7,"Interacción reservada; sin capítulo 3")
+	check(manager.interactions==["station_radio"] and main.get_node("Missions").definitions.size()==11,"Interacción reservada; introducción independiente del capítulo 3")
 	check(player.get_node("ProgressionComponent").total_xp()==xp,"Introducción sin XP")
 	check(saves.save_slot(1).has("ok"),"Guardar estación con diálogo pendiente")
 	check(saves.load_slot(1).has("ok"),"Cargar estación activa")
@@ -131,7 +131,7 @@ func run() -> void:
 	ARC.by_type(main,"runner").health.take_damage(500)
 	check(saves.save_slot(1,true).has("ok"),"Guardar heridas, cadáver y recursos")
 	var expected:=saves.capture(1) as Dictionary
-	check(expected.version==4 and expected.zones.size()==2 and expected.world.interactions==["station_radio"],"Tres estados independientes en v4")
+	check(expected.version==SaveSchema.VERSION and expected.zones.size()==2 and expected.world.interactions==["station_radio"],"Tres estados independientes en formato actual")
 	for mutate: Callable in [func(d):d.world.interactions=["station_radio","station_radio"],func(d):d.world.interactions=["arbitrary"],func(d):d.missions.unlocked_zones=[ZoneCatalog.MARKET],func(d):d.zones.erase(ZoneCatalog.MARKET),func(d):d.stats.kills=55]:
 		var invalid:=expected.duplicate(true)
 		mutate.call(invalid)

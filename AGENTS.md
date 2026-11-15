@@ -4,7 +4,8 @@
 - Motor objetivo: Godot 4.7.2 Stable, GDScript, Windows.
 - Nombre visible oficial: Última Frecuencia: Gualey. No renombrar rutas internas
   para aplicar branding. `deadzone` del InputMap es un parámetro de Godot, no marca.
-- Abrir `project.godot`; ejecutar `scenes/Main.tscn` con F6 o el proyecto con F5.
+- Abrir `project.godot`; F5 inicia `scenes/TitleMenu.tscn`. Para probar gameplay
+  directamente, ejecutar `scenes/Main.tscn` con F6.
 - Resolución base 1280 × 720, stretch canvas_items, renderizador Compatibility.
 
 ## Arquitectura
@@ -57,6 +58,52 @@
   No aplicar el pivote frontal a walk/death provisionales ni modificar la física.
 
 ## Convenciones y reglas
+- Inicio/configuración: TitleMenu no instancia mundos hasta elegir una ranura.
+  Usa SaveFileStore para leer y SaveCoordinator para reconstruir partidas, con
+  escena de apoyo desactivada y menú visible hasta confirmar éxito. Nueva partida
+  guarda en la ranura elegida; reemplazar exige confirmación y conserva respaldo.
+  SaveCoordinator.active_slot/session_slot solo recuerda selección de UI, no se
+  serializa ni cambia v6. Reintentar conserva esa selección durante la sesión.
+  Pausa ofrece retorno al inicio con aviso de cambios sin guardar.
+  AppPreferences es un único autoload de ajustes, sin estado del mundo:
+  user://settings.cfg, cuatro volúmenes y pantalla completa. Buses Master,
+  Effects (armas/zombis), Ambience e Interface; conservar ganancias por instancia,
+  pools y bancos. No cambiar VSync al aplicar preferencias. Tests usan directorios
+  user://tests/start-menu-*; no escribir preferencias o partidas normales.
+  Paleta de superficies neutra por material: asfalto gris, concreto, madera/óxido,
+  acero y ambulancia blanca. Sin baño verde global ni cambios de geometría.
+  Ver docs/start_menu_settings.md. Mantener chapter_id en misiones Mercado/Estación
+  e initial_quantities en ArsenalSupplies; recargar recursos antes de guardarlos
+  desde un editor que mantenga versiones previas de scripts en memoria.
+- Fase 15: ZoneCatalog.PERIMETER (`evacuation_perimeter`) es la cuarta zona,
+  PerimeterWorld.tscn / Perimeter.tres. station_call completo desbloquea salida
+  norte de Estación (800,230); regreso from_perimeter en (800,300). Perímetro
+  entra por (1200,1350), regresa por E en (1200,1400). Sin capítulo 4/misiones nuevas.
+  Mantener 6/18/10 s, pesos configurables 30/40/30: primeros seis 2/2/2 y total
+  6/7/5. No cambiar IA para resolver fixtures fuera del radio de detección.
+  Los 28 sólidos tienen rectángulos serializados; visual solo dibuja su huella.
+  Tres contenedores, dos pickups y tres inspecciones usan sistemas existentes.
+  Intro automática tras transition_finished, reservada antes de radio; diferir
+  si otro diálogo está pendiente. Comms reabre su índice, sin nuevos premios.
+  WorldSaveState.interactions conserva cuatro eventos perimeter_*. Save v6
+  admite cuatro mapas (tres inactivos), 72 bajas coherentes y tercer desbloqueo.
+  v5 completo obtiene acceso en memoria sin repetir XP ni reescribir. Validar
+  cada v1–v5 antes de migrar; nunca aceptar Perímetro en versiones anteriores.
+  Tests: user://tests/phase-fifteen-*. Ver docs/evacuation_perimeter.md.
+- Fase 14: ChapterCatalog.STATION (`station_voices`) inicia al entrar en Estación
+  tras market_frequency. Reutilizar MissionTracker/Chapter/Radio/Rewards; once
+  misiones en total, sin cuarto mapa. station_records/power/frequency/call dan
+  35/50/65/90 XP una vez (240); el tope de nivel 10 sigue descartando excedente.
+  StationIntro conserva su interacción única sin XP. Cada radio pendiente se
+  reabre desde su equipo e índice; otros puntos narrativos no la sobrescriben.
+  Componente y equipos son recibos/eventos narrativos, no pilas de inventario.
+  station_kills deriva de cadáveres locales, incluso anteriores: dos bastan para
+  asegurar el área; no generar enemigos ni inventar bajas en partidas agotadas.
+  Hidden/Final requieren transmission_completed; cerrar o morir no concede XP.
+  Save v5 añade cuatro misiones y perimeter_hint derivado del capítulo completo;
+  validar v1–v4 con su esquema antes de migrar en memoria, sin premios/relectura
+  automática ni reescritura. Reconocer Estación visitada activa o inactiva en v4.
+  Las pruebas usan user://tests/phase-fourteen-*. Ver docs/station_chapter.md.
 - Fase 12: un único MissionTracker/Radio/Rewards gestiona signal_lost y market_echoes.
   ChapterCatalog registra IDs; MissionDefinition.chapter_id y started_chapters gatean
   la cadena. El capítulo 2 inicia al entrar al Mercado con broadcast completada.

@@ -14,7 +14,8 @@ static func capture(main: Node) -> Dictionary:
 static func story(main: Node) -> Dictionary:
 	var tracker: MissionTracker = main.get_node("Missions")
 	return {"started":tracker.started_chapters.duplicate(),"completed":tracker.completed_chapters(),
-		"legacy_waivers":tracker.legacy_waivers.duplicate(),"station_hint":tracker.chapter_completed(ChapterCatalog.MARKET)}
+		"legacy_waivers":tracker.legacy_waivers.duplicate(),"station_hint":tracker.chapter_completed(ChapterCatalog.MARKET),
+		"perimeter_hint":tracker.chapter_completed(ChapterCatalog.STATION)}
 
 static func restore(main: Node, data: Dictionary, narrative: Dictionary, chapter: String) -> void:
 	var tracker: MissionTracker = main.get_node("Missions")

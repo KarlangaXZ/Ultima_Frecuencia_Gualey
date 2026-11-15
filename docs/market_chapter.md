@@ -1,5 +1,7 @@
 # Fase 12 — Ecos del Mercado
 
+**Estado vigente — Fase 14:** [Voces en la oscuridad](station_chapter.md): tres capítulos, once misiones y guardado v5 compatible con v1–v4. Este informe conserva sus resultados históricos.
+
 Segundo capítulo jugable en Mercado abandonado. Godot 4.7.2 Stable, Windows,
 GDScript, Compatibility, 1280 × 720. Arte técnico existente; sin mapa nuevo,
 armas, cambios de estadísticas, VSync, plugins ni commits.

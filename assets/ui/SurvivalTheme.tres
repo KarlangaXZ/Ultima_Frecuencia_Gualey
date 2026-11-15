@@ -42,12 +42,12 @@ shadow_color = Color(0, 0, 0, 0.5)
 shadow_size = 24
 
 [sub_resource type="StyleBoxFlat" id="Panel"]
-bg_color = Color(0.045, 0.073, 0.086, 0.94)
+bg_color = Color(0.065, 0.07, 0.082, 0.96)
 border_width_left = 2
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.3, 0.4, 0.39, 0.85)
+border_color = Color(0.33, 0.34, 0.38, 0.9)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
@@ -56,14 +56,14 @@ shadow_color = Color(0, 0, 0, 0.3)
 shadow_size = 8
 
 [sub_resource type="StyleBoxFlat" id="HealthBg"]
-bg_color = Color(0.18, 0.24, 0.25, 1)
+bg_color = Color(0.22, 0.23, 0.26, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id="HealthFill"]
-bg_color = Color(0.4, 0.76, 0.59, 1)
+bg_color = Color(0.73, 0.34, 0.28, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -81,7 +81,7 @@ Button/styles/normal = SubResource("Button")
 Button/styles/pressed = SubResource("Pressed")
 GameOverPanel/base_type = &"PanelContainer"
 GameOverPanel/styles/panel = SubResource("GameOver")
-Label/colors/font_color = Color(0.85, 0.89, 0.84, 1)
+Label/colors/font_color = Color(0.9, 0.89, 0.86, 1)
 PanelContainer/styles/panel = SubResource("Panel")
 ProgressBar/styles/background = SubResource("HealthBg")
 ProgressBar/styles/fill = SubResource("HealthFill")

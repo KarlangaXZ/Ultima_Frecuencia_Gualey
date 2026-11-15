@@ -6,6 +6,17 @@ conceptuales para representar funcionalidades.
 
 | Archivo | Fuente | Fecha y preparación |
 | --- | --- | --- |
+| title-menu.png | test-results/start-menu/01-title.png | Presentación/configuración/paleta actual, captura real de Godot; preparación automatizada |
+| title-settings.png | test-results/start-menu/02-settings.png | Presentación/configuración/paleta actual, captura real de Godot; preparación automatizada |
+| title-slots.png | test-results/start-menu/03-slots.png | Presentación/configuración/paleta actual, captura real de Godot; preparación automatizada |
+| gualey-materials.png | test-results/start-menu/04-new-game-palette.png | Presentación/configuración/paleta actual, captura real de Godot; preparación automatizada |
+| perimeter-materials.png | test-results/phase-fifteen/03-perimeter-plan.png | Presentación/configuración/paleta actual, captura real de Godot; preparación automatizada |
+| perimeter-plan.png | test-results/phase-fifteen/03-perimeter-plan.png | 2026-11-14, plano técnico del cuarto mapa; zoom 0.43 y HUD oculto solo en fixture |
+| perimeter-intro.png | test-results/phase-fifteen/01-perimeter-intro.png | 2026-11-14, primera entrada, introducción automática, sin premios |
+| perimeter-active-ai.png | test-results/phase-fifteen/05-perimeter-active-ai.png | 2026-11-14, tres variantes persiguiendo con IA activa; posiciones preparadas |
+| station-chapter-journal.png | test-results/phase-fourteen/01-station-chapter-journal.png | 2026-11-14, diario del capítulo 3; acceso previo preparado, recorrido real con IA aislada |
+| station-last-call.png | test-results/phase-fourteen/03-station-last-call.png | 2026-11-14, mensaje 2/3 de la transmisión final, todavía sin premio |
+| station-chapter-complete.png | test-results/phase-fourteen/04-station-chapter-complete.png | 2026-11-14, historial de tres capítulos y pista del perímetro |
 | station-entry.png | test-results/phase-thirteen/01-station-entry.png | 2026-11-14, entrada real, HUD y título de zona; recorrido narrativo con IA aislada |
 | station-radio.png | test-results/phase-thirteen/02-station-radio.png | 2026-11-14, inspección del equipo; transmisión textual sin capítulo 3 |
 | station-plan.png | test-results/phase-thirteen/03-station-plan.png | 2026-11-14, plano técnico con zoom 0.43 y HUD oculto solo en fixture |
@@ -34,7 +45,7 @@ conceptuales para representar funcionalidades.
 | player-animations.png | PNG down de idle/shoot/reload/death y walk_left V2 | 2026-11-12, composición en orden, escala nativa |
 | zombie-base.png | PNG de Idle 00, Walk 02, Attack 03 y Death 05 | Fase 4.4, down/up/left/right del paquete técnico |
 
-Las veinticinco capturas son PNG 1280 × 720 optimizados sin pérdida. La lámina del
+Las treinta y seis capturas son PNG 1280 × 720 optimizados sin pérdida. La lámina del
 protagonista mide 1024 × 800; la del zombi, 512 × 624. Las fuentes permanecen en
 assets/ y los resultados de pruebas en test-results/ (ignorado).
 
@@ -103,3 +114,24 @@ Se verificaron composición, accesos y legibilidad; PNG optimizados sin pérdida
 idénticos píxel a píxel a sus fuentes. La fixture narrativa aísla IA; la prueba
 separada de estación valida física, navegación y ataques con IA activa.
 [Resultados, metodología y pendientes](../station_integration.md).
+
+Fase 14 añade tres de las cuatro capturas del recorrido del capítulo 3 (107
+comprobaciones en ventana). PNG 1280 × 720 optimizados sin pérdida y comparados
+píxel a píxel con su fuente. Se revisaron textos, modal único, HUD y pista final.
+La preparación de los capítulos anteriores usa fixtures; la locomoción y tiros
+de la Estación son reales, con IA aislada solo en el recorrido. La prueba adicional
+mantiene IA activa. [Resultados y límites](../station_chapter.md).
+
+Fase 15 añade tres capturas reales del Perímetro. El recorrido gráfico de cuatro
+zonas aprobó 152 comprobaciones con siete PNG (cuatro del capítulo 3 y tres del
+Perímetro); aísla IA para narrativa/rutas. La prueba separada con IA activa aprobó
+124 y generó su captura de persecución. Se seleccionan tres imágenes distintas,
+1280 × 720, optimizadas sin pérdida y verificadas píxel a píxel. No representan
+arte final o una partida humana. [Arquitectura, métricas y pendientes](../evacuation_perimeter.md).
+
+La actualización de inicio/configuración añade portada, ranuras, ajustes y
+paleta actual de Gualey/Perímetro. 51 comprobaciones gráficas del menú y 152 del
+recorrido; PNG optimizados sin pérdida, verificados píxel a píxel. Las ranuras
+y valores de volumen mostrados son fixtures aisladas, no partidas/preferencias
+personales. Las imágenes históricas conservan el estado de cada fase.
+[Arquitectura y límites](../start_menu_settings.md).

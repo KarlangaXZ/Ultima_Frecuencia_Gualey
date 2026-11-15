@@ -26,7 +26,7 @@ func sync_exits() -> void:
 		if point is ZoneExit:
 			point.available = point.destination == ZoneCatalog.HOME or point.destination in unlocked
 			point.destination_label = ZoneCatalog.definition(point.destination).display_name
-			point.locked_hint = "Salida cerrada · completa Ecos del Mercado" if point.destination==ZoneCatalog.STATION else "Salida cerrada · completa La señal perdida"
+			point.locked_hint = "Salida cerrada · completa Voces en la oscuridad" if point.destination==ZoneCatalog.PERIMETER else "Salida cerrada · completa Ecos del Mercado" if point.destination==ZoneCatalog.STATION else "Salida cerrada · completa La señal perdida"
 func request_travel(destination: String, entry: String) -> bool:
 	if busy or main.restoring or main.game_ended or main.get_node("Player").controls_blocked: return false
 	var zone := ZoneCatalog.definition(destination)

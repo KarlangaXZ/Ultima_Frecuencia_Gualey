@@ -26,6 +26,7 @@ func completed_chapters() -> Array:
 func begin_chapter(id: String) -> bool:
 	if not enabled or not ChapterCatalog.DEFINITIONS.has(id) or id in started_chapters: return false
 	if id == ChapterCatalog.MARKET and not chapter_completed(ChapterCatalog.FIRST): return false
+	if id == ChapterCatalog.STATION and not chapter_completed(ChapterCatalog.MARKET): return false
 	started_chapters.append(id)
 	active_chapter = id
 	_refresh()

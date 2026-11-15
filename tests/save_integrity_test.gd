@@ -18,7 +18,7 @@ func run() -> void:
 	var saves := current_scene.get_node("SaveCoordinator")
 	var data: Dictionary = saves.capture(1)
 	var store := SaveFileStore.new()
-	store.directory = "user://tests/phase-nine-integrity-%d" % OS.get_process_id()
+	store.directory = "user://tests/phase-nine-integrity-%d-%d" % [OS.get_process_id(),int(Time.get_unix_time_from_system()*1000000)]
 	check(SaveSchema.validate(data, 1).is_empty(), "Snapshot inicial válido")
 	check(store.read_slot(1).has("error"), "Ranura vacía")
 	check(store.write_slot(1, data).has("ok"), "Primera escritura")

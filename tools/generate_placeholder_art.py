@@ -46,14 +46,14 @@ def character(zombie=False):
 save("characters/player/temp_survivor_sheet.svg", 768, 64, character())
 save("characters/zombies/temp_zombie_sheet.svg", 768, 64, character(True))
 save("environment/tilesets/temp_asphalt.svg", 160, 160,
-     '<rect width="160" height="160" fill="#293237"/><path d="M0 80H160M80 0V160" stroke="#313b3f" stroke-width="1"/>'
-     '<path d="M8 21L29 25L35 38L51 43M110 126L122 109L145 105M5 149L21 133L18 119" fill="none" stroke="#1b252a" stroke-width="2"/>'
-     + ''.join(f'<circle cx="{(i*47)%160}" cy="{(i*31+12)%160}" r="{1 if i%3 else 2}" fill="{["#475052", "#202a2e"][i%2]}" opacity=".45"/>' for i in range(65)))
+     '<rect width="160" height="160" fill="#303236"/><path d="M0 80H160M80 0V160" stroke="#3c3e42" stroke-width="1"/>'
+     '<path d="M8 21L29 25L35 38L51 43M110 126L122 109L145 105M5 149L21 133L18 119" fill="none" stroke="#242529" stroke-width="2"/>'
+     + ''.join(f'<circle cx="{(i*47)%160}" cy="{(i*31+12)%160}" r="{1 if i%3 else 2}" fill="{["#55565a", "#292b2f"][i%2]}" opacity=".45"/>' for i in range(65)))
 save("environment/props/temp_supply_crate.svg", 128, 96,
-     '<rect width="128" height="96" rx="3" fill="#182325"/><rect x="3" y="3" width="122" height="90" rx="2" fill="#596255" stroke="#87917b" stroke-width="2"/>'
-     '<path d="M8 18H120M8 38H120M8 58H120M8 78H120" stroke="#333f38" stroke-width="3"/>'
-     '<path d="M17 4V92M110 4V92" stroke="#242f2e" stroke-width="10"/><path d="M17 5V91M110 5V91" stroke="#919582" stroke-width="3"/>'
-     '<rect x="44" y="30" width="40" height="34" fill="#d2bd83"/><path d="M61 36H67V43H74V49H67V56H61V49H54V43H61Z" fill="#4b5650"/>'
+     '<rect width="128" height="96" rx="3" fill="#282422"/><rect x="3" y="3" width="122" height="90" rx="2" fill="#887457" stroke="#b09b78" stroke-width="2"/>'
+     '<path d="M8 18H120M8 38H120M8 58H120M8 78H120" stroke="#544638" stroke-width="3"/>'
+     '<path d="M17 4V92M110 4V92" stroke="#38312c" stroke-width="10"/><path d="M17 5V91M110 5V91" stroke="#a89a82" stroke-width="3"/>'
+     '<rect x="44" y="30" width="40" height="34" fill="#d2bd83"/><path d="M61 36H67V43H74V49H67V56H61V49H54V43H61Z" fill="#5b4c3a"/>'
      '<path d="M28 15L40 23M87 68L99 79M30 85L38 78" stroke="#a9a187" stroke-width="2" opacity=".6"/>')
 save("environment/decals/temp_debris.svg", 96, 64,
      '<path d="M8 35L21 28L36 35L24 47Z" fill="#716d58" opacity=".55"/><path d="M58 19L75 24L73 39L54 35Z" fill="#a2a18a" opacity=".4"/>'

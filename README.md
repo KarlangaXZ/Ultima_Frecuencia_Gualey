@@ -6,13 +6,27 @@ Supervivencia zombi 2D con vista cenital, ambientada en un barrio urbano devasta
 
 **Estado:** Desarrollo activo · **Plataforma inicial:** Windows
 
-Un prototipo jugable con movimiento, navegación de enemigos, combate, salud, recarga, inventario, suministros, hambre, sed, progresión de personaje, misiones encadenadas, radio textual, guardado local, tres zonas conectadas y reinicio. La integración visual funciona; el arte y varias animaciones todavía son provisionales. No hay una portada oficial incluida: esta presentación utiliza capturas reales del juego.
+Un prototipo jugable con movimiento, navegación de enemigos, combate, salud, recarga, inventario, suministros, hambre, sed, progresión de personaje, misiones encadenadas, radio textual, guardado local, cuatro zonas conectadas y reinicio. La integración visual funciona; el arte y varias animaciones todavía son provisionales. No hay una portada oficial incluida: esta presentación utiliza capturas reales del juego.
+
+## Inicio y configuración
+
+**F5** abre la presentación inicial. Pulsa **Empezar el juego** para elegir una
+de las tres ranuras y continuar o crear una partida. Reemplazar una ranura ocupada
+exige confirmación y conserva respaldo. Desde la pausa puedes volver al inicio.
+
+![Presentación inicial de Última Frecuencia: Gualey](docs/images/title-menu.png)
+
+**Configuración** ofrece volumen general, efectos/zombis, ambiente, interfaz/radio
+y pantalla completa, con pruebas de audio. Los ajustes se guardan por separado
+de las partidas. La paleta actual usa asfalto gris, concreto, acero, madera y
+tonos de óxido; se retiró el tinte verde general de los cuatro mapas.
+[Flujo, preferencias, pruebas y capturas](docs/start_menu_settings.md).
 
 ## Galería del juego
 
 **Escenario, protagonista, zombis y HUD.** Primera zona urbana de Gualey, con colmado, aceras y obstáculos sólidos.
 
-![Escenario principal con protagonista, zombi y HUD](docs/images/gameplay.png)
+![Gualey con asfalto y concreto de la paleta actual](docs/images/gualey-materials.png)
 
 **Combate.** Disparo e impacto, feedback de daño y salud actualizada.
 
@@ -22,7 +36,7 @@ Un prototipo jugable con movimiento, navegación de enemigos, combate, salud, re
 
 ![Panel Game Over con botón Reintentar](docs/images/game-over.png)
 
-Capturas principales renovadas el **14 de noviembre de 2026** ejecutando el proyecto en Godot, mediante su prueba visual de integración. Las posiciones y acciones se preparan automáticamente en esa prueba; no son imágenes conceptuales. [Origen de las imágenes](docs/images/README.md).
+La captura de Gualey muestra la paleta actual; combate y Game Over conservan capturas históricas. Capturas principales documentadas el **14 de noviembre de 2026** ejecutando el proyecto en Godot, mediante su prueba visual de integración. Las posiciones y acciones se preparan automáticamente en esa prueba; no son imágenes conceptuales. [Origen de las imágenes](docs/images/README.md).
 
 ## Zona urbana de Gualey
 
@@ -54,6 +68,33 @@ Los nombres de varios PNG históricos no coinciden con la orientación que muest
 
 ## Progreso del desarrollo
 
+Fase 15: **Perímetro de evacuación**, cuarta zona conectada a la salida norte de
+la Estación. Termina **La última llamada** del capítulo 3 y usa **E** cerca de
+800,230. Desde el Perímetro puedes regresar a la Estación, Mercado y Gualey.
+
+![Perímetro de evacuación: plano real](docs/images/perimeter-plan.png)
+
+Carretera de evacuación, autobuses, controles de acceso, triaje, ambulancia,
+comunicaciones, suministros y rutas laterales. Pesos configurables **30/40/30**;
+mantiene seis vivos y presupuesto 18. Tres contenedores, dos recogibles e
+inspecciones únicas; introducción automática reanudable, sin nuevas misiones.
+Guardado **v6**, compatible con **v1–v5**. Hay cuatro zonas y tres capítulos;
+el capítulo 4 sigue pendiente. Arte técnico provisional.
+[Arquitectura, rutas, capturas, métricas y validaciones](docs/evacuation_perimeter.md).
+
+Fase 14: **Voces en la oscuridad**, tercer capítulo dentro de la Estación.
+Investiga registros, recupera un componente de alimentación, restaura la antena
+y escucha la última llamada. Las cuatro misiones conceden **35 + 50 + 65 + 90 =
+240 XP** una sola vez. Las bajas previas cuentan y la mochila llena no bloquea
+el componente. La recompensa final exige terminar el mensaje.
+
+![Última llamada de la Estación](docs/images/station-last-call.png)
+
+Guardado **v5**, compatible con v1/v2/v3/v4, conserva diálogos pendientes,
+equipos y la pista del futuro Perímetro de evacuación. Hay **tres capítulos y
+tres zonas** en esa fase; la fase 15 añade el Perímetro. [Misiones, recorrido real,
+compatibilidad, métricas y pendientes](docs/station_chapter.md).
+
 Fase 13: **Estación de comunicaciones**, tercera zona conectada al Mercado.
 Termina Ecos del Mercado y usa **E** en la salida este (2280,800); desde la
 estación puedes regresar al Mercado y a Gualey. Incluye sala de radio accesible,
@@ -62,7 +103,7 @@ antena, instalaciones eléctricas, vallas y tres contenedores, con arte provisio
 ![Plano real de la Estación de comunicaciones](docs/images/station-plan.png)
 
 Población configurable 40/40/20, hasta seis vivos y 18 apariciones por zona.
-La inspección de radio es única y no inicia el capítulo 3. Guardado **v4**, con
+En fase 13 la inspección de radio era única, sin capítulo 3. Su guardado **v4** conservaba
 estado de los tres mapas y migración de v1/v2/v3. Se reutilizaron **2.204
 comprobaciones automáticas aprobadas**, recorrido gráfico de 136 y prueba de
 estación con IA activa de 132; siguen pendientes sesiones humanas prolongadas.
@@ -274,6 +315,8 @@ direcciones por estado. [Resultados y limitaciones](docs/zombie_base_integration
 | 11 | Variantes de zombis y dificultad por zona | Integración técnica validada; arte, balance y rendimiento pendientes de pulido |
 | 12 | Ecos del Mercado | Cuatro misiones, 205 XP, transmisión final y persistencia v3 |
 | 13 | Estación de comunicaciones | Tercera zona integrada, guardado v4 y validaciones técnicas aprobadas |
+| 14 | Voces en la oscuridad | Cuatro misiones integradas, 240 XP, guardado v5 y pista del capítulo 4 |
+| 15 | Perímetro de evacuación | Cuarta zona integrada, acceso tras capítulo 3 y guardado v6; capítulo 4 pendiente |
 
 “Completada técnicamente” significa que la integración y sus pruebas funcionan; no implica arte final ni aprobación artística de todos los ciclos. El guardado se incorpora en fase 9; las revisiones manuales pendientes se detallan en cada informe.
 
@@ -323,7 +366,7 @@ Cada zombi detecta a 250 px y ataca a 35 px: 10 HP cada 1,5 s, con intervalo pro
 1. Disponer de **Godot 4.7.2 Stable estándar** para Windows, con soporte para GDScript. No requiere .NET.
 2. Obtener o descomprimir el repositorio completo, manteniendo su estructura.
 3. En el gestor de proyectos de Godot, elegir **Importar** y seleccionar `project.godot`.
-4. Esperar a que termine la importación de recursos y pulsar **F5** para ejecutar el proyecto. La escena principal es `scenes/Main.tscn`.
+4. Esperar a que termine la importación de recursos y pulsar **F5** para ejecutar el proyecto. La escena inicial es `scenes/TitleMenu.tscn`; el gameplay está en `scenes/Main.tscn` (F6 para depuración).
 
 También puede ejecutarse desde la raíz del repositorio:
 
@@ -372,6 +415,28 @@ tools/                     Generador opcional de SVG provisionales
 Se versionan los metadatos de identidad/importación necesarios (`.uid`, `.import`). Las cachés `.godot/`, herramientas locales y resultados `test-results/` están excluidos de Git. Las imágenes seleccionadas para esta página se conservan en `docs/images/`.
 
 ## Pruebas automatizadas
+
+Inicio/configuración y paleta: **2.791 comprobaciones headless**, cero fallos;
+incluye las 2.736 anteriores, 47 de menú y ocho de preferencias entre procesos.
+En ventana: **51** de menú/configuración y **152** del recorrido de cuatro zonas.
+Los clics y pantalla completa se comprueban en ventana; headless usa señales de
+botones. [Resultados y límites](docs/start_menu_settings.md).
+
+Fase 15: **2.736 comprobaciones headless**, cero fallos: regresión completa,
+123 del Perímetro con IA activa, recorrido ampliado de cuatro zonas (145) y
+reapertura entre procesos (24). En ventana: recorrido **152** y prueba con IA
+activa **124**, con capturas reales. Se caminan **23.407,96 px** con entrada y
+física; se aísla IA en el recorrido y se prueba por separado activa. Los capítulos
+previos se preparan con fixtures; la partida humana completa sigue pendiente.
+[Resultados, compatibilidad y límites](docs/evacuation_perimeter.md).
+
+Fase 14: **2.441 comprobaciones headless**, cero fallos. Incluye la suite previa,
+recorrido del capítulo 3 (**109**), estado/IA/migraciones (**82**) y reapertura
+en cuatro procesos (**42**). En ventana: recorrido **113**, cuatro capturas
+reales e IA/estado **82**. Las fixtures previas preparan el acceso; el recorrido
+del capítulo 3 camina **12.531,99 px** con entrada/física y disparos reales,
+aislando únicamente la IA. La partida humana completa sigue pendiente.
+[Evidencias y comandos](docs/station_chapter.md#pruebas-y-resultados).
 
 Fase 12: **1.934 comprobaciones headless**, cero fallos; recorrido físico de ambos capítulos y pruebas adicionales
 con IA activa, migración v1/v2 y reapertura de capítulo parcial entre procesos.
@@ -484,8 +549,8 @@ reales del motor; no se declara validada una sesión manual prolongada.
 
 ## Limitaciones y próximos pasos
 
-- Fabricación, segundo capítulo, guardado en nube, multiplayer, oleadas y aparición infinita no están implementados.
-- La progresión puede guardarse localmente; el contenido finito de ambos mapas con población completa ofrece seis puntos de habilidad. Ampliar contenido/balance queda pendiente.
+- Fabricación, cuarto capítulo, guardado en nube, multiplayer, oleadas y aparición infinita no están implementados.
+- La progresión puede guardarse localmente; el contenido finito de las cuatro zonas y tres capítulos puede alcanzar nivel 10 y nueve puntos de habilidad. El nivel máximo no acumula XP adicional; el balance requiere revisión humana.
 - Guardar conserva inventario y contenedores; Reintentar restaura existencias iniciales sin borrar ranuras. La mochila no pausa a los zombis; el menú de partidas sí.
 - La población de cada zona mantiene hasta seis vivos y termina al agotar 18 apariciones por zona. La dificultad con reposiciones aún requiere balance manual.
 - Los personajes colisionan con el mundo, pero no se bloquean físicamente entre sí.
@@ -497,6 +562,9 @@ reales del motor; no se declara validada una sesión manual prolongada.
 
 ## Documentación técnica
 
+- [Presentación inicial, ranuras, configuración y paleta](docs/start_menu_settings.md).
+- [Perímetro de evacuación: cuatro zonas y guardado v6](docs/evacuation_perimeter.md).
+- [Capítulo 3: Voces en la oscuridad, misiones y guardado v5](docs/station_chapter.md).
 - [Arquitectura y convenciones para agentes](AGENTS.md).
 - [Recursos visuales y contratos de sustitución](assets/README.md).
 - [Recursos del protagonista](assets/characters/player/README.md).

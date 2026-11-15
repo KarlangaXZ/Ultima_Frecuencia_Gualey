@@ -2,13 +2,13 @@ extends StaticBody2D
 ## Presentación provisional cenital. La huella procede de la colisión serializada.
 ## No crea física, navegación ni lógica de interacción.
 @export_enum("building", "car", "dumpster", "barricade", "pole") var appearance: String = "building"
-@export var surface_color := Color("678a85")
+@export var surface_color := Color("92908a")
 @export var sign_text: String = ""
 
 func _draw() -> void:
 	var shape := $CollisionShape2D.shape as RectangleShape2D
 	var area := Rect2(-shape.size / 2.0, shape.size)
-	draw_rect(area, Color("182326"))
+	draw_rect(area, Color("26292e"))
 	match appearance:
 		"building":
 			_draw_building(area)
@@ -16,7 +16,7 @@ func _draw() -> void:
 			_draw_car(area)
 		"dumpster":
 			draw_rect(area.grow(-3), surface_color)
-			draw_rect(area.grow(-8), Color("344642"))
+			draw_rect(area.grow(-8), Color("484e56"))
 			draw_line(area.position + Vector2(8, 12), area.end - Vector2(8, area.size.y - 12), Color("8a9280"), 3)
 			for point in [Vector2(-13, 8), Vector2(11, 14)]:
 				draw_circle(point, 10, Color("222b29"))
@@ -28,7 +28,7 @@ func _draw() -> void:
 			draw_line(area.position + Vector2(3, 3), area.end - Vector2(3, 3), Color("333c37"), 3)
 		"pole":
 			draw_rect(area.grow(-1), Color("a99e85"))
-			draw_circle(Vector2.ZERO, 3, Color("4e5148"))
+			draw_circle(Vector2.ZERO, 3, Color("53555b"))
 
 func _draw_building(area: Rect2) -> void:
 	draw_rect(area.grow(-3), surface_color.darkened(0.25))
@@ -37,8 +37,8 @@ func _draw_building(area: Rect2) -> void:
 	for y in range(int(area.position.y) + 24, int(area.end.y) - 20, 32):
 		draw_line(Vector2(area.position.x + 14, y), Vector2(area.end.x - 14, y), surface_color.darkened(0.12), 1)
 	var tank := area.position + Vector2(38, 38)
-	draw_circle(tank, 19, Color("253331"))
-	draw_arc(tank, 15, 0, TAU, 24, Color("68746b"), 2)
+	draw_circle(tank, 19, Color("30343a"))
+	draw_arc(tank, 15, 0, TAU, 24, Color("797e85"), 2)
 	draw_rect(Rect2(area.end - Vector2(66, 53), Vector2(38, 24)), Color("8b9181"))
 	for x in range(5, 35, 6):
 		draw_line(area.end - Vector2(66 - x, 50), area.end - Vector2(66 - x, 33), Color("505f59"), 2)
@@ -49,7 +49,7 @@ func _draw_building(area: Rect2) -> void:
 		var font_size := 15
 		var width := minf(font.get_string_size(sign_text, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x + 24, area.size.x - 28)
 		var plate := Rect2(-width / 2, area.end.y - 37, width, 26)
-		draw_rect(plate, Color("293d3a"))
+		draw_rect(plate, Color("30343c"))
 		draw_rect(plate, Color("baad7f"), false, 1)
 		draw_string(font, plate.position + Vector2(10, 18), sign_text, HORIZONTAL_ALIGNMENT_LEFT, width - 16, font_size, Color("e0d6ac"))
 

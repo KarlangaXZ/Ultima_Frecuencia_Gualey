@@ -1,24 +1,27 @@
-[gd_resource type="Resource" script_class="MissionDefinition" format=3]
-[ext_resource type="Script" path="res://scripts/missions/mission_definition.gd" id="1"]
-[ext_resource type="Script" path="res://scripts/missions/mission_objective.gd" id="2"]
+[gd_resource type="Resource" script_class="MissionDefinition" format=3 uid="uid://cjpgrafpya6qd"]
+
+[ext_resource type="Script" uid="uid://c7c7f51agrvry" path="res://scripts/missions/mission_definition.gd" id="1"]
+[ext_resource type="Script" uid="uid://4dssexr5xu3t" path="res://scripts/missions/mission_objective.gd" id="2"]
+
 [sub_resource type="Resource" id="Objective0"]
 script = ExtResource("2")
 event_key = &"recovered_medkit"
 description = "Recuperar un botiquín del mundo."
-target = 1
 historical = true
+
 [sub_resource type="Resource" id="Objective1"]
 script = ExtResource("2")
 event_key = &"recovered_water"
 description = "Recuperar una botella de agua del mundo."
-target = 1
 historical = true
+
 [sub_resource type="Resource" id="Objective2"]
 script = ExtResource("2")
 event_key = &"kills"
 description = "Eliminar zombis."
 target = 2
 historical = true
+
 [resource]
 script = ExtResource("1")
 id = &"supplies"
@@ -27,4 +30,3 @@ description = "La voz pide que te prepares: recupera suministros del mundo y des
 prerequisites = Array[StringName]([&"signal"])
 objectives = Array[ExtResource("2")]([SubResource("Objective0"), SubResource("Objective1"), SubResource("Objective2")])
 reward_xp = 50
-sequential = false

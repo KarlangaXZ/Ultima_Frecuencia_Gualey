@@ -1,5 +1,7 @@
 # Fase 13 — Estación de comunicaciones
 
+**Estado vigente — Fase 14:** [Voces en la oscuridad](station_chapter.md): tres capítulos, once misiones y guardado v5 compatible con v1–v4. Este informe conserva sus resultados históricos.
+
 **Estado: integración técnica y documentación cerradas**, con arte provisional y
 validaciones humanas pendientes. Revisión final: 14 de noviembre de 2026.
 Esta continuación conserva la implementación del commit `c475def`: no añade
