@@ -41,6 +41,9 @@ func refresh() -> void:
 	if mission == null:
 		var completed := tracker.chapter_completed(tracker.active_chapter)
 		title.text = "Capítulo %d completado" % ChapterCatalog.DEFINITIONS[tracker.active_chapter].number if completed else "SIN MISIÓN ACTIVA"
+		if tracker.chapter_completed(ChapterCatalog.CONVOY):
+			objective_label.text = "NODO CERO: pista guardada · Explora las cuatro zonas · J"
+			return
 		objective_label.text = "Explora el Perímetro · J" if tracker.chapter_completed(ChapterCatalog.STATION) and get_parent().get_node("ZoneManager").current_zone==ZoneCatalog.PERIMETER else "Salida norte: Perímetro · J" if tracker.chapter_completed(ChapterCatalog.STATION) else "Explora la Estación · J" if tracker.chapter_completed(ChapterCatalog.MARKET) else "Viaja al Mercado · J: historial" if completed else "J: consultar misiones"
 		return
 	title.text = mission.title + " · J"

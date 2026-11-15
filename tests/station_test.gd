@@ -114,7 +114,7 @@ func run() -> void:
 	var xp: int=player.get_node("ProgressionComponent").total_xp()
 	await F.interact(self,main,radio_point.position+Vector2(0,30))
 	main.get_node("RadioUI").close_window()
-	check(manager.interactions==["station_radio"] and main.get_node("Missions").definitions.size()==11,"Interacción reservada; introducción independiente del capítulo 3")
+	check(manager.interactions==["station_radio"] and main.get_node("Missions").definitions.size()==15,"Interacción reservada; introducción independiente del capítulo 3")
 	check(player.get_node("ProgressionComponent").total_xp()==xp,"Introducción sin XP")
 	check(saves.save_slot(1).has("ok"),"Guardar estación con diálogo pendiente")
 	check(saves.load_slot(1).has("ok"),"Cargar estación activa")

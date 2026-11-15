@@ -22,7 +22,7 @@ func sequence() -> void:
 	await point("Link",false)
 func run() -> void:
 	var content_xp:=0
-	for mission in SaveCatalog.MISSIONS:content_xp+=mission.reward_xp
+	for mission in SaveCatalog.MISSIONS.slice(0,11):content_xp+=mission.reward_xp
 	for zone: ZoneDefinition in ZoneCatalog.DEFINITIONS.values():
 		if zone.id==ZoneCatalog.PERIMETER:continue # Presupuesto histórico de fase 14.
 		content_xp+=20*zone.container_ids.size()

@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="RadioTransmission" format=3]
+[ext_resource type="Script" path="res://scripts/radio/radio_transmission.gd" id="1"]
+[resource]
+script = ExtResource("1")
+sender = "ÚLTIMA ORDEN DE TRASLADO"
+messages = PackedStringArray("Convoy 07: desvío obligatorio. No dirigirse al refugio costero. Mantener pasajeros dentro de los vehículos.", "La firma del emisor fue eliminada. El respaldo eléctrico conserva una copia del enlace: restáuralo para recuperar el mensaje.")

@@ -66,6 +66,19 @@
   No aplicar el pivote frontal a walk/death provisionales ni modificar la física.
 
 ## Convenciones y reglas
+- Fase 16: ChapterCatalog.CONVOY/last_convoy inicia en Perímetro tras station_call.
+  Cuatro misiones convoy_access/stopped/quarantine/route, 45/55/70/100 XP únicos.
+  Un solo Tracker/Chapter/Rewards/Radio. Nueve MissionPoint junto a props existentes,
+  sin tocar sólidos. Registro/Médica previos cuentan como evidencia; sin objetos
+  de mochila. convoy_kills deriva de cadáveres locales. Dos bajas o inspección del
+  cordón verifican seguridad, sin generar enemigos. Final exige transmission_completed
+  de ConvoyFinal; cerrar/morir no premia. Enlace/Comms reabren el índice pendiente;
+  ninguna radio sustituye otra pendiente. facility_hint conserva NODO CERO, sin mapa
+  ni salida nuevos. Save v7 valida v1–v6 antes de migrar en memoria; reconoce Perímetro
+  activo/inactivo y sus inspecciones/bajas, sin refrescar premios ni reescribir.
+  Mantener slices históricos 0..11 y 7..11 al validar/migrar versiones antiguas.
+  MusicDirector/WAV/IA/armas/balance/VSync intactos. Tests user://tests/phase-sixteen-*;
+  ver docs/evacuation_chapter.md y evacuation_chapter*_test.gd.
 - Inicio/configuración: TitleMenu no instancia mundos hasta elegir una ranura.
   Usa SaveFileStore para leer y SaveCoordinator para reconstruir partidas, con
   escena de apoyo desactivada y menú visible hasta confirmar éxito. Nueva partida
@@ -74,7 +87,7 @@
   serializa ni cambia v6. Reintentar conserva esa selección durante la sesión.
   Pausa ofrece retorno al inicio con aviso de cambios sin guardar.
   AppPreferences es un único autoload de ajustes, sin estado del mundo:
-  user://settings.cfg, cuatro volúmenes y pantalla completa. Buses Master,
+  user://settings.cfg, cinco volúmenes y pantalla completa. Buses Master, Music,
   Effects (armas/zombis), Ambience e Interface; conservar ganancias por instancia,
   pools y bancos. No cambiar VSync al aplicar preferencias. Tests usan directorios
   user://tests/start-menu-*; no escribir preferencias o partidas normales.
@@ -83,6 +96,8 @@
   Ver docs/start_menu_settings.md. Mantener chapter_id en misiones Mercado/Estación
   e initial_quantities en ArsenalSupplies; recargar recursos antes de guardarlos
   desde un editor que mantenga versiones previas de scripts en memoria.
+  La preparación espera población/navegación inicializada (máximo 60 frames),
+  sin avanzar gameplay ni guardar a medias; title_menu_readiness_test simula retraso.
 - Fase 15: ZoneCatalog.PERIMETER (`evacuation_perimeter`) es la cuarta zona,
   PerimeterWorld.tscn / Perimeter.tres. station_call completo desbloquea salida
   norte de Estación (800,230); regreso from_perimeter en (800,300). Perímetro

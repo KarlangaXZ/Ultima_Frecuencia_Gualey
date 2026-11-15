@@ -36,8 +36,10 @@ func refresh() -> void:
 	var history := PackedStringArray()
 	for id in tracker.completed_chapters():
 		text += "CAPÍTULO COMPLETADO · %d: %s\n" % [ChapterCatalog.DEFINITIONS[id].number,ChapterCatalog.title(id)]
-	if tracker.chapter_completed(ChapterCatalog.STATION):
-		text += "Capítulo 3 completado. Acceso al Perímetro de evacuación habilitado en la salida norte de la Estación. Capítulo 4 pendiente; puedes explorar las cuatro zonas.\n"
+	if tracker.chapter_completed(ChapterCatalog.CONVOY):
+		text += "Capítulo 4 completado. El convoy fue redirigido deliberadamente a NODO CERO. La identidad del mando sigue oculta. Puedes seguir explorando las cuatro zonas; aún no existe acceso a esa instalación.\n"
+	elif tracker.chapter_completed(ChapterCatalog.STATION):
+		text += "Capítulo 3 completado. Acceso al Perímetro de evacuación habilitado en la salida norte de la Estación. Investiga El último convoy; puedes explorar las cuatro zonas.\n"
 	elif tracker.chapter_completed(ChapterCatalog.MARKET):
 		text += "Capítulo 2 completado. Salida a la Estación de comunicaciones habilitada en el Mercado. Puedes regresar a Gualey.\n"
 	elif tracker.chapter_completed(ChapterCatalog.FIRST) and ChapterCatalog.MARKET not in tracker.started_chapters:

@@ -38,6 +38,11 @@
 [ext_resource type="Resource" path="res://resources/missions/StationPower.tres" id="StationPower"]
 [ext_resource type="Resource" path="res://resources/missions/StationFrequency.tres" id="StationFrequency"]
 [ext_resource type="Resource" path="res://resources/missions/StationCall.tres" id="StationCall"]
+[ext_resource type="Resource" path="res://resources/missions/ConvoyAccess.tres" id="ConvoyAccess"]
+[ext_resource type="Resource" path="res://resources/missions/ConvoyStopped.tres" id="ConvoyStopped"]
+[ext_resource type="Resource" path="res://resources/missions/ConvoyQuarantine.tres" id="ConvoyQuarantine"]
+[ext_resource type="Resource" path="res://resources/missions/ConvoyRoute.tres" id="ConvoyRoute"]
+
 [node name="Main" type="Node2D" unique_id=1506309]
 script = ExtResource("4")
 
@@ -65,7 +70,7 @@ position = Vector2(800, 1250)
 [node name="CharacterUI" parent="." instance=ExtResource("8")]
 [node name="Missions" type="Node" parent="."]
 script = ExtResource("Tracker")
-definitions = Array[ExtResource("Definition")]([ExtResource("Signal"), ExtResource("Supplies"), ExtResource("Broadcast"), ExtResource("MarketTraces"), ExtResource("MarketSupplies"), ExtResource("MarketHorde"), ExtResource("MarketFrequency"), ExtResource("StationRecords"), ExtResource("StationPower"), ExtResource("StationFrequency"), ExtResource("StationCall")])
+definitions = Array[ExtResource("Definition")]([ExtResource("Signal"), ExtResource("Supplies"), ExtResource("Broadcast"), ExtResource("MarketTraces"), ExtResource("MarketSupplies"), ExtResource("MarketHorde"), ExtResource("MarketFrequency"), ExtResource("StationRecords"), ExtResource("StationPower"), ExtResource("StationFrequency"), ExtResource("StationCall"), ExtResource("ConvoyAccess"), ExtResource("ConvoyStopped"), ExtResource("ConvoyQuarantine"), ExtResource("ConvoyRoute")])
 [node name="Rewards" type="Node" parent="Missions"]
 script = ExtResource("Rewards")
 [node name="Chapter" type="Node" parent="Missions"]

@@ -93,7 +93,7 @@ func run() -> void:
 	check(tracker.chapter_completed(ChapterCatalog.STATION) and player.get_node("ProgressionComponent").total_xp()==before+240,"Capítulo 3: 240 XP exacta")
 	check(main.get_node("HUD/Feedback").text.contains("Capítulo 3 completado") and not main.game_ended,"Notificación final conserva exploración")
 	var awards: Dictionary=main.get_node("Missions/Rewards")._awarded
-	check(awards.size()==11 and SaveCatalog.MISSIONS.slice(7).all(func(m):return awards.has(m.id)),"Cuatro premios individuales únicos")
+	check(awards.size()==11 and SaveCatalog.MISSIONS.slice(7,11).all(func(m):return awards.has(m.id)),"Cuatro premios individuales únicos")
 	await key(KEY_J)
 	check(main.get_node("MissionUI").body.text.contains("Perímetro de evacuación"),"Pista futura en diario")
 	await capture("04-station-chapter-complete")

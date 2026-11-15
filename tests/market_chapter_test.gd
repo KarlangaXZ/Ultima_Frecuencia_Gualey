@@ -89,7 +89,7 @@ func run() -> void:
 	change_scene_to_file("res://scenes/Main.tscn")
 	await frames(8)
 	bind_scene()
-	check(tracker.definitions.size()==11 and tracker.started_chapters==[ChapterCatalog.FIRST],"Once misiones, capítulos posteriores bloqueados")
+	check(tracker.definitions.size()==15 and tracker.started_chapters==[ChapterCatalog.FIRST],"Quince misiones, capítulos posteriores bloqueados")
 	check(not main.get_node("ZoneManager").request_travel(ZoneCatalog.MARKET,"from_gualey"),"Salida inicialmente bloqueada")
 	# Capítulo 1 completo: sin eventos de misión sintéticos ni XP añadida.
 	await interact(Vector2(560,810))

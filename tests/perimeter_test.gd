@@ -124,10 +124,10 @@ func run() -> void:
 	for name in ["MedicalInspection","Register","Comms"]:
 		await F.interact(self,main,main.get_node("World/ChapterPoints/"+name).position+Vector2(0,30))
 		F.finish_radio(main)
-	check(manager.interactions.size()==4 and main.get_node("Missions").definitions.size()==11,"Cuatro inspecciones únicas, sin capítulo 4/misiones nuevas")
+	check(manager.interactions.size()==4 and main.get_node("Missions").definitions.size()==15,"Cuatro inspecciones únicas, con las quince misiones del catálogo actual")
 	check(saves.save_slot(1,true).has("ok"),"Guardar dentro del Perímetro")
 	var saved: Dictionary=saves.capture(1)
-	check(saved.zones.size()==3 and saved.version==6 and not saved.world.pickups.perimeter_water,"Cuatro mundos y recogida persistentes")
+	check(saved.zones.size()==3 and saved.version==SaveSchema.VERSION and not saved.world.pickups.perimeter_water,"Cuatro mundos y recogida persistentes")
 	var mutations: Array[Callable]=[
 		func(d):d.missions.unlocked_zones.erase(ZoneCatalog.PERIMETER),
 		func(d):d.zones.erase(ZoneCatalog.STATION),

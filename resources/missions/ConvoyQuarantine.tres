@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="MissionDefinition" format=3]
+[ext_resource type="Script" path="res://scripts/missions/mission_definition.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/missions/mission_objective.gd" id="2"]
+
+[sub_resource type="Resource" id="Objective0"]
+script = ExtResource("2")
+event_key = &"convoy_medical"
+description = "Examinar el área médica (inspección previa válida)."
+historical = true
+
+[sub_resource type="Resource" id="Objective1"]
+script = ExtResource("2")
+event_key = &"convoy_quarantine_record"
+description = "Investigar los registros de cuarentena."
+
+[sub_resource type="Resource" id="Objective2"]
+script = ExtResource("2")
+event_key = &"convoy_security"
+description = "Verificar seguridad: dos bajas locales previas o inspección del cordón."
+historical = true
+
+[resource]
+script = ExtResource("1")
+chapter_id = &"last_convoy"
+id = &"convoy_quarantine"
+title = "Protocolo de cuarentena"
+description = "Examina el triaje y sus registros. Dos bajas previas o una inspección de seguridad verifican el área."
+prerequisites = Array[StringName]([&"convoy_stopped"])
+objectives = Array[ExtResource("2")]([SubResource("Objective0"), SubResource("Objective1"), SubResource("Objective2")])
+reward_xp = 70

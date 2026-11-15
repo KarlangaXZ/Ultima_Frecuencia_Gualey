@@ -72,6 +72,17 @@ Los nombres de varios PNG históricos no coinciden con la orientación que muest
 
 ## Progreso del desarrollo
 
+Fase 16: **El último convoy**, capítulo 4 dentro del Perímetro. Investiga el
+control de acceso, los vehículos detenidos y el protocolo de cuarentena; recupera
+la última orden y escucha su transmisión completa. Cuatro misiones conceden
+**45 + 55 + 70 + 100 = 270 XP**, una vez. La seguridad acepta bajas anteriores o
+una inspección, sin exigir enemigos nuevos. La pista final apunta a **NODO CERO**,
+todavía sin mapa ni salida. Guardado **v7** compatible con **v1–v6**.
+
+![El último convoy: cuatro capítulos completados](docs/images/convoy-complete.png)
+
+[Misiones, recorrido, migraciones, capturas y métricas](docs/evacuation_chapter.md).
+
 Fase 15: **Perímetro de evacuación**, cuarta zona conectada a la salida norte de
 la Estación. Termina **La última llamada** del capítulo 3 y usa **E** cerca de
 800,230. Desde el Perímetro puedes regresar a la Estación, Mercado y Gualey.
@@ -81,9 +92,9 @@ la Estación. Termina **La última llamada** del capítulo 3 y usa **E** cerca d
 Carretera de evacuación, autobuses, controles de acceso, triaje, ambulancia,
 comunicaciones, suministros y rutas laterales. Pesos configurables **30/40/30**;
 mantiene seis vivos y presupuesto 18. Tres contenedores, dos recogibles e
-inspecciones únicas; introducción automática reanudable, sin nuevas misiones.
-Guardado **v6**, compatible con **v1–v5**. Hay cuatro zonas y tres capítulos;
-el capítulo 4 sigue pendiente. Arte técnico provisional.
+inspecciones únicas e introducción automática reanudable. Esa fase incorporó
+guardado **v6**, compatible con **v1–v5**, cuatro zonas y tres capítulos.
+La fase 16 añade el cuarto capítulo sobre el mismo escenario. Arte técnico provisional.
 [Arquitectura, rutas, capturas, métricas y validaciones](docs/evacuation_perimeter.md).
 
 Fase 14: **Voces en la oscuridad**, tercer capítulo dentro de la Estación.
@@ -322,6 +333,7 @@ direcciones por estado. [Resultados y limitaciones](docs/zombie_base_integration
 | 14 | Voces en la oscuridad | Cuatro misiones integradas, 240 XP, guardado v5 y pista del capítulo 4 |
 | 15 | Perímetro de evacuación | Cuarta zona integrada, acceso tras capítulo 3 y guardado v6; capítulo 4 pendiente |
 | 15.1 | Música de menú y exploración | Integración técnica validada; dos composiciones provisionales, escucha humana pendiente |
+| 16 | El último convoy | Cuatro misiones, 270 XP, guardado v7 compatible con v1–v6; cuatro zonas, sin quinta salida |
 
 “Completada técnicamente” significa que la integración y sus pruebas funcionan; no implica arte final ni aprobación artística de todos los ciclos. El guardado se incorpora en fase 9; las revisiones manuales pendientes se detallan en cada informe.
 
@@ -420,6 +432,11 @@ tools/                     Generador opcional de SVG provisionales
 Se versionan los metadatos de identidad/importación necesarios (`.uid`, `.import`). Las cachés `.godot/`, herramientas locales y resultados `test-results/` están excluidos de Git. Las imágenes seleccionadas para esta página se conservan en `docs/images/`.
 
 ## Pruebas automatizadas
+
+Fase 16: suite funcional completa de **3.105 comprobaciones en 63 procesos**, cero
+fallos. Recorrido físico del convoy: **9.011,95 px**, 73 comprobaciones headless y
+76 en ventana. Compatibilidad/IA: 140/141; reapertura entre procesos: 38. Música
+nativa: 62. [Resultados, métricas, capturas y pendientes](docs/evacuation_chapter.md).
 
 Fase 15.1: regresión de **2.793 comprobaciones**, música headless **33** y música
 en ventana **62**, sin fallos. Se verificaron señal real, silencio, Master, bucles,
@@ -559,7 +576,7 @@ reales del motor; no se declara validada una sesión manual prolongada.
 ## Limitaciones y próximos pasos
 
 - Fabricación, cuarto capítulo, guardado en nube, multiplayer, oleadas y aparición infinita no están implementados.
-- La progresión puede guardarse localmente; el contenido finito de las cuatro zonas y tres capítulos puede alcanzar nivel 10 y nueve puntos de habilidad. El nivel máximo no acumula XP adicional; el balance requiere revisión humana.
+- La progresión puede guardarse localmente; el contenido finito de las cuatro zonas y cuatro capítulos puede alcanzar nivel 10 y nueve puntos de habilidad. El nivel máximo no acumula XP adicional; el balance requiere revisión humana.
 - Guardar conserva inventario y contenedores; Reintentar restaura existencias iniciales sin borrar ranuras. La mochila no pausa a los zombis; el menú de partidas sí.
 - La población de cada zona mantiene hasta seis vivos y termina al agotar 18 apariciones por zona. La dificultad con reposiciones aún requiere balance manual.
 - Los personajes colisionan con el mundo, pero no se bloquean físicamente entre sí.
@@ -573,6 +590,7 @@ reales del motor; no se declara validada una sesión manual prolongada.
 
 - [Presentación inicial, ranuras, configuración y paleta](docs/start_menu_settings.md).
 - [Perímetro de evacuación: cuatro zonas y guardado v6](docs/evacuation_perimeter.md).
+- [El último convoy: capítulo 4 y guardado v7](docs/evacuation_chapter.md).
 - [Capítulo 3: Voces en la oscuridad, misiones y guardado v5](docs/station_chapter.md).
 - [Arquitectura y convenciones para agentes](AGENTS.md).
 - [Recursos visuales y contratos de sustitución](assets/README.md).

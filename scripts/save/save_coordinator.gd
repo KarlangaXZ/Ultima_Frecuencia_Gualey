@@ -98,7 +98,7 @@ func load_slot(slot: int) -> Dictionary:
 	if audio.ambience_enabled and DisplayServer.get_name() != "headless": audio.ambience.play()
 	MusicDirector.enter_gameplay(candidate)
 	var message := "Partida cargada desde respaldo." if loaded.recovered else "Partida cargada."
-	if loaded.get("migrated",false): message += " Guardado anterior adaptado a v6."
+	if loaded.get("migrated",false): message += " Guardado anterior adaptado a v%d." % SaveSchema.VERSION
 	if relocated: message += " Posición recuperada en el inicio seguro."
 	candidate.get_node("HUD").show_message(message)
 	candidate.get_node("ZoneOverlay").show_location(ZoneCatalog.definition(data.map).display_name)

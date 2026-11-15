@@ -254,8 +254,12 @@ func _launch(slot: int,fresh: bool,confirmed: bool) -> void:
 	var result: Dictionary
 	if fresh:
 		main.get_node("World/Navigation").enabled=true
+		main.get_node("Player/Camera2D").reset_smoothing()
+		main.get_node("Player/Camera2D").force_update_scroll()
 		main.get_node("Population").start()
-		for i in range(4):
+		# La publicación de física/navegación puede tardar más de cuatro frames.
+		# Esperar disponibilidad real, sin procesar gameplay ni guardar a medias.
+		for i in range(60):
 			await tree.physics_frame
 			await tree.process_frame
 			NavigationServer2D.map_force_update(main.get_node("Player").get_world_2d().navigation_map)
