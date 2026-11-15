@@ -1,5 +1,9 @@
 # Fase 8.1 — diagnóstico de movilidad y población finita
 
+**Actualización Fase 11:** [variantes, distribución, XP y persistencia](zombie_archetypes.md).
+Los valores de enemigo común y resultados históricos de este informe se conservan;
+las variantes actuales se configuran mediante ZombieArchetype.
+
 Validación: 14 de noviembre de 2026, Godot 4.7.2 Stable oficial, Windows,
 Compatibility, Radeon RX 580. Sin commits, push, plugins ni recursos nuevos de arte.
 

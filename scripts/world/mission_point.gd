@@ -22,7 +22,7 @@ func _draw() -> void:
 	var accent := Color("dec787") if available else Color("667b70")
 	draw_circle(Vector2.ZERO, 27, Color("152526"))
 	draw_arc(Vector2.ZERO, 28, 0, TAU, 32, accent, 2)
-	if point_id == &"radio":
+	if point_id in [&"radio",&"station_radio"]:
 		draw_rect(Rect2(-17, -10, 34, 23), Color("40544b"))
 		draw_line(Vector2(10, -10), Vector2(15, -27), accent, 2)
 		draw_circle(Vector2(-7, 2), 6, Color("122021"))

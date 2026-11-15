@@ -3,13 +3,14 @@ extends CharacterBody2D
 enum State { IDLE, CHASE, ATTACK, DEAD }
 signal eliminated
 
-@export var speed: float = 105.0
-@export var detection_radius: float = 250.0
-@export var attack_distance: float = 35.0
-@export var attack_damage: float = 10.0
-@export_range(0.01, 60.0) var attack_interval: float = 1.5
+@export var archetype: ZombieArchetype = preload("res://resources/enemies/Common.tres")
+var speed: float
+var detection_radius: float
+var attack_distance: float
+var attack_damage: float
+var attack_interval: float
 # Se reenvía al componente; no hay lógica de salud duplicada.
-@export var max_health: float = 50.0
+var max_health: float
 
 @onready var health: HealthComponent = $HealthComponent
 @onready var agent: NavigationAgent2D = $NavigationAgent2D
@@ -18,6 +19,10 @@ var target: CharacterBody2D
 var target_health: HealthComponent
 var cooldown: float = 0.0
 var repath_time: float = 0.0
+
+func _enter_tree() -> void:
+	# Antes de _ready de salud/visual/audio, una sola aplicación desde configuración.
+	archetype.apply_to(self)
 
 func _ready() -> void:
 	health.max_health = max_health

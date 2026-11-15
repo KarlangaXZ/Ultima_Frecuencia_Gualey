@@ -57,6 +57,52 @@
   No aplicar el pivote frontal a walk/death provisionales ni modificar la física.
 
 ## Convenciones y reglas
+- Fase 12: un único MissionTracker/Radio/Rewards gestiona signal_lost y market_echoes.
+  ChapterCatalog registra IDs; MissionDefinition.chapter_id y started_chapters gatean
+  la cadena. El capítulo 2 inicia al entrar al Mercado con broadcast completada.
+  market_traces/supplies/horde/frequency conceden 30/40/60/75 XP una vez (205).
+  Eventos market_* separados de Gualey; recibos y cadáveres tipados por zona conservan
+  recuperaciones/bajas previas a activar objetivos. No exigir conservar consumibles.
+  La alimentación es interacción fija, sin objeto ni capacidad de mochila. El último
+  premio espera transmission_completed de MarketFinal; cerrar o morir no lo emite.
+  Reabrir Repeater continúa el índice guardado. Pista de estación no es una zona.
+  Save v3 añade chapter/story y siete misiones. Validar v1/v2 antes de migrar en memoria,
+  sin reescribir al leer ni otorgar premios. MarketHistory deriva evidencia del mundo.
+  legacy_waivers solo para variantes ausentes del historial y de todos los ordinales
+  futuros finitos: reconocer requisito narrativo, nunca inventar bajas/XP/enemigos.
+  Guardar/cargar no refresca misiones con recompensas. Diary/ObjectiveHUD reutilizados;
+  ocultar rótulo breve de zona al abrir modal. Sin cambios de IA/armas/balance/VSync.
+  Ver docs/market_chapter.md y tests/market_chapter*_test.gd; rutas user://tests/phase-twelve-*.
+- Fase 11: ZombieArchetype configura Common/Runner/Resistant en resources/enemies/;
+  Resource inmutable, valores por instancia aplicados en _enter_tree antes de hijos.
+  Conservar una sola IA/escena y flujo de salud/daño/muerte. XP 30/45/60 por tipo,
+  deduplicada por ID. No producir daño desde visual/audio ni duplicar bajas.
+  ZoneDefinition.enemy_weights: Home solo base; Market 60/30/10. ZombieArchetypes
+  reparte cuotas por ordinal (primeros seis 3/2/1, total18 11/5/2). Mantener un
+  generador, seis vivos, presupuesto18 e intervalo10s. No convertir tipos guardados.
+  JSON v2 mantiene type con catálogo seguro base/runner/resistant y HP por tipo;
+  v1 solo base. Conservar identidad, heridas, cadáveres y presupuesto por zona.
+  Visual conserva pivote/escala, walk usa velocidad real/105; tintes/aros técnicos.
+  Audio conserva tres voces por enemigo, pitch/ganancia por instancia sin editar
+  bancos compartidos. Ver docs/zombie_archetypes.md y tests/archetypes_*_test.gd.
+- Fase 10 autoriza dos zonas: ZoneDefinition/ZoneCatalog en resources/zones/ y
+  Main/ZoneManager. Gualey conserva World.tscn; MarketWorld.tscn reutiliza UrbanObstacle
+  y world_navigation, sin cambiar IA/armas/RPG. E en ZoneExit usa la interacción
+  existente; mercado se desbloquea con broadcast. Viajar conserva el MISMO Player,
+  componentes y audio global; cambiar solo World y actores de Zombies. Mantener
+  World en índice 0 para no tapar personajes. Reenlazar puntos de ChapterController.
+  InterfaceCoordinator controla pausa de transición; ZoneOverlay procesa fundidos
+  durante pausa. Bloquear viaje concurrente, Esc, guardar/cargar y combate hasta
+  terminar. No avanzar relojes ni daño durante fundido; exigir soltar shoot al volver.
+  Cada zona conserva su WorldSaveState inactivo como datos, nunca nodos procesando.
+  Población 6/18/10s por definición; prefijo market_zombie_ evita colisiones de IDs.
+  Bajas/tiempo globales siguen en Main; bajas locales derivan de cadáveres del mapa.
+  Save v2 mantiene world activo, zones inactivos y stats globales; no duplicar mapa
+  activo en caché. SaveMigration adapta v1 en memoria, sin reescribir al leer ni
+  volver a premiar; broadcast completada deduce desbloqueo. Catálogo confiable,
+  validación y rutas de archivo de Fase 9 se reutilizan. No aceptar escenas del JSON.
+  Tests nuevos usan user://tests/phase-ten-*; no tocar partidas normales. Máximo
+  del contenido en fase 10: 1.390 XP, nivel 7, seis puntos. Ver docs/zones_transitions.md.
 - Fase 9 autoriza persistencia local: SaveCoordinator/SaveSchema/SaveFileStore y
   adaptadores PlayerSaveState, MissionSaveState, WorldSaveState en scripts/save/.
   user://saves/slot_1..3.json, v1, JSON puro, catálogo de IDs confiables; nunca

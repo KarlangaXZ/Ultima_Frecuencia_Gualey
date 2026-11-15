@@ -10,9 +10,9 @@ const ITEMS := {
 const WEAPONS := {"pistol": preload("res://resources/weapons/BasicPistol.tres"),
 	"machete": preload("res://resources/weapons/Machete.tres"), "revolver": preload("res://resources/weapons/Revolver.tres"),
 	"shotgun": preload("res://resources/weapons/Shotgun.tres")}
-const MISSIONS := [preload("res://resources/missions/Signal.tres"), preload("res://resources/missions/Supplies.tres"), preload("res://resources/missions/Broadcast.tres")]
+const MISSIONS := [preload("res://resources/missions/Signal.tres"), preload("res://resources/missions/Supplies.tres"), preload("res://resources/missions/Broadcast.tres"), preload("res://resources/missions/MarketTraces.tres"), preload("res://resources/missions/MarketSupplies.tres"), preload("res://resources/missions/MarketHorde.tres"), preload("res://resources/missions/MarketFrequency.tres")]
 const TRANSMISSIONS := {"first": preload("res://resources/radio/FirstSignal.tres"),
-	"power": preload("res://resources/radio/PowerRestored.tres"), "final": preload("res://resources/radio/FirstBroadcast.tres")}
+	"power": preload("res://resources/radio/PowerRestored.tres"), "final": preload("res://resources/radio/FirstBroadcast.tres"), "market_record": preload("res://resources/radio/MarketRecord.tres"), "market_comms": preload("res://resources/radio/MarketComms.tres"), "market_power": preload("res://resources/radio/MarketPower.tres"), "market_final": preload("res://resources/radio/MarketFinal.tres"), "station_intro": preload("res://resources/radio/StationIntro.tres")}
 const PICKUPS := ["pickup_water", "pickup_medkit", "pickup_food", "pickup_ammo"]
 const CONTAINERS := ["supply_crate", "medical_case", "abandoned_bag", "revolver_case", "shotgun_case"]
 const SKILLS := ["vitality", "agility", "handling", "survival"]

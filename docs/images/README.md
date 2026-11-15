@@ -6,6 +6,17 @@ conceptuales para representar funcionalidades.
 
 | Archivo | Fuente | Fecha y preparación |
 | --- | --- | --- |
+| station-entry.png | test-results/phase-thirteen/01-station-entry.png | 2026-11-14, entrada real, HUD y título de zona; recorrido narrativo con IA aislada |
+| station-radio.png | test-results/phase-thirteen/02-station-radio.png | 2026-11-14, inspección del equipo; transmisión textual sin capítulo 3 |
+| station-plan.png | test-results/phase-thirteen/03-station-plan.png | 2026-11-14, plano técnico con zoom 0.43 y HUD oculto solo en fixture |
+| market-chapter-journal.png | test-results/phase-twelve/01-market-journal.png | 2026-11-14, recorrido real de ambos capítulos; IA aislada solo en esta fixture |
+| market-station-signal.png | test-results/phase-twelve/03-station-signal.png | 2026-11-14, recorrido real de ambos capítulos; IA aislada solo en esta fixture |
+| market-chapter-complete.png | test-results/phase-twelve/04-chapter-two-complete.png | 2026-11-14, recorrido real de ambos capítulos; IA aislada solo en esta fixture |
+| zombie-common.png | test-results/archetypes/01-home-common.png | 2026-11-14, zona inicial con comunes e IA activa |
+| zombie-variants.png | test-results/archetypes/02-market-variants.png | 2026-11-14, común/corredor/resistente de izquierda a derecha, IA activa |
+| market.png | test-results/zones/02-market.png | 2026-11-14, entrada real con personajes visibles y nombre de zona |
+| market-plan.png | test-results/zones/06-market-plan.png | 2026-11-14, plano técnico; zoom 0.43 y HUD oculto solo en fixture |
+| zone-transition.png | test-results/zones/01-transition.png | 2026-11-14, fundido negro y nombre del mercado |
 | save-slots.png | test-results/save/01-slots.png | 2026-11-14, tres ranuras con partida rica en estado y ranura inicial de fixture |
 | zombie-pursuit.png | test-results/population/03-simultaneous.png | 2026-11-14, tres perseguidores con IA activa dentro de población de seis |
 | missions.png | test-results/phase-eight/02-missions.png | 2026-11-14, diario con misión 3 activa e historial de las dos primeras |
@@ -23,7 +34,7 @@ conceptuales para representar funcionalidades.
 | player-animations.png | PNG down de idle/shoot/reload/death y walk_left V2 | 2026-11-12, composición en orden, escala nativa |
 | zombie-base.png | PNG de Idle 00, Walk 02, Attack 03 y Death 05 | Fase 4.4, down/up/left/right del paquete técnico |
 
-Las catorce capturas son PNG 1280 × 720 optimizados sin pérdida. La lámina del
+Las veinticinco capturas son PNG 1280 × 720 optimizados sin pérdida. La lámina del
 protagonista mide 1024 × 800; la del zombi, 512 × 624. Las fuentes permanecen en
 assets/ y los resultados de pruebas en test-results/ (ignorado).
 
@@ -68,3 +79,27 @@ Fase 9 añade el menú de partidas desde su prueba gráfica: 114 comprobaciones,
 dos capturas reales; la confirmación queda solo en resultados para no duplicar
 la galería. La fixture prepara objetos/XP/posiciones y refresca el HUD antes de
 pausar. [Formato, integridad, reapertura y límites](../save_load.md).
+
+Fase 10 añade tres capturas del mercado/fundido de las seis producidas por la
+prueba con IA activa (65 comprobaciones). Se revisaron personajes visibles, HUD,
+rutas y orden de dibujo. Son escenas reales con posiciones preparadas; el plano
+no cambia la cámara del juego. [Pruebas y límites](../zones_transitions.md).
+
+Fase 11 añade dos capturas reales de tres producidas por la prueba de variantes
+(23 comprobaciones). Posiciones preparadas, IA y física activas; sin cambiar
+cámara, escala o arte del juego. PNG optimizados sin pérdida y verificados
+píxel a píxel. [Validación y pendientes](../zombie_archetypes.md).
+
+Fase 12 añade tres capturas de cuatro generadas por el recorrido automático de
+ambos capítulos: diario inicial, último mensaje y capítulo 2 completado. Se revisan
+legibilidad y rótulo de zona oculto durante modales. PNG optimizados sin pérdida,
+idénticos píxel a píxel a su fuente. La IA se aísla en esta fixture de narrativa;
+las pruebas adicionales de estado mantienen persecución y ataques activos.
+[Recorrido, guardados y limitaciones](../market_chapter.md).
+
+Fase 13 reutiliza y revisa tres capturas ya generadas: entrada, radio y plano de
+la Estación. No se repitió la ejecución gráfica para documentar esta continuación.
+Se verificaron composición, accesos y legibilidad; PNG optimizados sin pérdida,
+idénticos píxel a píxel a sus fuentes. La fixture narrativa aísla IA; la prueba
+separada de estación valida física, navegación y ataques con IA activa.
+[Resultados, metodología y pendientes](../station_integration.md).

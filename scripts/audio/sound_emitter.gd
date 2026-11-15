@@ -7,6 +7,7 @@ signal sound_played(id: StringName)
 @export var positional := false
 @export_range(1, 12) var max_voices := 4
 @export_range(-60, 0) var volume_db: float = -14.0
+@export_range(0.5,2.0) var pitch_scale := 1.0
 var played_counts: Dictionary = {}
 var _players: Array[Node] = []
 var _cooldowns: Dictionary = {}
@@ -32,6 +33,7 @@ func play_event(id: StringName, minimum_interval: float = 0.0) -> bool:
 	player.stop()
 	player.stream = bank.sounds[id]
 	player.volume_db = volume_db
+	player.pitch_scale = pitch_scale
 	# El driver Dummy de pruebas headless no drena voces al cerrar inmediatamente.
 	# Allí se verifican eventos; la mezcla real se comprueba en ejecución gráfica.
 	if DisplayServer.get_name() != "headless": player.play()

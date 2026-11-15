@@ -1,5 +1,18 @@
 # Fase 9 — guardado, carga y pausa
 
+**Actualización Fase 12:** [Ecos del Mercado y guardado v3](market_chapter.md).
+Este informe conserva la arquitectura/resultados históricos; el juego actual
+tiene dos capítulos, siete misiones y migración v1/v2 → v3.
+
+**Actualización Fase 11:** [variantes, distribución, XP y persistencia](zombie_archetypes.md).
+Los valores de enemigo común y resultados históricos de este informe se conservan;
+las variantes actuales se configuran mediante ZombieArchetype.
+
+**Actualización Fase 10:** el formato actual es v2, con dos zonas, estado por mapa
+y estadísticas globales. v1 se valida y migra en memoria sin sobrescribirlo al
+leer. Este informe conserva la arquitectura/resultados originales; consultar
+[zonas y migración v1 → v2](zones_transitions.md) para el estado actual.
+
 Godot 4.7.2 Stable, GDScript, Windows, Compatibility. Validación: 14 de noviembre
 de 2026. Guardado local, sin servicios, nube, plugins, commits ni push.
 

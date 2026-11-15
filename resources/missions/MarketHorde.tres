@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="MissionDefinition" format=3]
+[ext_resource type="Script" path="res://scripts/missions/mission_definition.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/missions/mission_objective.gd" id="2"]
+[sub_resource type="Resource" id="Objective0"]
+script = ExtResource("2")
+event_key = &"market_runner_seen"
+description = "Identificar la presencia de corredores."
+target = 1
+historical = true
+[sub_resource type="Resource" id="Objective1"]
+script = ExtResource("2")
+event_key = &"market_runner_kills"
+description = "Eliminar un corredor del Mercado."
+target = 1
+historical = true
+[sub_resource type="Resource" id="Objective2"]
+script = ExtResource("2")
+event_key = &"market_resistant_kills"
+description = "Eliminar un resistente del Mercado."
+target = 1
+historical = true
+[resource]
+script = ExtResource("1")
+id = &"market_horde"
+chapter_id = &"market_echoes"
+title = "La horda del Mercado"
+description = "Identifica a los corredores y elimina un corredor y un resistente. Las bajas anteriores del Mercado cuentan."
+prerequisites = Array[StringName]([&"market_supplies"])
+objectives = Array[ExtResource("2")]([SubResource("Objective0"), SubResource("Objective1"), SubResource("Objective2")])
+reward_xp = 60
+sequential = false
