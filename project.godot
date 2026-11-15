@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.7", "GL Compatibility")
 [autoload]
 
 AppPreferences="*res://scripts/ui/app_preferences.gd"
+MusicDirector="*res://scripts/audio/music_director.gd"
 
 [display]
 

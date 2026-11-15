@@ -53,6 +53,10 @@ func _ready() -> void:
 	ambience.volume_db = ambience_volume_db
 	add_child(ambience)
 	if ambience_enabled and not main.restoring and DisplayServer.get_name() != "headless": ambience.play()
+	if not main.restoring: call_deferred("_activate_music")
+
+func _activate_music() -> void:
+	if is_inside_tree() and not main.restoring: MusicDirector.enter_gameplay(main)
 
 func _make_emitter(label: String, gain: float, voices: int) -> SoundEmitter:
 	var emitter := SoundEmitter.new()

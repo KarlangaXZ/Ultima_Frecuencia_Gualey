@@ -7,7 +7,7 @@ conceptuales para representar funcionalidades.
 | Archivo | Fuente | Fecha y preparación |
 | --- | --- | --- |
 | title-menu.png | test-results/start-menu/01-title.png | Presentación/configuración/paleta actual, captura real de Godot; preparación automatizada |
-| title-settings.png | test-results/start-menu/02-settings.png | Presentación/configuración/paleta actual, captura real de Godot; preparación automatizada |
+| title-settings.png | test-results/start-menu/02-settings.png | Actualizada fase 15.1: control Música; captura real de Godot, valores de prueba |
 | title-slots.png | test-results/start-menu/03-slots.png | Presentación/configuración/paleta actual, captura real de Godot; preparación automatizada |
 | gualey-materials.png | test-results/start-menu/04-new-game-palette.png | Presentación/configuración/paleta actual, captura real de Godot; preparación automatizada |
 | perimeter-materials.png | test-results/phase-fifteen/03-perimeter-plan.png | Presentación/configuración/paleta actual, captura real de Godot; preparación automatizada |

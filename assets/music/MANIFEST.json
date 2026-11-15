@@ -1,0 +1,34 @@
+{
+  "license": "CC0-1.0",
+  "provisional": true,
+  "tracks": [
+    {
+      "file": "menu_last_frequency.wav",
+      "sha256": "247c9504b02fe03ca4d35abd34bb846a16b506ee856b6b3f9cd64ff81cb77faa",
+      "bpm": 72,
+      "bars": 8,
+      "seconds": 26.666666666666668,
+      "sample_rate": 22050,
+      "channels": 2,
+      "peak_dbfs": -6.020599913279624,
+      "rms_dbfs": -19.239084483603953,
+      "boundary_step": 0.003730365983958872,
+      "maximum_internal_step": 0.0649573720867545,
+      "bytes": 2352044
+    },
+    {
+      "file": "gameplay_streets.wav",
+      "sha256": "3983168112068efef42f98c9b4072709fe1e6c082ac486770311e40be662d295",
+      "bpm": 60,
+      "bars": 12,
+      "seconds": 48.0,
+      "sample_rate": 22050,
+      "channels": 2,
+      "peak_dbfs": -6.020599913279624,
+      "rms_dbfs": -19.406436938753384,
+      "boundary_step": 0.008199883756656194,
+      "maximum_internal_step": 0.05146493779732754,
+      "bytes": 4233644
+    }
+  ]
+}

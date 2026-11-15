@@ -1,12 +1,12 @@
 extends Node
 ## Preferencias locales independientes de las partidas. No contiene estado de juego.
-const DEFAULTS: Dictionary={"master":100.0,"effects":100.0,"ambience":100.0,"interface":100.0,"fullscreen":false}
-const BUSES: Dictionary={"master":"Master","effects":"Effects","ambience":"Ambience","interface":"Interface"}
+const DEFAULTS: Dictionary={"master":100.0,"effects":100.0,"ambience":100.0,"interface":100.0,"music":100.0,"fullscreen":false}
+const BUSES: Dictionary={"master":"Master","effects":"Effects","ambience":"Ambience","interface":"Interface","music":"Music"}
 var settings_path: String="user://settings.cfg"
 var values: Dictionary=DEFAULTS.duplicate()
 func _ready() -> void:
 	process_mode=Node.PROCESS_MODE_ALWAYS
-	for bus: String in ["Effects","Ambience","Interface"]:
+	for bus: String in ["Effects","Ambience","Interface","Music"]:
 		if AudioServer.get_bus_index(bus)<0:
 			AudioServer.add_bus()
 			AudioServer.set_bus_name(AudioServer.bus_count-1,bus)

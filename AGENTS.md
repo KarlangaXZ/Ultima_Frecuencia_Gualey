@@ -9,6 +9,14 @@
 - Resolución base 1280 × 720, stretch canvas_items, renderizador Compatibility.
 
 ## Arquitectura
+- Fase 15.1: MusicDirector es autoload con una sola voz Music → Master y dos
+  composiciones originales provisionales en assets/music/ (CC0-1.0). TitleMenu,
+  GameAudio y SaveCoordinator solicitan contexto solo después de activación válida;
+  candidatos ocultos no reproducen música. Viajes/cargas/reintentos del mismo
+  contexto no reinician la pista. InterfaceCoordinator comunica pausa/radio para
+  atenuación, sin controlar la reproducción del mundo. AppPreferences persiste music
+  fuera de partidas. WAV PCM: calcular loop_end desde duración × frecuencia, nunca
+  desde bytes comprimidos. Ver docs/menu_gameplay_music.md y tests/music_test.gd.
 - `scenes/Main.tscn`: composición de escenario, jugador e interfaz.
 - `scenes/player/Player.tscn`: CharacterBody2D, colisión circular y cámara hija.
 - `scripts/player/player.gd`: locomoción con Input.get_vector y move_and_slide,

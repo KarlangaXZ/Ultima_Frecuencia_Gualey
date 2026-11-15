@@ -1,0 +1,11 @@
+SPDX-License-Identifier: CC0-1.0
+
+The two original music WAV files in this directory and their reproducible source,
+tools/generate_provisional_music.py, are dedicated to the public domain under
+CC0 1.0 Universal. To the extent possible under law, all copyright and related
+rights in these generated works are waived. They may be used, copied, modified
+and distributed, including commercially, without attribution or permission.
+No warranty is provided. No third-party samples are incorporated.
+
+Canonical CC0 1.0 Universal legal text:
+https://creativecommons.org/publicdomain/zero/1.0/legalcode

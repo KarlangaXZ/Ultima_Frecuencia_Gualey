@@ -1,5 +1,9 @@
 # Fase 6.1 — HUD compacto, textos y audio base
 
+Actualización fase 15.1: música instrumental provisional separada de efectos y
+ambiente, bus Music y control persistente independiente. La integración no cambia
+el HUD ni los eventos originales. [Arquitectura, mezcla y pruebas](menu_gameplay_music.md).
+
 Godot 4.7.2 Stable, Windows, GDScript y Compatibility. Validación del
 **13 de noviembre de 2026**. Sin plugins, commits ni publicación.
 

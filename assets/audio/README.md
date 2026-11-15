@@ -1,5 +1,10 @@
 # Audio sustituible
 
+Fase 15.1 incorpora dos composiciones instrumentales originales provisionales,
+separadas de los efectos en [`assets/music/`](../music/README.md), con CC0-1.0.
+MusicDirector reproduce una sola voz por el bus Music → Master; Configuración
+añade volumen Música independiente. [Arquitectura y pruebas](../../docs/menu_gameplay_music.md).
+
 El audio activo de fase 6.1 es **sintético y provisional**, original del proyecto.
 Sus WAV fuente están separados en `assets/placeholders/audio/`. No son efectos
 realistas ni música final, y no requieren licencias de terceros.
