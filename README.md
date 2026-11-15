@@ -6,7 +6,7 @@ Supervivencia zombi 2D con vista cenital, ambientada en un barrio urbano devasta
 
 **Estado:** Desarrollo activo · **Plataforma inicial:** Windows
 
-Un prototipo jugable con movimiento, navegación de enemigos, combate, salud, recarga, inventario, suministros, hambre, sed, progresión de personaje, misiones encadenadas, radio textual, guardado local, dos zonas conectadas y reinicio. La integración visual funciona; el arte y varias animaciones todavía son provisionales. No hay una portada oficial incluida: esta presentación utiliza capturas reales del juego.
+Un prototipo jugable con movimiento, navegación de enemigos, combate, salud, recarga, inventario, suministros, hambre, sed, progresión de personaje, misiones encadenadas, radio textual, guardado local, tres zonas conectadas y reinicio. La integración visual funciona; el arte y varias animaciones todavía son provisionales. No hay una portada oficial incluida: esta presentación utiliza capturas reales del juego.
 
 ## Galería del juego
 
@@ -54,6 +54,21 @@ Los nombres de varios PNG históricos no coinciden con la orientación que muest
 
 ## Progreso del desarrollo
 
+Fase 13: **Estación de comunicaciones**, tercera zona conectada al Mercado.
+Termina Ecos del Mercado y usa **E** en la salida este (2280,800); desde la
+estación puedes regresar al Mercado y a Gualey. Incluye sala de radio accesible,
+antena, instalaciones eléctricas, vallas y tres contenedores, con arte provisional.
+
+![Plano real de la Estación de comunicaciones](docs/images/station-plan.png)
+
+Población configurable 40/40/20, hasta seis vivos y 18 apariciones por zona.
+La inspección de radio es única y no inicia el capítulo 3. Guardado **v4**, con
+estado de los tres mapas y migración de v1/v2/v3. Se reutilizaron **2.204
+comprobaciones automáticas aprobadas**, recorrido gráfico de 136 y prueba de
+estación con IA activa de 132; siguen pendientes sesiones humanas prolongadas.
+[Arquitectura, transiciones, capturas, métricas y compatibilidad](docs/station_integration.md).
+
+
 Fase 12: **Ecos del Mercado**, segundo capítulo jugable. Completa La señal perdida
 y entra al Mercado abandonado para investigar una evacuación, recuperar suministros,
 reconocer corredores/resistentes y restablecer un repetidor. Las cuatro misiones
@@ -69,8 +84,8 @@ recompensas. El juego sigue activo al terminar y puedes regresar a Gualey.
 
 ![Transmisión real de la estación de comunicaciones](docs/images/market-station-signal.png)
 
-La estación es una pista narrativa: todavía no hay tercera zona ni salida nueva.
-Con todo el contenido de una partida nueva, la configuración actual ofrece hasta
+En fase 12 la estación era una pista; la fase 13 añade su mapa y salida.
+Con el contenido disponible hasta fase 12, la configuración ofrecía hasta
 **1.730 XP**, nivel 7, 380/400 XP y seis puntos; los guardados anteriores pueden
 conservar otra mezcla de enemigos. [Misiones, registro de capítulos, compatibilidad,
 recorrido y capturas](docs/market_chapter.md).
@@ -258,6 +273,7 @@ direcciones por estado. [Resultados y limitaciones](docs/zombie_base_integration
 | 10 | Mercado abandonado y transiciones | Dos zonas persistentes; guardado v2 y migración v1 validados |
 | 11 | Variantes de zombis y dificultad por zona | Integración técnica validada; arte, balance y rendimiento pendientes de pulido |
 | 12 | Ecos del Mercado | Cuatro misiones, 205 XP, transmisión final y persistencia v3 |
+| 13 | Estación de comunicaciones | Tercera zona integrada, guardado v4 y validaciones técnicas aprobadas |
 
 “Completada técnicamente” significa que la integración y sus pruebas funcionan; no implica arte final ni aprobación artística de todos los ciclos. El guardado se incorpora en fase 9; las revisiones manuales pendientes se detallan en cada informe.
 
