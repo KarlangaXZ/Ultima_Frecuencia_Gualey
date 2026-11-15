@@ -20,6 +20,7 @@ func _window_changed(active: bool, source: String) -> void:
 	_refresh_block()
 
 func _refresh_block() -> void:
+	MusicDirector.set_mix(main, main.get_node("PauseUI").window.visible, main.get_node("RadioUI").window.visible)
 	var blocked := transitioning
 	for name in ["InventoryUI", "CharacterUI", "MissionUI", "RadioUI", "PauseUI"]:
 		blocked = blocked or main.get_node(name).window.visible

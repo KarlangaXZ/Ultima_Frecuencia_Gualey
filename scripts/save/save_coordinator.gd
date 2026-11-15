@@ -96,6 +96,7 @@ func load_slot(slot: int) -> Dictionary:
 	_set_audio(candidate, true)
 	var audio: Node = candidate.get_node("Audio")
 	if audio.ambience_enabled and DisplayServer.get_name() != "headless": audio.ambience.play()
+	MusicDirector.enter_gameplay(candidate)
 	var message := "Partida cargada desde respaldo." if loaded.recovered else "Partida cargada."
 	if loaded.get("migrated",false): message += " Guardado anterior adaptado a v6."
 	if relocated: message += " Posición recuperada en el inicio seguro."

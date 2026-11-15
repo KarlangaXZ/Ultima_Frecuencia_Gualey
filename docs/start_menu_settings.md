@@ -34,14 +34,18 @@ F6 sobre Main.tscn permite entrar directamente para depuración.
 
 ## Preferencias
 
-Configuración contiene volumen **general**, **efectos y zombis**, **ambiente** e
+La fase 15.1 añade dos temas instrumentales provisionales, fundidos y reducción
+de música durante pausa/radio, con una sola voz persistente entre zonas.
+[Música, procedencia y validación de señal real](menu_gameplay_music.md).
+
+Configuración contiene volumen **general**, **música**, **efectos y zombis**, **ambiente** e
 **interfaz y radio**, además de **pantalla completa**. Los botones de prueba
 permiten escuchar cada canal y Restablecer recupera los valores iniciales.
 Guardar y volver conserva las preferencias en **user://settings.cfg**, separado
 de las partidas. Un error de escritura deja la pantalla de ajustes abierta.
 
 AppPreferences es un único autoload ligero, sin nodos de gameplay, actualización
-por frame ni estado del personaje. Crea buses Effects, Ambience e Interface
+por frame ni estado del personaje. Crea buses Music, Effects, Ambience e Interface
 enviados al Master existente. SoundEmitter conserva su pool/ganancia por instancia
 y solo dirige sus voces al bus correspondiente; los zombis y armas usan Effects.
 GameAudio conserva bancos, duraciones y eventos; interfaz/radio usa Interface

@@ -16,11 +16,15 @@ exige confirmación y conserva respaldo. Desde la pausa puedes volver al inicio.
 
 ![Presentación inicial de Última Frecuencia: Gualey](docs/images/title-menu.png)
 
-**Configuración** ofrece volumen general, efectos/zombis, ambiente, interfaz/radio
+**Configuración** ofrece volumen general, música, efectos/zombis, ambiente, interfaz/radio
 y pantalla completa, con pruebas de audio. Los ajustes se guardan por separado
 de las partidas. La paleta actual usa asfalto gris, concreto, acero, madera y
 tonos de óxido; se retiró el tinte verde general de los cuatro mapas.
 [Flujo, preferencias, pruebas y capturas](docs/start_menu_settings.md).
+
+Dos composiciones instrumentales originales **provisionales** distinguen el menú
+de la exploración. La música continúa entre las cuatro zonas, con fundidos y
+atenuación durante pausa y radio. [Integración, licencia y pruebas](docs/menu_gameplay_music.md).
 
 ## Galería del juego
 
@@ -317,6 +321,7 @@ direcciones por estado. [Resultados y limitaciones](docs/zombie_base_integration
 | 13 | Estación de comunicaciones | Tercera zona integrada, guardado v4 y validaciones técnicas aprobadas |
 | 14 | Voces en la oscuridad | Cuatro misiones integradas, 240 XP, guardado v5 y pista del capítulo 4 |
 | 15 | Perímetro de evacuación | Cuarta zona integrada, acceso tras capítulo 3 y guardado v6; capítulo 4 pendiente |
+| 15.1 | Música de menú y exploración | Integración técnica validada; dos composiciones provisionales, escucha humana pendiente |
 
 “Completada técnicamente” significa que la integración y sus pruebas funcionan; no implica arte final ni aprobación artística de todos los ciclos. El guardado se incorpora en fase 9; las revisiones manuales pendientes se detallan en cada informe.
 
@@ -415,6 +420,10 @@ tools/                     Generador opcional de SVG provisionales
 Se versionan los metadatos de identidad/importación necesarios (`.uid`, `.import`). Las cachés `.godot/`, herramientas locales y resultados `test-results/` están excluidos de Git. Las imágenes seleccionadas para esta página se conservan en `docs/images/`.
 
 ## Pruebas automatizadas
+
+Fase 15.1: regresión de **2.793 comprobaciones**, música headless **33** y música
+en ventana **62**, sin fallos. Se verificaron señal real, silencio, Master, bucles,
+viajes y mezcla sin muestras recortadas. [Método y pendientes auditivos](docs/menu_gameplay_music.md).
 
 Inicio/configuración y paleta: **2.791 comprobaciones headless**, cero fallos;
 incluye las 2.736 anteriores, 47 de menú y ocho de preferencias entre procesos.

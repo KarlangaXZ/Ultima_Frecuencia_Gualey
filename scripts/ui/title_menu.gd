@@ -42,6 +42,7 @@ func button(text: String,callback: Callable,primary: bool=false) -> Button:
 	result.pressed.connect(callback)
 	return result
 func _ready() -> void:
+	MusicDirector.enter_menu(self)
 	preview=SoundEmitter.new()
 	preview.max_voices=2
 	add_child(preview)
@@ -154,7 +155,7 @@ func _build_settings(parent: Control) -> void:
 	box.add_theme_constant_override("separation",8)
 	box.add_child(label("Configuración",34))
 	box.add_child(label("Audio y pantalla · Los cambios de volumen se escuchan al instante.",17))
-	for item in [["master","Volumen general"],["effects","Efectos y zombis"],["ambience","Ambiente"],["interface","Interfaz y radio"]]:
+	for item in [["master","Volumen general"],["music","Música"],["effects","Efectos y zombis"],["ambience","Ambiente"],["interface","Interfaz y radio"]]:
 		var row:=HBoxContainer.new()
 		box.add_child(row)
 		var title:=label(item[1],19)
@@ -271,6 +272,7 @@ func _launch(slot: int,fresh: bool,confirmed: bool) -> void:
 			for node in main.find_children("*","CanvasLayer",true,false):node.show()
 			main.get_node("Player").set_controls_blocked(false)
 			if DisplayServer.get_name()!="headless":main.get_node("Audio").ambience.play()
+			MusicDirector.enter_gameplay(main)
 			main.get_node("ZoneOverlay").show_location(ZoneCatalog.definition(ZoneCatalog.HOME).display_name)
 	else:
 		# La escena de apoyo ya terminó _ready sin arrancar simulación/ambiente.
