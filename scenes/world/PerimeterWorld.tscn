@@ -431,6 +431,96 @@ display_name = "Puesto de comunicaciones"
 metadata/persistence_id = "perimeter_comms"
 [node name="Shape" type="CollisionShape2D" parent="ChapterPoints/Comms"]
 shape = SubResource("PointShape")
+[node name="Checkpoint" type="Area2D" parent="ChapterPoints"]
+position = Vector2(1550,1350)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("Point")
+point_id = &"convoy_checkpoint"
+display_name = "Puesto de control principal"
+metadata/persistence_id = "convoy_checkpoint"
+[node name="Shape" type="CollisionShape2D" parent="ChapterPoints/Checkpoint"]
+shape = SubResource("PointShape")
+[node name="Authorization" type="Area2D" parent="ChapterPoints"]
+position = Vector2(1320,380)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("Point")
+point_id = &"convoy_authorized"
+display_name = "Autorización del convoy 07"
+metadata/persistence_id = "convoy_authorized"
+[node name="Shape" type="CollisionShape2D" parent="ChapterPoints/Authorization"]
+shape = SubResource("PointShape")
+[node name="BusInspection" type="Area2D" parent="ChapterPoints"]
+position = Vector2(1260,650)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("Point")
+point_id = &"convoy_bus"
+display_name = "Autobús del último convoy"
+metadata/persistence_id = "convoy_bus"
+[node name="Shape" type="CollisionShape2D" parent="ChapterPoints/BusInspection"]
+shape = SubResource("PointShape")
+[node name="EvacuationVehicle" type="Area2D" parent="ChapterPoints"]
+position = Vector2(1660,500)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("Point")
+point_id = &"convoy_vehicle"
+display_name = "Segundo vehículo de evacuación"
+metadata/persistence_id = "convoy_vehicle"
+[node name="Shape" type="CollisionShape2D" parent="ChapterPoints/EvacuationVehicle"]
+shape = SubResource("PointShape")
+[node name="DestinationLog" type="Area2D" parent="ChapterPoints"]
+position = Vector2(1900,830)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("Point")
+point_id = &"convoy_destination"
+display_name = "Registro de destino del convoy"
+metadata/persistence_id = "convoy_destination"
+[node name="Shape" type="CollisionShape2D" parent="ChapterPoints/DestinationLog"]
+shape = SubResource("PointShape")
+[node name="QuarantineLog" type="Area2D" parent="ChapterPoints"]
+position = Vector2(460,560)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("Point")
+point_id = &"convoy_quarantine_record"
+display_name = "Registro de cuarentena"
+metadata/persistence_id = "convoy_quarantine_record"
+[node name="Shape" type="CollisionShape2D" parent="ChapterPoints/QuarantineLog"]
+shape = SubResource("PointShape")
+[node name="SafetyInspection" type="Area2D" parent="ChapterPoints"]
+position = Vector2(850,400)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("Point")
+point_id = &"convoy_security"
+display_name = "Verificar el cordón de seguridad"
+metadata/persistence_id = "convoy_security"
+[node name="Shape" type="CollisionShape2D" parent="ChapterPoints/SafetyInspection"]
+shape = SubResource("PointShape")
+[node name="TransferOrder" type="Area2D" parent="ChapterPoints"]
+position = Vector2(1920,1160)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("Point")
+point_id = &"convoy_orders"
+display_name = "Última orden de traslado"
+metadata/persistence_id = "convoy_orders"
+[node name="Shape" type="CollisionShape2D" parent="ChapterPoints/TransferOrder"]
+shape = SubResource("PointShape")
+[node name="RadioLink" type="Area2D" parent="ChapterPoints"]
+position = Vector2(1640,1120)
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("Point")
+point_id = &"convoy_link"
+display_name = "Enlace de respaldo"
+metadata/persistence_id = "convoy_link"
+[node name="Shape" type="CollisionShape2D" parent="ChapterPoints/RadioLink"]
+shape = SubResource("PointShape")
 [node name="Ambient" type="CanvasModulate" parent="."]
 color = Color(1,1,1,1)
 [node name="Boundary" type="StaticBody2D" parent="."]

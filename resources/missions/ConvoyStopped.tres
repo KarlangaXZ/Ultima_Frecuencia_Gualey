@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="MissionDefinition" format=3]
+[ext_resource type="Script" path="res://scripts/missions/mission_definition.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/missions/mission_objective.gd" id="2"]
+
+[sub_resource type="Resource" id="Objective0"]
+script = ExtResource("2")
+event_key = &"convoy_bus"
+description = "Inspeccionar el autobús abandonado."
+
+[sub_resource type="Resource" id="Objective1"]
+script = ExtResource("2")
+event_key = &"convoy_vehicle"
+description = "Revisar el segundo vehículo de evacuación."
+
+[sub_resource type="Resource" id="Objective2"]
+script = ExtResource("2")
+event_key = &"convoy_destination"
+description = "Recuperar el registro del último destino."
+
+[resource]
+script = ExtResource("1")
+chapter_id = &"last_convoy"
+id = &"convoy_stopped"
+title = "El convoy detenido"
+description = "Revisa los vehículos y recupera su último destino registrado."
+prerequisites = Array[StringName]([&"convoy_access"])
+objectives = Array[ExtResource("2")]([SubResource("Objective0"), SubResource("Objective1"), SubResource("Objective2")])
+reward_xp = 55

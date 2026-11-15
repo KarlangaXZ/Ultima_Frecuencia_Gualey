@@ -1,5 +1,5 @@
 extends Node
-## Adaptador narrativo de los tres capítulos; observa resultados, nunca aplica daño.
+## Adaptador narrativo; observa resultados, nunca aplica daño.
 signal equipment_activated
 @onready var tracker: MissionTracker = get_parent()
 @onready var main: Node = tracker.get_parent()
@@ -19,6 +19,8 @@ const STATION_HIDDEN := preload("res://resources/radio/StationHidden.tres")
 const STATION_FINAL := preload("res://resources/radio/StationFinal.tres")
 const STATION_MESSAGES := {&"station_radio":STATION_INTRO,&"station_log":STATION_RECORDS,
 	&"station_secondary":STATION_POWER,&"station_link":STATION_HIDDEN,&"station_broadcast":STATION_FINAL}
+const CONVOY_MESSAGES := {&"convoy_authorized":"convoy_access",&"convoy_destination":"convoy_destination",
+	&"convoy_quarantine_record":"convoy_quarantine",&"convoy_orders":"convoy_orders",&"convoy_link":"convoy_final"}
 var _observation_time := 0.0
 
 func bind() -> void:
@@ -44,6 +46,8 @@ func _on_kill(zombie: CharacterBody2D) -> void:
 	tracker.observe_total(&"kills", main.kills)
 	if main.get_node("ZoneManager").current_zone == ZoneCatalog.STATION:
 		_observe_station_history()
+	if main.get_node("ZoneManager").current_zone == ZoneCatalog.PERIMETER:
+		_observe_convoy_history()
 	if main.get_node("ZoneManager").current_zone != ZoneCatalog.MARKET: return
 	var id := String(zombie.archetype.id)
 	if id in ["runner","resistant"]:
@@ -66,6 +70,9 @@ func _on_zone(id: String) -> void:
 	if not main.restoring and id == ZoneCatalog.STATION:
 		tracker.begin_chapter(ChapterCatalog.STATION)
 		_observe_station_history()
+	if not main.restoring and id == ZoneCatalog.PERIMETER:
+		tracker.begin_chapter(ChapterCatalog.CONVOY)
+		_observe_convoy_history()
 	_update_points()
 	main.get_node("ObjectiveHUD").refresh()
 
@@ -80,6 +87,8 @@ func _on_completed(mission: MissionDefinition) -> void:
 		main.get_node("HUD").show_message("Capítulo 2 completado · Salida a la Estación habilitada")
 	if mission.id == &"station_call":
 		main.get_node("HUD").show_message("Capítulo 3 completado · Acceso al Perímetro habilitado")
+	if mission.id == &"convoy_route":
+		main.get_node("HUD").show_message("Capítulo 4 completado · Pista recuperada: NODO CERO · Puedes seguir explorando")
 
 func _on_transition_finished(success: bool) -> void:
 	if success: _present_perimeter_intro()
@@ -110,6 +119,8 @@ func _on_transmission_completed(value: RadioTransmission) -> void:
 		tracker.record_event(&"station_hidden_listen","station_hidden")
 	if value == STATION_FINAL and tracker.accepts(&"station_final_listen"):
 		tracker.record_event(&"station_final_listen","station_final")
+	if value == SaveCatalog.CONVOY_RADIOS.convoy_final and tracker.accepts(&"convoy_listen"):
+		tracker.record_event(&"convoy_listen","convoy_listen")
 	_update_points()
 	# Si había otra radio pendiente al viajar, no sobrescribirla con la introducción.
 	call_deferred("_present_perimeter_intro")
@@ -141,6 +152,12 @@ func _update_points() -> void:
 		if point is MissionPoint and String(point.point_id) in ChapterCatalog.POINT_EVENTS:
 			point.available = tracker.accepts(StringName(ChapterCatalog.POINT_EVENTS[String(point.point_id)]))
 			if point.point_id == &"market_repeater": point.available = point.available or tracker.accepts(&"market_listen")
+	_update_convoy_points()
+	# Una radio del convoy pendiente también se conserva al visitar otros mapas.
+	# Las salidas no son MissionPoint y continúan permitiendo regresar a su equipo.
+	if radio.transmission in SaveCatalog.CONVOY_RADIOS.values() and main.get_node("ZoneManager").current_zone!=ZoneCatalog.PERIMETER:
+		for point in points.get_children():
+			if point is MissionPoint: point.available=false
 
 func bind_points() -> void:
 	points = main.get_node("World/ChapterPoints")
@@ -150,6 +167,8 @@ func bind_points() -> void:
 
 func _on_point(point: MissionPoint) -> void:
 	if not tracker.enabled or main.game_ended: return
+	if main.get_node("ZoneManager").current_zone==ZoneCatalog.PERIMETER:
+		if _on_convoy_point(point): return
 	if main.get_node("ZoneManager").current_zone==ZoneCatalog.PERIMETER and String(point.point_id) in SaveCatalog.PERIMETER_RADIOS:
 		var manager:=main.get_node("ZoneManager")
 		var id:=String(point.point_id)
@@ -159,6 +178,9 @@ func _on_point(point: MissionPoint) -> void:
 		elif id not in manager.interactions:
 			manager.interactions.append(id)
 			radio.play(SaveCatalog.PERIMETER_RADIOS[id])
+		_observe_convoy_history()
+		if id=="perimeter_comms" and tracker.accepts(&"convoy_comms"):
+			tracker.record_event(&"convoy_comms","convoy_comms")
 		_update_points()
 		return
 	if String(point.point_id) in ChapterCatalog.STATION_POINTS and main.get_node("ZoneManager").current_zone==ZoneCatalog.STATION:
@@ -215,3 +237,53 @@ func _on_station_point(point: MissionPoint) -> void:
 		if radio.transmission==message: radio._emit_message()
 		else: radio.play(message)
 	_update_points()
+
+func _observe_convoy_history() -> void:
+	if ChapterCatalog.CONVOY not in tracker.started_chapters: return
+	var manager := main.get_node("ZoneManager")
+	var count := 0
+	for zombie in main.get_node("Zombies").get_children():
+		if zombie.health.is_dead(): count += 1
+	tracker.observe_total(&"convoy_kills",count)
+	if count>=2: tracker.observe_total(&"convoy_security",1)
+	# Inspecciones ya verificadas son evidencia, no nuevas recogidas ni premios.
+	for pair in [["perimeter_register",&"convoy_register"],["perimeter_medical",&"convoy_medical"]]:
+		if pair[0] in manager.interactions: tracker.record_event(pair[1],String(pair[1]))
+
+func _convoy_pending_point() -> StringName:
+	for event in CONVOY_MESSAGES:
+		if radio.transmission==SaveCatalog.CONVOY_RADIOS[CONVOY_MESSAGES[event]]: return event
+	return &""
+
+func _update_convoy_points() -> void:
+	if main.get_node("ZoneManager").current_zone!=ZoneCatalog.PERIMETER: return
+	var pending := _convoy_pending_point()
+	for point in points.get_children():
+		if not point is MissionPoint: continue
+		var event: StringName = point.point_id
+		if String(event) in ChapterCatalog.CONVOY_POINTS:
+			point.available=tracker.accepts(event)
+			if radio.transmission!=null: point.available=event==pending
+		elif event==&"perimeter_comms":
+			point.available=point.available or tracker.accepts(&"convoy_comms") or pending==&"convoy_link"
+			if radio.transmission!=null:
+				point.available=pending==&"convoy_link" if not pending.is_empty() else radio.transmission in [SaveCatalog.PERIMETER_RADIOS.perimeter_intro,SaveCatalog.PERIMETER_RADIOS.perimeter_comms]
+		elif radio.transmission!=null and not pending.is_empty(): point.available=false
+
+func _on_convoy_point(point: MissionPoint) -> bool:
+	var event := point.point_id
+	# El equipo existente también reabre la última transmisión en el índice guardado.
+	if event==&"perimeter_comms" and radio.transmission==SaveCatalog.CONVOY_RADIOS.convoy_final:
+		radio._emit_message()
+		_update_points()
+		return true
+	if String(event) not in ChapterCatalog.CONVOY_POINTS: return false
+	var message: RadioTransmission = SaveCatalog.CONVOY_RADIOS.get(CONVOY_MESSAGES.get(event,""))
+	if message!=null and radio.transmission==message:
+		radio._emit_message()
+	elif radio.transmission==null and tracker.accepts(event):
+		tracker.record_event(event,String(event))
+		if event==&"convoy_link": equipment_activated.emit()
+		if message!=null: radio.play(message)
+	_update_points()
+	return true

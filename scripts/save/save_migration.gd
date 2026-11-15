@@ -42,10 +42,29 @@ static func to_current(source: Dictionary) -> Dictionary:
 			data.story.started.append(ChapterCatalog.STATION)
 			data.chapter=ChapterCatalog.STATION
 			if station.kills>0: data.missions.totals.station_kills=int(station.kills)
-		for mission in SaveCatalog.MISSIONS.slice(7):
+		for mission in SaveCatalog.MISSIONS.slice(7,11):
 			data.missions.states[String(mission.id)]=2 if started and mission.id==&"station_records" else 0
 			data.missions.progress[String(mission.id)]=mission.objectives.map(func(_o):return 0)
 	if data.version==5:
 		data.version=6
 		if data.missions.states.station_call==3: data.missions.unlocked_zones.append(ZoneCatalog.PERIMETER)
+	if data.version==6:
+		data.version=7
+		var perimeter: Dictionary = data.world if data.map==ZoneCatalog.PERIMETER else data.zones.get(ZoneCatalog.PERIMETER,{})
+		var started := not perimeter.is_empty()
+		data.story.facility_hint=false
+		if started:
+			data.story.started.append(ChapterCatalog.CONVOY)
+			data.chapter=ChapterCatalog.CONVOY
+			var kills := int(perimeter.kills)
+			if kills>0: data.missions.totals.convoy_kills=kills
+			if kills>=2: data.missions.totals.convoy_security=1
+			for pair in [["perimeter_register","convoy_register"],["perimeter_medical","convoy_medical"]]:
+				if pair[0] in perimeter.interactions:
+					data.missions.totals[pair[1]]=1
+					data.missions.receipts.append(pair[1]+":"+pair[1])
+		for mission in SaveCatalog.MISSIONS.slice(11):
+			var id := String(mission.id)
+			data.missions.states[id]=2 if started and id=="convoy_access" else 0
+			data.missions.progress[id]=mission.objectives.map(func(o):return int(data.missions.totals.get(String(o.event_key),0)) if started and id=="convoy_access" and o.historical else 0)
 	return data

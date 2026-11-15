@@ -43,7 +43,7 @@ static func run(driver: SceneTree) -> void:
 	for name in ["MedicalInspection","Register","Comms"]:
 		await driver.point(name)
 		await driver.close_radio()
-	driver.check(main.get_node("ZoneManager").interactions.size()==4 and driver.tracker.definitions.size()==11,"Puntos de interés únicos sin nuevas misiones")
+	driver.check(main.get_node("ZoneManager").interactions.size()==4 and driver.tracker.definitions.size()==15,"Puntos de interés únicos conservados junto al capítulo 4")
 	await driver.walk_to(Vector2(1200,950))
 	await capture(driver,"02-perimeter-road")
 	var camera: Camera2D=player.get_node("Camera2D")

@@ -3,6 +3,22 @@ extends RefCounted
 static func convert(source: Dictionary, version: int) -> Dictionary:
 	var data := source.duplicate(true)
 	data.version = version
+	# v6 tiene cuatro mapas, pero todavía once misiones y tres capítulos.
+	if data.has("story"):
+		data.story.erase("facility_hint")
+		data.story.started=data.story.started.filter(func(id):return id!=ChapterCatalog.CONVOY)
+		data.story.completed=data.story.completed.filter(func(id):return id!=ChapterCatalog.CONVOY)
+	if data.get("chapter","")==ChapterCatalog.CONVOY: data.chapter=ChapterCatalog.STATION
+	for id in data.missions.states.keys():
+		if String(id).begins_with("convoy_"):
+			data.missions.states.erase(id)
+			data.missions.progress.erase(id)
+	data.missions.awarded=data.missions.awarded.filter(func(id):return not String(id).begins_with("convoy_"))
+	for event in data.missions.totals.keys():
+		if String(event).begins_with("convoy_"): data.missions.totals.erase(event)
+	data.missions.receipts=data.missions.receipts.filter(func(r):return not r.begins_with("convoy_"))
+	if data.missions.radio.transmission in SaveCatalog.CONVOY_RADIOS: data.missions.radio={"transmission":"","index":0}
+	if version==6: return data
 	data.missions.unlocked_zones=data.missions.unlocked_zones.filter(func(id):return id!=ZoneCatalog.PERIMETER)
 	if data.missions.radio.transmission in SaveCatalog.PERIMETER_RADIOS: data.missions.radio={"transmission":"","index":0}
 	if version==5: return data

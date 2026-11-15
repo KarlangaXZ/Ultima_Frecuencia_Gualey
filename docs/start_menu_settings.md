@@ -7,6 +7,11 @@ y partidas v6. No se incrementa el esquema de guardado por ajustes de interfaz.
 
 ## Flujo de partida
 
+Fase 16 corrige una espera de preparación demasiado corta: se comprueba población
+inicializada hasta un máximo de 60 frames, manteniendo el candidato sin gameplay.
+La prueba title_menu_readiness_test retiene la navegación ocho frames y confirma
+inicio con seis enemigos, cero tiempo/daño previo y guardado solo tras estar listo.
+
 - **Continuar** aparece habilitado para una partida válida, incluyendo respaldo
   recuperable y migraciones v1–v5 ya soportadas. Una ranura vacía o dañada no se
   carga. El error se muestra sin cerrar el menú ni sustituir una partida activa.

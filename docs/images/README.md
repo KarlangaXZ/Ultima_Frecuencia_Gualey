@@ -6,6 +6,10 @@ conceptuales para representar funcionalidades.
 
 | Archivo | Fuente | Fecha y preparación |
 | --- | --- | --- |
+| convoy-journal.png | test-results/phase-sixteen/01-convoy-journal.png | 2026-11-15, capítulo 4 activo; capítulos previos preparados, IA aislada en el recorrido físico |
+| convoy-last-order.png | test-results/phase-sixteen/02-convoy-last-order.png | 2026-11-15, mensaje 2/3 pendiente, antes del premio final |
+| convoy-complete.png | test-results/phase-sixteen/03-convoy-complete.png | 2026-11-15, cuatro capítulos completos y pista NODO CERO, sin quinta zona |
+| convoy-active-ai.png | test-results/phase-sixteen/04-convoy-active-ai.png | 2026-11-15, tres variantes persiguiendo durante capítulo 4; posiciones preparadas, IA activa |
 | title-menu.png | test-results/start-menu/01-title.png | Presentación/configuración/paleta actual, captura real de Godot; preparación automatizada |
 | title-settings.png | test-results/start-menu/02-settings.png | Actualizada fase 15.1: control Música; captura real de Godot, valores de prueba |
 | title-slots.png | test-results/start-menu/03-slots.png | Presentación/configuración/paleta actual, captura real de Godot; preparación automatizada |

@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="RadioTransmission" format=3]
+[ext_resource type="Script" path="res://scripts/radio/radio_transmission.gd" id="1"]
+[resource]
+script = ExtResource("1")
+sender = "CANAL DE EVACUACIÓN · COPIA RECUPERADA"
+messages = PackedStringArray("Convoy 07, cambio de ruta confirmado. Trasladen a todos los supervivientes a la instalación de aislamiento designada NODO CERO.", "No fue una retirada improvisada: el convoy fue redirigido deliberadamente. La autorización llegó por un canal superior antes de cerrarse el perímetro.", "La identidad del mando ha sido borrada. ¿Quién dio la orden y por qué necesitaba a los supervivientes allí? Conserva esta pista; el camino aún no está disponible.")

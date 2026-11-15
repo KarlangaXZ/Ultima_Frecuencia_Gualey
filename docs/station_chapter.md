@@ -1,5 +1,9 @@
 # Fase 14 — Voces en la oscuridad
 
+**Estado vigente — Fase 16:** [El último convoy](evacuation_chapter.md), cuatro
+capítulos, cuatro zonas y guardado v7 compatible con v1–v6. Este informe conserva
+sus resultados históricos.
+
 **Estado vigente — Fase 15:** [Perímetro de evacuación](evacuation_perimeter.md), cuatro zonas, tres capítulos y guardado v6 compatible con v1–v5. Se conservan abajo los resultados históricos.
 
 Integración técnica del capítulo 3 en la Estación de comunicaciones existente.

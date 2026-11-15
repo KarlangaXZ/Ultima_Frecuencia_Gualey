@@ -1,5 +1,9 @@
 # Fase 15 — Perímetro de evacuación
 
+**Estado vigente — Fase 16:** [El último convoy](evacuation_chapter.md) incorpora
+el capítulo 4 sobre este mapa, quince misiones en total y guardado v7 compatible
+con v1–v6. Se conservan abajo la arquitectura y los resultados históricos de fase 15.
+
 Cuarta zona técnicamente integrada en Godot 4.7.2 Stable, GDScript, Windows,
 Compatibility y 1280 × 720. Validación: 14 de noviembre de 2026.
 Se conservó la fase 14, que estaba sin commit al comenzar; no se reinició su

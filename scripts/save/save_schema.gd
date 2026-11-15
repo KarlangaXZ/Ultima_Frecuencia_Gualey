@@ -1,6 +1,6 @@
 class_name SaveSchema
 extends RefCounted
-const VERSION := 6
+const VERSION := 7
 static func number(value: Variant, low: float, high: float, integer := false) -> bool:
 	return typeof(value) in [TYPE_INT, TYPE_FLOAT] and is_finite(value) and value >= low and value <= high and (not integer or floor(value) == value)
 static func fields(value: Variant, keys: Array) -> bool:
@@ -46,6 +46,7 @@ static func validate(value: Variant, expected_slot: int = -1) -> String:
 	if value.version<4 and value.map==ZoneCatalog.STATION: return "Zona incompatible con guardado anterior."
 	if value.version<6 and value.map==ZoneCatalog.PERIMETER: return "Perímetro incompatible con guardado anterior."
 	if value.version<5 and value.chapter==ChapterCatalog.STATION: return "Capítulo incompatible con guardado anterior."
+	if value.version<7 and value.chapter==ChapterCatalog.CONVOY: return "Capítulo del convoy incompatible con guardado anterior."
 	if value.version == 1 and value.map != ZoneCatalog.HOME: return "Mapa incompatible con guardado v1."
 	if not _player(value.player): return "Datos del protagonista, inventario o armas inválidos."
 	if not _world(value.world,value.map,value.version >= 2,value.version>=4): return "Datos del mundo o población inválidos."
@@ -64,7 +65,7 @@ static func validate(value: Variant, expected_slot: int = -1) -> String:
 		if not fields(value.stats,["kills","survival_time"]) or not number(value.stats.kills,0,72 if value.version>=6 else 54 if value.version>=4 else 36,true) or value.stats.kills != kills or not number(value.stats.survival_time,0,31536000): return "Estadísticas globales incoherentes."
 	if value.version>=3 and (not value.story is Dictionary or not value.story.get("started") is Array): return "Capítulos inválidos."
 	var started: Array = value.story.get("started",[]) if value.version>=3 else [ChapterCatalog.FIRST]
-	if not _missions(value.missions,kills,value.version>=2,value.version>=3,started,value.version>=4,value.version>=5,value.version>=6): return "Progreso de misiones inválido o incoherente."
+	if not _missions(value.missions,kills,value.version>=2,value.version>=3,started,value.version>=4,value.version>=5,value.version>=6,value.version>=7): return "Progreso de misiones inválido o incoherente."
 	if value.version >= 2:
 		if (value.map == ZoneCatalog.MARKET or value.zones.has(ZoneCatalog.MARKET)) and ZoneCatalog.MARKET not in value.missions.unlocked_zones: return "Zona visitada sin desbloquear."
 	if value.version>=4 and (value.map==ZoneCatalog.STATION or value.zones.has(ZoneCatalog.STATION)) and ZoneCatalog.STATION not in value.missions.unlocked_zones: return "Estación visitada sin desbloquear."
@@ -136,9 +137,9 @@ static func _world(w: Variant, zone_id: String = "gualey_sector_04", allow_varia
 	for id in w.rewarded_containers:
 		if id not in zone.container_ids or not w.containers[id].opened: return false
 	return true
-static func _missions(m: Variant, kills: int, with_zones := false, chapters := false, started: Array = ["signal_lost"], station := false, voices := false, perimeter := false) -> bool:
+static func _missions(m: Variant, kills: int, with_zones := false, chapters := false, started: Array = ["signal_lost"], station := false, voices := false, perimeter := false, convoy := false) -> bool:
 	if not fields(m, ["states", "progress", "totals", "receipts", "awarded", "radio", "unlocked_zones"]): return false
-	var definitions: Array = SaveCatalog.MISSIONS if voices else SaveCatalog.MISSIONS.slice(0,7 if chapters else 3)
+	var definitions: Array = SaveCatalog.MISSIONS.slice(0,15 if convoy else 11 if voices else 7 if chapters else 3)
 	var mission_ids := definitions.map(func(d): return String(d.id))
 	if not keys_match(m.states, mission_ids) or not keys_match(m.progress, mission_ids): return false
 	if not strings(m.receipts) or not strings(m.awarded, definitions.size()) or not strings(m.unlocked_zones,3 if perimeter else 2 if station else 1): return false
@@ -151,6 +152,7 @@ static func _missions(m: Variant, kills: int, with_zones := false, chapters := f
 	var events := ["inspect_radio", "recovered_medkit", "recovered_water", "kills", "power_on", "send_radio"]
 	if chapters: events.append_array(ChapterCatalog.EVENTS)
 	if voices: events.append_array(ChapterCatalog.STATION_EVENTS)
+	if convoy: events.append_array(ChapterCatalog.CONVOY_EVENTS)
 	if not m.totals is Dictionary or m.totals.size() > events.size(): return false
 	for key in m.totals:
 		if key not in events or not number(m.totals[key], 0, 128, true): return false
@@ -183,27 +185,33 @@ static func _missions(m: Variant, kills: int, with_zones := false, chapters := f
 	if m.radio.transmission == "": return m.radio.index == 0
 	if not voices and m.radio.transmission in ["station_records","station_power","station_hidden","station_final"]: return false
 	if not perimeter and m.radio.transmission in SaveCatalog.PERIMETER_RADIOS: return false
+	if not convoy and m.radio.transmission in SaveCatalog.CONVOY_RADIOS: return false
 	return SaveCatalog.TRANSMISSIONS.has(m.radio.transmission) and number(m.radio.index, 0, SaveCatalog.TRANSMISSIONS[m.radio.transmission].messages.size() - 1, true)
 
 static func _story(data: Dictionary) -> bool:
 	var s: Variant = data.story
 	var voices: bool = data.version>=5
+	var convoy: bool = data.version>=7
 	var story_fields := ["started","completed","legacy_waivers","station_hint"]
 	if voices: story_fields.append("perimeter_hint")
+	if convoy: story_fields.append("facility_hint")
 	if not fields(s,story_fields): return false
-	if not strings(s.started,3 if voices else 2) or not strings(s.completed,3 if voices else 2) or not strings(s.legacy_waivers,2) or not s.station_hint is bool: return false
+	if not strings(s.started,4 if convoy else 3 if voices else 2) or not strings(s.completed,4 if convoy else 3 if voices else 2) or not strings(s.legacy_waivers,2) or not s.station_hint is bool: return false
 	if s.started.is_empty() or s.started[0]!=ChapterCatalog.FIRST: return false
 	if not s.started.all(func(id): return ChapterCatalog.DEFINITIONS.has(id)) or not s.completed.all(func(id): return id in s.started): return false
 	if not voices and ChapterCatalog.STATION in s.started: return false
+	if not convoy and ChapterCatalog.CONVOY in s.started: return false
 	if data.chapter!=s.started[-1]: return false
 	var m: Dictionary = data.missions
 	for id in ChapterCatalog.DEFINITIONS:
 		if not voices and id==ChapterCatalog.STATION: continue
+		if not convoy and id==ChapterCatalog.CONVOY: continue
 		var done: bool = ChapterCatalog.DEFINITIONS[id].missions.all(func(key): return m.states[key]==3)
 		if done!=(id in s.completed): return false
 	if ChapterCatalog.MARKET in s.started and ChapterCatalog.FIRST not in s.completed: return false
 	if s.station_hint!=(ChapterCatalog.MARKET in s.completed): return false
 	if voices and not _station_story(data): return false
+	if convoy and not _convoy_story(data): return false
 	var market := MarketHistory.world(data)
 	if (ChapterCatalog.MARKET in s.started)!=(not market.is_empty()): return false
 	var unavailable := MarketHistory.unavailable_types(market)
@@ -243,7 +251,7 @@ static func _station_story(data: Dictionary) -> bool:
 	if ChapterCatalog.STATION in s.started and ChapterCatalog.MARKET not in s.completed: return false
 	if not s.perimeter_hint is bool or s.perimeter_hint!=(ChapterCatalog.STATION in s.completed): return false
 	if int(m.totals.get("station_kills",0))!=int(world.get("kills",0)): return false
-	for definition in SaveCatalog.MISSIONS.slice(7):
+	for definition in SaveCatalog.MISSIONS.slice(7,11):
 		for index in range(definition.objectives.size()):
 			var objective: MissionObjective = definition.objectives[index]
 			var event := String(objective.event_key)
@@ -259,4 +267,42 @@ static func _station_story(data: Dictionary) -> bool:
 		if m.totals.get(events[m.radio.transmission],0)!=1: return false
 		if m.radio.transmission=="station_hidden" and m.totals.get("station_hidden_listen",0)!=0: return false
 		if m.radio.transmission=="station_final" and m.totals.get("station_final_listen",0)!=0: return false
+	return true
+
+static func _convoy_story(data: Dictionary) -> bool:
+	var s: Dictionary=data.story
+	var m: Dictionary=data.missions
+	var world: Dictionary=data.world if data.map==ZoneCatalog.PERIMETER else data.zones.get(ZoneCatalog.PERIMETER,{})
+	if (ChapterCatalog.CONVOY in s.started)!=not world.is_empty(): return false
+	if ChapterCatalog.CONVOY in s.started and ChapterCatalog.STATION not in s.completed: return false
+	if not s.facility_hint is bool or s.facility_hint!=(ChapterCatalog.CONVOY in s.completed): return false
+	if world.is_empty():
+		return ChapterCatalog.CONVOY_EVENTS.all(func(event):return m.totals.get(event,0)==0) and not m.receipts.any(func(receipt):return receipt.begins_with("convoy_")) and m.radio.transmission not in SaveCatalog.CONVOY_RADIOS
+	if m.totals.get("convoy_kills",0)!=world.get("kills",0): return false
+	var safety_receipt: bool = "convoy_security:convoy_security" in m.receipts
+	var secured: bool = int(world.get("kills",0))>=2 or safety_receipt
+	if m.totals.get("convoy_security",0)!=(1 if secured else 0): return false
+	if safety_receipt and (m.states.convoy_quarantine==0 or m.progress.convoy_quarantine[2]!=1): return false
+	for pair in [["perimeter_register","convoy_register"],["perimeter_medical","convoy_medical"]]:
+		if m.totals.get(pair[1],0)!=(1 if pair[0] in world.get("interactions",[]) else 0): return false
+	for event in ChapterCatalog.CONVOY_EVENTS:
+		if event in ["convoy_kills","convoy_security"]: continue
+		var total: Variant=m.totals.get(event,0)
+		if not number(total,0,1,true): return false
+		if (total==1)!=((event+":"+event) in m.receipts): return false
+	for definition in SaveCatalog.MISSIONS.slice(11):
+		for index in range(definition.objectives.size()):
+			var objective: MissionObjective=definition.objectives[index]
+			if not objective.historical and m.progress[String(definition.id)][index]!=m.totals.get(String(objective.event_key),0): return false
+	var message_events := {"convoy_access":"convoy_authorized","convoy_destination":"convoy_destination",
+		"convoy_quarantine":"convoy_quarantine_record","convoy_orders":"convoy_orders","convoy_final":"convoy_link"}
+	if m.radio.transmission in message_events:
+		if world.is_empty() or m.totals.get(message_events[m.radio.transmission],0)!=1: return false
+		if m.radio.transmission=="convoy_final" and m.totals.get("convoy_listen",0)!=0: return false
+	if m.totals.get("convoy_link",0)==1 and m.totals.get("convoy_listen",0)==0 and m.radio.transmission!="convoy_final": return false
+	# Recibos desconocidos no pueden inventar registros futuros ni pasos fuera de orden.
+	for receipt in m.receipts:
+		if receipt.begins_with("convoy_"):
+			var parts: PackedStringArray = receipt.split(":")
+			if parts.size()!=2 or parts[0]!=parts[1] or parts[0] not in ChapterCatalog.CONVOY_EVENTS or parts[0]=="convoy_kills": return false
 	return true

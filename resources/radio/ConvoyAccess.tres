@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="RadioTransmission" format=3]
+[ext_resource type="Script" path="res://scripts/radio/radio_transmission.gd" id="1"]
+[resource]
+script = ExtResource("1")
+sender = "ARCHIVO DE ACCESO"
+messages = PackedStringArray("Convoy 07: último traslado autorizado. La orden inicial indicaba el refugio costero.", "Una segunda autorización canceló la ruta. Las firmas no coinciden: dos mandos enviaron órdenes contradictorias. Revisa los autobuses.")

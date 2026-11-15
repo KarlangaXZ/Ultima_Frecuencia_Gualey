@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="MissionDefinition" format=3]
+[ext_resource type="Script" path="res://scripts/missions/mission_definition.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/missions/mission_objective.gd" id="2"]
+
+[sub_resource type="Resource" id="Objective0"]
+script = ExtResource("2")
+event_key = &"convoy_comms"
+description = "Acceder al equipo de comunicaciones del Perímetro."
+
+[sub_resource type="Resource" id="Objective1"]
+script = ExtResource("2")
+event_key = &"convoy_orders"
+description = "Recuperar la última orden de traslado."
+
+[sub_resource type="Resource" id="Objective2"]
+script = ExtResource("2")
+event_key = &"convoy_link"
+description = "Restaurar el enlace de radio."
+
+[sub_resource type="Resource" id="Objective3"]
+script = ExtResource("2")
+event_key = &"convoy_listen"
+description = "Escuchar la transmisión completa hasta finalizar."
+
+[resource]
+script = ExtResource("1")
+chapter_id = &"last_convoy"
+id = &"convoy_route"
+title = "Ruta sin retorno"
+description = "Recupera la orden, restaura el enlace y escucha la transmisión completa."
+prerequisites = Array[StringName]([&"convoy_quarantine"])
+objectives = Array[ExtResource("2")]([SubResource("Objective0"), SubResource("Objective1"), SubResource("Objective2"), SubResource("Objective3")])
+reward_xp = 100
+sequential = true
