@@ -6,6 +6,12 @@ Supervivencia zombi 2D con vista cenital, ambientada en un barrio urbano devasta
 
 **Estado:** Desarrollo activo · **Plataforma inicial:** Windows
 
+**Fase 17: certificación técnica parcial.** Campaña continua de los cuatro
+capítulos validada con IA activa y 35.420 píxeles recorridos; PCK aislado con
+guardado/carga y audio verificados. **El ejecutable Windows sigue pendiente de
+las plantillas de Godot 4.7.2**, al igual que la partida y escucha humanas.
+[Alcance, pruebas reutilizadas, capturas y pendientes](docs/campaign_certification.md).
+
 Un prototipo jugable con movimiento, navegación de enemigos, combate, salud, recarga, inventario, suministros, hambre, sed, progresión de personaje, misiones encadenadas, radio textual, guardado local, cuatro zonas conectadas y reinicio. La integración visual funciona; el arte y varias animaciones todavía son provisionales. No hay una portada oficial incluida: esta presentación utiliza capturas reales del juego.
 
 ## Inicio y configuración
