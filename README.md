@@ -6,10 +6,11 @@ Supervivencia zombi 2D con vista cenital, ambientada en un barrio urbano devasta
 
 **Estado:** Desarrollo activo · **Plataforma inicial:** Windows
 
-**Fase 17: certificación técnica parcial.** Campaña continua de los cuatro
-capítulos validada con IA activa y 35.420 píxeles recorridos; PCK aislado con
-guardado/carga y audio verificados. **El ejecutable Windows sigue pendiente de
-las plantillas de Godot 4.7.2**, al igual que la partida y escucha humanas.
+**Fase 17.2: compilaciones locales Windows debug y release verificadas.** Ambas
+completaron los cuatro capítulos con IA activa y 35.420 píxeles recorridos;
+782 comprobaciones seleccionadas del EXE aprobaron, incluyendo guardado/carga,
+audio y viajes por las cuatro zonas. Los artefactos son locales, sin publicación.
+Siguen pendientes la partida y escucha humanas y las sesiones prolongadas.
 [Alcance, pruebas reutilizadas, capturas y pendientes](docs/campaign_certification.md).
 
 Un prototipo jugable con movimiento, navegación de enemigos, combate, salud, recarga, inventario, suministros, hambre, sed, progresión de personaje, misiones encadenadas, radio textual, guardado local, cuatro zonas conectadas y reinicio. La integración visual funciona; el arte y varias animaciones todavía son provisionales. No hay una portada oficial incluida: esta presentación utiliza capturas reales del juego.
@@ -340,6 +341,8 @@ direcciones por estado. [Resultados y limitaciones](docs/zombie_base_integration
 | 15 | Perímetro de evacuación | Cuarta zona integrada, acceso tras capítulo 3 y guardado v6; capítulo 4 pendiente |
 | 15.1 | Música de menú y exploración | Integración técnica validada; dos composiciones provisionales, escucha humana pendiente |
 | 16 | El último convoy | Cuatro misiones, 270 XP, guardado v7 compatible con v1–v6; cuatro zonas, sin quinta salida |
+| 17 | Certificación de campaña y PCK | Certificación técnica parcial; pruebas históricas conservadas |
+| 17.2 | Exportación Windows x86_64 | Debug/release verificados; revisión humana y sesiones largas pendientes |
 
 “Completada técnicamente” significa que la integración y sus pruebas funcionan; no implica arte final ni aprobación artística de todos los ciclos. El guardado se incorpora en fase 9; las revisiones manuales pendientes se detallan en cada informe.
 
@@ -401,7 +404,7 @@ Sustituir `godot` por la ruta de su ejecutable si no está en PATH. El motor por
 
 **Resolución base:** 1280 × 720 · **Escalado:** canvas_items · **Renderizador:** Compatibility (OpenGL).
 
-No se necesitan plugins, paquetes externos ni Python para jugar. Los generadores de SVG y audio provisional son herramientas opcionales de desarrollo. Todavía no se entrega un ejecutable Windows independiente: se ejecuta con Godot.
+No se necesitan plugins, paquetes externos ni Python para jugar. Los generadores de SVG y audio provisional son herramientas opcionales de desarrollo. En esta copia local, las compilaciones independientes están en `builds/windows-phase17-2/debug/` y `builds/windows-phase17-2/release/`. Ejecutar `UltimaFrecuenciaGualey.exe` conservando su `.pck` al lado; no necesitan el editor. Estos artefactos están excluidos de Git y no se han publicado.
 
 ## Estructura del repositorio
 
@@ -590,7 +593,7 @@ reales del motor; no se declara validada una sesión manual prolongada.
 - El audio es síntesis técnica provisional; falta revisión auditiva de mezcla/volumen y sonidos realistas finales. Ganancias y pausa ambiental son ajustables en la capa de audio.
 - Game Over aparece inmediatamente: la animación de muerte se ejecuta detrás de su panel. Algunas capturas técnicas ocultan ese panel únicamente para inspección.
 - La navegación deriva rectángulos de todos los sólidos y un perímetro fijo. Formas no rectangulares requieren adaptar su generación.
-- Faltan una revisión manual completa del combate y transiciones, pruebas de exportación y una distribución independiente.
+- Faltan una revisión humana completa del combate y transiciones, escucha en otros dispositivos, sesiones prolongadas y pruebas en otros equipos Windows. La exportación local debug/release está verificada; no hay distribución pública.
 
 ## Documentación técnica
 

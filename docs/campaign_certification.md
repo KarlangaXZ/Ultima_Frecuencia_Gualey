@@ -5,13 +5,13 @@ Windows, GDScript, Compatibility, 1280 × 720. Se conservan cuatro capítulos,
 quince misiones, cuatro zonas, tres arquetipos, cuatro armas y guardado v7.
 No se añadió contenido, música, balance o interfaces.
 
-**Alcance:** campaña funcional desde el proyecto y paquete PCK verificados.
-**Cierre:** certificación técnica parcial, con exportación Windows pendiente.
-Los resultados finales disponibles no muestran un fallo funcional que impida
-este cierre limitado. No equivale a aprobar un ejecutable ni una partida humana.
-**Límite:** no hay ejecutable Windows independiente certificado; faltan sus
-plantillas exactas. La escucha musical subjetiva y la partida humana siguen
-pendientes. La campaña automatizada no se presenta como una sesión humana.
+**Antecedente del 15 de noviembre:** certificación técnica parcial del proyecto
+y PCK, con exportación Windows bloqueada por plantillas ausentes. Las secciones
+históricas conservan esos resultados sin presentarlos como pruebas nuevas.
+**Actualización Windows del 21 de noviembre:** plantillas oficiales instaladas y
+EXE debug/release generados y verificados. El alcance y las evidencias de esta continuación se
+detallan en «Fase 17.2 — validación Windows autorizada», al final del informe.
+La campaña automatizada no se presenta como una partida humana.
 
 ## Recorrido principal sin preparación artificial
 
@@ -138,7 +138,7 @@ con `--path .` permitía resolver archivos del proyecto fuente. La prueba final
 usa `--path builds/windows`, sin proyecto fuente allí, y exige que los tests estén
 ausentes del paquete. Los probes son scripts externos y no se distribuyen.
 
-## Exportación Windows
+## Exportación Windows — antecedente del 15 de noviembre
 
 Se creó `export_presets.cfg`, preset **Windows Desktop**, arquitectura x86_64,
 sin firma, salida local `builds/windows/UltimaFrecuenciaGualey.exe`. Sin credenciales
@@ -179,7 +179,7 @@ mensajes, entradas/población de zonas y huellas de colisión de los cuatro mapa
 La prueba empaquetada también cargó el checkpoint v7 de los cuatro capítulos y
 comparó player/world/zones/missions/story/stats. No se regeneró el paquete aquí.
 
-## Fase 17.2 — exportación Windows bloqueada
+## Fase 17.2 — bloqueo inicial del 15 de noviembre (histórico)
 
 Revisión del 15 de noviembre de 2026. Se comprobó nuevamente el motor instalado:
 **4.7.2.stable.official.ed1daf0bf**. Continúan ausentes las dos plantillas exactas
@@ -296,7 +296,8 @@ permanecen en test-results/phase-seventeen/ para evitar duplicar la galería.
 Quedan pendientes una partida humana completa, balance bajo presión, comodidad
 del apuntado y hotkeys, claridad narrativa sin coordenadas, otras resoluciones,
 escucha musical/mezcla en distintos dispositivos, sesiones largas de memoria,
-revisión interactiva del panel del depurador y ejecutable Windows/exportación.
+revisión interactiva del panel del depurador. El estado posterior del ejecutable
+Windows se documenta en la actualización del 21 de noviembre al final.
 El arte y varios sonidos/animaciones siguen siendo provisionales.
 
 ## Trabajo previo conservado y archivos de esta continuación
@@ -306,14 +307,14 @@ preset Windows nuevo, configuración de conversión de exportación, recorrido
 integral, dos probes externos y sus UID, este informe, actualización mínima de
 README/documentación y capturas seleccionadas. No hay commits ni push.
 
-Esta continuación modifica solamente **README.md**, **docs/campaign_certification.md**
+La continuación documental del 15 de noviembre modificó solamente **README.md**, **docs/campaign_certification.md**
 y **docs/images/README.md**, y añade los cuatro PNG campaign-{character,inventory,
 radio,complete} con sus cuatro `.import`. No cambia project.godot,
 export_presets.cfg, los probes, gameplay o recursos originales.
 La auditoría local queda en test-results/phase-seventeen/continuation-review.json;
 ese archivo y los resultados siguen ignorados por Git.
 
-## Qué se hizo en esta continuación
+## Qué se hizo en la continuación documental del 15 de noviembre
 
 - Relectura y auditoría de los resultados finales anteriores: **ninguna repetición
   de campaña, combate, audio, menú, PCK o benchmark**.
@@ -329,3 +330,179 @@ export_contract_test.gd corresponden a **pack_certification_probe.gd** y
 **export_contract_probe.gd**, renombrados antes de esta continuación para distinguir
 probes externos de tests de juego. Se inspeccionaron los archivos existentes;
 no se duplicaron ni renombraron otra vez.
+
+## Fase 17.2 — validación Windows autorizada (21 de noviembre de 2026)
+
+**Estado vigente: exportación y validación técnica Windows x86_64 completadas.**
+Debug y release arrancan fuera del editor con sus PCK, conservando guardado v7,
+cuatro zonas, cuatro capítulos y quince misiones. No se detectaron fallos
+funcionales bloqueantes en el alcance automatizado. Quedan las pruebas humanas
+y la observación de cierre forzado descrita abajo; no es certificación comercial.
+
+### Plantillas oficiales e integridad
+
+Con autorización expresa se descargó el paquete estándar de exportación, sin Mono,
+desde [Godot 4.7.2 Stable](https://godotengine.org/download/archive/4.7.2-stable/)
+y su [release oficial](https://github.com/godotengine/godot-builds/releases/tag/4.7.2-stable).
+El archivo `Godot_v4.7.2-stable_export_templates.tpz` tiene **1.281.349.702 bytes**.
+Se verificaron SHA-512 contra `SHA512-SUMS.txt` oficial y SHA-256 contra el digest
+de la API oficial del release; ambos coinciden. SHA-256 del archivo descargado:
+
+```text
+f298490b8d44d934be425a5a65a51bf15f422428b229a06a6e11d9ffea248011
+```
+
+Se extrajeron únicamente `version.txt`, Windows x86_64 debug/release y sus dos
+wrappers de consola a `%APPDATA%/Godot/export_templates/4.7.2.stable/`.
+`version.txt` indica `4.7.2.stable`; las cuatro plantillas PE indican 4.7.2.
+Los EXE ejecutados identifican **4.7.2.stable.official.ed1daf0bf**. Los hashes
+individuales y la procedencia están en `test-results/phase-seventeen-two/templates-installation.json`.
+No se instalaron plugins ni otras plataformas.
+
+### Entregas locales y corrección mínima del preset
+
+Se conserva `export/convert_text_resources_to_binary=false` en project.godot.
+Antes de generar los EXE se ejecutó el contrato del nuevo PCK: **48 comparaciones,
+0 diferencias**. Las exportaciones finales debug y release terminaron sin errores
+ni advertencias y sus PCK son idénticos entre sí.
+
+La única modificación de configuración es añadir `builds/*` a las exclusiones
+del preset: la primera exportación recogía instrumentos guardados en esa carpeta.
+Se regeneraron ambas entregas sin esos archivos. No se cambió ningún recurso
+original, parámetro de gameplay, música, paleta, guardado o VSync.
+
+| Artefacto relativo al repositorio | Bytes | SHA-256 |
+| --- | ---: | --- |
+| `builds/windows-phase17-2/debug/UltimaFrecuenciaGualey.exe` | 103.035.904 | `3fd4b3286fe97cf688badd972b0267a5a1d6c96ff5aec82df41e3162b9d01a32` |
+| `builds/windows-phase17-2/release/UltimaFrecuenciaGualey.exe` | 109.127.680 | `e9739cfca2a1e937b21e0f3d00d36ed4f78ff8a4a9c5d416971bf36365e4bb15` |
+| `UltimaFrecuenciaGualey.pck`, en ambas carpetas | 164.733.488 cada uno | `b44922314fdbf1759578e41a96575dba6b18ede3647300eec8d49d7b1bb4c0cb` |
+
+Debug incluye además el wrapper `UltimaFrecuenciaGualey.console.exe` (50.176 bytes).
+El manifiesto completo es `test-results/phase-seventeen-two/final-artifacts.json`.
+Para jugar, conservar EXE y PCK juntos. Las carpetas no contienen project.godot
+ni las fuentes del proyecto. Los binarios no están firmados, publicados ni
+distribuidos; builds/, .tools/ y test-results/ siguen ignorados por Git.
+
+### Método y pruebas nuevas del ejecutable
+
+Se iniciaron ambos **EXE finales con sus PCK sin modificar**, desde sus propias
+carpetas: menú visible, capturas reales y cierre mediante el botón **SALIR** usando
+la interfaz de Windows. Release terminó con código 0; ambos cerraron su ventana
+sin errores ni advertencias ObjectDB en ese cierre normal.
+
+Las plantillas oficiales no admiten `--path` y no ofrecen `--script`. El primer
+intento externo no cuenta como prueba aprobada. Para automatizar se prepararon
+copias independientes en `instrumented-debug/` e `instrumented-release/`: el
+**mismo EXE byte por byte**, todos los recursos del juego y un autoload de prueba.
+No ejecutan el editor ni buscan recursos del proyecto fuente. Una comparación
+de **5.948 entradas originales** entre paquete final e instrumentado solo difiere
+en project.binary, que añade ese autoload; los scripts, escenas, recursos,
+importaciones y datos originales son idénticos. Los instrumentos no forman parte
+de las entregas debug/release.
+
+| Prueba nueva seleccionada | Debug | Release |
+| --- | ---: | ---: |
+| Campaña continua en ventana, IA activa y doce capturas | 212 / 0 fallos | 212 / 0 fallos |
+| Contrato de datos en el paquete final, EXE headless | 48 / 0 diferencias | 48 / 0 diferencias |
+| Reapertura, tres ranuras, cinco volúmenes, pausa, continuar, seis viajes y carga | 67 / 0 fallos | 67 / 0 fallos |
+| Música nativa y mezcla grabada | 64 / 0 fallos | 64 / 0 fallos |
+
+Son **782 comprobaciones aprobadas del EXE**, con alcances solapados, más las
+48 comparaciones previas a exportar ejecutadas con el motor de desarrollo.
+Arranque/cierre nativo, hashes, auditorías y mediciones se registran aparte;
+no se inventan aserciones para sumarlas a ese número. Los intentos de adaptación
+del instrumento y los probes intermedios de 40 comprobaciones se conservan como
+diagnóstico y no se suman a los resultados finales seleccionados.
+
+Cada campaña recorrió **35.419,96 px**, realizó **78 ataques, 9 recargas y 6 usos
+de objetos**, obtuvo armas y suministros finitos, compró una habilidad con XP
+ganada, completó los quince premios y conservó los cuatro mapas. HP final 70;
+hambre 93,77 y sed 90,66. No hubo teletransportes del bot, salud/XP artificiales
+ni IA desactivada. Se usó fixed-fps 60 para regresión: sus 157,50 s debug y
+261,02 s release de pared **no se comparan como rendimiento** (visibilidad distinta).
+El juego simuló 186,83 s en ambas.
+
+La reapertura usa otro proceso y compara exactamente player/world/zones/missions/
+story/stats del checkpoint v7. Después prueba seis viajes mediante ZoneManager:
+Perímetro → Estación → Mercado → Gualey → Mercado → Estación → Perímetro, sin
+alterar desbloqueos, conservando el mismo Player y quince premios; vuelve a
+guardar/cargar en su directorio separado. El recorrido físico principal sí usa
+las salidas e interacción E. Los cinco sliders se contrastan con la ganancia real
+de Master/Music/Effects/Ambience/Interface. Las capturas de audio prueban señal,
+silencio/ganancias y mezcla, no una valoración auditiva humana. La suite musical
+prepara viajes y silencia IA para aislar audio; no se presenta como otra campaña.
+
+Campaña y música de esta sesión se reutilizan tras la exclusión de builds/:
+los EXE finales mantienen exactamente sus hashes, y 5.948 entradas comparadas
+entre contenido previo y final solo cambian en la caché UID del motor. Se
+repitieron contrato, reapertura ampliada y rendimiento con el paquete final.
+Las **3.895 comprobaciones históricas** de fase 17 se reutilizan aparte, sin
+presentarlas como ejecuciones nuevas del EXE; incluyen migraciones v1–v6,
+agotamiento de necesidades, Game Over y regresión de sistemas anteriores.
+
+Los resultados nuevos están en `test-results/phase-seventeen-two/`: carpetas
+debug/ y release/ para campaña/audio, `final/` para los probes y métricas finales,
+`startup/` para capturas del paquete sin instrumentación y menu-exit*.txt para el
+cierre por interfaz. `certification-summary.json` resume las evidencias.
+
+### Rendimiento real del EXE
+
+Dos procesos secuenciales, sin otro Godot midiendo al mismo tiempo: Ryzen 5 5600G,
+Radeon RX 580, Compatibility, 1280 × 720, ventana visible/enfocada, **VSync=1,
+max_fps=0**, sin fixed-fps ni capturas. Un segundo de calentamiento y cinco de
+muestra por escena. Media/p95 provienen de intervalos process_frame medidos con
+reloj monotónico; no son máximos del monitor de física ni tiempo de GPU.
+
+| Muestra equivalente | Debug FPS / media ms / p95 ms | Release FPS / media ms / p95 ms |
+| --- | --- | --- |
+| Menú | 71,91 / 13,905 / 15,590 | 71,92 / 13,905 / 14,389 |
+| Gualey nueva partida, seis enemigos | 71,93 / 13,903 / 14,382 | 71,92 / 13,905 / 14,303 |
+| Perímetro, checkpoint completado y cuatro vivos | 71,92 / 13,905 / 14,260 | 71,91 / 13,906 / 14,260 |
+
+Son 360 intervalos por muestra. Gualey mantiene 463 nodos/28 voces totales;
+Perímetro 519/43, con cadáveres y estado reales del checkpoint. No se compara
+Gualey con Perímetro como carga idéntica. La IA continúa activa y HP llega a 30
+durante la muestra del Perímetro, sin curación de prueba ni muerte.
+El autoload/instrumento añade nodos y coste: las cifras son de copias instrumentadas
+con los EXE reales, no una medición libre de instrumentación.
+
+Memoria del **proceso Windows**, muestreada cada 250 ms durante arranque, cargas
+y las tres escenas: máximos de working set **255,86 / 244,11 MiB** y memoria
+privada **317,60 / 311,42 MiB**, debug/release respectivamente, 79 muestras cada uno.
+No se confunde con memoria estática de Godot ni se concluye ausencia de fugas.
+Las primeras mediciones con ventana oculta se conservan en los directorios padre;
+no se comparan con estas muestras visibles ni con los benchmarks históricos del editor.
+
+### Observaciones, capturas y límites
+
+- Exportaciones, campañas, audio, contrato y probes finales: sin errores de script,
+  advertencias nuevas ni cierres anómalos en sus registros finales.
+- La captura de arranque de **ocho fotogramas**, con Movie Maker y `--quit-after`,
+  registra **2 ObjectDB instances leaked at exit** en cada versión. No se reprodujo
+  al pulsar SALIR en ninguno de los EXE normales. Se conserva como observación del
+  cierre forzado, sin afirmar su causa exacta ni cambiar música para silenciarla.
+- El cierre verbose normal sigue mostrando **38 StringName** sin reclamar, igual
+  que el antecedente histórico. No demuestra una fuga creciente; faltan sesiones largas.
+- Se conservaron doce PNG 1280 × 720 por campaña y ocho de arranque por EXE final.
+  Se revisaron menú nativo de ambos, mochila/misiones y final de campaña; el PNG
+  de arranque release coincide por SHA-256 con la captura de menú de su campaña.
+  No se rehace la galería ni se inventan imágenes; las capturas históricas del informe
+  siguen vigentes y las nuevas permanecen en los resultados locales ignorados.
+- Quedan una partida humana completa con teclado/mouse, escucha en otros equipos,
+  comodidad/balance, otras resoluciones, sesiones largas de memoria/estabilidad,
+  cierre forzado y pruebas en otros Windows. No se certificó instalación en otro PC.
+
+### Protección de partidas y archivos modificados
+
+Las pruebas solo escriben `user://tests/phase17-2-*` y directorios music/pack/perf
+de esta fase. La prueba musical restaura las preferencias de su instancia.
+Se contrastaron los hashes de settings.cfg y los dos archivos de la ranura
+personal existente (partida y respaldo): **los tres permanecen idénticos**.
+Las **245 fuentes funcionales** continúan idénticas a before-files.json.
+
+Archivos versionables modificados en esta continuación: **export_presets.cfg**
+(excluir builds/), **README.md** (estado y ejecución local) y este informe.
+Instrumentos auxiliares nuevos solo en .tools/; paquetes y copias de prueba en
+builds/windows-phase17-2/; resultados en test-results/phase-seventeen-two/.
+No se modificaron project.godot, gameplay, guardado v7 ni assets originales.
+No se hicieron commits, push, publicación o distribución.
