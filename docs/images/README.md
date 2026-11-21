@@ -6,6 +6,10 @@ conceptuales para representar funcionalidades.
 
 | Archivo | Fuente | Fecha y preparación |
 | --- | --- | --- |
+| campaign-character.png | test-results/phase-seventeen/03-character.png | Recorrido continuo desde inicio, IA activa, XP y daño reales; automatización, no partida humana |
+| campaign-inventory.png | test-results/phase-seventeen/inventory.png | Suministros finitos recogidos durante el recorrido continuo; sin llenar inventario artificialmente |
+| campaign-radio.png | test-results/phase-seventeen/04-final-radio.png | Transmisión final pendiente, mundo/IA activos; música y HUD existentes |
+| campaign-complete.png | test-results/phase-seventeen/05-campaign-complete.png | Cuatro capítulos completos desde TitleMenu, quince premios únicos; sin teletransportes de prueba |
 | convoy-journal.png | test-results/phase-sixteen/01-convoy-journal.png | 2026-11-15, capítulo 4 activo; capítulos previos preparados, IA aislada en el recorrido físico |
 | convoy-last-order.png | test-results/phase-sixteen/02-convoy-last-order.png | 2026-11-15, mensaje 2/3 pendiente, antes del premio final |
 | convoy-complete.png | test-results/phase-sixteen/03-convoy-complete.png | 2026-11-15, cuatro capítulos completos y pista NODO CERO, sin quinta zona |
