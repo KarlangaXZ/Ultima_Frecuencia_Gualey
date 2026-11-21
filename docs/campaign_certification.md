@@ -179,6 +179,51 @@ mensajes, entradas/población de zonas y huellas de colisión de los cuatro mapa
 La prueba empaquetada también cargó el checkpoint v7 de los cuatro capítulos y
 comparó player/world/zones/missions/story/stats. No se regeneró el paquete aquí.
 
+## Fase 17.2 — exportación Windows bloqueada
+
+Revisión del 15 de noviembre de 2026. Se comprobó nuevamente el motor instalado:
+**4.7.2.stable.official.ed1daf0bf**. Continúan ausentes las dos plantillas exactas
+windows_debug_x86_64.exe y windows_release_x86_64.exe en el directorio
+`Godot/export_templates/4.7.2.stable` de AppData/Roaming. Tampoco se encontraron
+plantillas aprovechables en export_templates/ del repositorio ni rutas de plantilla
+personalizadas en el preset. Los ejecutables del editor en .tools/godot/ no se
+consideran plantillas ni compilaciones del juego.
+
+| Entrega solicitada | Estado real en fase 17.2 |
+| --- | --- |
+| EXE Windows debug | No generado: falta su plantilla |
+| EXE Windows release | No generado: falta su plantilla |
+| Ejecución independiente, nueva partida, carga y reapertura desde EXE | No realizada |
+| FPS, media/p95, memoria y estabilidad del EXE | No medidos; no se sustituyen por cifras del editor o PCK |
+| PCK previamente certificado | Conservado, sin regenerarlo ni repetir sus pruebas |
+
+Comprobaciones nuevas de esta fase: disponibilidad local de plantillas, versión
+del motor, preset, exportación textual, guardado v7 y catálogos de cuatro zonas y
+cuatro capítulos. Las 245 fuentes de juego contrastadas siguen idénticas a la
+instantánea de fase 17; el SHA-256 del PCK continúa siendo el registrado arriba.
+Se reutilizan el contrato aprobado de 48 grupos y los probes aislados de 32/34
+comprobaciones. **Esas pruebas no se ejecutaron nuevamente ni cuentan como pruebas
+del EXE.** No se repite una exportación que ya tiene una dependencia ausente.
+
+No se descargaron ni instalaron componentes, no se cambiaron gameplay, IA,
+armas, misiones, música, paleta, VSync o esquema de guardado. No se generaron
+artefactos Windows nuevos ni se sobrescribieron partidas. El artefacto local
+existente sigue en `builds/windows/UltimaFrecuenciaGualey.pck`, ignorado por Git.
+La comprobación nueva queda registrada en
+`test-results/phase-seventeen-two/availability.json`, también ignorado.
+
+El siguiente paso requiere autorización para obtener e instalar las plantillas
+oficiales de **4.7.2.stable** o que se proporcionen sus rutas locales. Después
+corresponde validar otra vez el contrato del paquete destinado a cada compilación,
+exportar debug/release a carpetas separadas, registrar sus hashes y probar los
+quince puntos de ejecución aislada de fase 17.2. La persistencia debe utilizar
+datos de prueba separados de las partidas normales; no se debe certificar el EXE
+solo por arrancar el PCK con el editor. La partida humana, escucha subjetiva,
+sesiones prolongadas y validación Windows independiente continúan pendientes.
+
+Se mantiene la **certificación técnica parcial** de fase 17; la fase 17.2 queda
+**bloqueada por plantillas faltantes**, sin declarar exportación exitosa.
+
 ## Reproducción
 
 ```powershell
